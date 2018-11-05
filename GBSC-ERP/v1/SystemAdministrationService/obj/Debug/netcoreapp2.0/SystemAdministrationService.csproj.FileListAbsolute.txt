@@ -1,0 +1,16 @@
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\bin\Debug\netcoreapp2.0\SystemAdministrationService.deps.json
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\bin\Debug\netcoreapp2.0\SystemAdministrationService.runtimeconfig.json
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\bin\Debug\netcoreapp2.0\SystemAdministrationService.runtimeconfig.dev.json
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\bin\Debug\netcoreapp2.0\SystemAdministrationService.dll
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\bin\Debug\netcoreapp2.0\SystemAdministrationService.pdb
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\bin\Debug\netcoreapp2.0\ErpCore.dll
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\bin\Debug\netcoreapp2.0\ErpInfrastructure.dll
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\bin\Debug\netcoreapp2.0\ErpCore.pdb
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\bin\Debug\netcoreapp2.0\ErpInfrastructure.pdb
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\obj\Debug\netcoreapp2.0\SystemAdministrationService.csprojAssemblyReference.cache
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\obj\Debug\netcoreapp2.0\SystemAdministrationService.csproj.CoreCompileInputs.cache
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\obj\Debug\netcoreapp2.0\SystemAdministrationService.AssemblyInfoInputs.cache
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\obj\Debug\netcoreapp2.0\SystemAdministrationService.AssemblyInfo.cs
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\obj\Debug\netcoreapp2.0\SystemAdministrationService.csproj.CopyComplete
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\obj\Debug\netcoreapp2.0\SystemAdministrationService.dll
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\SystemAdministrationService\obj\Debug\netcoreapp2.0\SystemAdministrationService.pdb

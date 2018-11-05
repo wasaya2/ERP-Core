@@ -1,0 +1,24 @@
+﻿{
+  "HIMS": [
+    "Patient Appointment Scheduling",
+    "Find Patients",
+    "Patient Profile"
+  ],
+  "HRMS": [
+    "Employee Registration",
+    "Employee Bank",
+    "Employee Immigration"
+  ],
+  "Payroll": [
+    "Allowance Deduction",
+    "Banks",
+    "Currency",
+    "Currency Rate",
+    "Fun Setup"
+  ],
+  "Lab": [
+    "Biochemistry Test",
+    "BioChemistry On Treatment",
+    "Reference Range"
+  ]
+}
