@@ -9,10 +9,6 @@ namespace ErpCore.Entities
     public class BioChemistryTestDetails : BaseClass
     {
 
-        public BioChemistryTestDetails()
-        {
-            ReferenceRanges = new HashSet<ReferenceRange>();
-        }
 
         [Key]
         public long BioChemistryTestDetailsId { get; set; }
@@ -30,7 +26,11 @@ namespace ErpCore.Entities
         public long? PatientBioChemistryTestId { get; set; }
         public BioChemistryTestOnTreatment BioChemistryTestOnTreatment { get; set; }
 
-        public IEnumerable<ReferenceRange> ReferenceRanges { get; set; }
+        public long? BioChemistryTestOutsideId { get; set; }
+
+        public BioChemistryTestOutsider BioChemistryTestOutsider { get; set; }
+
+        public string ReferenceRange { get; set; }
 
     }
 }

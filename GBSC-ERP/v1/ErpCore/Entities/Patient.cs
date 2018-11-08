@@ -55,6 +55,8 @@ namespace ErpCore.Entities
         public PatientReference PatientReference { get; set; }
         public string Reference { get; set; }
 
+        public long? PatientPackageId { get; set; }
+        public PatientPackage PatientPackage { get; set; }
  
         public Partner Partner { get; set; }
 

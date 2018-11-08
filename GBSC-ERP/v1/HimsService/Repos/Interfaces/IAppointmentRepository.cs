@@ -11,8 +11,9 @@ namespace HimsService.Repos.Interfaces
     {
         IEnumerable<Appointment> GetAppointmentsByDateAndPatientID(DateTime date, long patid);
         IEnumerable<Appointment> GetFinalizedAppointmentsByDateAndPatientID(DateTime date, long patid);
-        List<Appointment> GetConsultantAndAppointmentdate(long id, DateTime date);
+        IList<Appointment> GetConsultantAndAppointmentdate(long id, DateTime date);
         List<Appointment> GetDataByTentativedate(DateTime date);
         Appointment GetAppointmentDetails(long id);
+        IEnumerable<Appointment> GetFinalizedAppointmentsByPatientIdAndMonthYear(long patid, DateTime date);
     }
 }

@@ -329,7 +329,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetCities", Name = "GetCities")]
         public IEnumerable<City> GetCities()
         {
-            return City_repo.GetList(c => c.CityId != null);
+            return City_repo.GetList(c => c.CityId != null).OrderByDescending(a => a.CityId);
         }
 
         [HttpGet("GetCity/{id}", Name = "GetCity")]
@@ -369,7 +369,7 @@ namespace SystemAdministrationService.Controllers
         public IEnumerable<Country> GetCountries()
         {
 
-            return Country_repo.GetList(c => c.CountryId != null);
+            return Country_repo.GetList(c => c.CountryId != null).OrderByDescending(a => a.CountryId);
         }
 
         [HttpGet("GetCountry/{id}", Name = "GetCountry")]

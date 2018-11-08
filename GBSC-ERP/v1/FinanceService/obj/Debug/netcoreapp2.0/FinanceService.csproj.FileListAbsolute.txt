@@ -13,3 +13,5 @@ C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\FinanceService\obj\Debug\netcoreap
 C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\FinanceService\obj\Debug\netcoreapp2.0\FinanceService.csproj.CopyComplete
 C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\FinanceService\obj\Debug\netcoreapp2.0\FinanceService.dll
 C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\FinanceService\obj\Debug\netcoreapp2.0\FinanceService.pdb
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\FinanceService\obj\Debug\netcoreapp2.0\FinanceService.csprojAssemblyReference.cache
+C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\FinanceService\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs

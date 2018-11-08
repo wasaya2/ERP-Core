@@ -12,6 +12,7 @@ namespace SystemAdministrationService.ViewModels
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FatherName { get; set; }
+        public string FullName { get; set; }
         public string POB { get; set; }
         public DateTime? DOB { get; set; }
         public string CNIC { get; set; }

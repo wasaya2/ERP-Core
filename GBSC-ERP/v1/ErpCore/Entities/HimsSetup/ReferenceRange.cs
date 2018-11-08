@@ -11,7 +11,5 @@ namespace ErpCore.Entities.HimsSetup
         public long ReferenceRangeId { get; set; }
         public string RefRange { get; set; }
 
-        public long? BioChemistryTestDetailsId { get; set; }
-        public BioChemistryTestDetails BioChemistryTestDetails { get; set; }
     }
 }

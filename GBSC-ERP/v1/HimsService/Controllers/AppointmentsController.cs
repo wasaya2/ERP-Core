@@ -117,7 +117,7 @@ namespace HimsService.Controllers
 
         [HttpGet("GetAppointmentByConsultantNameAndDate/{id}/{date}", Name = "GetAppointmentByConsultantNameAndDate")]
         [ValidateModelAttribute]
-        public List<Appointment> GetAppointmentByConsultantNameAndDate(long id, DateTime date)
+        public IEnumerable<Appointment> GetAppointmentByConsultantNameAndDate(long id, DateTime date)
         {
             return _repo.GetConsultantAndAppointmentdate(id , date);
           // model.ConsultantId = id;

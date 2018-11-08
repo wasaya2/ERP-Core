@@ -113,6 +113,7 @@ namespace HimsService
 
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IPackageRepository, PackageRepository>();
+            services.AddScoped<IPatientPackageRepository, PatientPackageRepository>();
             services.AddScoped<IPartnerRepository, PartnerRepository>();
             services.AddScoped<IPatientInvoiceItemRepository, PatientInvoiceItemRepository>();
             services.AddScoped<IPatientInvoiceRepository, PatientInvoiceRepository>();
@@ -153,6 +154,7 @@ namespace HimsService
             services.AddScoped<IFreezePreprationRepository, FreezePreprationRepository>();
             services.AddScoped<IPatientInsemenationRepository, PatientInsemenationRepository>();
             services.AddScoped<ISemenAnalysisRepository, SemenAnalysisRepository>();
+            services.AddScoped<IBioChemistryTestOutsiderRepository, BioChemistryTestOutsiderRepository>();
 
             services.AddMvc().AddJsonOptions(options =>
                         options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);

@@ -13,6 +13,7 @@ namespace ErpCore.Entities.HRSetup
         public DateTime? ContractEndDate { get; set; }
         public DateTime? AppointmentDate { get; set; }
         public DateTime? ConfirmationDueDate { get; set; }
+        public DateTime? ConfirmationDate { get; set; }
         public DateTime? NextAppraisalDate { get; set; }
         public DateTime? AppraisalConfirmDate { get; set; }
         public DateTime? LeavingDate { get; set; }

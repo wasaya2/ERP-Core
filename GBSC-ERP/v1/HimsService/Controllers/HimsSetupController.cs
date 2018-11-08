@@ -24,7 +24,8 @@ namespace HimsService.Controllers
         private IVisitNatureRepository VisitNature_repo;
         private ITestTypeRepository testType_repo;
         private ITestCategoryRepository testCategory_repo;
- 
+        private IPatientPackageRepository Patientpackage_repo;
+
     public HimsSetupController(IPackageRepository packagerepo,
             ITestRepository testrepo,
             IConsultantRepository consultantRepository,
@@ -33,7 +34,8 @@ namespace HimsService.Controllers
             IEmbryologyCodeRepository _embryologyCodeRepo,
             IVisitNatureRepository _VisitNature_repo,
             ITestTypeRepository tsttyperepo,
-            ITestCategoryRepository tstcatrepo
+            ITestCategoryRepository tstcatrepo,
+            IPatientPackageRepository Patientpackagerepo
        )
         {
             con_repo = consultantRepository;
@@ -45,6 +47,7 @@ namespace HimsService.Controllers
             VisitNature_repo = _VisitNature_repo;
             testType_repo = tsttyperepo;
             testCategory_repo = tstcatrepo;
+            Patientpackage_repo = Patientpackagerepo;
          }
 
         [HttpGet("GetHimsSetupPermissions/{userid}/{roleid}/{featureid}", Name = "GetHimsSetupPermissions")]
@@ -153,6 +156,51 @@ namespace HimsService.Controllers
             }
 
             package_repo.Delete(package);
+            return Ok();
+        }
+
+        #endregion
+
+        #region Patient Package
+
+        [HttpGet("GetPatientPackages", Name = "GetPatientPackages")]
+        public IEnumerable<PatientPackage> GetPatientPackages()
+        {
+            return Patientpackage_repo.GetAll().OrderByDescending(a => a.PatientPackageId);
+        }
+
+        [HttpGet("GetPatientPackage/{id}", Name = "GetPatientPackage")]
+        public PatientPackage GetPatientPackage(long id) => Patientpackage_repo.GetFirst(a => a.PatientPackageId == id);
+
+        [HttpGet("GetPatientPackageByPatientId/{patientid}", Name = "GetPatientPackageByPatientId")]
+        public PatientPackage GetPatientPackageByPatientId(long patientid) => Patientpackage_repo.GetFirst(a => a.PatientId == patientid);
+
+        [HttpPut("UpdatePatientPackage", Name = "UpdatePatientPackage")]
+        [ValidateModelAttribute]
+        public IActionResult UpdatePatientPackage([FromBody]PatientPackage model)
+        {
+            Patientpackage_repo.Update(model);
+            return new OkObjectResult(new { PatientPackageID = model.PatientPackageId });
+        }
+
+        [HttpPost("AddPatientPackage", Name = "AddPatientPackage")]
+        [ValidateModelAttribute]
+        public IActionResult AddPatientPackage([FromBody]PatientPackage model)
+        {
+            Patientpackage_repo.Add(model);
+            return new OkObjectResult(new { PatientPackageID = model.PatientPackageId });
+        }
+
+        [HttpDelete("DeletePatientPackage/{id}")]
+        public IActionResult DeletePatientPackage(long id)
+        {
+            PatientPackage Patientpackage = Patientpackage_repo.Find(id);
+            if (Patientpackage == null)
+            {
+                return NotFound();
+            }
+
+            Patientpackage_repo.Delete(Patientpackage);
             return Ok();
         }
 

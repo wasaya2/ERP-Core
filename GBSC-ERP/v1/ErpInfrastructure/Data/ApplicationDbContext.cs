@@ -83,6 +83,7 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<ReferenceRange>().ToTable("Hims_ReferenceRange");
             modelBuilder.Entity<BioChemistryTest>().ToTable("Hims_BioChemistryTest");
             modelBuilder.Entity<BioChemistryTestOnTreatment>().ToTable("Hims_BioChemistryTestOnTreatment");
+            modelBuilder.Entity<BioChemistryTestOutsider>().ToTable("Hims_BioChemistryTestOutsider");
             modelBuilder.Entity<BioChemistryTestDetails>().ToTable("Hims_BioChemistryTestDetails");
             modelBuilder.Entity<InseminationPrep>().ToTable("Hims_InseminationPrep");
             modelBuilder.Entity<Tvopu>().ToTable("Hims_Tvopu");
@@ -100,6 +101,7 @@ namespace ErpInfrastructure.Data
             //Hims Setup
             modelBuilder.Entity<Consultant>().ToTable("Hims_Consultant");
             modelBuilder.Entity<Package>().ToTable("Hims_Package");
+            modelBuilder.Entity<PatientPackage>().ToTable("Hims_PatientPackage");
             modelBuilder.Entity<Test>().ToTable("Hims_Test");
             modelBuilder.Entity<VisitNature>().ToTable("Hims_VisitNature");
             modelBuilder.Entity<AppointmentTest>().ToTable("Hims_AppointmentTest");
@@ -509,11 +511,6 @@ namespace ErpInfrastructure.Data
                 .WithMany(b => b.Tvopus)
                 .HasForeignKey(b => b.EmbryologistId);
 
-            modelBuilder.Entity<ReferenceRange>()
-                .HasOne(a => a.BioChemistryTestDetails)
-                .WithMany(b => b.ReferenceRanges)
-                .HasForeignKey(c => c.BioChemistryTestDetailsId);
-
             modelBuilder.Entity<BioChemistryTestDetails>()
                 .HasOne(a => a.BioChemistryTest)
                 .WithMany(b => b.BioChemistryTestDetails)
@@ -594,20 +591,20 @@ namespace ErpInfrastructure.Data
                 .WithMany(b => b.PatientInvoiceItems)
                 .HasForeignKey(c => c.PatientInvoiceId);
 
-            modelBuilder.Entity<PatientInvoiceItem>()
+            modelBuilder.Entity<PatientInvoice>()
+                .HasOne(a => a.Appointment)
+                .WithOne(b => b.PatientInvoice)
+                .HasForeignKey<PatientInvoice>(c => c.AppointmentId);
+
+            modelBuilder.Entity<PatientPackage>()
                 .HasOne(a => a.Package)
-                .WithMany()
-                .HasForeignKey(b => b.PackageId);
+                .WithMany(b => b.PatientPackages)
+                .HasForeignKey(c => c.PackageId);
 
-            modelBuilder.Entity<PatientInvoiceItem>()
-                .HasOne(a => a.Test)
-                .WithMany()
-                .HasForeignKey(b => b.TestId);
-
-          modelBuilder.Entity<PatientInvoice>()
-            .HasOne(a => a.Appointment)
-            .WithOne(b => b.PatientInvoice)
-            .HasForeignKey<PatientInvoice>(c => c.AppointmentId);
+            modelBuilder.Entity<PatientPackage>()
+                .HasOne(a => a.Patient)
+                .WithOne(b => b.PatientPackage)
+                .HasForeignKey<Patient>(c => c.PatientPackageId);
 
             //HIMS Setup
             modelBuilder.Entity<Test>()
@@ -2015,10 +2012,12 @@ namespace ErpInfrastructure.Data
         public DbSet<AppointmentTest> AppointmentTests { get; set; }
         public DbSet<VisitDiagnosis> VisitDiagnoses { get; set; }
         public DbSet<VisitTest> VisitTests { get; set; }
+        public DbSet<PatientPackage> PatientPackages { get; set; }
 
         //HimsSetup
         public DbSet<TestType> TestTypes { get; set; }
         public DbSet<TestCategory> TestCategories { get; set; }
+        public DbSet<Package> Packages { get; set; }
 
         //Visit
         public DbSet<PatientVital> PatientVitals { get; set; }
@@ -2049,6 +2048,7 @@ namespace ErpInfrastructure.Data
         public DbSet<EmbryoFreezeUnthawed> EmbryoFreezeUnthaweds { get; set; }
         public DbSet<FreezePrepration> FreezePreprations { get; set; }
         public DbSet<SemenAnalysis> SemenAnalyses { get; set; }
+        public DbSet<BioChemistryTestOutsider> BioChemistryTestOutsiders { get; set; }
 
         //Inventory
         public DbSet<Inventory> Inventories { get; set; }

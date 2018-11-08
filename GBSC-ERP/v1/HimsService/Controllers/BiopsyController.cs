@@ -33,6 +33,12 @@ namespace HimsService.Controllers
             return _biopsyRepo.GetFirst(p => p.PatientClinicalRecordId == id);
         }
 
+        [HttpGet("GetBiopsyByCollectionDate")]
+        public Biopsy GetBiopsyByCollectionDate(DateTime? date)
+        {
+            return _biopsyRepo.GetFirst(s => s.CollectionDate.Value.ToLongDateString() == date.Value.ToLongDateString());
+        }
+
         [HttpGet("GetBiopsyById/{Id}")]
         public Biopsy GetBiopsyById(long Id)
         {

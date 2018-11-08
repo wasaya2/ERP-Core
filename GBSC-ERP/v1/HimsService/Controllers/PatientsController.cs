@@ -27,16 +27,18 @@ namespace HimsService.Controllers
         private IPatientReferenceRepository ref_repo;
         private IPatientDocumentRepository doc_repo;
         private IPatientVitalRepository PatientVital_repo;
-    private IVisitRepository Visit_repo;
+        private IVisitRepository Visit_repo;
+        private IAppointmentRepository Appointment_repo;
 
-        public PatientsController(IPatientRepository repo, IPartnerRepository partnerrepo, IPatientReferenceRepository refrepo, IPatientDocumentRepository docrepo , IPatientVitalRepository PatientVital, IVisitRepository visit)
+        public PatientsController(IPatientRepository repo, IPartnerRepository partnerrepo, IPatientReferenceRepository refrepo, IPatientDocumentRepository docrepo , IPatientVitalRepository PatientVital, IVisitRepository visit, IAppointmentRepository appointmentrepo)
         {
             _repo = repo;
             partner_repo = partnerrepo;
             ref_repo = refrepo;
             doc_repo = docrepo;
             PatientVital_repo = PatientVital;
-      Visit_repo = visit;
+            Visit_repo = visit;
+            Appointment_repo = appointmentrepo;
         }
 
         [HttpGet("GetPatientSetupPermissions/{userid}/{roleid}/{featureid}", Name = "GetPatientSetupPermissions")]
@@ -399,53 +401,66 @@ namespace HimsService.Controllers
       return _repo.GetLastestPatientVital(patientid);
     }
 
-    #endregion
-
-    #region Get By Company, Country, City or Branch
-
-    [HttpGet("GetPatientsByCompany/{id}", Name = "GetPatientsByCompany")]
-        public IEnumerable<Patient> GetPatientsByCompany(long id)
-        {
-            //IEnumerable<User> us = _repo.GetAll();
-            //us = us.Where(a => a.CompanyId == id);
-            //return us;
-            return _repo.GetList(a => a.CompanyId == id);
-        }
-
-        [HttpGet("GetPatientsByCountry/{id}", Name = "GetPatientsByCountry")]
-        public IEnumerable<Patient> GetPatientsByCountry(long id)
-        {
-
-            //IEnumerable<User> us = _repo.GetAll();
-            //us = us.Where(a => a.CountryId == id);
-            //return us;
-            return _repo.GetList(a => a.CountryId == id);
-        }
-
-        [HttpGet("GetPatientsByCity/{id}", Name = "GetPatientsByCity")]
-        public IEnumerable<Patient> GetPatientsByCity(long id)
-        {
-            //IEnumerable<User> us = _repo.GetAll();
-            //us = us.Where(a => a.CityId == id);
-            //return us;
-            return _repo.GetList(a => a.CityId == id);
-        }
-
-        [HttpGet("GetPatientsByBranch/{id}", Name = "GetPatientsByBranch")]
-        public IEnumerable<Patient> GetPatientsByBranch(long id)
-        {
-            //IEnumerable<User> us = _repo.GetAll();
-            //us = us.Where(a => a.BranchId == id);
-            //return us;
-            return _repo.GetList(a => a.BranchId == id);
-        }
         #endregion
+
+        #region Get By Company, Country, City or Branch
+
+        [HttpGet("GetPatientsByCompany/{id}", Name = "GetPatientsByCompany")]
+            public IEnumerable<Patient> GetPatientsByCompany(long id)
+            {
+                //IEnumerable<User> us = _repo.GetAll();
+                //us = us.Where(a => a.CompanyId == id);
+                //return us;
+                return _repo.GetList(a => a.CompanyId == id);
+            }
+
+            [HttpGet("GetPatientsByCountry/{id}", Name = "GetPatientsByCountry")]
+            public IEnumerable<Patient> GetPatientsByCountry(long id)
+            {
+
+                //IEnumerable<User> us = _repo.GetAll();
+                //us = us.Where(a => a.CountryId == id);
+                //return us;
+                return _repo.GetList(a => a.CountryId == id);
+            }
+
+            [HttpGet("GetPatientsByCity/{id}", Name = "GetPatientsByCity")]
+            public IEnumerable<Patient> GetPatientsByCity(long id)
+            {
+                //IEnumerable<User> us = _repo.GetAll();
+                //us = us.Where(a => a.CityId == id);
+                //return us;
+                return _repo.GetList(a => a.CityId == id);
+            }
+
+            [HttpGet("GetPatientsByBranch/{id}", Name = "GetPatientsByBranch")]
+            public IEnumerable<Patient> GetPatientsByBranch(long id)
+            {
+                //IEnumerable<User> us = _repo.GetAll();
+                //us = us.Where(a => a.BranchId == id);
+                //return us;
+                return _repo.GetList(a => a.BranchId == id);
+            }
+            #endregion
 
         #region Add By Patient ID
 
 
 
         #endregion
+
+        [HttpGet("GetFinalizedAppointmentsByMrnAndMonthYear/{MRN}/{date}", Name = "GetFinalizedAppointmentsByMrnAndMonthYear")]
+        public IEnumerable<Appointment> GetFinalizedAppointmentsByMrnAndMonthYear(string MRN, DateTime date)
+        {
+            try
+            {
+                return Appointment_repo.GetFinalizedAppointmentsByPatientIdAndMonthYear(_repo.GetFirst(a => a.MRN == MRN).PatientId, date);
+            }
+            catch(NullReferenceException)
+            {
+                return null;
+            }
+        }
     }
 
 

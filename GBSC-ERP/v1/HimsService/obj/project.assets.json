@@ -38,6 +38,361 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
+      "DevExpress.AspNetCore.Common/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.AspNetCore.Core": "[18.1.6]",
+          "Microsoft.AspNetCore.Mvc.ViewFeatures": "2.0.0",
+          "NETStandard.Library": "2.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.AspNetCore.Common.v18.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.AspNetCore.Common.v18.1.dll": {}
+        }
+      },
+      "DevExpress.AspNetCore.Core/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.Printing.Core": "[18.1.6]",
+          "Microsoft.AspNetCore.Mvc.ViewFeatures": "2.0.0",
+          "Microsoft.Extensions.Caching.Abstractions": "2.0.0",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.AspNetCore.Core.v18.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.AspNetCore.Core.v18.1.dll": {}
+        }
+      },
+      "DevExpress.AspNetCore.Reporting/18.1.6-ctp": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.AspNetCore.Common": "[18.1.6]",
+          "DevExpress.AspNetCore.Core": "[18.1.6]",
+          "DevExpress.AspNetCore.Resources": "[18.1.6]",
+          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.DataAccess": "[18.1.6]",
+          "DevExpress.Reporting.Core": "[18.1.6]",
+          "DevExpress.Web.Reporting.Common": "[18.1.6]",
+          "Microsoft.AspNetCore.DataProtection.Abstractions": "2.0.0",
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.0.0",
+          "Microsoft.AspNetCore.Html.Abstractions": "2.0.0",
+          "Microsoft.AspNetCore.Mvc.Abstractions": "2.0.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.0.0",
+          "Microsoft.AspNetCore.Mvc.ViewFeatures": "2.0.0",
+          "Microsoft.Extensions.Configuration": "2.0.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "2.0.0",
+          "Microsoft.Extensions.Configuration.FileExtensions": "2.0.0",
+          "Microsoft.Extensions.Configuration.Json": "2.0.0",
+          "Microsoft.Extensions.DependencyInjection": "2.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0",
+          "NETStandard.Library": "2.0.3",
+          "System.CodeDom": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.AspNetCore.Reporting.v18.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.AspNetCore.Reporting.v18.1.dll": {}
+        }
+      },
+      "DevExpress.AspNetCore.Resources/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.AspNetCore.Core": "[18.1.6]",
+          "DevExpress.Data": "[18.1.6]",
+          "Microsoft.AspNetCore.Mvc": "2.0.0",
+          "NETStandard.Library": "2.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.AspNetCore.Resources.v18.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.AspNetCore.Resources.v18.1.dll": {}
+        }
+      },
+      "DevExpress.Charts/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.Charts.Core": "[18.1.6]",
+          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.Printing.Core": "[18.1.6]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.XtraCharts.v18.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XtraCharts.v18.1.dll": {}
+        }
+      },
+      "DevExpress.Charts.Core/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.Data": "[18.1.6]",
+          "NETStandard.Library": "2.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Charts.v18.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Charts.v18.1.Core.dll": {}
+        }
+      },
+      "DevExpress.CodeParser/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.Data": "[18.1.6]",
+          "NETStandard.Library": "2.0.3",
+          "System.CodeDom": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.CodeParser.v18.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.CodeParser.v18.1.dll": {}
+        }
+      },
+      "DevExpress.Data/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.3",
+          "System.ComponentModel.Annotations": "4.4.0",
+          "System.Drawing.Common": "4.5.0",
+          "System.Reflection.Emit": "4.3.0",
+          "System.Reflection.Emit.Lightweight": "4.3.0",
+          "System.ServiceModel.Http": "4.4.0",
+          "System.ServiceModel.Primitives": "4.4.0",
+          "System.Text.Encoding.CodePages": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Data.v18.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Data.v18.1.dll": {}
+        }
+      },
+      "DevExpress.DataAccess/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.CodeParser": "[18.1.6]",
+          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.Printing.Core": "[18.1.6]",
+          "DevExpress.Xpo": "[18.1.6]",
+          "Microsoft.Extensions.Configuration": "1.1.2",
+          "Microsoft.Extensions.Configuration.Json": "1.1.2",
+          "Microsoft.Extensions.PlatformAbstractions": "1.1.0",
+          "NETStandard.Library": "2.0.3",
+          "System.Configuration.ConfigurationManager": "4.4.0",
+          "System.Data.SqlClient": "4.5.0",
+          "System.Reflection.Emit": "4.3.0",
+          "System.Reflection.Emit.Lightweight": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.DataAccess.v18.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.DataAccess.v18.1.dll": {}
+        }
+      },
+      "DevExpress.Gauges.Core/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.Data": "[18.1.6]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.XtraGauges.v18.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XtraGauges.v18.1.Core.dll": {}
+        }
+      },
+      "DevExpress.Office.Core/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.Printing.Core": "[18.1.6]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Office.v18.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Office.v18.1.Core.dll": {}
+        }
+      },
+      "DevExpress.Pdf.Core/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.Data": "[18.1.6]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Pdf.v18.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Pdf.v18.1.Core.dll": {}
+        }
+      },
+      "DevExpress.PivotGrid.Core/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.Printing.Core": "[18.1.6]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.PivotGrid.v18.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.PivotGrid.v18.1.Core.dll": {}
+        }
+      },
+      "DevExpress.Printing.Core/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.Pdf.Core": "[18.1.6]",
+          "NETStandard.Library": "2.0.3",
+          "System.ComponentModel.Annotations": "4.4.0",
+          "System.Drawing.Common": "4.5.0",
+          "System.ServiceModel.Http": "4.4.0",
+          "System.ServiceModel.Primitives": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Printing.v18.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Printing.v18.1.Core.dll": {}
+        }
+      },
+      "DevExpress.Reporting.Core/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.Charts": "[18.1.6]",
+          "DevExpress.Charts.Core": "[18.1.6]",
+          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.DataAccess": "[18.1.6]",
+          "DevExpress.Gauges.Core": "[18.1.6]",
+          "DevExpress.Office.Core": "[18.1.6]",
+          "DevExpress.PivotGrid.Core": "[18.1.6]",
+          "DevExpress.Printing.Core": "[18.1.6]",
+          "DevExpress.RichEdit.Core": "[18.1.6]",
+          "DevExpress.RichEdit.Export": "[18.1.6]",
+          "DevExpress.Sparkline.Core": "[18.1.6]",
+          "DevExpress.Xpo": "[18.1.6]",
+          "NETStandard.Library": "2.0.3",
+          "System.ComponentModel.Annotations": "4.4.1",
+          "System.Data.Common": "4.3.0",
+          "System.Drawing.Common": "4.5.0",
+          "System.ServiceModel.Http": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.XtraReports.v18.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XtraReports.v18.1.dll": {}
+        }
+      },
+      "DevExpress.RichEdit.Core/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.Office.Core": "[18.1.6]",
+          "DevExpress.Printing.Core": "[18.1.6]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.RichEdit.v18.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.RichEdit.v18.1.Core.dll": {}
+        }
+      },
+      "DevExpress.RichEdit.Export/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.Office.Core": "[18.1.6]",
+          "DevExpress.Printing.Core": "[18.1.6]",
+          "DevExpress.RichEdit.Core": "[18.1.6]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.RichEdit.v18.1.Export.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.RichEdit.v18.1.Export.dll": {}
+        }
+      },
+      "DevExpress.Sparkline.Core/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.Data": "[18.1.6]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Sparkline.v18.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Sparkline.v18.1.Core.dll": {}
+        }
+      },
+      "DevExpress.Web.Reporting.Common/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.Charts": "[18.1.6]",
+          "DevExpress.Charts.Core": "[18.1.6]",
+          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.DataAccess": "[18.1.6]",
+          "DevExpress.Gauges.Core": "[18.1.6]",
+          "DevExpress.PivotGrid.Core": "[18.1.6]",
+          "DevExpress.Printing.Core": "[18.1.6]",
+          "DevExpress.Reporting.Core": "[18.1.6]",
+          "DevExpress.Sparkline.Core": "[18.1.6]",
+          "NETStandard.Library": "2.0.3",
+          "System.CodeDom": "4.4.0",
+          "System.Drawing.Common": "4.5.0",
+          "System.ServiceModel.Primitives": "4.4.1",
+          "System.Threading.AccessControl": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.XtraReports.v18.1.Web.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XtraReports.v18.1.Web.dll": {}
+        }
+      },
+      "DevExpress.Xpo/18.1.6": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.Data": "[18.1.6]",
+          "Microsoft.Extensions.DependencyInjection": "2.0.0",
+          "NETStandard.Library": "2.0.3",
+          "System.Data.SqlClient": "4.5.0",
+          "System.ServiceModel.Primitives": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Xpo.v18.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Xpo.v18.1.dll": {}
+        }
+      },
       "FluentValidation/7.5.2": {
         "type": "package",
         "dependencies": {
@@ -2847,12 +3202,12 @@
           "ref/netstandard1.3/_._": {}
         }
       },
-      "Microsoft.Win32.Registry/4.4.0": {
+      "Microsoft.Win32.Registry/4.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "2.0.0",
-          "System.Security.AccessControl": "4.4.0",
-          "System.Security.Principal.Windows": "4.4.0"
+          "System.Memory": "4.5.0",
+          "System.Security.AccessControl": "4.5.0",
+          "System.Security.Principal.Windows": "4.5.0"
         },
         "compile": {
           "ref/netstandard2.0/Microsoft.Win32.Registry.dll": {}
@@ -2861,17 +3216,35 @@
           "lib/netstandard2.0/Microsoft.Win32.Registry.dll": {}
         },
         "runtimeTargets": {
-          "runtimes/unix/lib/netcoreapp2.0/Microsoft.Win32.Registry.dll": {
+          "runtimes/unix/lib/netstandard2.0/Microsoft.Win32.Registry.dll": {
             "assetType": "runtime",
             "rid": "unix"
           },
-          "runtimes/win/lib/netcoreapp2.0/Microsoft.Win32.Registry.dll": {
+          "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.dll": {
             "assetType": "runtime",
             "rid": "win"
           }
         }
       },
-      "NETStandard.Library/2.0.0": {
+      "Microsoft.Win32.SystemEvents/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.0.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Win32.SystemEvents.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp2.0/Microsoft.Win32.SystemEvents.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
+      },
+      "NETStandard.Library/2.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
@@ -3340,6 +3713,15 @@
           "lib/netcoreapp2.0/_._": {}
         }
       },
+      "System.CodeDom/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.CodeDom.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.CodeDom.dll": {}
+        }
+      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -3591,6 +3973,18 @@
           "lib/netstandard1.0/System.Composition.TypedParts.dll": {}
         }
       },
+      "System.Configuration.ConfigurationManager/4.4.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Security.Cryptography.ProtectedData": "4.4.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
+        }
+      },
       "System.Console/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -3604,12 +3998,33 @@
           "ref/netstandard1.3/System.Console.dll": {}
         }
       },
-      "System.Data.SqlClient/4.4.3": {
+      "System.Data.Common/4.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Win32.Registry": "4.4.0",
-          "System.Security.Principal.Windows": "4.4.0",
-          "System.Text.Encoding.CodePages": "4.4.0",
+          "System.Collections": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.2/System.Data.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.2/System.Data.Common.dll": {}
+        }
+      },
+      "System.Data.SqlClient/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Win32.Registry": "4.5.0",
+          "System.Diagnostics.DiagnosticSource": "4.5.0",
+          "System.Memory": "4.5.0",
+          "System.Security.Principal.Windows": "4.5.0",
+          "System.Text.Encoding.CodePages": "4.5.0",
           "runtime.native.System.Data.SqlClient.sni": "4.4.0"
         },
         "compile": {
@@ -3652,13 +4067,13 @@
           "ref/netstandard1.3/System.Diagnostics.Debug.dll": {}
         }
       },
-      "System.Diagnostics.DiagnosticSource/4.4.1": {
+      "System.Diagnostics.DiagnosticSource/4.5.0": {
         "type": "package",
         "compile": {
-          "ref/netcoreapp2.0/_._": {}
+          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp2.0/_._": {}
+          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
         }
       },
       "System.Diagnostics.FileVersionInfo/4.3.0": {
@@ -3723,6 +4138,29 @@
         },
         "compile": {
           "ref/netstandard1.5/System.Diagnostics.Tracing.dll": {}
+        }
+      },
+      "System.Drawing.Common/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.0.0",
+          "Microsoft.Win32.SystemEvents": "4.5.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Drawing.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Drawing.Common.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netcoreapp2.0/System.Drawing.Common.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netcoreapp2.0/System.Drawing.Common.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
         }
       },
       "System.Dynamic.Runtime/4.3.0": {
@@ -3979,6 +4417,18 @@
           "lib/netstandard1.3/System.Linq.Queryable.dll": {}
         }
       },
+      "System.Memory/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "4.5.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Memory.dll": {}
+        }
+      },
       "System.Net.Http/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -4018,6 +4468,21 @@
             "rid": "unix"
           },
           "runtimes/win/lib/netstandard1.3/System.Net.Http.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
+      },
+      "System.Net.Http.WinHttpHandler/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Net.Http.WinHttpHandler.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netstandard2.0/System.Net.Http.WinHttpHandler.dll": {
             "assetType": "runtime",
             "rid": "win"
           }
@@ -4188,6 +4653,28 @@
           "lib/netstandard1.3/System.Private.DataContractSerialization.dll": {}
         }
       },
+      "System.Private.ServiceModel/4.4.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.0.0",
+          "System.Net.Http.WinHttpHandler": "4.4.0",
+          "System.Reflection.DispatchProxy": "4.4.0",
+          "System.Security.Principal.Windows": "4.4.0"
+        },
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netstandard2.0/System.Private.ServiceModel.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win7/lib/netstandard2.0/System.Private.ServiceModel.dll": {
+            "assetType": "runtime",
+            "rid": "win7"
+          }
+        }
+      },
       "System.Reflection/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -4199,6 +4686,15 @@
         },
         "compile": {
           "ref/netstandard1.5/System.Reflection.dll": {}
+        }
+      },
+      "System.Reflection.DispatchProxy/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
         }
       },
       "System.Reflection.Emit/4.3.0": {
@@ -4314,13 +4810,13 @@
           "ref/netstandard1.5/System.Runtime.dll": {}
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/4.4.0": {
+      "System.Runtime.CompilerServices.Unsafe/4.5.0": {
         "type": "package",
         "compile": {
           "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+          "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         }
       },
       "System.Runtime.Extensions/4.3.0": {
@@ -4462,11 +4958,11 @@
           "lib/netstandard1.3/System.Runtime.Serialization.Xml.dll": {}
         }
       },
-      "System.Security.AccessControl/4.4.0": {
+      "System.Security.AccessControl/4.5.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.0.0",
-          "System.Security.Principal.Windows": "4.4.0"
+          "System.Security.Principal.Windows": "4.5.0"
         },
         "compile": {
           "ref/netstandard2.0/System.Security.AccessControl.dll": {}
@@ -4475,10 +4971,6 @@
           "lib/netstandard2.0/System.Security.AccessControl.dll": {}
         },
         "runtimeTargets": {
-          "runtimes/unix/lib/netcoreapp2.0/System.Security.AccessControl.dll": {
-            "assetType": "runtime",
-            "rid": "unix"
-          },
           "runtimes/win/lib/netcoreapp2.0/System.Security.AccessControl.dll": {
             "assetType": "runtime",
             "rid": "win"
@@ -4677,6 +5169,21 @@
           "lib/netstandard1.3/System.Security.Cryptography.Primitives.dll": {}
         }
       },
+      "System.Security.Cryptography.ProtectedData/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
+      },
       "System.Security.Cryptography.X509Certificates/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -4741,7 +5248,7 @@
           "lib/netstandard1.0/System.Security.Principal.dll": {}
         }
       },
-      "System.Security.Principal.Windows/4.4.0": {
+      "System.Security.Principal.Windows/4.5.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.0.0"
@@ -4761,6 +5268,33 @@
             "assetType": "runtime",
             "rid": "win"
           }
+        }
+      },
+      "System.ServiceModel.Http/4.4.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Private.ServiceModel": "4.4.0",
+          "System.ServiceModel.Primitives": "4.4.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.ServiceModel.Http.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.ServiceModel.Http.dll": {}
+        }
+      },
+      "System.ServiceModel.Primitives/4.4.1": {
+        "type": "package",
+        "dependencies": {
+          "System.Private.ServiceModel": "4.4.1"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.ServiceModel.Primitives.dll": {},
+          "ref/netstandard2.0/System.ServiceModel.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.ServiceModel.Primitives.dll": {},
+          "lib/netstandard2.0/System.ServiceModel.dll": {}
         }
       },
       "System.Spatial/5.8.2": {
@@ -4812,13 +5346,14 @@
           "ref/netstandard1.3/System.Text.Encoding.dll": {}
         }
       },
-      "System.Text.Encoding.CodePages/4.4.0": {
+      "System.Text.Encoding.CodePages/4.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "2.0.0"
+          "Microsoft.NETCore.Platforms": "2.0.0",
+          "System.Runtime.CompilerServices.Unsafe": "4.5.0"
         },
         "compile": {
-          "ref/netstandard2.0/_._": {}
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
@@ -4874,6 +5409,25 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Threading.dll": {}
+        }
+      },
+      "System.Threading.AccessControl/4.4.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Security.AccessControl": "4.4.0",
+          "System.Security.Principal.Windows": "4.4.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Threading.AccessControl.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Threading.AccessControl.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netstandard2.0/System.Threading.AccessControl.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
         }
       },
       "System.Threading.Tasks/4.3.0": {
@@ -5178,6 +5732,270 @@
         "automapper.extensions.microsoft.dependencyinjection.3.2.0.nupkg.sha512",
         "automapper.extensions.microsoft.dependencyinjection.nuspec",
         "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
+      ]
+    },
+    "DevExpress.AspNetCore.Common/18.1.6": {
+      "sha512": "Sj3+F8MDQ9CQbdrnQvE+fcMc8RXsV+J3thj6wLPDsV0mO3/QZ1r6ZtuWuFuE3CxMhgyTtfU/2EsYnevyuHrMSA==",
+      "type": "package",
+      "path": "devexpress.aspnetcore.common/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.aspnetcore.common.18.1.6.nupkg.sha512",
+        "devexpress.aspnetcore.common.nuspec",
+        "lib/netstandard2.0/DevExpress.AspNetCore.Common.v18.1.dll",
+        "lib/netstandard2.0/DevExpress.AspNetCore.Common.v18.1.xml"
+      ]
+    },
+    "DevExpress.AspNetCore.Core/18.1.6": {
+      "sha512": "7yfK2EyHItp3Fm/BGr6At6myJdBWpvwPGfsCD7qwekzSdZtp26pxyMCw1FU5jKrYL8DA06jW098B0uAMP0XSJw==",
+      "type": "package",
+      "path": "devexpress.aspnetcore.core/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.aspnetcore.core.18.1.6.nupkg.sha512",
+        "devexpress.aspnetcore.core.nuspec",
+        "lib/netstandard2.0/DevExpress.AspNetCore.Core.v18.1.dll"
+      ]
+    },
+    "DevExpress.AspNetCore.Reporting/18.1.6-ctp": {
+      "sha512": "bMtGCDDqk6oyVSrS+rz0or5f2n0CZxkeGR4nYzSZFb9VvV2n0HBN6krcRTyca7Il1YDQeFwrLSgCDNvBRy+oug==",
+      "type": "package",
+      "path": "devexpress.aspnetcore.reporting/18.1.6-ctp",
+      "files": [
+        ".signature.p7s",
+        "devexpress.aspnetcore.reporting.18.1.6-ctp.nupkg.sha512",
+        "devexpress.aspnetcore.reporting.nuspec",
+        "lib/netstandard2.0/DevExpress.AspNetCore.Reporting.v18.1.dll",
+        "lib/netstandard2.0/DevExpress.AspNetCore.Reporting.v18.1.xml"
+      ]
+    },
+    "DevExpress.AspNetCore.Resources/18.1.6": {
+      "sha512": "hlP9uevSIv1+txj0vDUvSukkz4hqTEiOzo7nF9EKxTNPIkhq6qu3ecUvN3AfMf5H85fOUKpQBXBFRqsP+eQphA==",
+      "type": "package",
+      "path": "devexpress.aspnetcore.resources/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.aspnetcore.resources.18.1.6.nupkg.sha512",
+        "devexpress.aspnetcore.resources.nuspec",
+        "lib/netstandard2.0/DevExpress.AspNetCore.Resources.v18.1.dll"
+      ]
+    },
+    "DevExpress.Charts/18.1.6": {
+      "sha512": "gl1WIRMXgJwSIo7IOCpfHJQwOzoGviRaGygKA1dvKM8MttUuq4MGuvjJaWuGQWhANwuXG8+h7iv7E4XIxOFsYQ==",
+      "type": "package",
+      "path": "devexpress.charts/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.charts.18.1.6.nupkg.sha512",
+        "devexpress.charts.nuspec",
+        "lib/net40/DevExpress.XtraCharts.v18.1.dll",
+        "lib/net40/DevExpress.XtraCharts.v18.1.xml",
+        "lib/netstandard2.0/DevExpress.XtraCharts.v18.1.dll",
+        "lib/netstandard2.0/DevExpress.XtraCharts.v18.1.xml"
+      ]
+    },
+    "DevExpress.Charts.Core/18.1.6": {
+      "sha512": "lDM8uw3v5e9ol7RHvAl7ms5vmLFODsJcXzOalv8gM8FLFlAIBpNS9Lzl13KOFmucw5Dc1m9fEtAxKJwtq4osxQ==",
+      "type": "package",
+      "path": "devexpress.charts.core/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.charts.core.18.1.6.nupkg.sha512",
+        "devexpress.charts.core.nuspec",
+        "lib/net40/DevExpress.Charts.v18.1.Core.dll",
+        "lib/netstandard2.0/DevExpress.Charts.v18.1.Core.dll"
+      ]
+    },
+    "DevExpress.CodeParser/18.1.6": {
+      "sha512": "YXfuMPAR86N3CqoUhsJY3SvTKupdy382mXX3V3LQC/JMX6FMh4/5Z0k6PcBEVKoQMrMeXANaqXumDr0JQ+9eEw==",
+      "type": "package",
+      "path": "devexpress.codeparser/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.codeparser.18.1.6.nupkg.sha512",
+        "devexpress.codeparser.nuspec",
+        "lib/net40/DevExpress.CodeParser.v18.1.dll",
+        "lib/netstandard2.0/DevExpress.CodeParser.v18.1.dll"
+      ]
+    },
+    "DevExpress.Data/18.1.6": {
+      "sha512": "/mQzSIHk550ONDL+f1lNIuwkI2BQMynnleZ3XtDoYJ2pPSrkHpkTOp0CZRMcZtWGVRzx90grCcQZrqQt85BoaQ==",
+      "type": "package",
+      "path": "devexpress.data/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.data.18.1.6.nupkg.sha512",
+        "devexpress.data.nuspec",
+        "lib/net40/DevExpress.Data.v18.1.dll",
+        "lib/net40/DevExpress.Data.v18.1.xml",
+        "lib/netstandard2.0/DevExpress.Data.v18.1.dll",
+        "lib/netstandard2.0/DevExpress.Data.v18.1.xml"
+      ]
+    },
+    "DevExpress.DataAccess/18.1.6": {
+      "sha512": "asAOct29AGmxoEHYj9mfgozUznb4k2fPGYlf7lQQJ7TrC6mpduYelxQZFB66glXB1pXnLoufHxwx5F1BXw+OgA==",
+      "type": "package",
+      "path": "devexpress.dataaccess/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.dataaccess.18.1.6.nupkg.sha512",
+        "devexpress.dataaccess.nuspec",
+        "lib/net40/DevExpress.DataAccess.v18.1.dll",
+        "lib/net40/DevExpress.DataAccess.v18.1.xml",
+        "lib/netstandard2.0/DevExpress.DataAccess.v18.1.dll",
+        "lib/netstandard2.0/DevExpress.DataAccess.v18.1.xml"
+      ]
+    },
+    "DevExpress.Gauges.Core/18.1.6": {
+      "sha512": "QFDKyMWxHJj+twTs4Pk0w7dz7cpnKkTbfCjkGN2KHuUDV2yaXTq8FRApmktPI15QBU6661qcde00l7t4DHR8iw==",
+      "type": "package",
+      "path": "devexpress.gauges.core/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.gauges.core.18.1.6.nupkg.sha512",
+        "devexpress.gauges.core.nuspec",
+        "lib/net40/DevExpress.XtraGauges.v18.1.Core.dll",
+        "lib/net40/DevExpress.XtraGauges.v18.1.Core.xml",
+        "lib/netstandard2.0/DevExpress.XtraGauges.v18.1.Core.dll",
+        "lib/netstandard2.0/DevExpress.XtraGauges.v18.1.Core.xml"
+      ]
+    },
+    "DevExpress.Office.Core/18.1.6": {
+      "sha512": "sXh+l2UraSBx0uMSAhGIJzis1ycQedOp9I5FcLXGBuZM1lcdiwk0g+xcQ5ByluDJmapI5kEbGJKpGpbPy1fnuQ==",
+      "type": "package",
+      "path": "devexpress.office.core/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.office.core.18.1.6.nupkg.sha512",
+        "devexpress.office.core.nuspec",
+        "lib/net40/DevExpress.Office.v18.1.Core.dll",
+        "lib/net40/DevExpress.Office.v18.1.Core.xml",
+        "lib/netstandard2.0/DevExpress.Office.v18.1.Core.dll",
+        "lib/netstandard2.0/DevExpress.Office.v18.1.Core.xml"
+      ]
+    },
+    "DevExpress.Pdf.Core/18.1.6": {
+      "sha512": "x+SlxnWgYW6qO8VCcV4TcYEbC3TzbdA444WMpyBaI3BrofUSBJCBfhOgsowHHrfkY/UtwBFXvydhG//AIKBIJg==",
+      "type": "package",
+      "path": "devexpress.pdf.core/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.pdf.core.18.1.6.nupkg.sha512",
+        "devexpress.pdf.core.nuspec",
+        "lib/net40/DevExpress.Pdf.v18.1.Core.dll",
+        "lib/net40/DevExpress.Pdf.v18.1.Core.xml",
+        "lib/netstandard2.0/DevExpress.Pdf.v18.1.Core.dll",
+        "lib/netstandard2.0/DevExpress.Pdf.v18.1.Core.xml"
+      ]
+    },
+    "DevExpress.PivotGrid.Core/18.1.6": {
+      "sha512": "p0QSly67ztsoMsk1F/o4b7f+b1sZcPHBtcq4aflyx8WtghUsMPnhfqlS7ap5cg7EByBOf4rcdGWrNkNE90Q/JA==",
+      "type": "package",
+      "path": "devexpress.pivotgrid.core/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.pivotgrid.core.18.1.6.nupkg.sha512",
+        "devexpress.pivotgrid.core.nuspec",
+        "lib/net40/DevExpress.PivotGrid.v18.1.Core.dll",
+        "lib/net40/DevExpress.PivotGrid.v18.1.Core.xml",
+        "lib/netstandard2.0/DevExpress.PivotGrid.v18.1.Core.dll",
+        "lib/netstandard2.0/DevExpress.PivotGrid.v18.1.Core.xml"
+      ]
+    },
+    "DevExpress.Printing.Core/18.1.6": {
+      "sha512": "XjflWA7GaczRk6PmSmQ4SqlOY385BaM+GqrCtoYjiIfR2FDTdKHsNw/4h0Y6r4JMLkqjeC7D6bB9lud+ixfqcQ==",
+      "type": "package",
+      "path": "devexpress.printing.core/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.printing.core.18.1.6.nupkg.sha512",
+        "devexpress.printing.core.nuspec",
+        "lib/net40/DevExpress.Printing.v18.1.Core.dll",
+        "lib/net40/DevExpress.Printing.v18.1.Core.xml",
+        "lib/netstandard2.0/DevExpress.Printing.v18.1.Core.dll",
+        "lib/netstandard2.0/DevExpress.Printing.v18.1.Core.xml"
+      ]
+    },
+    "DevExpress.Reporting.Core/18.1.6": {
+      "sha512": "ohy2OnQ4OBEVOREc5SRmzkMJnIItRzebgQkV6SQXiq3rmf6hYLtbeLOJBuIWMH7XPvXeiSip0iZOe8fq0VCxCg==",
+      "type": "package",
+      "path": "devexpress.reporting.core/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.reporting.core.18.1.6.nupkg.sha512",
+        "devexpress.reporting.core.nuspec",
+        "lib/net40/DevExpress.XtraReports.v18.1.dll",
+        "lib/net40/DevExpress.XtraReports.v18.1.xml",
+        "lib/netstandard2.0/DevExpress.XtraReports.v18.1.dll",
+        "lib/netstandard2.0/DevExpress.XtraReports.v18.1.xml"
+      ]
+    },
+    "DevExpress.RichEdit.Core/18.1.6": {
+      "sha512": "q5MHTnHLMR1Vxfs/RN0zQkOXQgf39qp2Nn95r9f2LZ4vxqbW/GMO47Zft2n6y9roehXX5+wcBJidqoyir0/Osw==",
+      "type": "package",
+      "path": "devexpress.richedit.core/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.richedit.core.18.1.6.nupkg.sha512",
+        "devexpress.richedit.core.nuspec",
+        "lib/net40/DevExpress.RichEdit.v18.1.Core.dll",
+        "lib/net40/DevExpress.RichEdit.v18.1.Core.xml",
+        "lib/netstandard2.0/DevExpress.RichEdit.v18.1.Core.dll",
+        "lib/netstandard2.0/DevExpress.RichEdit.v18.1.Core.xml"
+      ]
+    },
+    "DevExpress.RichEdit.Export/18.1.6": {
+      "sha512": "3sO+HCaBCzeCtJhoOO6m7p2/xsbcnk52HVpfwETTBoljE5emXM18Prc4R52JVqKpcdw+pvEfAQ5JG9d8br0aHA==",
+      "type": "package",
+      "path": "devexpress.richedit.export/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.richedit.export.18.1.6.nupkg.sha512",
+        "devexpress.richedit.export.nuspec",
+        "lib/net40/DevExpress.RichEdit.v18.1.Export.dll",
+        "lib/netstandard2.0/DevExpress.RichEdit.v18.1.Export.dll"
+      ]
+    },
+    "DevExpress.Sparkline.Core/18.1.6": {
+      "sha512": "adojvIMIdg/wMjzaylTEeCiXqbs5fQV/ei5DT5ONk/vUrWov0hX/eZMm5CU8Lm8zcY28TKPQ/i2MeZRle9Q0Tg==",
+      "type": "package",
+      "path": "devexpress.sparkline.core/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.sparkline.core.18.1.6.nupkg.sha512",
+        "devexpress.sparkline.core.nuspec",
+        "lib/net40/DevExpress.Sparkline.v18.1.Core.dll",
+        "lib/net40/DevExpress.Sparkline.v18.1.Core.xml",
+        "lib/netstandard2.0/DevExpress.Sparkline.v18.1.Core.dll",
+        "lib/netstandard2.0/DevExpress.Sparkline.v18.1.Core.xml"
+      ]
+    },
+    "DevExpress.Web.Reporting.Common/18.1.6": {
+      "sha512": "nueySbPA6xmYo8IXMt8Yra4rQED6c6Q7zEsjLR9QveEHTUDlOrU8jmm55U0OZNds50FH3Jo54EVDkUMpJxM06w==",
+      "type": "package",
+      "path": "devexpress.web.reporting.common/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.web.reporting.common.18.1.6.nupkg.sha512",
+        "devexpress.web.reporting.common.nuspec",
+        "lib/net40/DevExpress.XtraReports.v18.1.Web.dll",
+        "lib/net40/DevExpress.XtraReports.v18.1.Web.xml",
+        "lib/netstandard2.0/DevExpress.XtraReports.v18.1.Web.dll",
+        "lib/netstandard2.0/DevExpress.XtraReports.v18.1.Web.xml"
+      ]
+    },
+    "DevExpress.Xpo/18.1.6": {
+      "sha512": "yXk24OBR6CWFBLvjp8yfoDPPHATznh/r5yTDf+AX/OIiWyBPWJ+XflvOGqCitLtaA9yu9uOUsyvWNbnFYZu/GA==",
+      "type": "package",
+      "path": "devexpress.xpo/18.1.6",
+      "files": [
+        ".signature.p7s",
+        "devexpress.xpo.18.1.6.nupkg.sha512",
+        "devexpress.xpo.nuspec",
+        "lib/net40/DevExpress.Xpo.v18.1.dll",
+        "lib/net40/DevExpress.Xpo.v18.1.xml",
+        "lib/netstandard2.0/DevExpress.Xpo.v18.1.dll",
+        "lib/netstandard2.0/DevExpress.Xpo.v18.1.xml"
       ]
     },
     "FluentValidation/7.5.2": {
@@ -8103,18 +8921,19 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "Microsoft.Win32.Registry/4.4.0": {
-      "sha512": "dA36TlNVn/XfrZtmf0fiI/z1nd3Wfp2QVzTdj26pqgP9LFWq0i1hYEUAW50xUjGFYn1+/cP3KGuxT2Yn1OUNBQ==",
+    "Microsoft.Win32.Registry/4.5.0": {
+      "sha512": "vduxuHEqRgRrTE8wYG8Wxj/+6wwzddOmZzjKZx6rFMc/91aUBxI5etAFYxesoNaIja5NpgSTcnk6cN8BeYXf9A==",
       "type": "package",
-      "path": "microsoft.win32.registry/4.4.0",
+      "path": "microsoft.win32.registry/4.5.0",
       "files": [
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net46/Microsoft.Win32.Registry.dll",
         "lib/net461/Microsoft.Win32.Registry.dll",
         "lib/netstandard1.3/Microsoft.Win32.Registry.dll",
         "lib/netstandard2.0/Microsoft.Win32.Registry.dll",
-        "microsoft.win32.registry.4.4.0.nupkg.sha512",
+        "microsoft.win32.registry.4.5.0.nupkg.sha512",
         "microsoft.win32.registry.nuspec",
         "ref/net46/Microsoft.Win32.Registry.dll",
         "ref/net461/Microsoft.Win32.Registry.dll",
@@ -8132,23 +8951,41 @@
         "ref/netstandard1.3/zh-hant/Microsoft.Win32.Registry.xml",
         "ref/netstandard2.0/Microsoft.Win32.Registry.dll",
         "ref/netstandard2.0/Microsoft.Win32.Registry.xml",
-        "runtimes/unix/lib/netcoreapp2.0/Microsoft.Win32.Registry.dll",
+        "runtimes/unix/lib/netstandard2.0/Microsoft.Win32.Registry.dll",
         "runtimes/win/lib/net46/Microsoft.Win32.Registry.dll",
         "runtimes/win/lib/net461/Microsoft.Win32.Registry.dll",
-        "runtimes/win/lib/netcoreapp2.0/Microsoft.Win32.Registry.dll",
         "runtimes/win/lib/netstandard1.3/Microsoft.Win32.Registry.dll",
+        "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
     },
-    "NETStandard.Library/2.0.0": {
-      "sha512": "7jnbRU+L08FXKMxqUflxEXtVymWvNOrS8yHgu9s6EM8Anr6T/wIX4nZ08j/u3Asz+tCufp3YVwFSEvFTPYmBPA==",
+    "Microsoft.Win32.SystemEvents/4.5.0": {
+      "sha512": "K2TAr07pgl/m/J9ed3cmAzx0SD55kYuVfBG6SPRIH/ELTh/D2qGrjOWDQJo7r+LZl1nO2Nkl0UAQBUt6S2ewqQ==",
       "type": "package",
-      "path": "netstandard.library/2.0.0",
+      "path": "microsoft.win32.systemevents/4.5.0",
+      "files": [
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Win32.SystemEvents.dll",
+        "lib/netstandard2.0/Microsoft.Win32.SystemEvents.dll",
+        "microsoft.win32.systemevents.4.5.0.nupkg.sha512",
+        "microsoft.win32.systemevents.nuspec",
+        "ref/net461/Microsoft.Win32.SystemEvents.dll",
+        "ref/netstandard2.0/Microsoft.Win32.SystemEvents.dll",
+        "runtimes/win/lib/netcoreapp2.0/Microsoft.Win32.SystemEvents.dll",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "NETStandard.Library/2.0.3": {
+      "sha512": "st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
+      "type": "package",
+      "path": "netstandard.library/2.0.3",
       "files": [
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "build/NETStandard.Library.targets",
         "build/netstandard2.0/NETStandard.Library.targets",
         "build/netstandard2.0/ref/Microsoft.Win32.Primitives.dll",
         "build/netstandard2.0/ref/System.AppContext.dll",
@@ -8265,7 +9102,7 @@
         "build/netstandard2.0/ref/netstandard.dll",
         "build/netstandard2.0/ref/netstandard.xml",
         "lib/netstandard1.0/_._",
-        "netstandard.library.2.0.0.nupkg.sha512",
+        "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
     },
@@ -8813,6 +9650,26 @@
         "version.txt"
       ]
     },
+    "System.CodeDom/4.4.0": {
+      "sha512": "E/lvSfMFPtNflAgdM6AuPU8JbZdqdSoGpU66G7SrduCqdrFyPflaqqV4gN2d0hrCBpu92HaoqpUP5d+g9Itcxw==",
+      "type": "package",
+      "path": "system.codedom/4.4.0",
+      "files": [
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.CodeDom.dll",
+        "lib/netstandard2.0/System.CodeDom.dll",
+        "ref/net461/System.CodeDom.dll",
+        "ref/net461/System.CodeDom.xml",
+        "ref/netstandard2.0/System.CodeDom.dll",
+        "ref/netstandard2.0/System.CodeDom.xml",
+        "system.codedom.4.4.0.nupkg.sha512",
+        "system.codedom.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Collections/4.3.0": {
       "sha512": "3Dcj85/TBdVpL5Zr+gEEBUuFe2icOnLalmEh9hfck1PTYbbyWuZgh4fmm2ysCLTrqLQw6t3TgTyJ+VLp+Qb+Lw==",
       "type": "package",
@@ -9347,6 +10204,26 @@
         "system.composition.typedparts.nuspec"
       ]
     },
+    "System.Configuration.ConfigurationManager/4.4.0": {
+      "sha512": "RLYB3YOmdz9dE3zMhBFGv3GF74upGjH0nF0G9lFFRLNLsCEMIpiuQsMGv2qE0qdp1JdheVNO8RIRpUKdokiK+g==",
+      "type": "package",
+      "path": "system.configuration.configurationmanager/4.4.0",
+      "files": [
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Configuration.ConfigurationManager.dll",
+        "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll",
+        "ref/net461/System.Configuration.ConfigurationManager.dll",
+        "ref/net461/System.Configuration.ConfigurationManager.xml",
+        "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll",
+        "ref/netstandard2.0/System.Configuration.ConfigurationManager.xml",
+        "system.configuration.configurationmanager.4.4.0.nupkg.sha512",
+        "system.configuration.configurationmanager.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Console/4.3.0": {
       "sha512": "DHDrIxiqk1h03m6khKWV2X8p/uvN79rgSqpilL6uzpmSfxfU5ng8VcPtW4qsDsQDHiTv6IPV9TmD5M/vElPNLg==",
       "type": "package",
@@ -9383,11 +10260,61 @@
         "system.console.nuspec"
       ]
     },
-    "System.Data.SqlClient/4.4.3": {
-      "sha512": "D1hEOS1oPLJ6WcGCzpTWe8SauWVxnDoDTUWhv5XCNdRm/QeSUk4BQ3ZDe7BH+zNVHDBkPYjVzpVjnCl43eOSGg==",
+    "System.Data.Common/4.3.0": {
+      "sha512": "lm6E3T5u7BOuEH0u18JpbJHxBfOJPuCyl4Kg1RH10ktYLp5uEEE1xKrHW56/We4SnZpGAuCc9N0MJpSDhTHZGQ==",
       "type": "package",
-      "path": "system.data.sqlclient/4.4.3",
+      "path": "system.data.common/4.3.0",
       "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net451/System.Data.Common.dll",
+        "lib/netstandard1.2/System.Data.Common.dll",
+        "lib/portable-net451+win8+wp8+wpa81/System.Data.Common.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net451/System.Data.Common.dll",
+        "ref/netstandard1.2/System.Data.Common.dll",
+        "ref/netstandard1.2/System.Data.Common.xml",
+        "ref/netstandard1.2/de/System.Data.Common.xml",
+        "ref/netstandard1.2/es/System.Data.Common.xml",
+        "ref/netstandard1.2/fr/System.Data.Common.xml",
+        "ref/netstandard1.2/it/System.Data.Common.xml",
+        "ref/netstandard1.2/ja/System.Data.Common.xml",
+        "ref/netstandard1.2/ko/System.Data.Common.xml",
+        "ref/netstandard1.2/ru/System.Data.Common.xml",
+        "ref/netstandard1.2/zh-hans/System.Data.Common.xml",
+        "ref/netstandard1.2/zh-hant/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/System.Data.Common.dll",
+        "ref/portable-net451+win8+wp8+wpa81/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/de/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/es/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/fr/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/it/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/ja/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/ko/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/ru/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/zh-hans/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/zh-hant/System.Data.Common.xml",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.data.common.4.3.0.nupkg.sha512",
+        "system.data.common.nuspec"
+      ]
+    },
+    "System.Data.SqlClient/4.5.0": {
+      "sha512": "ap20AC4BNIEo9GGJAYjjZWCutPOP70bXtFpJ3Bl1LpFY+8bdFtFITads/5CYeTMyJAH/fCrQsIcKWnwotATSdg==",
+      "type": "package",
+      "path": "system.data.sqlclient/4.5.0",
+      "files": [
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/MonoAndroid10/_._",
@@ -9395,6 +10322,7 @@
         "lib/net451/System.Data.SqlClient.dll",
         "lib/net46/System.Data.SqlClient.dll",
         "lib/net461/System.Data.SqlClient.dll",
+        "lib/netcoreapp2.1/System.Data.SqlClient.dll",
         "lib/netstandard1.2/System.Data.SqlClient.dll",
         "lib/netstandard1.3/System.Data.SqlClient.dll",
         "lib/netstandard2.0/System.Data.SqlClient.dll",
@@ -9408,6 +10336,8 @@
         "ref/net46/System.Data.SqlClient.dll",
         "ref/net461/System.Data.SqlClient.dll",
         "ref/net461/System.Data.SqlClient.xml",
+        "ref/netcoreapp2.1/System.Data.SqlClient.dll",
+        "ref/netcoreapp2.1/System.Data.SqlClient.xml",
         "ref/netstandard1.2/System.Data.SqlClient.dll",
         "ref/netstandard1.2/System.Data.SqlClient.xml",
         "ref/netstandard1.2/de/System.Data.SqlClient.xml",
@@ -9436,14 +10366,18 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._",
+        "runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll",
         "runtimes/unix/lib/netstandard1.3/System.Data.SqlClient.dll",
         "runtimes/unix/lib/netstandard2.0/System.Data.SqlClient.dll",
         "runtimes/win/lib/net451/System.Data.SqlClient.dll",
         "runtimes/win/lib/net46/System.Data.SqlClient.dll",
         "runtimes/win/lib/net461/System.Data.SqlClient.dll",
+        "runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll",
         "runtimes/win/lib/netstandard1.3/System.Data.SqlClient.dll",
         "runtimes/win/lib/netstandard2.0/System.Data.SqlClient.dll",
-        "system.data.sqlclient.4.4.3.nupkg.sha512",
+        "runtimes/win/lib/uap10.0.16299/System.Data.SqlClient.dll",
+        "runtimes/win/lib/uap10.0.16300/System.Data.SqlClient.dll",
+        "system.data.sqlclient.4.5.0.nupkg.sha512",
         "system.data.sqlclient.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -9573,26 +10507,25 @@
         "system.diagnostics.debug.nuspec"
       ]
     },
-    "System.Diagnostics.DiagnosticSource/4.4.1": {
-      "sha512": "U/KcC19fyLsPN1GLmeU2zQq15MMVcPwMOYPADVo1+WIoJpvMHxrzvl+BLLZwTEZSneGwaPFZ0aWr0nJ7B7LSdA==",
+    "System.Diagnostics.DiagnosticSource/4.5.0": {
+      "sha512": "UumL3CJklk5WyEt0eImPmjeuyY1JgJ7Thmg2hAeZGKCv+9iuuAsoc2wcXjypdo3J8VNEmVCH2Bgn/kIw8NI2bA==",
       "type": "package",
-      "path": "system.diagnostics.diagnosticsource/4.4.1",
+      "path": "system.diagnostics.diagnosticsource/4.5.0",
       "files": [
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net45/System.Diagnostics.DiagnosticSource.dll",
         "lib/net45/System.Diagnostics.DiagnosticSource.xml",
         "lib/net46/System.Diagnostics.DiagnosticSource.dll",
         "lib/net46/System.Diagnostics.DiagnosticSource.xml",
-        "lib/netcoreapp2.0/_._",
         "lib/netstandard1.1/System.Diagnostics.DiagnosticSource.dll",
         "lib/netstandard1.1/System.Diagnostics.DiagnosticSource.xml",
         "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll",
         "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.xml",
         "lib/portable-net45+win8+wpa81/System.Diagnostics.DiagnosticSource.dll",
         "lib/portable-net45+win8+wpa81/System.Diagnostics.DiagnosticSource.xml",
-        "ref/netcoreapp2.0/_._",
-        "system.diagnostics.diagnosticsource.4.4.1.nupkg.sha512",
+        "system.diagnostics.diagnosticsource.4.5.0.nupkg.sha512",
         "system.diagnostics.diagnosticsource.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -9817,6 +10750,38 @@
         "ref/xamarinwatchos10/_._",
         "system.diagnostics.tracing.4.3.0.nupkg.sha512",
         "system.diagnostics.tracing.nuspec"
+      ]
+    },
+    "System.Drawing.Common/4.5.0": {
+      "sha512": "uYixYbB0vzxSbc9B7jzwwUA8Upodaj3g2ZNnREWW6zoBw9DltzltcEa1g0I4u6ARqVJ0t4E3yJAWw5h2gvJlhQ==",
+      "type": "package",
+      "path": "system.drawing.common/4.5.0",
+      "files": [
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net461/System.Drawing.Common.dll",
+        "lib/netstandard2.0/System.Drawing.Common.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net461/System.Drawing.Common.dll",
+        "ref/netstandard2.0/System.Drawing.Common.dll",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "runtimes/unix/lib/netcoreapp2.0/System.Drawing.Common.dll",
+        "runtimes/win/lib/netcoreapp2.0/System.Drawing.Common.dll",
+        "system.drawing.common.4.5.0.nupkg.sha512",
+        "system.drawing.common.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Dynamic.Runtime/4.3.0": {
@@ -10546,6 +11511,44 @@
         "system.linq.queryable.nuspec"
       ]
     },
+    "System.Memory/4.5.0": {
+      "sha512": "ULODiqdq81e9YfQS/GL4P5zgek90jyPykAV4t1Sp4sjID3/Ebi18lbvOKm+81biHR5a5FdFRXSU/JVc6nxr/7A==",
+      "type": "package",
+      "path": "system.memory/4.5.0",
+      "files": [
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/netcoreapp2.1/_._",
+        "lib/netstandard1.1/System.Memory.dll",
+        "lib/netstandard1.1/System.Memory.xml",
+        "lib/netstandard2.0/System.Memory.dll",
+        "lib/netstandard2.0/System.Memory.xml",
+        "lib/uap10.0.16300/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/netcoreapp2.1/_._",
+        "ref/netstandard1.1/System.Memory.dll",
+        "ref/netstandard1.1/System.Memory.xml",
+        "ref/netstandard2.0/System.Memory.dll",
+        "ref/netstandard2.0/System.Memory.xml",
+        "ref/uap10.0.16300/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.memory.4.5.0.nupkg.sha512",
+        "system.memory.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Net.Http/4.3.0": {
       "sha512": "sYg+FtILtRQuYWSIAuNOELwVuVsxVyJGWQyOnlAzhV4xvhyFnON1bAzYYC+jjRW8JREM45R0R5Dgi8MTC5sEwA==",
       "type": "package",
@@ -10624,6 +11627,41 @@
         "runtimes/win/lib/netstandard1.3/System.Net.Http.dll",
         "system.net.http.4.3.0.nupkg.sha512",
         "system.net.http.nuspec"
+      ]
+    },
+    "System.Net.Http.WinHttpHandler/4.4.0": {
+      "sha512": "YqwobZ4S2NccFweRdD53iBQL+tI5BtplnjpLWE5YEN5f03NQzSjSUKjbAuvSeW9W95SM73ua+KqvdqCjlK8Ctw==",
+      "type": "package",
+      "path": "system.net.http.winhttphandler/4.4.0",
+      "files": [
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net46/System.Net.Http.WinHttpHandler.dll",
+        "lib/net461/System.Net.Http.WinHttpHandler.dll",
+        "lib/netstandard1.3/System.Net.Http.WinHttpHandler.dll",
+        "lib/netstandard2.0/System.Net.Http.WinHttpHandler.dll",
+        "ref/netstandard1.3/System.Net.Http.WinHttpHandler.dll",
+        "ref/netstandard1.3/System.Net.Http.WinHttpHandler.xml",
+        "ref/netstandard1.3/de/System.Net.Http.WinHttpHandler.xml",
+        "ref/netstandard1.3/es/System.Net.Http.WinHttpHandler.xml",
+        "ref/netstandard1.3/fr/System.Net.Http.WinHttpHandler.xml",
+        "ref/netstandard1.3/it/System.Net.Http.WinHttpHandler.xml",
+        "ref/netstandard1.3/ja/System.Net.Http.WinHttpHandler.xml",
+        "ref/netstandard1.3/ko/System.Net.Http.WinHttpHandler.xml",
+        "ref/netstandard1.3/ru/System.Net.Http.WinHttpHandler.xml",
+        "ref/netstandard1.3/zh-hans/System.Net.Http.WinHttpHandler.xml",
+        "ref/netstandard1.3/zh-hant/System.Net.Http.WinHttpHandler.xml",
+        "ref/netstandard2.0/System.Net.Http.WinHttpHandler.dll",
+        "ref/netstandard2.0/System.Net.Http.WinHttpHandler.xml",
+        "runtimes/win/lib/net46/System.Net.Http.WinHttpHandler.dll",
+        "runtimes/win/lib/net461/System.Net.Http.WinHttpHandler.dll",
+        "runtimes/win/lib/netstandard1.3/System.Net.Http.WinHttpHandler.dll",
+        "runtimes/win/lib/netstandard2.0/System.Net.Http.WinHttpHandler.dll",
+        "system.net.http.winhttphandler.4.4.0.nupkg.sha512",
+        "system.net.http.winhttphandler.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Net.NameResolution/4.3.0": {
@@ -10942,6 +11980,25 @@
         "system.private.datacontractserialization.nuspec"
       ]
     },
+    "System.Private.ServiceModel/4.4.1": {
+      "sha512": "sBeO+Ar3heL0GN1vUaFvmz5xfL/BOOLESKYbNIX0mXR2XbfZ3jD60zG6SC6zp2dJaDUibAJskLKBd7XXKsdtvQ==",
+      "type": "package",
+      "path": "system.private.servicemodel/4.4.1",
+      "files": [
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "ref/netstandard/_._",
+        "runtimes/unix/lib/netstandard1.3/System.Private.ServiceModel.dll",
+        "runtimes/unix/lib/netstandard2.0/System.Private.ServiceModel.dll",
+        "runtimes/win7/lib/netcore50/System.Private.ServiceModel.dll",
+        "runtimes/win7/lib/netstandard1.3/System.Private.ServiceModel.dll",
+        "runtimes/win7/lib/netstandard2.0/System.Private.ServiceModel.dll",
+        "system.private.servicemodel.4.4.1.nupkg.sha512",
+        "system.private.servicemodel.nuspec",
+        "version.txt"
+      ]
+    },
     "System.Reflection/4.3.0": {
       "sha512": "KMiAFoW7MfJGa9nDFNcfu+FpEdiHpWgTcS2HdMpDvt9saK3y/G4GwprPyzqjFH9NTaGPQeWNHU+iDlDILj96aQ==",
       "type": "package",
@@ -11019,6 +12076,51 @@
         "ref/xamarinwatchos10/_._",
         "system.reflection.4.3.0.nupkg.sha512",
         "system.reflection.nuspec"
+      ]
+    },
+    "System.Reflection.DispatchProxy/4.4.0": {
+      "sha512": "fFqzsOp2yzVY5ZP15N01I1l8ybcTwqZ7hSYsz9BsQ3aY+aDtScuQyxixeqDvPrAhRJU75qOFxt3F6j7dLsJRsw==",
+      "type": "package",
+      "path": "system.reflection.dispatchproxy/4.4.0",
+      "files": [
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net461/System.Reflection.DispatchProxy.dll",
+        "lib/netcoreapp2.0/_._",
+        "lib/netstandard1.3/System.Reflection.DispatchProxy.dll",
+        "lib/netstandard2.0/System.Reflection.DispatchProxy.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/netcoreapp2.0/_._",
+        "ref/netstandard1.3/System.Reflection.DispatchProxy.dll",
+        "ref/netstandard1.3/System.Reflection.DispatchProxy.xml",
+        "ref/netstandard1.3/de/System.Reflection.DispatchProxy.xml",
+        "ref/netstandard1.3/es/System.Reflection.DispatchProxy.xml",
+        "ref/netstandard1.3/fr/System.Reflection.DispatchProxy.xml",
+        "ref/netstandard1.3/it/System.Reflection.DispatchProxy.xml",
+        "ref/netstandard1.3/ja/System.Reflection.DispatchProxy.xml",
+        "ref/netstandard1.3/ko/System.Reflection.DispatchProxy.xml",
+        "ref/netstandard1.3/ru/System.Reflection.DispatchProxy.xml",
+        "ref/netstandard1.3/zh-hans/System.Reflection.DispatchProxy.xml",
+        "ref/netstandard1.3/zh-hant/System.Reflection.DispatchProxy.xml",
+        "ref/netstandard2.0/System.Reflection.DispatchProxy.dll",
+        "ref/netstandard2.0/System.Reflection.DispatchProxy.xml",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "runtimes/aot/lib/netcore50/System.Reflection.DispatchProxy.dll",
+        "system.reflection.dispatchproxy.4.4.0.nupkg.sha512",
+        "system.reflection.dispatchproxy.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Reflection.Emit/4.3.0": {
@@ -11469,22 +12571,27 @@
         "system.runtime.nuspec"
       ]
     },
-    "System.Runtime.CompilerServices.Unsafe/4.4.0": {
-      "sha512": "9dLLuBxr5GNmOfl2jSMcsHuteEg32BEfUotmmUkmZjpR3RpVHE8YQwt0ow3p6prwA1ME8WqDVZqrr8z6H8G+Kw==",
+    "System.Runtime.CompilerServices.Unsafe/4.5.0": {
+      "sha512": "6zBxkHYemB0kQiHP3vGXGRXejZVoNVuMn2paUuqKKi5Wyjkxfkp+D0rd0c3VrGwotidRINt6KpOi2smL4VkJKw==",
       "type": "package",
-      "path": "system.runtime.compilerservices.unsafe/4.4.0",
+      "path": "system.runtime.compilerservices.unsafe/4.5.0",
       "files": [
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
         "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
         "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/uap10.0.16300/_._",
         "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
         "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
         "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "system.runtime.compilerservices.unsafe.4.4.0.nupkg.sha512",
+        "ref/uap10.0.16300/_._",
+        "system.runtime.compilerservices.unsafe.4.5.0.nupkg.sha512",
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -12009,17 +13116,19 @@
         "system.runtime.serialization.xml.nuspec"
       ]
     },
-    "System.Security.AccessControl/4.4.0": {
-      "sha512": "2NRFPX/V81ucKQmqNgGBZrKGH/5ejsvivSGMRum0SMgPnJxwhuNkzVS1+7gC3R2X0f57CtwrPrXPPSe6nOp82g==",
+    "System.Security.AccessControl/4.5.0": {
+      "sha512": "aVjTe36YkO8FzfNhMLoPEzv3gF9rphoW9ngFhG/MH4zzEPLx07sNrgCLwMP4Wx2leI6qarMrGv21OwQXYUKLmw==",
       "type": "package",
-      "path": "system.security.accesscontrol/4.4.0",
+      "path": "system.security.accesscontrol/4.5.0",
       "files": [
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net46/System.Security.AccessControl.dll",
         "lib/net461/System.Security.AccessControl.dll",
         "lib/netstandard1.3/System.Security.AccessControl.dll",
         "lib/netstandard2.0/System.Security.AccessControl.dll",
+        "lib/uap10.0.16299/_._",
         "ref/net46/System.Security.AccessControl.dll",
         "ref/net461/System.Security.AccessControl.dll",
         "ref/net461/System.Security.AccessControl.xml",
@@ -12036,12 +13145,13 @@
         "ref/netstandard1.3/zh-hant/System.Security.AccessControl.xml",
         "ref/netstandard2.0/System.Security.AccessControl.dll",
         "ref/netstandard2.0/System.Security.AccessControl.xml",
-        "runtimes/unix/lib/netcoreapp2.0/System.Security.AccessControl.dll",
+        "ref/uap10.0.16299/_._",
         "runtimes/win/lib/net46/System.Security.AccessControl.dll",
         "runtimes/win/lib/net461/System.Security.AccessControl.dll",
         "runtimes/win/lib/netcoreapp2.0/System.Security.AccessControl.dll",
         "runtimes/win/lib/netstandard1.3/System.Security.AccessControl.dll",
-        "system.security.accesscontrol.4.4.0.nupkg.sha512",
+        "runtimes/win/lib/uap10.0.16299/_._",
+        "system.security.accesscontrol.4.5.0.nupkg.sha512",
         "system.security.accesscontrol.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -12259,6 +13369,46 @@
         "system.security.cryptography.primitives.nuspec"
       ]
     },
+    "System.Security.Cryptography.ProtectedData/4.4.0": {
+      "sha512": "WwEexvBd+17yfY7fcS+fBGl+HADEfCJuKeDJqBT7D6j6vKwYvfLyGuq2y/MmrKORC6mbYwth7kjinO1mPhTL3g==",
+      "type": "package",
+      "path": "system.security.cryptography.protecteddata/4.4.0",
+      "files": [
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Security.Cryptography.ProtectedData.dll",
+        "lib/net461/System.Security.Cryptography.ProtectedData.dll",
+        "lib/netstandard1.3/System.Security.Cryptography.ProtectedData.dll",
+        "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Security.Cryptography.ProtectedData.dll",
+        "ref/net461/System.Security.Cryptography.ProtectedData.dll",
+        "ref/net461/System.Security.Cryptography.ProtectedData.xml",
+        "ref/netstandard1.3/System.Security.Cryptography.ProtectedData.dll",
+        "ref/netstandard2.0/System.Security.Cryptography.ProtectedData.dll",
+        "ref/netstandard2.0/System.Security.Cryptography.ProtectedData.xml",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "runtimes/win/lib/net46/System.Security.Cryptography.ProtectedData.dll",
+        "runtimes/win/lib/net461/System.Security.Cryptography.ProtectedData.dll",
+        "runtimes/win/lib/netstandard1.3/System.Security.Cryptography.ProtectedData.dll",
+        "runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll",
+        "system.security.cryptography.protecteddata.4.4.0.nupkg.sha512",
+        "system.security.cryptography.protecteddata.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Security.Cryptography.X509Certificates/4.3.0": {
       "sha512": "t2Tmu6Y2NtJ2um0RtcuhP7ZdNNxXEgUm2JeoA/0NvlMjAhKCnM1NX07TDl3244mVp3QU6LPEhT3HTtH1uF7IYw==",
       "type": "package",
@@ -12389,17 +13539,19 @@
         "system.security.principal.nuspec"
       ]
     },
-    "System.Security.Principal.Windows/4.4.0": {
-      "sha512": "pP+AOzt1o3jESOuLmf52YQTF7H3Ng9hTnrOESQiqsnl2IbBh1HInsAMHYtoh75iUYV0OIkHmjvveraYB6zM97w==",
+    "System.Security.Principal.Windows/4.5.0": {
+      "sha512": "WA9ETb/pY3BjnxKjBUHEgO59B7d/nnmjHFsqjJ2eDT780nD769CT1/bw2ia0Z6W7NqlcqokE6sKGKa6uw88XGA==",
       "type": "package",
-      "path": "system.security.principal.windows/4.4.0",
+      "path": "system.security.principal.windows/4.5.0",
       "files": [
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net46/System.Security.Principal.Windows.dll",
         "lib/net461/System.Security.Principal.Windows.dll",
         "lib/netstandard1.3/System.Security.Principal.Windows.dll",
         "lib/netstandard2.0/System.Security.Principal.Windows.dll",
+        "lib/uap10.0.16299/_._",
         "ref/net46/System.Security.Principal.Windows.dll",
         "ref/net461/System.Security.Principal.Windows.dll",
         "ref/net461/System.Security.Principal.Windows.xml",
@@ -12416,14 +13568,108 @@
         "ref/netstandard1.3/zh-hant/System.Security.Principal.Windows.xml",
         "ref/netstandard2.0/System.Security.Principal.Windows.dll",
         "ref/netstandard2.0/System.Security.Principal.Windows.xml",
+        "ref/uap10.0.16299/_._",
         "runtimes/unix/lib/netcoreapp2.0/System.Security.Principal.Windows.dll",
         "runtimes/win/lib/net46/System.Security.Principal.Windows.dll",
         "runtimes/win/lib/net461/System.Security.Principal.Windows.dll",
         "runtimes/win/lib/netcoreapp2.0/System.Security.Principal.Windows.dll",
         "runtimes/win/lib/netstandard1.3/System.Security.Principal.Windows.dll",
-        "system.security.principal.windows.4.4.0.nupkg.sha512",
+        "runtimes/win/lib/uap10.0.16299/_._",
+        "system.security.principal.windows.4.5.0.nupkg.sha512",
         "system.security.principal.windows.nuspec",
         "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.ServiceModel.Http/4.4.0": {
+      "sha512": "S7J7W+xyQ+SkVs5/i7yaBw++0jsnkdF2DURlvZqzG/ksKxoxe72zoKpKp77FG5ZvvSUQ2UanVS0t8CK1tv6/9w==",
+      "type": "package",
+      "path": "system.servicemodel.http/4.4.0",
+      "files": [
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/net46/System.ServiceModel.Http.dll",
+        "lib/net461/System.ServiceModel.Http.dll",
+        "lib/netcore50/System.ServiceModel.Http.dll",
+        "lib/netstandard1.3/System.ServiceModel.Http.dll",
+        "lib/netstandard2.0/System.ServiceModel.Http.dll",
+        "lib/portable-net45+win8+wp8/_._",
+        "lib/win8/_._",
+        "lib/wp8/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/net46/System.ServiceModel.Http.dll",
+        "ref/net461/System.ServiceModel.Http.dll",
+        "ref/netcore50/System.ServiceModel.Http.dll",
+        "ref/netstandard1.0/System.ServiceModel.Http.dll",
+        "ref/netstandard1.1/System.ServiceModel.Http.dll",
+        "ref/netstandard1.3/System.ServiceModel.Http.dll",
+        "ref/netstandard2.0/System.ServiceModel.Http.dll",
+        "ref/portable-net45+win8+wp8/_._",
+        "ref/win8/_._",
+        "ref/wp8/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.servicemodel.http.4.4.0.nupkg.sha512",
+        "system.servicemodel.http.nuspec",
+        "version.txt"
+      ]
+    },
+    "System.ServiceModel.Primitives/4.4.1": {
+      "sha512": "VpZ0g9IFILYGlFy2uSfKOqzvTgd6pvHbKLc7jU+yCrtQApErDfzW2JNncstJWXhnk4Vm7SzYlYdoItSKm5MpNg==",
+      "type": "package",
+      "path": "system.servicemodel.primitives/4.4.1",
+      "files": [
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/net46/System.ServiceModel.Primitives.dll",
+        "lib/net461/System.ServiceModel.Primitives.dll",
+        "lib/netcore50/System.ServiceModel.Primitives.dll",
+        "lib/netstandard1.3/System.ServiceModel.Primitives.dll",
+        "lib/netstandard2.0/System.ServiceModel.Primitives.dll",
+        "lib/netstandard2.0/System.ServiceModel.dll",
+        "lib/portable-net45+win8+wp8/_._",
+        "lib/win8/_._",
+        "lib/wp8/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/net46/System.ServiceModel.Primitives.dll",
+        "ref/net461/System.ServiceModel.Primitives.dll",
+        "ref/netcore50/System.ServiceModel.Primitives.dll",
+        "ref/netstandard1.0/System.ServiceModel.Primitives.dll",
+        "ref/netstandard1.1/System.ServiceModel.Primitives.dll",
+        "ref/netstandard1.3/System.ServiceModel.Primitives.dll",
+        "ref/netstandard2.0/System.ServiceModel.Primitives.dll",
+        "ref/netstandard2.0/System.ServiceModel.dll",
+        "ref/portable-net45+win8+wp8/_._",
+        "ref/win8/_._",
+        "ref/wp8/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.servicemodel.primitives.4.4.1.nupkg.sha512",
+        "system.servicemodel.primitives.nuspec",
         "version.txt"
       ]
     },
@@ -12557,11 +13803,12 @@
         "system.text.encoding.nuspec"
       ]
     },
-    "System.Text.Encoding.CodePages/4.4.0": {
-      "sha512": "6JX7ZdaceBiLKLkYt8zJcp4xTJd1uYyXXEkPw6mnlUIjh1gZPIVKPtRXPmY5kLf6DwZmf5YLwR3QUrRonl7l0A==",
+    "System.Text.Encoding.CodePages/4.5.0": {
+      "sha512": "16EVkWmNnoH3/Yj9c5s5VuLK5Uv/Dnkc3P2kMmnD7wJcUuvcHVvM2IhVJanf2hHRZUitH+cIkPCPHrBoCXc7Rw==",
       "type": "package",
-      "path": "system.text.encoding.codepages/4.4.0",
+      "path": "system.text.encoding.codepages/4.5.0",
       "files": [
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/MonoAndroid10/_._",
@@ -12597,7 +13844,7 @@
         "runtimes/win/lib/netcoreapp2.0/System.Text.Encoding.CodePages.dll",
         "runtimes/win/lib/netstandard1.3/System.Text.Encoding.CodePages.dll",
         "runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.dll",
-        "system.text.encoding.codepages.4.4.0.nupkg.sha512",
+        "system.text.encoding.codepages.4.5.0.nupkg.sha512",
         "system.text.encoding.codepages.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -12835,6 +14082,44 @@
         "runtimes/aot/lib/netcore50/System.Threading.dll",
         "system.threading.4.3.0.nupkg.sha512",
         "system.threading.nuspec"
+      ]
+    },
+    "System.Threading.AccessControl/4.4.0": {
+      "sha512": "oVHNGnW26UxzW9ftuvtCq4k7CrtU4Kiah5N59hQLgUMoqCscgFwxVLZMY8o9Uh868KAopclqPu3lKPjyCVPM/g==",
+      "type": "package",
+      "path": "system.threading.accesscontrol/4.4.0",
+      "files": [
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net46/System.Threading.AccessControl.dll",
+        "lib/net461/System.Threading.AccessControl.dll",
+        "lib/netstandard1.3/System.Threading.AccessControl.dll",
+        "lib/netstandard2.0/System.Threading.AccessControl.dll",
+        "ref/net46/System.Threading.AccessControl.dll",
+        "ref/net461/System.Threading.AccessControl.dll",
+        "ref/net461/System.Threading.AccessControl.xml",
+        "ref/netstandard1.3/System.Threading.AccessControl.dll",
+        "ref/netstandard1.3/System.Threading.AccessControl.xml",
+        "ref/netstandard1.3/de/System.Threading.AccessControl.xml",
+        "ref/netstandard1.3/es/System.Threading.AccessControl.xml",
+        "ref/netstandard1.3/fr/System.Threading.AccessControl.xml",
+        "ref/netstandard1.3/it/System.Threading.AccessControl.xml",
+        "ref/netstandard1.3/ja/System.Threading.AccessControl.xml",
+        "ref/netstandard1.3/ko/System.Threading.AccessControl.xml",
+        "ref/netstandard1.3/ru/System.Threading.AccessControl.xml",
+        "ref/netstandard1.3/zh-hans/System.Threading.AccessControl.xml",
+        "ref/netstandard1.3/zh-hant/System.Threading.AccessControl.xml",
+        "ref/netstandard2.0/System.Threading.AccessControl.dll",
+        "ref/netstandard2.0/System.Threading.AccessControl.xml",
+        "runtimes/win/lib/net46/System.Threading.AccessControl.dll",
+        "runtimes/win/lib/net461/System.Threading.AccessControl.dll",
+        "runtimes/win/lib/netstandard1.3/System.Threading.AccessControl.dll",
+        "runtimes/win/lib/netstandard2.0/System.Threading.AccessControl.dll",
+        "system.threading.accesscontrol.4.4.0.nupkg.sha512",
+        "system.threading.accesscontrol.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Threading.Tasks/4.3.0": {
@@ -13506,6 +14791,7 @@
     ".NETCoreApp,Version=v2.0": [
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 3.2.0",
       "Automapper >= 6.2.2",
+      "DevExpress.AspNetCore.Reporting >= 18.1.6-ctp",
       "ErpCore >= 1.0.0",
       "ErpInfrastructure >= 1.0.0",
       "FluentValidation.AspNetCore >= 7.5.2",
@@ -13538,12 +14824,14 @@
       ],
       "configFilePaths": [
         "C:\\Users\\GBSC-8\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.1.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\DevExpress 18.1\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
@@ -13575,6 +14863,10 @@
           "Automapper": {
             "target": "Package",
             "version": "[6.2.2, )"
+          },
+          "DevExpress.AspNetCore.Reporting": {
+            "target": "Package",
+            "version": "[18.1.6-ctp, )"
           },
           "FluentValidation.AspNetCore": {
             "target": "Package",

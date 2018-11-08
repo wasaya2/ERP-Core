@@ -63,7 +63,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetLeaveDayTypes", Name = "GetLeaveDayTypes")]
         public IEnumerable<LeaveDayType> GetLeaveDayTypes()
         {
-            return LeaveDayType_repo.GetAll();
+            return LeaveDayType_repo.GetAll().OrderByDescending(a => a.LeaveDayTypeId);
         }
 
         [HttpGet("GetLeaveDayType/{id}", Name = "GetLeaveDayType")]
@@ -103,7 +103,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetLeaveEligibilities", Name = "GetLeaveEligibilities")]
         public IEnumerable<LeaveEligibility> GetLeaveEligibilities()
         {
-            return LeaveEligibility_repo.GetAll();
+            return LeaveEligibility_repo.GetAll().OrderByDescending(a => a.LeaveEligibilityId);
         }
 
         [HttpGet("GetLeaveEligibility/{id}", Name = "GetLeaveEligibility")]
@@ -143,7 +143,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetLeavePolicies", Name = "GetLeavePolicies")]
         public IEnumerable<LeavePolicy> GetLeavePolicies()
         {
-            return LeavePolicy_repo.GetAll();
+            return LeavePolicy_repo.GetAll().OrderByDescending(a => a.LeavePolicyId);
         }
 
         [HttpGet("GetLeavePolicy/{id}", Name = "GetLeavePolicy")]
@@ -183,7 +183,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetLeavePurposes", Name = "GetLeavePurposes")]
         public IEnumerable<LeavePurpose> GetLeavePurposes()
         {
-            return LeavePurpose_repo.GetAll();
+            return LeavePurpose_repo.GetAll().OrderByDescending(a => a.LeavePurposeId);
         }
 
         [HttpGet("GetLeavePurpose/{id}", Name = "GetLeavePurpose")]
@@ -223,7 +223,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetLeaveTypes", Name = "GetLeaveTypes")]
         public IEnumerable<LeaveType> GetLeaveTypes()
         {
-            return LeaveType_repo.GetAll();
+            return LeaveType_repo.GetAll().OrderByDescending(a => a.LeaveTypeId);
         }
 
         [HttpGet("GetLeaveType/{id}", Name = "GetLeaveType")]
@@ -263,7 +263,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetLeaveSubTypes", Name = "GetLeaveSubTypes")]
         public IEnumerable<LeaveSubType> GetLeaveSubTypes()
         {
-            return LeaveSubType_repo.GetAll();
+            return LeaveSubType_repo.GetAll().OrderByDescending(a => a.LeaveSubTypeId);
         }
 
         [HttpGet("GetLeaveSubType/{id}", Name = "GetLeaveSubType")]
@@ -303,7 +303,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetLeaveTypeBalances", Name = "GetLeaveTypeBalances")]
         public IEnumerable<LeaveTypeBalance> GetLeaveTypeBalances()
         {
-            return LeaveTypeBalance_repo.GetAll();
+            return LeaveTypeBalance_repo.GetAll().OrderByDescending(a => a.LeaveTypeBalanceId);
         }
 
         [HttpGet("GetLeaveTypeBalance/{id}", Name = "GetLeaveTypeBalance")]
@@ -343,7 +343,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetLeaveYears", Name = "GetLeaveYears")]
         public IEnumerable<LeaveYear> GetLeaveYears()
         {
-            return LeaveYear_repo.GetAll();
+            return LeaveYear_repo.GetAll().OrderByDescending(a => a.LeaveYearId);
         }
 
         [HttpGet("GetLeaveYear/{id}", Name = "GetLeaveYear")]
@@ -383,7 +383,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetProrateMatrixs", Name = "GetProrateMatrixs")]
         public IEnumerable<ProrateMatrix> GetProrateMatrixs()
         {
-            return ProrateMatrix_repo.GetAll();
+            return ProrateMatrix_repo.GetAll().OrderByDescending(a => a.ProrateMatrixId);
         }
 
         [HttpGet("GetProrateMatrix/{id}", Name = "GetProrateMatrix")]
@@ -423,7 +423,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetDecimalRoundingMatrixs", Name = "GetDecimalRoundingMatrixs")]
         public IEnumerable<DecimalRoundingMatrix> GetDecimalRoundingMatrixs()
         {
-            return DecimalRoundingMatrix_repo.GetAll();
+            return DecimalRoundingMatrix_repo.GetAll().OrderByDescending(a => a.DecimalRoundingMatrixId);
         }
 
         [HttpGet("GetDecimalRoundingMatrix/{id}", Name = "GetDecimalRoundingMatrix")]
@@ -464,7 +464,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetLeaveApprovers", Name = "GetLeaveApprovers")]
         public IEnumerable<LeaveApprover> GetLeaveApprovers()
         {
-            return LeaveApprover_repo.GetAll();
+            return LeaveApprover_repo.GetAll().OrderByDescending(a => a.LeaveApproverId);
         }
 
         //[HttpGet("GetLeaveApproversNames", Name = "GetLeaveApproversNames")]

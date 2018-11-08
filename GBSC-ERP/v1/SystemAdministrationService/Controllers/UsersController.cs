@@ -72,6 +72,7 @@ namespace SystemAdministrationService.Controllers
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                FullName = (string)(model.FirstName + " " + model.LastName),
                 FatherName = model.FatherName,
                 POB = model.POB,
                 DOB = model.DOB,
