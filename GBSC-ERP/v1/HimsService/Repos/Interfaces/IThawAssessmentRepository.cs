@@ -9,5 +9,8 @@ namespace HimsService.Repos.Interfaces
 {
     public interface IThawAssessmentRepository : IRepo<ThawAssessment>
     {
+        void removeThawAssessmentThawDetails(long thawAssessmentId);
+
+        void AddThawedUnthawed(List<EmbryoFreezeThawed> thawed, List<EmbryoFreezeUnthawed> unthawed);
     }
 }

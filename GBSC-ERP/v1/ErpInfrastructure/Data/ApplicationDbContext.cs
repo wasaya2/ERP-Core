@@ -67,9 +67,12 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<Appointment>().ToTable("Hims_Appointment");
             modelBuilder.Entity<PatientInvoice>().ToTable("Hims_PatientInvoice");
             modelBuilder.Entity<PatientInvoiceItem>().ToTable("Hims_PatientInvoiceItem");
+            modelBuilder.Entity<PatientInvoiceReturn>().ToTable("Hims_PatientInvoiceReturn");
+            modelBuilder.Entity<PatientInvoiceReturnItem>().ToTable("Hims_PatientInvoiceReturnItem");
             modelBuilder.Entity<PatientReference>().ToTable("Hims_PatientReference");
             modelBuilder.Entity<PatientDocument>().ToTable("Hims_PatientDocument");
             modelBuilder.Entity<SemenAnalysis>().ToTable("Hims_SemenAnalysis");
+
             //Visit
             modelBuilder.Entity<PatientVital>().ToTable("Hims_PatientVital");
             modelBuilder.Entity<Diagnosis>().ToTable("Hims_Diagnosis");
@@ -596,15 +599,30 @@ namespace ErpInfrastructure.Data
                 .WithOne(b => b.PatientInvoice)
                 .HasForeignKey<PatientInvoice>(c => c.AppointmentId);
 
+            modelBuilder.Entity<PatientInvoiceReturn>()
+                .HasOne(a => a.Patient)
+                .WithMany(b => b.PatientInvoiceReturns)
+                .HasForeignKey(c => c.PatientId);
+
+            modelBuilder.Entity<PatientInvoiceReturn>()
+                .HasOne(a => a.PatientInvoice)
+                .WithOne(b => b.PatientInvoiceReturn)
+                .HasForeignKey<PatientInvoiceReturn>(c => c.PatientInvoiceId);
+
+            modelBuilder.Entity<PatientInvoiceReturnItem>()
+                .HasOne(a => a.PatientInvoiceReturn)
+                .WithMany(b => b.PatientInvoiceReturnItems)
+                .HasForeignKey(c => c.PatientInvoiceReturnId);
+
             modelBuilder.Entity<PatientPackage>()
                 .HasOne(a => a.Package)
                 .WithMany(b => b.PatientPackages)
                 .HasForeignKey(c => c.PackageId);
 
-            modelBuilder.Entity<PatientPackage>()
-                .HasOne(a => a.Patient)
-                .WithOne(b => b.PatientPackage)
-                .HasForeignKey<Patient>(c => c.PatientPackageId);
+            modelBuilder.Entity<Patient>()
+                .HasOne(a => a.PatientPackage)
+                .WithOne(b => b.Patient)
+                .HasForeignKey<PatientPackage>(c => c.PatientId);
 
             //HIMS Setup
             modelBuilder.Entity<Test>()
@@ -2008,6 +2026,9 @@ namespace ErpInfrastructure.Data
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Consultant> Consultants { get; set; }
         public DbSet<PatientInvoice> PatientInvoices { get; set; }
+        public DbSet<PatientInvoiceItem> PatientInvoiceItems { get; set; }
+        public DbSet<PatientInvoiceReturn> PatientInvoiceReturns { get; set; }
+        public DbSet<PatientInvoiceReturnItem> PatientInvoiceReturnItems { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<AppointmentTest> AppointmentTests { get; set; }
         public DbSet<VisitDiagnosis> VisitDiagnoses { get; set; }

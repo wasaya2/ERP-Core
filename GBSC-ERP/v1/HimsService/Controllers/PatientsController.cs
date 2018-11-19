@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
-
 using HimsService.Repos.Interfaces;
 using ErpCore.Entities;
 using System.Text.RegularExpressions;
@@ -52,9 +50,7 @@ namespace HimsService.Controllers
         [HttpGet("GetPatients", Name = "GetPatients")]
         public IEnumerable<Patient> GetPatients()
         {
-
-           // IEnumerable<Patient> pat = _repo.GetAll();
-        IEnumerable<Patient> pat = _repo.GetAll(p => p.Partner, c => c.Appointments, d=>d.PatientDocuments);
+            IEnumerable<Patient> pat = _repo.GetAll();
             pat = pat.OrderByDescending(s => s.PatientId );
             return pat;
         }
@@ -66,7 +62,16 @@ namespace HimsService.Controllers
         }
         
         [HttpGet("GetPatient/{id}", Name = "GetPatient")]
-        public Patient GetPatient(long id) => _repo.GetFirst(p => p.PatientId == id, a => a.Appointments, b => b.PatientInvoices, c => c.PatientDocuments, d => d.Partner, e => e.PatientReference);
+        public Patient GetPatient(long id) => _repo.GetFirst(p => p.PatientId == id);
+
+        //[HttpGet("GetPatient/{id}", Name = "GetPatient")]
+        //public Patient GetPatient(long id) => _repo.GetFirst(p => p.PatientId == id, a => a.Appointments, b => b.PatientInvoices, c => c.PatientDocuments, d => d.Partner, e => e.PatientReference);
+
+        [HttpGet("GetPatientAppointmentsByPatientId/{id}", Name = "GetPatientAppointmentsByPatientId")]
+        public Patient GetPatientAppointmentsByPatientId(long id) => _repo.GetFirst(p => p.PatientId == id, a => a.Appointments);
+    
+        [HttpGet("GetPatientDetailPatientId/{id}", Name = "GetPatientDetailPatientId")]
+        public Patient GetPatientDetailPatientId(long id) => _repo.GetFirst(p => p.PatientId == id, a => a.PatientDocuments, d => d.Partner, e => e.PatientReference ,x=> x.PatientPackage);
 
         [HttpPost("SearchPatient", Name = "SearchPatient")]
         [ValidateModelAttribute]
@@ -108,7 +113,7 @@ namespace HimsService.Controllers
         [HttpGet("GetPatientbymrn/{mrn}", Name = "GetPatientbymrn")]
         public Patient GetPatientbymrn(string mrn)
         {
-          var a = _repo.GetFirst( x => x.MRN == mrn);
+          var a = _repo.GetFirst( x => x.MRN == mrn.ToUpper());
           return a;
         }
 
@@ -137,7 +142,6 @@ namespace HimsService.Controllers
             model.Date = DateTime.Now;
             model.MRN = GenMRN();
             model.Display = model.FirstName + " " + model.LastName +"-"+ model.MRN;
-            //doc_repo.AddRange(model.PatientDocuments);
             _repo.Add(model);
             return new OkObjectResult(new { patientId = model.PatientId });
         }
@@ -393,7 +397,7 @@ namespace HimsService.Controllers
 
     #endregion
 
-    #region
+        #region
 
     [HttpGet("GetLastPatientVital/{patientid}", Name = "GetLastPatientVital")]
     public PatientVital GetLastPatientVital(long patientid)
@@ -454,17 +458,79 @@ namespace HimsService.Controllers
         {
             try
             {
-                return Appointment_repo.GetFinalizedAppointmentsByPatientIdAndMonthYear(_repo.GetFirst(a => a.MRN == MRN).PatientId, date);
+                return Appointment_repo.GetFinalizedAppointmentsByPatientIdAndMonthYear(_repo.GetFirst(a => a.MRN != null && a.MRN == MRN.ToUpper()).PatientId, date);
             }
             catch(NullReferenceException)
             {
                 return null;
             }
         }
+
+        [HttpGet("GetPatientWithPackageAndPartnerByMRN/{mrn}", Name = "GetPatientWithPackageAndPartnerByMRN")]
+        public Patient GetPatientWithPackageAndPartnerByMRN(string mrn)
+        {
+            try
+            {
+                return _repo.GetFirst(a => a.MRN != null && a.MRN == mrn.ToUpper(), b => b.PatientPackage, c => c.Partner);
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
+        }
+
+        [HttpGet("GetPatientInvoicesWithDetailsByMRN/{mrn}", Name = "GetPatientInvoicesWithDetailsByMRN")]
+        public Patient GetPatientInvoicesWithDetailsByMRN(string mrn)
+        {
+            try
+            {
+                return _repo.GetPatientInvoicesWithDetailsByMRN(mrn.ToUpper());
+            }
+            catch(NullReferenceException)
+            {
+                return null;
+            }
+        }
+
+        [HttpGet("GetPatientInvoiceReturnsWithDetailsByMRN/{mrn}", Name = "GetPatientInvoiceReturnsWithDetailsByMRN")]
+        public Patient GetPatientInvoiceReturnsWithDetailsByMRN(string mrn)
+        {
+            try
+            {
+                return _repo.GetPatientInvoiceReturnsWithDetailsByMRN(mrn.ToUpper());
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
+        }
+
+        [HttpGet("GetPatientInvoicesWithDetailsByMRNandDate/{mrn}/{date}", Name = "GetPatientInvoicesWithDetailsByMRNandDate")]
+        public IEnumerable<PatientInvoice> GetPatientInvoicesWithDetailsByMRNandDate(string mrn, DateTime date)
+        {
+            try
+            {
+                return _repo.GetPatientInvoicesWithDetailsByMRNandDate(mrn.ToUpper(), date).OrderByDescending(a => a.AppointmentId);
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
+        }
+
+        [HttpGet("GetPatientInvoiceReturnsWithDetailsByMRNandDate/{mrn}/{date}", Name = "GetPatientInvoiceReturnsWithDetailsByMRNandDate")]
+        public IEnumerable<PatientInvoiceReturn> GetPatientInvoiceReturnsWithDetailsByMRNandDate(string mrn, DateTime date)
+        {
+            try
+            {
+                return _repo.GetPatientInvoiceReturnsWithDetailsByMRNandDate(mrn.ToUpper(), date).OrderByDescending(a => a.PatientInvoiceReturnId);
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
+        }
+
+
     }
-
-
-
-
-
 }

@@ -70,10 +70,10 @@ namespace ErpInfrastructure.Data
 
             List<PatientInvoice> patientInvoices = new List<PatientInvoice>
             {
-                new PatientInvoice{ SlipNumber = "PSN000001", DateCreated = DateTime.Now, InvoiceType = "XYZ", AmountToPay = 100 , PreviousAmout = 200, PaidAmount = 300, BalanceAmount = 456, InvoiceRemarks = "HDIV", Consultant = "JDIV", PaymentMethod = "&TYI", ChequeNumber = "HV", Bank = "BCII"},
-                new PatientInvoice{ SlipNumber = "PSN000002", DateCreated = DateTime.Now, InvoiceType = "XYZ", AmountToPay = 100 , PreviousAmout = 200, PaidAmount = 300, BalanceAmount = 456, InvoiceRemarks = "HDIV", Consultant = "JDIV", PaymentMethod = "&TYI", ChequeNumber = "H(V", Bank = "2BCII"},
-                new PatientInvoice{ SlipNumber = "PSN000003", DateCreated = DateTime.Now, InvoiceType = "XYZ", AmountToPay = 100 , PreviousAmout = 200, PaidAmount = 300, BalanceAmount = 456, InvoiceRemarks = "HDIV", Consultant = "JDIV", PaymentMethod = "&TYI", ChequeNumber = "H(V", Bank = "3BCII"},
-                new PatientInvoice{ SlipNumber = "PSN000004", DateCreated = DateTime.Now, InvoiceType = "XYZ", AmountToPay = 100 , PreviousAmout = 200, PaidAmount = 300, BalanceAmount = 456, InvoiceRemarks = "HDIV", Consultant = "JDIV", PaymentMethod = "&TYI", ChequeNumber = "H(V", Bank = "4BCII"},
+                new PatientInvoice{ SlipNumber = "PSN000001", DateCreated = DateTime.Now, InvoiceType = "XYZ", InvoiceRemarks = "HDIV", Consultant = "JDIV", PaymentMethod = "&TYI", ChequeNumber = "HV", Bank = "BCII"},
+                new PatientInvoice{ SlipNumber = "PSN000002", DateCreated = DateTime.Now, InvoiceType = "XYZ", InvoiceRemarks = "HDIV", Consultant = "JDIV", PaymentMethod = "&TYI", ChequeNumber = "H(V", Bank = "2BCII"},
+                new PatientInvoice{ SlipNumber = "PSN000003", DateCreated = DateTime.Now, InvoiceType = "XYZ", InvoiceRemarks = "HDIV", Consultant = "JDIV", PaymentMethod = "&TYI", ChequeNumber = "H(V", Bank = "3BCII"},
+                new PatientInvoice{ SlipNumber = "PSN000004", DateCreated = DateTime.Now, InvoiceType = "XYZ", InvoiceRemarks = "HDIV", Consultant = "JDIV", PaymentMethod = "&TYI", ChequeNumber = "H(V", Bank = "4BCII"},
             };
 
             context.PatientInvoices.AddRange(patientInvoices);

@@ -173,7 +173,7 @@ namespace HimsService.Controllers
         public PatientPackage GetPatientPackage(long id) => Patientpackage_repo.GetFirst(a => a.PatientPackageId == id);
 
         [HttpGet("GetPatientPackageByPatientId/{patientid}", Name = "GetPatientPackageByPatientId")]
-        public PatientPackage GetPatientPackageByPatientId(long patientid) => Patientpackage_repo.GetFirst(a => a.PatientId == patientid);
+        public PatientPackage GetPatientPackageByPatientId(long patientid) => Patientpackage_repo.GetFirst(a => a.PatientId == patientid, b => b.Package);
 
         [HttpPut("UpdatePatientPackage", Name = "UpdatePatientPackage")]
         [ValidateModelAttribute]

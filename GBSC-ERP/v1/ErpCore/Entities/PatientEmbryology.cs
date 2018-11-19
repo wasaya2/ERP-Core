@@ -39,6 +39,14 @@ namespace ErpCore.Entities
 
         public Tvopu Tvopu { get; set; }
 
+        public long? ConsultantId { get; set; }
+
+        public Consultant Consultant { get; set; }
+
+        public long? EmbryologistId { get; set; }
+
+        public Embryologist Embryologist { get; set; }
+
         public IEnumerable<PatientEmbryologyDetails> PatientEmbryologyDetails { get; set; }
     }
 }

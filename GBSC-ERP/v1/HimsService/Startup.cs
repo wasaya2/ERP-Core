@@ -117,6 +117,8 @@ namespace HimsService
             services.AddScoped<IPartnerRepository, PartnerRepository>();
             services.AddScoped<IPatientInvoiceItemRepository, PatientInvoiceItemRepository>();
             services.AddScoped<IPatientInvoiceRepository, PatientInvoiceRepository>();
+            services.AddScoped<IPatientInvoiceReturnItemRepository, PatientInvoiceReturnItemRepository>();
+            services.AddScoped<IPatientInvoiceReturnRepository, PatientInvoiceReturnRepository>();
             services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<ITestRepository, TestRepository>();
             services.AddScoped<IVisitNatureRepository, VisitNatureRepository>();

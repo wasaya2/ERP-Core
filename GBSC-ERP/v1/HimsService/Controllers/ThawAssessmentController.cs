@@ -35,7 +35,8 @@ namespace HimsService.Controllers
         [HttpGet("GetThawAssessmentByTvopuId/{id}")]
         public ThawAssessment GetThawAssessmentByTvopuId(long id)
         {
-            return _repo.GetFirst(c => c.TvopuId == id, c => c.EmbryoFreezeThaweds, c => c.EmbryoFreezeUnthaweds);
+            var assessments = _repo.GetFirst(c => c.TvopuId == id, c => c.EmbryoFreezeThaweds, c => c.EmbryoFreezeUnthaweds);
+            return assessments;
         }
 
         [HttpGet("GetThawAssessment/{id}")]
@@ -55,9 +56,18 @@ namespace HimsService.Controllers
         [HttpPut("UpdateThawAssessment")]
         public IActionResult UpdateThawAssessment([FromBody]ThawAssessment model)
         {
-            _repo.Update(model);
+            try
+            {
+                _repo.Update(model);
 
-            return new OkObjectResult(new { ThawAssessmentId = model.ThawAssessmentId });
+                return new OkObjectResult(new { ThawAssessmentId = model.ThawAssessmentId });
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
         }
     }
 }

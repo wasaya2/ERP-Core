@@ -30,7 +30,14 @@ namespace HimsService.Controllers
         [HttpGet("GetPatientEmbryologyByTvopuId/{Id}")]
         public PatientEmbryology GetPatientEmbryologyByTvopuId(long Id)
         {
-            return _repo.GetFirst(c => c.TvopuId == Id, c => c.Tvopu, c => c.Tvopu.PatientClinicalRecord);
+            return _repo.GetFirst(c => c.TvopuId == Id, c => c.Tvopu, c => c.Tvopu.PatientClinicalRecord, c=> c.PatientEmbryologyDetails);
+        }
+
+        [HttpGet("GetPatientEmbryologyDetailsByTvopuId/{Id}")]
+        public List<PatientEmbryologyDetails> GetPatientEmbryologyDetailsByTvopuId(long Id)
+        {
+            var embryology = _repo.GetFirst(c => c.TvopuId == Id, c => c.PatientEmbryologyDetails);
+            return embryology.PatientEmbryologyDetails.ToList();
         }
 
         [HttpGet("GetPatientEmbryology/{id}")]

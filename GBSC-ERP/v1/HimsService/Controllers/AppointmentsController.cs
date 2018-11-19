@@ -57,6 +57,9 @@ namespace HimsService.Controllers
         [HttpGet("GetAppointment/{id}", Name = "GetAppointment")]
         public Appointment GetAppointment(long id) => _repo.GetFirst(a => a.AppointmentId == id, b => b.AppointmentTests, c => c.Patient, d => d.Consultant, e => e.PatientInvoice, f => f.VisitNature);
 
+        [HttpGet("GetAppointmentForInvoiceUpdate/{id}", Name = "GetAppointmentForInvoiceUpdate")]
+        public Appointment GetAppointmentForInvoiceUpdate(long id) => _repo.GetFirst(a => a.AppointmentId == id);
+
         [HttpGet("GetAppointmentDetails/{id}", Name = "GetAppointmentDetails")]
         public Appointment GetAppointmentDetails(long id)
         {
@@ -68,8 +71,15 @@ namespace HimsService.Controllers
         [ValidateModelAttribute]
         public IActionResult UpdateAppointment([FromBody]Appointment model)
         {
-           model.AppointmentDay = model.TentativeTime.Value.DayOfWeek.ToString();
-          _repo.Update(model);
+            if(model.FinalTime != null)
+            {
+                model.AppointmentDay = model.FinalTime.Value.Date.ToString();
+            }
+            else
+            {
+                model.AppointmentDay = model.TentativeTime.Value.DayOfWeek.ToString();
+            }
+            _repo.Update(model);
             return new OkObjectResult(new { AppointmentID = model.AppointmentId });
         }
 
@@ -120,36 +130,31 @@ namespace HimsService.Controllers
         public IEnumerable<Appointment> GetAppointmentByConsultantNameAndDate(long id, DateTime date)
         {
             return _repo.GetConsultantAndAppointmentdate(id , date);
-          // model.ConsultantId = id;
-          //model.TentativeTime = date.Date;
-          //IEnumerable<Appointment> app = _repo.GetAll(a => a.ConsultantId == id, c => c.TentativeTime.Value.Date == date.Date);
-          //  return app;
-          //return _repo.GetAll(a => a.ConsultantId == id, c => c.AppointmentDate == date.Date);
-         }
+        }
 
-      [HttpGet("GetAppointmentByDate/{date}", Name = "GetAppointmentByDate")]
-      [ValidateModelAttribute]
-      public List<Appointment> GetAppointmentByDate(DateTime date)
-      {
-      //  return _repo.GetAll().Where(a => a.AppointmentDate.Value.Date.ToString() == dat)
+        [HttpGet("GetAppointmentByDate/{date}", Name = "GetAppointmentByDate")]
+        [ValidateModelAttribute]
+        public IEnumerable<Appointment> GetAppointmentByDate(DateTime date)
+        {
+        //  return _repo.GetAll().Where(a => a.AppointmentDate.Value.Date.ToString() == dat)
         return _repo.GetDataByTentativedate(date);
-      }
+        }
 
         [HttpGet("GetAppointmentsByDate/{date}", Name = "GetAppointmentsByDate")]
         [ValidateModelAttribute]
         public IList<Appointment> GetAppointmentsByDate(DateTime date)
         {
-          return _repo.GetAll().Where(a => a.TentativeTime.Value.Date == date.Date).ToList();
+          return _repo.GetAll().Where(a => a.AppointmentDate != null && a.TentativeTime != null && a.TentativeTime.Value.Date == date.Date).ToList();
         }
 
         [HttpPost("UpdateAppointmentTests/{appointmentid}", Name = "UpdateAppointmentTests")]
         [ValidateModelAttribute]
         public IActionResult UpdateAppointmentTests([FromRoute]long appointmentid, [FromBody]IEnumerable<AppointmentTest> model)
         {
-          Appointment app = _repo.Find(appointmentid);
-          app.AppointmentTests = model;
-          _repo.Update(app);
-          return new OkObjectResult(new { AppointmentId = appointmentid });
+              Appointment app = _repo.Find(appointmentid);
+              app.AppointmentTests = model;
+              _repo.Update(app);
+              return new OkObjectResult(new { AppointmentId = appointmentid });
         }
 
         #region Get By Company, Country, City or Branch
@@ -197,12 +202,12 @@ namespace HimsService.Controllers
             }
         }
 
-        [HttpGet("GetFinalizedAppointmentsByDateAndPatientID/{date}/{patId}", Name = "GetFinalizedAppointmentsByDateAndPatientID")]
-        public IActionResult GetFinalizedAppointmentsByDateAndPatientID([FromRoute]DateTime date, [FromRoute]long patId)
+        [HttpGet("GetFinalizedAppointmentsByDateAndMRN/{date}/{mrn}", Name = "GetFinalizedAppointmentsByDateAndMRN")]
+        public IActionResult GetFinalizedAppointmentsByDateAndMRN([FromRoute]DateTime date, [FromRoute]string mrn)
         {
             try
             {
-                return new OkObjectResult(_repo.GetFinalizedAppointmentsByDateAndPatientID(date, patId));
+                return new OkObjectResult(_repo.GetFinalizedAppointmentsByDateAndMRN(date, mrn.ToUpper()));
             }
             catch (NullReferenceException)
             {
@@ -213,5 +218,24 @@ namespace HimsService.Controllers
                 return BadRequest("Appointment hasn't finished yet");
             }
         }
+
+        [HttpGet("GetFinalizedAppointmentsByMRN/{mrn}", Name = "GetFinalizedAppointmentsByMRN")]
+        public IActionResult GetFinalizedAppointmentsByMRN([FromRoute]string mrn)
+        {
+            try
+            {
+                return new OkObjectResult(_repo.GetFinalizedAppointmentsByMRN(mrn.ToUpper()));
+            }
+            catch (NullReferenceException)
+            {
+                return BadRequest("No Finalized Appointments");
+            }
+            catch (InvalidOperationException)
+            {
+                return BadRequest("Invalid MRN");
+            }
+        }
+
+
     }
 }

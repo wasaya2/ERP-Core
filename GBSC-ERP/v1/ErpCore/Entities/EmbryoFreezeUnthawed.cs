@@ -12,6 +12,8 @@ namespace ErpCore.Entities
 
         public DateTime? FreezeDate { get; set; }
 
+        public long EmbryoNumber { get; set; }
+
         public string StrawId { get; set; }
 
         public string Drawer { get; set; }

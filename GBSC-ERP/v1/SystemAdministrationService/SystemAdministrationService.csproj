@@ -14,11 +14,13 @@
 
   <ItemGroup>
     <None Remove="Controllers\UsersController.cs.1228_1.7.partial" />
+    <None Remove="Reports\XtraReport.repx" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Automapper" Version="6.2.2" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
+    <PackageReference Include="DevExpress.Reporting.Core" Version="18.1.6" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="7.5.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.3" />
@@ -33,6 +35,10 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\XtraReport.repx" />
   </ItemGroup>
 
   <ItemGroup>

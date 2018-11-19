@@ -15,6 +15,7 @@ namespace ErpCore.Entities
             Visits = new HashSet<Visit>();
             Appointments = new HashSet<Appointment>();
             PatientInvoices = new HashSet<PatientInvoice>();
+            PatientInvoiceReturns = new HashSet<PatientInvoiceReturn>();
             PatientDocuments = new HashSet<PatientDocument>();
         }
 
@@ -66,6 +67,7 @@ namespace ErpCore.Entities
         public IEnumerable<PatientDocument> PatientDocuments { get; set; }
         public IEnumerable<Appointment> Appointments { get; set; }
         public IEnumerable<PatientInvoice> PatientInvoices { get; set; }
+        public IEnumerable<PatientInvoiceReturn> PatientInvoiceReturns { get; set; }
         public IEnumerable<Visit> Visits { get; set; }
 
 

@@ -19,6 +19,8 @@ namespace HimsService.Controllers
     {
         private IPatientInvoiceRepository _repo;
         private IPatientInvoiceItemRepository item_repo;
+        private IPatientInvoiceReturnRepository Return_repo;
+        private IPatientInvoiceReturnItemRepository Returnitem_repo;
 
         public PatientInvoicesController(IPatientInvoiceRepository repo, IPatientInvoiceItemRepository itemrepo)
         {
@@ -43,7 +45,7 @@ namespace HimsService.Controllers
         }
 
         [HttpGet("GetPatientInvoice/{id}", Name = "GetPatientInvoice")]
-        public PatientInvoice GetPatientInvoice(long id) => _repo.GetFirst(a => a.PatientInvoiceId == id);
+        public PatientInvoice GetPatientInvoice(long id) => _repo.GetFirst(a => a.PatientInvoiceId == id, b => b.PatientInvoiceItems);
 
         [HttpPut("UpdatePatientInvoice", Name = "UpdatePatientInvoice")]
         [ValidateModelAttribute]
@@ -143,6 +145,136 @@ namespace HimsService.Controllers
             return Ok();
         }
         #endregion
+
+        #region Patient Invoice Return
+        [HttpGet("GetPatientInvoiceReturns", Name = "GetPatientInvoiceReturns")]
+        public IEnumerable<PatientInvoiceReturn> GetPatientInvoiceReturns()
+        {
+            return Return_repo.GetAll().OrderByDescending(a => a.PatientInvoiceReturnId);
+        }
+
+        [HttpGet("GetPatientInvoiceReturn/{id}", Name = "GetPatientInvoiceReturn")]
+        public PatientInvoiceReturn GetPatientInvoiceReturn(long id) => Return_repo.GetFirst(a => a.PatientInvoiceReturnId == id);
+
+        [HttpPut("UpdatePatientInvoiceReturn", Name = "UpdatePatientInvoiceReturn")]
+        [ValidateModelAttribute]
+        public IActionResult UpdatePatientInvoiceReturn([FromBody]PatientInvoiceReturn model)
+        {
+            Return_repo.Update(model);
+            return new OkObjectResult(new { PatientInvoiceReturnID = model.PatientInvoiceReturnId });
+        }
+
+        private string GenPIRN()
+        {
+            try
+            {
+                string value = Return_repo.GetLast().InvoiceReturnNumber;
+                string number = Regex.Match(value, "[0-9]+$").Value;
+
+                return value.Substring(0, value.Length - number.Length) +
+                       (long.Parse(number) + 1).ToString().PadLeft(number.Length, '0');
+            }
+            catch (ArgumentNullException)
+            {
+                return "PIRN0000000001";
+            }
+            catch (NullReferenceException)
+            {
+                return "PIRN0000000001";
+            }
+        }
+
+        [HttpPost("AddPatientInvoiceReturn", Name = "AddPatientInvoiceReturn")]
+        [ValidateModelAttribute]
+        public IActionResult AddPatientInvoiceReturn([FromBody]PatientInvoiceReturn model)
+        {
+            if (model.ReturnDate == null)
+            {
+                model.ReturnDate = DateTime.Now;
+            }
+            model.InvoiceReturnNumber = GenPIRN();
+            Return_repo.Add(model);
+            return new OkObjectResult(new { PatientInvoiceID = model.PatientInvoiceId });
+        }
+
+        [HttpDelete("DeletePatientInvoiceReturn/{id}")]
+        public IActionResult DeletePatientInvoiceReturn(long id)
+        {
+            PatientInvoiceReturn patientInvoiceReturn = Return_repo.Find(id);
+            if (patientInvoiceReturn == null)
+            {
+                return NotFound();
+            }
+
+            Return_repo.Delete(patientInvoiceReturn);
+            return Ok();
+        }
+        #endregion
+
+        #region Patient Invoice Return Item
+
+        [HttpGet("GetPatientInvoiceReturnItems", Name = "GetPatientInvoiceReturnItems")]
+        public IEnumerable<PatientInvoiceReturnItem> GetPatientInvoiceReturnItems()
+        {
+            return Returnitem_repo.GetAll().OrderByDescending(a => a.PatientInvoiceReturnItemId);
+        }
+
+        [HttpGet("GetPatientInvoiceReturnItem/{id}", Name = "GetPatientInvoiceReturnItem")]
+        public PatientInvoiceReturnItem GetPatientInvoiceReturnItem(long id) => Returnitem_repo.GetFirst(a => a.PatientInvoiceReturnItemId == id);
+
+        [HttpPut("UpdatePatientInvoiceReturnItem", Name = "UpdatePatientInvoiceReturnItem")]
+        [ValidateModelAttribute]
+        public IActionResult UpdatePatientInvoiceReturnItem([FromBody]PatientInvoiceReturnItem model)
+        {
+            Returnitem_repo.Update(model);
+            return new OkObjectResult(new { PatientInvoiceReturnItemID = model.PatientInvoiceReturnItemId });
+        }
+
+        [HttpPost("AddPatientInvoiceReturnItem", Name = "AddPatientInvoiceReturnItem")]
+        [ValidateModelAttribute]
+        public IActionResult AddPatientInvoiceReturnItem([FromBody] PatientInvoiceReturnItem model)
+        {
+            Returnitem_repo.Add(model);
+            return new OkObjectResult(new { PatientInvoiceReturnItemID = model.PatientInvoiceReturnItemId });
+        }
+
+        [HttpDelete("DeletePatientInvoiceReturnItem/{id}")]
+        public IActionResult DeletePatientInvoiceReturnItem(long id)
+        {
+            PatientInvoiceReturnItem patientInvoiceReturnItem = Returnitem_repo.Find(id);
+            if (patientInvoiceReturnItem == null)
+            {
+                return NotFound();
+            }
+
+            Returnitem_repo.Delete(patientInvoiceReturnItem);
+            return Ok();
+        }
+        #endregion
+
+        [HttpGet("GetPatientInvoicesWithDetailsByPatientId/{patientid}", Name = "GetPatientInvoicesWithDetailsByPatientId")]
+        public IEnumerable<PatientInvoice> GetPatientInvoicesWithDetailsByPatientId(long patientid)
+        {
+            return _repo.GetList(a => a.PatientId != null && a.PatientId == patientid, b => b.PatientInvoiceItems).OrderByDescending(a => a.PatientInvoiceId);
+        }
+
+        [HttpGet("GetPatientInvoicesWithDetailsByDate/{date}", Name = "GetPatientInvoicesWithDetailsByDate")]
+        public IEnumerable<PatientInvoice> GetPatientInvoicesWithDetailsByDate(DateTime date)
+        {
+            return _repo.GetList(a => a.DateCreated != null && a.DateCreated.Value.Date == date.Date, b => b.PatientInvoiceItems).OrderByDescending(a => a.PatientInvoiceId);
+        }
+
+        [HttpGet("GetPatientInvoiceReturnsWithDetailsByPatientId/{patientid}", Name = "GetPatientInvoiceReturnsWithDetailsByPatientId")]
+        public IEnumerable<PatientInvoiceReturn> GetPatientInvoiceReturnsWithDetailsByPatientId(long patientid)
+        {
+            return Return_repo.GetList(a => a.PatientId != null && a.PatientId == patientid, b => b.PatientInvoiceReturnItems, c => c.PatientInvoice).OrderByDescending(a => a.PatientInvoiceReturnId);
+        }
+
+        [HttpGet("GetPatientInvoiceReturnsWithDetailsByDate/{date}", Name = "GetPatientInvoiceReturnsWithDetailsByDate")]
+        public IEnumerable<PatientInvoiceReturn> GetPatientInvoiceReturnsWithDetailsByDate(DateTime date)
+        {
+            return Return_repo.GetList(a => a.ReturnDate != null && a.ReturnDate.Value.Date == date.Date, b => b.PatientInvoiceReturnItems, c => c.PatientInvoice).OrderByDescending(a => a.PatientInvoiceReturnId);
+        }
 
     }
 }

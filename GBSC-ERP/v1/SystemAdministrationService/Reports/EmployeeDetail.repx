@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XtraReportsLayoutSerializer SerializerVersion="18.1.6.0" Ref="0" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="XtraReport" Margins="40, 41, 131, 89" PageWidth="850" PageHeight="1100" Version="18.1">
+  <Bands>
+    <Item1 Ref="1" ControlType="TopMarginBand" Name="topMarginBand1" HeightF="131.180008" Font="Times New Roman, 10pt" BackColor="Transparent">
+      <Controls>
+        <Item1 Ref="2" ControlType="XRPictureBox" Name="pictureBox1" ImageUrl="E:\GBSC-ERP-SERVICES\GBSC-ERP\v1\HimsService\wwwroot\images\ConceptFertilityLogo.png" Sizing="Squeeze" ProcessDuplicatesMode="SuppressAndShrink" ProcessNullValues="Suppress" AnchorHorizontal="Left" KeepTogether="false" SizeF="174.519272,72.7603149" LocationFloat="0, 24.14786" BackColor="Transparent" CanPublish="false">
+          <StylePriority Ref="3" UseBackColor="false" />
+        </Item1>
+      </Controls>
+      <StylePriority Ref="4" UseFont="false" UseBackColor="false" />
+    </Item1>
+    <Item2 Ref="5" ControlType="DetailBand" Name="detailBand1" HeightF="850.5681" TextAlignment="MiddleCenter">
+      <Controls>
+        <Item1 Ref="6" ControlType="XRPictureBox" Name="pictureBox2" ImageUrl="C:\Users\Zass\Desktop\13902552_604943846347197_1167807409691125826_n.jpg" SizeF="129.188049,138.74411" LocationFloat="615.505554, 58.0000038" />
+        <Item2 Ref="7" ControlType="XRPanel" Name="panel1" SizeF="758.8003,360.093384" LocationFloat="9.389362, 238.864944">
+          <Controls>
+            <Item1 Ref="8" ControlType="XRLabel" Name="label18" Multiline="true" Text="Bank Info" SizeF="153.823288,23" LocationFloat="0, 275.093323" Font="Calibri, 14pt, style=Bold" ForeColor="White" BackColor="SteelBlue" Padding="2,2,0,0,100">
+              <StylePriority Ref="9" UseFont="false" UseForeColor="false" UseBackColor="false" />
+            </Item1>
+            <Item2 Ref="10" ControlType="XRTable" Name="table4" TextAlignment="MiddleLeft" SizeF="748.8002,52" LocationFloat="0, 298.093384" Font="Calibri, 10.8pt, charSet=0" Borders="All">
+              <Rows>
+                <Item1 Ref="11" ControlType="XRTableRow" Name="tableRow7" Weight="1" TextAlignment="MiddleCenter" Font="Calibri, 10.8pt, style=Bold" ForeColor="Black" BackColor="Gainsboro">
+                  <Cells>
+                    <Item1 Ref="12" ControlType="XRTableCell" Name="tableCell23" Weight="1.2313179770736649" Multiline="true" Text="Account No" Font="Calibri, 10.8pt, style=Bold" Padding="2,2,0,0,100">
+                      <StylePriority Ref="13" UseFont="false" />
+                    </Item1>
+                    <Item2 Ref="14" ControlType="XRTableCell" Name="tableCell29" Weight="1.4594038439006067" Multiline="true" Text="Bank Title" TextAlignment="MiddleCenter" Padding="4,2,0,0,100">
+                      <StylePriority Ref="15" UsePadding="false" UseTextAlignment="false" />
+                    </Item2>
+                    <Item3 Ref="16" ControlType="XRTableCell" Name="tableCell31" Weight="1.9840486981397947" Multiline="true" Text="Branch" TextAlignment="MiddleCenter" Padding="2,2,0,0,100">
+                      <StylePriority Ref="17" UsePadding="false" UseTextAlignment="false" />
+                    </Item3>
+                  </Cells>
+                  <StylePriority Ref="18" UseFont="false" UseForeColor="false" UseBackColor="false" UseTextAlignment="false" />
+                </Item1>
+                <Item2 Ref="19" ControlType="XRTableRow" Name="tableRow8" Weight="1" TextAlignment="MiddleLeft">
+                  <Cells>
+                    <Item1 Ref="20" ControlType="XRTableCell" Name="tableCell34" Weight="1.2313180709263571" Multiline="true" Text="0899-758455965" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="21" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item1>
+                    <Item2 Ref="22" ControlType="XRTableCell" Name="tableCell35" Weight="1.4594040094693992" Multiline="true" Text="UBL" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="23" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item2>
+                    <Item3 Ref="24" ControlType="XRTableCell" Name="tableCell36" Weight="1.9840485364766829" Multiline="true" Text="P.E.C.H.S" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="25" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item3>
+                  </Cells>
+                  <StylePriority Ref="26" UseTextAlignment="false" />
+                </Item2>
+              </Rows>
+              <StylePriority Ref="27" UseFont="false" UseBorders="false" UseTextAlignment="false" />
+            </Item2>
+            <Item3 Ref="28" ControlType="XRLabel" Name="label15" Multiline="true" Text="Experience" SizeF="153.823288,23" LocationFloat="0.8104172, 186.693771" Font="Calibri, 14pt, style=Bold" ForeColor="White" BackColor="SteelBlue" Padding="2,2,0,0,100">
+              <StylePriority Ref="29" UseFont="false" UseForeColor="false" UseBackColor="false" />
+            </Item3>
+            <Item4 Ref="30" ControlType="XRTable" Name="table3" TextAlignment="MiddleLeft" SizeF="747.656433,52" LocationFloat="1.1437645, 209.693832" Font="Calibri, 10.8pt, charSet=0" Borders="All">
+              <Rows>
+                <Item1 Ref="31" ControlType="XRTableRow" Name="tableRow5" Weight="1" TextAlignment="MiddleCenter" Font="Calibri, 10.8pt, style=Bold" ForeColor="Black" BackColor="Gainsboro">
+                  <Cells>
+                    <Item1 Ref="32" ControlType="XRTableCell" Name="tableCell17" Weight="0.945404076363038" Multiline="true" Text="Company" Font="Calibri, 10.8pt, style=Bold" Padding="2,2,0,0,100">
+                      <StylePriority Ref="33" UseFont="false" />
+                    </Item1>
+                    <Item2 Ref="34" ControlType="XRTableCell" Name="tableCell18" Weight="0.79227137720765684" Multiline="true" Text="Designation" TextAlignment="MiddleCenter" Padding="4,2,0,0,100">
+                      <StylePriority Ref="35" UsePadding="false" UseTextAlignment="false" />
+                    </Item2>
+                    <Item3 Ref="36" ControlType="XRTableCell" Name="tableCell19" Weight="0.63280618487136886" Multiline="true" Text="From" TextAlignment="MiddleCenter" Padding="2,2,0,0,100">
+                      <StylePriority Ref="37" UsePadding="false" UseTextAlignment="false" />
+                    </Item3>
+                    <Item4 Ref="38" ControlType="XRTableCell" Name="tableCell20" Weight="0.73804404745137642" Multiline="true" Text="To" TextAlignment="MiddleCenter" Padding="2,2,0,0,100">
+                      <StylePriority Ref="39" UsePadding="false" UseTextAlignment="false" />
+                    </Item4>
+                    <Item5 Ref="40" ControlType="XRTableCell" Name="tableCell24" Weight="1.5591044581975952" Multiline="true" Text="Description" TextAlignment="MiddleCenter" Padding="2,2,0,0,100">
+                      <StylePriority Ref="41" UsePadding="false" UseTextAlignment="false" />
+                    </Item5>
+                  </Cells>
+                  <StylePriority Ref="42" UseFont="false" UseForeColor="false" UseBackColor="false" UseTextAlignment="false" />
+                </Item1>
+                <Item2 Ref="43" ControlType="XRTableRow" Name="tableRow6" Weight="1" TextAlignment="MiddleLeft">
+                  <Cells>
+                    <Item1 Ref="44" ControlType="XRTableCell" Name="tableCell25" Weight="0.94540425949757223" Multiline="true" Text="GBSC" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="45" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item1>
+                    <Item2 Ref="46" ControlType="XRTableCell" Name="tableCell26" Weight="0.79227124241982949" Multiline="true" Text="Software Developer" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="47" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item2>
+                    <Item3 Ref="48" ControlType="XRTableCell" Name="tableCell27" Weight="0.63280618609595685" Multiline="true" Text="12/02/2014" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="49" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item3>
+                    <Item4 Ref="50" ControlType="XRTableCell" Name="tableCell28" Weight="0.73804409810176164" Multiline="true" Text="12/02/2016" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="51" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item4>
+                    <Item5 Ref="52" ControlType="XRTableCell" Name="tableCell30" Weight="1.5591044926390563" Multiline="true" Text="------" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="53" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item5>
+                  </Cells>
+                  <StylePriority Ref="54" UseTextAlignment="false" />
+                </Item2>
+              </Rows>
+              <StylePriority Ref="55" UseFont="false" UseBorders="false" UseTextAlignment="false" />
+            </Item4>
+            <Item5 Ref="56" ControlType="XRLabel" Name="label12" Multiline="true" Text="Qualification" SizeF="153.823288,23" LocationFloat="0, 101.262772" Font="Calibri, 14pt, style=Bold" ForeColor="White" BackColor="SteelBlue" Padding="2,2,0,0,100">
+              <StylePriority Ref="57" UseFont="false" UseForeColor="false" UseBackColor="false" />
+            </Item5>
+            <Item6 Ref="58" ControlType="XRTable" Name="table2" TextAlignment="MiddleLeft" SizeF="748.466858,52" LocationFloat="0.333347321, 124.2628" Font="Calibri, 10.8pt, charSet=0" Borders="All">
+              <Rows>
+                <Item1 Ref="59" ControlType="XRTableRow" Name="tableRow3" Weight="1" TextAlignment="MiddleCenter" Font="Calibri, 10.8pt, style=Bold" ForeColor="Black" BackColor="Gainsboro">
+                  <Cells>
+                    <Item1 Ref="60" ControlType="XRTableCell" Name="tableCell5" Weight="0.945404076363038" Multiline="true" Text="Institute" Font="Calibri, 10.8pt, style=Bold" Padding="2,2,0,0,100">
+                      <StylePriority Ref="61" UseFont="false" />
+                    </Item1>
+                    <Item2 Ref="62" ControlType="XRTableCell" Name="tableCell6" Weight="0.692109790120531" Multiline="true" Text="Degree" TextAlignment="MiddleCenter" Padding="4,2,0,0,100">
+                      <StylePriority Ref="63" UsePadding="false" UseTextAlignment="false" />
+                    </Item2>
+                    <Item3 Ref="64" ControlType="XRTableCell" Name="tableCell7" Weight="0.66569422961466129" Multiline="true" Text="From" TextAlignment="MiddleCenter" Padding="2,2,0,0,100">
+                      <StylePriority Ref="65" UsePadding="false" UseTextAlignment="false" />
+                    </Item3>
+                    <Item4 Ref="66" ControlType="XRTableCell" Name="tableCell8" Weight="0.63336757260259835" Multiline="true" Text="To" TextAlignment="MiddleCenter" Padding="2,2,0,0,100">
+                      <StylePriority Ref="67" UsePadding="false" UseTextAlignment="false" />
+                    </Item4>
+                    <Item5 Ref="68" ControlType="XRTableCell" Name="tableCell13" Weight="0.63336757260259835" Multiline="true" Text="Grade" TextAlignment="MiddleCenter" Padding="2,2,0,0,100">
+                      <StylePriority Ref="69" UsePadding="false" UseTextAlignment="false" />
+                    </Item5>
+                    <Item6 Ref="70" ControlType="XRTableCell" Name="tableCell15" Weight="1.1027463286654622" Multiline="true" Text="Description" TextAlignment="MiddleCenter" Padding="2,2,0,0,100">
+                      <StylePriority Ref="71" UsePadding="false" UseTextAlignment="false" />
+                    </Item6>
+                  </Cells>
+                  <StylePriority Ref="72" UseFont="false" UseForeColor="false" UseBackColor="false" UseTextAlignment="false" />
+                </Item1>
+                <Item2 Ref="73" ControlType="XRTableRow" Name="tableRow4" Weight="1" TextAlignment="MiddleLeft">
+                  <Cells>
+                    <Item1 Ref="74" ControlType="XRTableCell" Name="tableCell9" Weight="0.94540425949757223" Multiline="true" Text="Ovais" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="75" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item1>
+                    <Item2 Ref="76" ControlType="XRTableCell" Name="tableCell10" Weight="0.69210950955172668" Multiline="true" Text="MSC" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="77" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item2>
+                    <Item3 Ref="78" ControlType="XRTableCell" Name="tableCell11" Weight="0.66569423178808362" Multiline="true" Text="12/02/2014" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="79" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item3>
+                    <Item4 Ref="80" ControlType="XRTableCell" Name="tableCell12" Weight="0.63336766786344612" Multiline="true" Text="12/02/2016" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="81" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item4>
+                    <Item5 Ref="82" ControlType="XRTableCell" Name="tableCell14" Weight="0.63336766786344612" Multiline="true" Text="A" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="83" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item5>
+                    <Item6 Ref="84" ControlType="XRTableCell" Name="tableCell16" Weight="1.1027464452016427" Multiline="true" Text="------" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="85" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item6>
+                  </Cells>
+                  <StylePriority Ref="86" UseTextAlignment="false" />
+                </Item2>
+              </Rows>
+              <StylePriority Ref="87" UseFont="false" UseBorders="false" UseTextAlignment="false" />
+            </Item6>
+            <Item7 Ref="88" ControlType="XRLabel" Name="label19" Multiline="true" Text="Dependants" SizeF="153.823288,23" LocationFloat="0.6105976, 4.157913" Font="Calibri, 14pt, style=Bold" ForeColor="White" BackColor="SteelBlue" Padding="2,2,0,0,100">
+              <StylePriority Ref="89" UseFont="false" UseForeColor="false" UseBackColor="false" />
+            </Item7>
+            <Item8 Ref="90" ControlType="XRTable" Name="table1" TextAlignment="MiddleLeft" SizeF="747.856262,52" LocationFloat="0.9439459, 27.1579437" Font="Calibri, 10.8pt, charSet=0" Borders="All">
+              <Rows>
+                <Item1 Ref="91" ControlType="XRTableRow" Name="tableRow1" Weight="1" TextAlignment="MiddleCenter" Font="Calibri, 10.8pt, style=Bold" ForeColor="Black" BackColor="Gainsboro">
+                  <Cells>
+                    <Item1 Ref="92" ControlType="XRTableCell" Name="tableCell1" Weight="0.945404076363038" Multiline="true" Text="Name" Font="Calibri, 10.8pt, style=Bold" Padding="2,2,0,0,100">
+                      <StylePriority Ref="93" UseFont="false" />
+                    </Item1>
+                    <Item2 Ref="94" ControlType="XRTableCell" Name="tableCell2" Weight="0.79351891582664924" Multiline="true" Text="NIC" TextAlignment="MiddleCenter" Padding="4,2,0,0,100">
+                      <StylePriority Ref="95" UsePadding="false" UseTextAlignment="false" />
+                    </Item2>
+                    <Item3 Ref="96" ControlType="XRTableCell" Name="tableCell21" Weight="0.7997438179606311" Multiline="true" Text="Email" TextAlignment="MiddleCenter" Padding="2,2,0,0,100">
+                      <StylePriority Ref="97" UsePadding="false" UseTextAlignment="false" />
+                    </Item3>
+                    <Item4 Ref="98" ControlType="XRTableCell" Name="tableCell51" Weight="2.1302109891824674" Multiline="true" Text="Address" TextAlignment="MiddleCenter" Padding="2,2,0,0,100">
+                      <StylePriority Ref="99" UsePadding="false" UseTextAlignment="false" />
+                    </Item4>
+                  </Cells>
+                  <StylePriority Ref="100" UseFont="false" UseForeColor="false" UseBackColor="false" UseTextAlignment="false" />
+                </Item1>
+                <Item2 Ref="101" ControlType="XRTableRow" Name="tableRow2" Weight="1" TextAlignment="MiddleLeft">
+                  <Cells>
+                    <Item1 Ref="102" ControlType="XRTableCell" Name="tableCell3" Weight="0.94540425949757223" Multiline="true" Text="Ovais" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="103" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item1>
+                    <Item2 Ref="104" ControlType="XRTableCell" Name="tableCell4" Weight="0.79351873051869271" Multiline="true" Text="42401-86-9574859-6" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="105" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item2>
+                    <Item3 Ref="106" ControlType="XRTableCell" Name="tableCell22" Weight="0.79974382013405343" Multiline="true" Text="ovais55@yahoo.com" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="107" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item3>
+                    <Item4 Ref="108" ControlType="XRTableCell" Name="tableCell52" Weight="2.1302109891824674" Multiline="true" Text="33 Ubi Avenue 3, #08-68, Vertex Tower A, Singapore" TextAlignment="MiddleCenter" Font="Calibri, 10pt" Padding="2,2,0,0,100">
+                      <StylePriority Ref="109" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                    </Item4>
+                  </Cells>
+                  <StylePriority Ref="110" UseTextAlignment="false" />
+                </Item2>
+              </Rows>
+              <StylePriority Ref="111" UseFont="false" UseBorders="false" UseTextAlignment="false" />
+            </Item8>
+          </Controls>
+        </Item2>
+        <Item3 Ref="112" ControlType="XRLabel" Name="label16" Multiline="true" Text="Permanent Address" TextAlignment="TopLeft" SizeF="147.406479,28" LocationFloat="6.4167757, 201.7441" Font="Calibri, 12pt, style=Bold, Italic" Padding="2,2,0,0,100">
+          <StylePriority Ref="113" UseFont="false" UseTextAlignment="false" />
+        </Item3>
+        <Item4 Ref="114" ControlType="XRLabel" Name="label17" Multiline="true" AutoWidth="true" Text="33 Ubi Avenue 3, #08-68, Vertex Tower A, Singapore 408868" TextAlignment="MiddleLeft" SizeF="590.8704,23" LocationFloat="153.823257, 201.7441" Font="Calibri, 12pt, style=Italic" ForeColor="Black" Padding="2,2,0,0,100" Borders="Bottom" BorderDashStyle="Double">
+          <StylePriority Ref="115" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item4>
+        <Item5 Ref="116" ControlType="XRLabel" Name="label13" Multiline="true" Text="Address" TextAlignment="TopLeft" SizeF="67.48551,28" LocationFloat="6.4167757, 173.74411" Font="Calibri, 12pt, style=Bold, Italic" Padding="2,2,0,0,100">
+          <StylePriority Ref="117" UseFont="false" UseTextAlignment="false" />
+        </Item5>
+        <Item6 Ref="118" ControlType="XRLabel" Name="label14" Multiline="true" AutoWidth="true" Text="33 Ubi Avenue 3, #08-68, Vertex Tower A, Singapore 408868" TextAlignment="MiddleLeft" SizeF="519.03125,23" LocationFloat="73.9022751, 173.74411" Font="Calibri, 12pt, style=Italic" ForeColor="Black" Padding="2,2,0,0,100" Borders="Bottom" BorderDashStyle="Double">
+          <StylePriority Ref="119" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item6>
+        <Item7 Ref="120" ControlType="XRLabel" Name="label6" Multiline="true" Text="Date of Birth" TextAlignment="TopLeft" SizeF="92.62919,28" LocationFloat="6.4167757, 145.744125" Font="Calibri, 12pt, style=Bold, Italic" Padding="2,2,0,0,100">
+          <StylePriority Ref="121" UseFont="false" UseTextAlignment="false" />
+        </Item7>
+        <Item8 Ref="122" ControlType="XRLabel" Name="label7" Multiline="true" AutoWidth="true" Text="12/02/1994" TextAlignment="MiddleLeft" SizeF="172.9721,23" LocationFloat="99.04597, 145.744125" Font="Calibri, 12pt, style=Italic" ForeColor="Black" Padding="2,2,0,0,100" Borders="Bottom" BorderDashStyle="Double">
+          <StylePriority Ref="123" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item8>
+        <Item9 Ref="124" ControlType="XRLabel" Name="label9" Multiline="true" Text="Blood Group" TextAlignment="TopLeft" SizeF="100.430145,28" LocationFloat="339.956482, 144.496048" Font="Calibri, 12pt, style=Bold, Italic" Padding="2,2,0,0,100">
+          <StylePriority Ref="125" UseFont="false" UseTextAlignment="false" />
+        </Item9>
+        <Item10 Ref="126" ControlType="XRLabel" Name="label10" Multiline="true" AutoWidth="true" Text="O+" TextAlignment="MiddleLeft" SizeF="86.4819641,23" LocationFloat="440.3867, 143.248047" Font="Calibri, 12pt, style=Italic" ForeColor="Black" Padding="2,2,0,0,100" Borders="Bottom" BorderDashStyle="Double">
+          <StylePriority Ref="127" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item10>
+        <Item11 Ref="128" ControlType="XRLabel" Name="label34" Multiline="true" Text="CNIC" TextAlignment="TopLeft" SizeF="49.73724,28" LocationFloat="6.4167757, 117.74411" Font="Calibri, 12pt, style=Bold, Italic" Padding="2,2,0,0,100">
+          <StylePriority Ref="129" UseFont="false" UseTextAlignment="false" />
+        </Item11>
+        <Item12 Ref="130" ControlType="XRLabel" Name="label35" Multiline="true" AutoWidth="true" Text="40401-9874586-8" TextAlignment="MiddleLeft" SizeF="215.864044,23" LocationFloat="56.1540146, 117.74411" Font="Calibri, 12pt, style=Italic" ForeColor="Black" Padding="2,2,0,0,100" Borders="Bottom" BorderDashStyle="Double">
+          <StylePriority Ref="131" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item12>
+        <Item13 Ref="132" ControlType="XRLabel" Name="label36" Multiline="true" Text="Nationality" TextAlignment="TopLeft" SizeF="88.473114,27.9999924" LocationFloat="339.956482, 116.496056" Font="Calibri, 12pt, style=Bold, Italic" Padding="2,2,0,0,100">
+          <StylePriority Ref="133" UseFont="false" UseTextAlignment="false" />
+        </Item13>
+        <Item14 Ref="134" ControlType="XRLabel" Name="label37" Multiline="true" AutoWidth="true" Text="Pakistani" TextAlignment="MiddleLeft" SizeF="129.804413,23.0000076" LocationFloat="428.429535, 116.496056" Font="Calibri, 12pt, style=Italic" ForeColor="Black" Padding="2,2,0,0,100" Borders="Bottom" BorderDashStyle="Double">
+          <StylePriority Ref="135" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item14>
+        <Item15 Ref="136" ControlType="XRLabel" Name="label32" Multiline="true" Text="Date of Joining" TextAlignment="TopLeft" SizeF="109.108978,28" LocationFloat="339.956482, 88.49607" Font="Calibri, 12pt, style=Bold, Italic" Padding="2,2,0,0,100">
+          <StylePriority Ref="137" UseFont="false" UseTextAlignment="false" />
+        </Item15>
+        <Item16 Ref="138" ControlType="XRLabel" Name="label33" Multiline="true" AutoWidth="true" Text="12/02/2017" TextAlignment="MiddleLeft" SizeF="109.168488,23" LocationFloat="449.06546, 87.24805" Font="Calibri, 12pt, style=Italic" ForeColor="Black" Padding="2,2,0,0,100" Borders="Bottom" BorderDashStyle="Double">
+          <StylePriority Ref="139" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item16>
+        <Item17 Ref="140" ControlType="XRLabel" Name="label30" Multiline="true" Text="Father Name" TextAlignment="TopLeft" SizeF="100.430115,28" LocationFloat="339.956482, 60.4960823" Font="Calibri, 12pt, style=Bold, Italic" Padding="2,2,0,0,100">
+          <StylePriority Ref="141" UseFont="false" UseTextAlignment="false" />
+        </Item17>
+        <Item18 Ref="142" ControlType="XRLabel" Name="label31" Multiline="true" AutoWidth="true" Text="Dad Khan" TextAlignment="MiddleLeft" SizeF="128.072723,22.9999962" LocationFloat="440.3867, 58.0000038" Font="Calibri, 12pt, style=Italic" ForeColor="Black" Padding="2,2,0,0,100" Borders="Bottom" BorderDashStyle="Double">
+          <StylePriority Ref="143" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item18>
+        <Item19 Ref="144" ControlType="XRLabel" Name="label28" Multiline="true" Text="Designation" TextAlignment="TopLeft" SizeF="92.62918,28" LocationFloat="6.41678762, 89.74411" Font="Calibri, 12pt, style=Bold, Italic" Padding="2,2,0,0,100">
+          <StylePriority Ref="145" UseFont="false" UseTextAlignment="false" />
+        </Item19>
+        <Item20 Ref="146" ControlType="XRLabel" Name="label29" Multiline="true" AutoWidth="true" Text="Marketing" TextAlignment="MiddleLeft" SizeF="172.972122,23" LocationFloat="99.04597, 89.74411" Font="Calibri, 12pt, style=Italic" ForeColor="Black" Padding="2,2,0,0,100" Borders="Bottom" BorderDashStyle="Double">
+          <StylePriority Ref="147" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item20>
+        <Item21 Ref="148" ControlType="XRLabel" Name="label5" Multiline="true" Text="Name" TextAlignment="TopLeft" SizeF="49.73723,28.0000038" LocationFloat="6.41678762, 60.4960823" Font="Calibri, 12pt, style=Bold, Italic" Padding="2,2,0,0,100">
+          <StylePriority Ref="149" UseFont="false" UseTextAlignment="false" />
+        </Item21>
+        <Item22 Ref="150" ControlType="XRLabel" Name="label8" Multiline="true" AutoWidth="true" Text="Ovais" TextAlignment="MiddleLeft" SizeF="172.972122,23" LocationFloat="56.1540146, 59.24804" Font="Calibri, 12pt, style=Italic" ForeColor="Black" Padding="2,2,0,0,100" Borders="Bottom" BorderDashStyle="Double">
+          <StylePriority Ref="151" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item22>
+        <Item23 Ref="152" ControlType="XRLabel" Name="label11" Multiline="true" Text="REFERENCE RANGES:" SizeF="129.519241,23" LocationFloat="0, 788.499939" Font="Calibri, 9pt, style=Bold" Padding="2,2,0,0,100">
+          <StylePriority Ref="153" UseFont="false" />
+        </Item23>
+        <Item24 Ref="154" ControlType="XRLabel" Name="label25" Multiline="true" Text="(WHO 5th Edition) Reference Ranges are based on semen characteristics from men whose wives are pragnantwithin 12 months of stopping contraception. Values are 5th centiles and 95% confidence limits.Volume: 1.5(1.4-1.7)ml Count: 15(12-16) million/ml, 39(33-46)million/ejaculate. Total Motility: 40(38-42)%, Progressive Motility:32(31-34)%. Morphology: 4(3-4)% Normal forms." SizeF="657.814331,52.0681763" LocationFloat="111.185913, 788.499939" Font="Calibri, 9pt" ForeColor="DarkSlateGray" Padding="2,2,0,0,100">
+          <StylePriority Ref="155" UseFont="false" UseForeColor="false" />
+        </Item24>
+        <Item25 Ref="156" ControlType="XRLine" Name="line2" LineWidth="3" SizeF="769.1667,5" LocationFloat="0, 38.80081" ForeColor="255,199,31,101" BorderWidth="0">
+          <StylePriority Ref="157" UseForeColor="false" UseBorderWidth="false" />
+        </Item25>
+        <Item26 Ref="158" ControlType="XRLine" Name="line1" LineWidth="3" SizeF="769.1667,5" LocationFloat="0, 0" ForeColor="255,199,31,101" BorderWidth="0">
+          <StylePriority Ref="159" UseForeColor="false" UseBorderWidth="false" />
+        </Item26>
+        <Item27 Ref="160" ControlType="XRLabel" Name="label4" RightToLeft="Yes" Multiline="true" Text="Employee Detail" TextAlignment="MiddleCenter" SizeF="769,28.8008118" LocationFloat="0, 10" StyleName="Style1" Font="Calibri, 18pt, style=Bold" ForeColor="Black" BackColor="0,0,0,0" Padding="2,2,0,0,100">
+          <StylePriority Ref="161" UseFont="false" UseForeColor="false" UseBackColor="false" UseTextAlignment="false" />
+        </Item27>
+      </Controls>
+      <StylePriority Ref="162" UseTextAlignment="false" />
+    </Item2>
+    <Item3 Ref="163" ControlType="BottomMarginBand" Name="bottomMarginBand1" HeightF="89.2045441">
+      <Controls>
+        <Item1 Ref="164" ControlType="XRLine" Name="line3" SizeF="769.000061,5.06815624" LocationFloat="0, 0" />
+        <Item2 Ref="165" ControlType="XRLabel" Name="label2" Multiline="true" AutoWidth="true" TextTrimming="Word" Text="F-6/1, Block-8, KDA Scheme No.5,&#xD;&#xA;Clifton, Karachi-75600" TextAlignment="MiddleCenter" SizeF="282.499969,35.83334" LocationFloat="225.953766, 30.3712273" Font="Times New Roman, 9pt" Padding="2,2,0,0,100">
+          <StylePriority Ref="166" UseFont="false" UseTextAlignment="false" />
+        </Item2>
+        <Item3 Ref="167" ControlType="XRLabel" Name="label1" Multiline="true" Text="Concept Fertility Centre" TextAlignment="TopCenter" SizeF="282.5,20.3788071" LocationFloat="225.95372, 9.99242" Font="Microsoft Sans Serif, 12pt, style=Underline" Padding="2,2,0,0,100">
+          <StylePriority Ref="168" UseFont="false" UseTextAlignment="false" />
+        </Item3>
+        <Item4 Ref="169" ControlType="XRLabel" Name="label3" Multiline="true" Text="Ph: 92 21 35361846, 35361397, 35810049, Fax: 021-35361397" TextAlignment="TopCenter" SizeF="375.416565,22.9999924" LocationFloat="182.817383, 66.20455" Font="Times New Roman, 9pt" Padding="2,2,0,0,100">
+          <StylePriority Ref="170" UseFont="false" UseTextAlignment="false" />
+        </Item4>
+      </Controls>
+    </Item3>
+  </Bands>
+  <StyleSheet>
+    <Item1 Ref="171" Name="Style1" BorderStyle="Inset" Padding="0,0,0,0,100" BackColor="255,224,224,224" StringFormat="Center;Far;0;None;Character;Default" TextAlignment="BottomCenter" />
+  </StyleSheet>
+</XtraReportsLayoutSerializer>

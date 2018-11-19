@@ -53,7 +53,7 @@ namespace FinanceService.Controllers
             {
                 VouDetail_repo.DeleteRange(VouDetail_repo.GetAll().Where(a => a.VoucherId == model.VoucherId));
                 Vou_repo.Update(model);
-            return new OkObjectResult(new { VoucherID = model.VoucherId });
+                return new OkObjectResult(new { VoucherID = model.VoucherId });
             }
             catch (Exception e)
             {
@@ -103,15 +103,29 @@ namespace FinanceService.Controllers
         {
             try
             {
-                VouDetail_repo.DeleteRange(VouDetail_repo.GetAll().Where(a => a.VoucherId == model.VoucherId));
                 VouDetail_repo.Update(model);
-            return new OkObjectResult(new { VoucherDetailID = model.VoucherDetailId });
-        }
+                return new OkObjectResult(new { VoucherDetailID = model.VoucherDetailId });
+            }
             catch(Exception e)
             {
                 return BadRequest(e);
-    }
-}
+            }
+        }
+
+        [HttpPut("UpdateVoucherDetails", Name = "UpdateVoucherDetails")]
+        [ValidateModelAttribute]
+        public IActionResult UpdateVoucherDetails([FromBody]IList<VoucherDetail> models)
+        {
+            try
+            {
+                VouDetail_repo.UpdateRange(models);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
 
         [HttpPost("AddVoucherDetail", Name = "AddVoucherDetail")]
         [ValidateModelAttribute]

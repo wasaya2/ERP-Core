@@ -1,9 +1,9 @@
-C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\ErpCore\bin\Debug\netcoreapp2.0\ErpCore.deps.json
-C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\ErpCore\bin\Debug\netcoreapp2.0\ErpCore.dll
-C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\ErpCore\bin\Debug\netcoreapp2.0\ErpCore.pdb
-C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\ErpCore\obj\Debug\netcoreapp2.0\ErpCore.csproj.CoreCompileInputs.cache
-C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\ErpCore\obj\Debug\netcoreapp2.0\ErpCore.AssemblyInfoInputs.cache
-C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\ErpCore\obj\Debug\netcoreapp2.0\ErpCore.AssemblyInfo.cs
-C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\ErpCore\obj\Debug\netcoreapp2.0\ErpCore.dll
-C:\Users\GBSC-8\source\Workspaces\GBSC-ERP\v1\ErpCore\obj\Debug\netcoreapp2.0\ErpCore.pdb
+C:\Users\GBSC-8\Source\Workspaces\GBSC-ERP\v1\ErpCore\bin\Debug\netcoreapp2.0\ErpCore.deps.json
+C:\Users\GBSC-8\Source\Workspaces\GBSC-ERP\v1\ErpCore\bin\Debug\netcoreapp2.0\ErpCore.dll
+C:\Users\GBSC-8\Source\Workspaces\GBSC-ERP\v1\ErpCore\bin\Debug\netcoreapp2.0\ErpCore.pdb
 C:\Users\GBSC-8\Source\Workspaces\GBSC-ERP\v1\ErpCore\obj\Debug\netcoreapp2.0\ErpCore.csprojAssemblyReference.cache
+C:\Users\GBSC-8\Source\Workspaces\GBSC-ERP\v1\ErpCore\obj\Debug\netcoreapp2.0\ErpCore.csproj.CoreCompileInputs.cache
+C:\Users\GBSC-8\Source\Workspaces\GBSC-ERP\v1\ErpCore\obj\Debug\netcoreapp2.0\ErpCore.AssemblyInfoInputs.cache
+C:\Users\GBSC-8\Source\Workspaces\GBSC-ERP\v1\ErpCore\obj\Debug\netcoreapp2.0\ErpCore.AssemblyInfo.cs
+C:\Users\GBSC-8\Source\Workspaces\GBSC-ERP\v1\ErpCore\obj\Debug\netcoreapp2.0\ErpCore.dll
+C:\Users\GBSC-8\Source\Workspaces\GBSC-ERP\v1\ErpCore\obj\Debug\netcoreapp2.0\ErpCore.pdb

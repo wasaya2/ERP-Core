@@ -10,6 +10,8 @@ namespace ErpCore.Entities
         [Key]
         public long EmbryoFreezeThawedId { get; set; }
 
+        public long EmbryoNumber { get; set; }
+
         public string StrawId { get; set; }
 
         public string Drawer { get; set; }
