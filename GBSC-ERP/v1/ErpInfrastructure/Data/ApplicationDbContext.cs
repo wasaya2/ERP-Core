@@ -604,9 +604,9 @@ namespace ErpInfrastructure.Data
                 .WithMany(b => b.PatientInvoiceReturns)
                 .HasForeignKey(c => c.PatientId);
 
-            modelBuilder.Entity<PatientInvoiceReturn>()
-                .HasOne(a => a.PatientInvoice)
-                .WithOne(b => b.PatientInvoiceReturn)
+            modelBuilder.Entity<PatientInvoice>()
+                .HasOne(a => a.PatientInvoiceReturn)
+                .WithOne(b => b.PatientInvoice)
                 .HasForeignKey<PatientInvoiceReturn>(c => c.PatientInvoiceId);
 
             modelBuilder.Entity<PatientInvoiceReturnItem>()

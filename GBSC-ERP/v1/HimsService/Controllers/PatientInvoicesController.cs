@@ -22,10 +22,12 @@ namespace HimsService.Controllers
         private IPatientInvoiceReturnRepository Return_repo;
         private IPatientInvoiceReturnItemRepository Returnitem_repo;
 
-        public PatientInvoicesController(IPatientInvoiceRepository repo, IPatientInvoiceItemRepository itemrepo)
+        public PatientInvoicesController(IPatientInvoiceRepository repo, IPatientInvoiceItemRepository itemrepo, IPatientInvoiceReturnRepository Returnrepo, IPatientInvoiceReturnItemRepository Returnitemrepo)
         {
             _repo = repo;
             item_repo = itemrepo;
+            Return_repo = Returnrepo;
+            Returnitem_repo = Returnitemrepo;
         }
 
         [HttpGet("GetPatientInvoicePermissions/{userid}/{roleid}/{featureid}", Name = "GetPatientInvoicePermissions")]
@@ -194,7 +196,7 @@ namespace HimsService.Controllers
             }
             model.InvoiceReturnNumber = GenPIRN();
             Return_repo.Add(model);
-            return new OkObjectResult(new { PatientInvoiceID = model.PatientInvoiceId });
+            return new OkObjectResult(new { PatientInvoiceReturnID = model.PatientInvoiceReturnId });
         }
 
         [HttpDelete("DeletePatientInvoiceReturn/{id}")]
@@ -205,6 +207,7 @@ namespace HimsService.Controllers
             {
                 return NotFound();
             }
+            Returnitem_repo.DeleteRange(Returnitem_repo.GetAll().Where(a => a.PatientInvoiceReturnId == patientInvoiceReturn.PatientInvoiceReturnId));
 
             Return_repo.Delete(patientInvoiceReturn);
             return Ok();
@@ -255,13 +258,19 @@ namespace HimsService.Controllers
         [HttpGet("GetPatientInvoicesWithDetailsByPatientId/{patientid}", Name = "GetPatientInvoicesWithDetailsByPatientId")]
         public IEnumerable<PatientInvoice> GetPatientInvoicesWithDetailsByPatientId(long patientid)
         {
-            return _repo.GetList(a => a.PatientId != null && a.PatientId == patientid, b => b.PatientInvoiceItems).OrderByDescending(a => a.PatientInvoiceId);
+            return _repo.GetList(a => a.PatientId != null && a.PatientId == patientid, b => b.PatientInvoiceItems, c => c.Patient).OrderByDescending(a => a.PatientInvoiceId);
         }
 
         [HttpGet("GetPatientInvoicesWithDetailsByDate/{date}", Name = "GetPatientInvoicesWithDetailsByDate")]
         public IEnumerable<PatientInvoice> GetPatientInvoicesWithDetailsByDate(DateTime date)
         {
-            return _repo.GetList(a => a.DateCreated != null && a.DateCreated.Value.Date == date.Date, b => b.PatientInvoiceItems).OrderByDescending(a => a.PatientInvoiceId);
+            return _repo.GetList(a => a.DateCreated != null && a.DateCreated.Value.Date == date.Date, b => b.PatientInvoiceItems, c => c.Patient).OrderByDescending(a => a.PatientInvoiceId);
+        }
+
+        [HttpGet("GetPatientInvoiceWithDetailsBySlipNumberForReturn/{slipnumber}", Name = "GetPatientInvoiceWithDetailsBySlipNumberForReturn")]
+        public PatientInvoice GetPatientInvoiceWithDetailsBySlipNumberForReturn(string slipnumber)
+        {
+            return _repo.GetPatientInvoiceWithDetailsBySlipNumberForReturn(slipnumber.ToUpper());
         }
 
         [HttpGet("GetPatientInvoiceReturnsWithDetailsByPatientId/{patientid}", Name = "GetPatientInvoiceReturnsWithDetailsByPatientId")]
@@ -273,7 +282,25 @@ namespace HimsService.Controllers
         [HttpGet("GetPatientInvoiceReturnsWithDetailsByDate/{date}", Name = "GetPatientInvoiceReturnsWithDetailsByDate")]
         public IEnumerable<PatientInvoiceReturn> GetPatientInvoiceReturnsWithDetailsByDate(DateTime date)
         {
-            return Return_repo.GetList(a => a.ReturnDate != null && a.ReturnDate.Value.Date == date.Date, b => b.PatientInvoiceReturnItems, c => c.PatientInvoice).OrderByDescending(a => a.PatientInvoiceReturnId);
+            return Return_repo.GetList(a => a.ReturnDate != null && a.ReturnDate.Value.Date == date.Date, b => b.PatientInvoiceReturnItems, c => c.PatientInvoice, d => d.Patient).OrderByDescending(a => a.PatientInvoiceReturnId);
+        }
+
+        [HttpGet("GetPatientInvoiceReturnWithDetailsByReturnNumber/{returnnumber}", Name = "GetPatientInvoiceReturnWithDetailsByReturnNumber")]
+        public PatientInvoiceReturn GetPatientInvoiceReturnWithDetailsByReturnNumber(string returnnumber)
+        {
+            return Return_repo.GetFirst(a => a.InvoiceReturnNumber != null && a.InvoiceReturnNumber == returnnumber.ToUpper(), b => b.Patient, c => c.PatientInvoice, d => d.PatientInvoiceReturnItems);
+        }
+
+        [HttpGet("GetPatientInvoiceReturnsWithDetailsByPatientMRN/{mrn}", Name = "GetPatientInvoiceReturnsWithDetailsByPatientMRN")]
+        public IEnumerable<PatientInvoiceReturn> GetPatientInvoiceReturnsWithDetailsByPatientMRN(string mrn)
+        {
+            return Return_repo.GetPatientInvoiceReturnsWithDetailsByPatientMRN(mrn.ToUpper());
+        }
+
+        [HttpGet("GetPatientInvoiceReturnWithDetailsByInvoiceNumber/{slipnumber}", Name = "GetPatientInvoiceReturnWithDetailsByInvoiceNumber")]
+        public PatientInvoiceReturn GetPatientInvoiceReturnWithDetailsByInvoiceNumber(string slipnumber)
+        {
+            return Return_repo.GetPatientInvoiceReturnWithDetailsByInvoiceNumber(slipnumber.ToUpper());
         }
 
     }

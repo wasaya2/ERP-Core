@@ -9,5 +9,6 @@ namespace HimsService.Repos.Interfaces
 {
     public interface IPatientInvoiceRepository : IRepo<PatientInvoice>
     {
+        PatientInvoice GetPatientInvoiceWithDetailsBySlipNumberForReturn(string slipnumber);
     }
 }

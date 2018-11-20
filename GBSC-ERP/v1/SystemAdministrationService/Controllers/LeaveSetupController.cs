@@ -353,6 +353,7 @@ namespace SystemAdministrationService.Controllers
         [ValidateModelAttribute]
         public IActionResult AddLeaveYear([FromBody]LeaveYear model)
         {
+            model.Name = model.StartDate.Value.Year.ToString() + '-' + model.EndDate.Value.Year.ToString();
             LeaveYear_repo.Add(model);
             return new OkObjectResult(new { LeaveYearID = model.LeaveYearId });
         }
@@ -361,6 +362,7 @@ namespace SystemAdministrationService.Controllers
         [ValidateModelAttribute]
         public IActionResult UpdateLeaveYear([FromBody]LeaveYear model)
         {
+            model.Name = model.StartDate.Value.Year.ToString() + '-' + model.EndDate.Value.Year.ToString();
             LeaveYear_repo.Update(model);
             return new OkObjectResult(new { LeaveYearID = model.LeaveYearId });
         }

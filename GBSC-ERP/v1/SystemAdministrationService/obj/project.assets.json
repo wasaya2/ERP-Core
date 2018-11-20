@@ -38,52 +38,55 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
-      "DevExpress.Charts/18.1.6": {
+      "DevExpress.Charts/18.2.3": {
         "type": "package",
         "dependencies": {
-          "DevExpress.Charts.Core": "[18.1.6]",
-          "DevExpress.Data": "[18.1.6]",
-          "DevExpress.Printing.Core": "[18.1.6]",
+          "DevExpress.Charts.Core": "[18.2.3]",
+          "DevExpress.Data": "[18.2.3]",
+          "DevExpress.Printing.Core": "[18.2.3]",
           "NETStandard.Library": "2.0.3",
           "System.Drawing.Common": "4.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/DevExpress.XtraCharts.v18.1.dll": {}
+          "lib/netstandard2.0/DevExpress.XtraCharts.v18.2.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DevExpress.XtraCharts.v18.1.dll": {}
+          "lib/netstandard2.0/DevExpress.XtraCharts.v18.2.dll": {}
         }
       },
-      "DevExpress.Charts.Core/18.1.6": {
+      "DevExpress.Charts.Core/18.2.3": {
         "type": "package",
         "dependencies": {
-          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.Data": "[18.2.3]",
           "NETStandard.Library": "2.0.3"
         },
         "compile": {
-          "lib/netstandard2.0/DevExpress.Charts.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.Charts.v18.2.Core.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DevExpress.Charts.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.Charts.v18.2.Core.dll": {}
         }
       },
-      "DevExpress.CodeParser/18.1.6": {
+      "DevExpress.CodeParser/18.2.3": {
         "type": "package",
         "dependencies": {
-          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.Data": "[18.2.3]",
           "NETStandard.Library": "2.0.3",
           "System.CodeDom": "4.4.0"
         },
         "compile": {
-          "lib/netstandard2.0/DevExpress.CodeParser.v18.1.dll": {}
+          "lib/netstandard2.0/DevExpress.CodeParser.v18.2.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DevExpress.CodeParser.v18.1.dll": {}
+          "lib/netstandard2.0/DevExpress.CodeParser.v18.2.dll": {}
         }
       },
-      "DevExpress.Data/18.1.6": {
+      "DevExpress.Data/18.2.3": {
         "type": "package",
         "dependencies": {
+          "Microsoft.Extensions.Configuration": "1.1.2",
+          "Microsoft.Extensions.Configuration.Json": "1.1.2",
+          "Microsoft.Extensions.PlatformAbstractions": "1.1.0",
           "NETStandard.Library": "2.0.3",
           "System.ComponentModel.Annotations": "4.4.0",
           "System.Drawing.Common": "4.5.0",
@@ -94,19 +97,19 @@
           "System.Text.Encoding.CodePages": "4.4.0"
         },
         "compile": {
-          "lib/netstandard2.0/DevExpress.Data.v18.1.dll": {}
+          "lib/netstandard2.0/DevExpress.Data.v18.2.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DevExpress.Data.v18.1.dll": {}
+          "lib/netstandard2.0/DevExpress.Data.v18.2.dll": {}
         }
       },
-      "DevExpress.DataAccess/18.1.6": {
+      "DevExpress.DataAccess/18.2.3": {
         "type": "package",
         "dependencies": {
-          "DevExpress.CodeParser": "[18.1.6]",
-          "DevExpress.Data": "[18.1.6]",
-          "DevExpress.Printing.Core": "[18.1.6]",
-          "DevExpress.Xpo": "[18.1.6]",
+          "DevExpress.CodeParser": "[18.2.3]",
+          "DevExpress.Data": "[18.2.3]",
+          "DevExpress.Printing.Core": "[18.2.3]",
+          "DevExpress.Xpo": "[18.2.3]",
           "Microsoft.Extensions.Configuration": "1.1.2",
           "Microsoft.Extensions.Configuration.Json": "1.1.2",
           "Microsoft.Extensions.PlatformAbstractions": "1.1.0",
@@ -117,75 +120,75 @@
           "System.Reflection.Emit.Lightweight": "4.3.0"
         },
         "compile": {
-          "lib/netstandard2.0/DevExpress.DataAccess.v18.1.dll": {}
+          "lib/netstandard2.0/DevExpress.DataAccess.v18.2.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DevExpress.DataAccess.v18.1.dll": {}
+          "lib/netstandard2.0/DevExpress.DataAccess.v18.2.dll": {}
         }
       },
-      "DevExpress.Gauges.Core/18.1.6": {
+      "DevExpress.Gauges.Core/18.2.3": {
         "type": "package",
         "dependencies": {
-          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.Data": "[18.2.3]",
           "NETStandard.Library": "2.0.3",
           "System.Drawing.Common": "4.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/DevExpress.XtraGauges.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.XtraGauges.v18.2.Core.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DevExpress.XtraGauges.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.XtraGauges.v18.2.Core.dll": {}
         }
       },
-      "DevExpress.Office.Core/18.1.6": {
+      "DevExpress.Office.Core/18.2.3": {
         "type": "package",
         "dependencies": {
-          "DevExpress.Data": "[18.1.6]",
-          "DevExpress.Printing.Core": "[18.1.6]",
+          "DevExpress.Data": "[18.2.3]",
+          "DevExpress.Printing.Core": "[18.2.3]",
           "NETStandard.Library": "2.0.3",
           "System.Drawing.Common": "4.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/DevExpress.Office.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.Office.v18.2.Core.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DevExpress.Office.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.Office.v18.2.Core.dll": {}
         }
       },
-      "DevExpress.Pdf.Core/18.1.6": {
+      "DevExpress.Pdf.Core/18.2.3": {
         "type": "package",
         "dependencies": {
-          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.Data": "[18.2.3]",
           "NETStandard.Library": "2.0.3",
           "System.Drawing.Common": "4.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/DevExpress.Pdf.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.Pdf.v18.2.Core.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DevExpress.Pdf.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.Pdf.v18.2.Core.dll": {}
         }
       },
-      "DevExpress.PivotGrid.Core/18.1.6": {
+      "DevExpress.PivotGrid.Core/18.2.3": {
         "type": "package",
         "dependencies": {
-          "DevExpress.Data": "[18.1.6]",
-          "DevExpress.Printing.Core": "[18.1.6]",
+          "DevExpress.Data": "[18.2.3]",
+          "DevExpress.Printing.Core": "[18.2.3]",
           "NETStandard.Library": "2.0.3",
           "System.Drawing.Common": "4.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/DevExpress.PivotGrid.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.PivotGrid.v18.2.Core.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DevExpress.PivotGrid.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.PivotGrid.v18.2.Core.dll": {}
         }
       },
-      "DevExpress.Printing.Core/18.1.6": {
+      "DevExpress.Printing.Core/18.2.3": {
         "type": "package",
         "dependencies": {
-          "DevExpress.Data": "[18.1.6]",
-          "DevExpress.Pdf.Core": "[18.1.6]",
+          "DevExpress.Data": "[18.2.3]",
+          "DevExpress.Pdf.Core": "[18.2.3]",
           "NETStandard.Library": "2.0.3",
           "System.ComponentModel.Annotations": "4.4.0",
           "System.Drawing.Common": "4.5.0",
@@ -193,27 +196,27 @@
           "System.ServiceModel.Primitives": "4.4.0"
         },
         "compile": {
-          "lib/netstandard2.0/DevExpress.Printing.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.Printing.v18.2.Core.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DevExpress.Printing.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.Printing.v18.2.Core.dll": {}
         }
       },
-      "DevExpress.Reporting.Core/18.1.6": {
+      "DevExpress.Reporting.Core/18.2.3": {
         "type": "package",
         "dependencies": {
-          "DevExpress.Charts": "[18.1.6]",
-          "DevExpress.Charts.Core": "[18.1.6]",
-          "DevExpress.Data": "[18.1.6]",
-          "DevExpress.DataAccess": "[18.1.6]",
-          "DevExpress.Gauges.Core": "[18.1.6]",
-          "DevExpress.Office.Core": "[18.1.6]",
-          "DevExpress.PivotGrid.Core": "[18.1.6]",
-          "DevExpress.Printing.Core": "[18.1.6]",
-          "DevExpress.RichEdit.Core": "[18.1.6]",
-          "DevExpress.RichEdit.Export": "[18.1.6]",
-          "DevExpress.Sparkline.Core": "[18.1.6]",
-          "DevExpress.Xpo": "[18.1.6]",
+          "DevExpress.Charts": "[18.2.3]",
+          "DevExpress.Charts.Core": "[18.2.3]",
+          "DevExpress.Data": "[18.2.3]",
+          "DevExpress.DataAccess": "[18.2.3]",
+          "DevExpress.Gauges.Core": "[18.2.3]",
+          "DevExpress.Office.Core": "[18.2.3]",
+          "DevExpress.PivotGrid.Core": "[18.2.3]",
+          "DevExpress.Printing.Core": "[18.2.3]",
+          "DevExpress.RichEdit.Core": "[18.2.3]",
+          "DevExpress.RichEdit.Export": "[18.2.3]",
+          "DevExpress.Sparkline.Core": "[18.2.3]",
+          "DevExpress.Xpo": "[18.2.3]",
           "NETStandard.Library": "2.0.3",
           "System.ComponentModel.Annotations": "4.4.1",
           "System.Data.Common": "4.3.0",
@@ -221,73 +224,73 @@
           "System.ServiceModel.Http": "4.4.0"
         },
         "compile": {
-          "lib/netstandard2.0/DevExpress.XtraReports.v18.1.dll": {}
+          "lib/netstandard2.0/DevExpress.XtraReports.v18.2.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DevExpress.XtraReports.v18.1.dll": {}
+          "lib/netstandard2.0/DevExpress.XtraReports.v18.2.dll": {}
         }
       },
-      "DevExpress.RichEdit.Core/18.1.6": {
+      "DevExpress.RichEdit.Core/18.2.3": {
         "type": "package",
         "dependencies": {
-          "DevExpress.Data": "[18.1.6]",
-          "DevExpress.Office.Core": "[18.1.6]",
-          "DevExpress.Printing.Core": "[18.1.6]",
+          "DevExpress.Data": "[18.2.3]",
+          "DevExpress.Office.Core": "[18.2.3]",
+          "DevExpress.Printing.Core": "[18.2.3]",
           "NETStandard.Library": "2.0.3",
           "System.Drawing.Common": "4.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/DevExpress.RichEdit.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.RichEdit.v18.2.Core.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DevExpress.RichEdit.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.RichEdit.v18.2.Core.dll": {}
         }
       },
-      "DevExpress.RichEdit.Export/18.1.6": {
+      "DevExpress.RichEdit.Export/18.2.3": {
         "type": "package",
         "dependencies": {
-          "DevExpress.Data": "[18.1.6]",
-          "DevExpress.Office.Core": "[18.1.6]",
-          "DevExpress.Printing.Core": "[18.1.6]",
-          "DevExpress.RichEdit.Core": "[18.1.6]",
+          "DevExpress.Data": "[18.2.3]",
+          "DevExpress.Office.Core": "[18.2.3]",
+          "DevExpress.Printing.Core": "[18.2.3]",
+          "DevExpress.RichEdit.Core": "[18.2.3]",
           "NETStandard.Library": "2.0.3",
           "System.Drawing.Common": "4.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/DevExpress.RichEdit.v18.1.Export.dll": {}
+          "lib/netstandard2.0/DevExpress.RichEdit.v18.2.Export.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DevExpress.RichEdit.v18.1.Export.dll": {}
+          "lib/netstandard2.0/DevExpress.RichEdit.v18.2.Export.dll": {}
         }
       },
-      "DevExpress.Sparkline.Core/18.1.6": {
+      "DevExpress.Sparkline.Core/18.2.3": {
         "type": "package",
         "dependencies": {
-          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.Data": "[18.2.3]",
           "NETStandard.Library": "2.0.3",
           "System.Drawing.Common": "4.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/DevExpress.Sparkline.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.Sparkline.v18.2.Core.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DevExpress.Sparkline.v18.1.Core.dll": {}
+          "lib/netstandard2.0/DevExpress.Sparkline.v18.2.Core.dll": {}
         }
       },
-      "DevExpress.Xpo/18.1.6": {
+      "DevExpress.Xpo/18.2.3": {
         "type": "package",
         "dependencies": {
-          "DevExpress.Data": "[18.1.6]",
+          "DevExpress.Data": "[18.2.3]",
           "Microsoft.Extensions.DependencyInjection": "2.0.0",
           "NETStandard.Library": "2.0.3",
           "System.Data.SqlClient": "4.5.0",
           "System.ServiceModel.Primitives": "4.4.0"
         },
         "compile": {
-          "lib/netstandard2.0/DevExpress.Xpo.v18.1.dll": {}
+          "lib/netstandard2.0/DevExpress.Xpo.v18.2.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DevExpress.Xpo.v18.1.dll": {}
+          "lib/netstandard2.0/DevExpress.Xpo.v18.2.dll": {}
         }
       },
       "FluentValidation/7.5.2": {
@@ -5610,208 +5613,208 @@
         "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
       ]
     },
-    "DevExpress.Charts/18.1.6": {
-      "sha512": "gl1WIRMXgJwSIo7IOCpfHJQwOzoGviRaGygKA1dvKM8MttUuq4MGuvjJaWuGQWhANwuXG8+h7iv7E4XIxOFsYQ==",
+    "DevExpress.Charts/18.2.3": {
+      "sha512": "u9YDGu7sZ9VhVH/KJ1zJMMsqzJGlZ0dOHIhOBd3OR597PAoDxJKf7yRDif/aCk/UvlnoxtAlleqIjRDV1onGyA==",
       "type": "package",
-      "path": "devexpress.charts/18.1.6",
+      "path": "devexpress.charts/18.2.3",
       "files": [
         ".signature.p7s",
-        "devexpress.charts.18.1.6.nupkg.sha512",
+        "devexpress.charts.18.2.3.nupkg.sha512",
         "devexpress.charts.nuspec",
-        "lib/net40/DevExpress.XtraCharts.v18.1.dll",
-        "lib/net40/DevExpress.XtraCharts.v18.1.xml",
-        "lib/netstandard2.0/DevExpress.XtraCharts.v18.1.dll",
-        "lib/netstandard2.0/DevExpress.XtraCharts.v18.1.xml"
+        "lib/net452/DevExpress.XtraCharts.v18.2.dll",
+        "lib/net452/DevExpress.XtraCharts.v18.2.xml",
+        "lib/netstandard2.0/DevExpress.XtraCharts.v18.2.dll",
+        "lib/netstandard2.0/DevExpress.XtraCharts.v18.2.xml"
       ]
     },
-    "DevExpress.Charts.Core/18.1.6": {
-      "sha512": "lDM8uw3v5e9ol7RHvAl7ms5vmLFODsJcXzOalv8gM8FLFlAIBpNS9Lzl13KOFmucw5Dc1m9fEtAxKJwtq4osxQ==",
+    "DevExpress.Charts.Core/18.2.3": {
+      "sha512": "+gc8rDEy58wH6iRL0X6w/NgrxkGqzG4N4me14xJFp1m81VKTFdfJp9d5nUzA5lDdsg9WFh9Qwf/TSjLhGPbvtQ==",
       "type": "package",
-      "path": "devexpress.charts.core/18.1.6",
+      "path": "devexpress.charts.core/18.2.3",
       "files": [
         ".signature.p7s",
-        "devexpress.charts.core.18.1.6.nupkg.sha512",
+        "devexpress.charts.core.18.2.3.nupkg.sha512",
         "devexpress.charts.core.nuspec",
-        "lib/net40/DevExpress.Charts.v18.1.Core.dll",
-        "lib/netstandard2.0/DevExpress.Charts.v18.1.Core.dll"
+        "lib/net452/DevExpress.Charts.v18.2.Core.dll",
+        "lib/netstandard2.0/DevExpress.Charts.v18.2.Core.dll"
       ]
     },
-    "DevExpress.CodeParser/18.1.6": {
-      "sha512": "YXfuMPAR86N3CqoUhsJY3SvTKupdy382mXX3V3LQC/JMX6FMh4/5Z0k6PcBEVKoQMrMeXANaqXumDr0JQ+9eEw==",
+    "DevExpress.CodeParser/18.2.3": {
+      "sha512": "HQ9/F4mGVVQNYhW8huZQc8IyW73zECuES00vZMiSHORbUg8Ok5Ih7eXdIX5pvXQ32ZR/MCdQevpXy8cWTeQq7w==",
       "type": "package",
-      "path": "devexpress.codeparser/18.1.6",
+      "path": "devexpress.codeparser/18.2.3",
       "files": [
         ".signature.p7s",
-        "devexpress.codeparser.18.1.6.nupkg.sha512",
+        "devexpress.codeparser.18.2.3.nupkg.sha512",
         "devexpress.codeparser.nuspec",
-        "lib/net40/DevExpress.CodeParser.v18.1.dll",
-        "lib/netstandard2.0/DevExpress.CodeParser.v18.1.dll"
+        "lib/net452/DevExpress.CodeParser.v18.2.dll",
+        "lib/netstandard2.0/DevExpress.CodeParser.v18.2.dll"
       ]
     },
-    "DevExpress.Data/18.1.6": {
-      "sha512": "/mQzSIHk550ONDL+f1lNIuwkI2BQMynnleZ3XtDoYJ2pPSrkHpkTOp0CZRMcZtWGVRzx90grCcQZrqQt85BoaQ==",
+    "DevExpress.Data/18.2.3": {
+      "sha512": "4ewGd21pxw5xDqAbDM60jCQqYoIjNyUtYplcrXL53tKhyzmQkT9bRQxY7Ccq1wA4UbjkI7SE+1PeU5z7vHp3FA==",
       "type": "package",
-      "path": "devexpress.data/18.1.6",
+      "path": "devexpress.data/18.2.3",
       "files": [
         ".signature.p7s",
-        "devexpress.data.18.1.6.nupkg.sha512",
+        "devexpress.data.18.2.3.nupkg.sha512",
         "devexpress.data.nuspec",
-        "lib/net40/DevExpress.Data.v18.1.dll",
-        "lib/net40/DevExpress.Data.v18.1.xml",
-        "lib/netstandard2.0/DevExpress.Data.v18.1.dll",
-        "lib/netstandard2.0/DevExpress.Data.v18.1.xml"
+        "lib/net452/DevExpress.Data.v18.2.dll",
+        "lib/net452/DevExpress.Data.v18.2.xml",
+        "lib/netstandard2.0/DevExpress.Data.v18.2.dll",
+        "lib/netstandard2.0/DevExpress.Data.v18.2.xml"
       ]
     },
-    "DevExpress.DataAccess/18.1.6": {
-      "sha512": "asAOct29AGmxoEHYj9mfgozUznb4k2fPGYlf7lQQJ7TrC6mpduYelxQZFB66glXB1pXnLoufHxwx5F1BXw+OgA==",
+    "DevExpress.DataAccess/18.2.3": {
+      "sha512": "AOhI7o1tijXqDoly/R8datfds72t0M+f1hfk6DecEnTI53tIpN4lTIxHn1s7k3NDWWm0EJz1hreuMbWXcsz7pg==",
       "type": "package",
-      "path": "devexpress.dataaccess/18.1.6",
+      "path": "devexpress.dataaccess/18.2.3",
       "files": [
         ".signature.p7s",
-        "devexpress.dataaccess.18.1.6.nupkg.sha512",
+        "devexpress.dataaccess.18.2.3.nupkg.sha512",
         "devexpress.dataaccess.nuspec",
-        "lib/net40/DevExpress.DataAccess.v18.1.dll",
-        "lib/net40/DevExpress.DataAccess.v18.1.xml",
-        "lib/netstandard2.0/DevExpress.DataAccess.v18.1.dll",
-        "lib/netstandard2.0/DevExpress.DataAccess.v18.1.xml"
+        "lib/net452/DevExpress.DataAccess.v18.2.dll",
+        "lib/net452/DevExpress.DataAccess.v18.2.xml",
+        "lib/netstandard2.0/DevExpress.DataAccess.v18.2.dll",
+        "lib/netstandard2.0/DevExpress.DataAccess.v18.2.xml"
       ]
     },
-    "DevExpress.Gauges.Core/18.1.6": {
-      "sha512": "QFDKyMWxHJj+twTs4Pk0w7dz7cpnKkTbfCjkGN2KHuUDV2yaXTq8FRApmktPI15QBU6661qcde00l7t4DHR8iw==",
+    "DevExpress.Gauges.Core/18.2.3": {
+      "sha512": "aWr1BZt0wakmJHPHi2ML6zbD2pLtI75E/LgCw9R4z4fln/bY3Q4UwUgXjyacXTs3MJ0IalZ/ENegFHHbgNyVgA==",
       "type": "package",
-      "path": "devexpress.gauges.core/18.1.6",
+      "path": "devexpress.gauges.core/18.2.3",
       "files": [
         ".signature.p7s",
-        "devexpress.gauges.core.18.1.6.nupkg.sha512",
+        "devexpress.gauges.core.18.2.3.nupkg.sha512",
         "devexpress.gauges.core.nuspec",
-        "lib/net40/DevExpress.XtraGauges.v18.1.Core.dll",
-        "lib/net40/DevExpress.XtraGauges.v18.1.Core.xml",
-        "lib/netstandard2.0/DevExpress.XtraGauges.v18.1.Core.dll",
-        "lib/netstandard2.0/DevExpress.XtraGauges.v18.1.Core.xml"
+        "lib/net452/DevExpress.XtraGauges.v18.2.Core.dll",
+        "lib/net452/DevExpress.XtraGauges.v18.2.Core.xml",
+        "lib/netstandard2.0/DevExpress.XtraGauges.v18.2.Core.dll",
+        "lib/netstandard2.0/DevExpress.XtraGauges.v18.2.Core.xml"
       ]
     },
-    "DevExpress.Office.Core/18.1.6": {
-      "sha512": "sXh+l2UraSBx0uMSAhGIJzis1ycQedOp9I5FcLXGBuZM1lcdiwk0g+xcQ5ByluDJmapI5kEbGJKpGpbPy1fnuQ==",
+    "DevExpress.Office.Core/18.2.3": {
+      "sha512": "SsPiQzXOaXmyK0a775D1m+yPJzFs7H7YlmwiwxjAMEXNikB7yyV04Sy36CTBnfPfk5rTCJwL60NVFf1rN1oI5g==",
       "type": "package",
-      "path": "devexpress.office.core/18.1.6",
+      "path": "devexpress.office.core/18.2.3",
       "files": [
         ".signature.p7s",
-        "devexpress.office.core.18.1.6.nupkg.sha512",
+        "devexpress.office.core.18.2.3.nupkg.sha512",
         "devexpress.office.core.nuspec",
-        "lib/net40/DevExpress.Office.v18.1.Core.dll",
-        "lib/net40/DevExpress.Office.v18.1.Core.xml",
-        "lib/netstandard2.0/DevExpress.Office.v18.1.Core.dll",
-        "lib/netstandard2.0/DevExpress.Office.v18.1.Core.xml"
+        "lib/net452/DevExpress.Office.v18.2.Core.dll",
+        "lib/net452/DevExpress.Office.v18.2.Core.xml",
+        "lib/netstandard2.0/DevExpress.Office.v18.2.Core.dll",
+        "lib/netstandard2.0/DevExpress.Office.v18.2.Core.xml"
       ]
     },
-    "DevExpress.Pdf.Core/18.1.6": {
-      "sha512": "x+SlxnWgYW6qO8VCcV4TcYEbC3TzbdA444WMpyBaI3BrofUSBJCBfhOgsowHHrfkY/UtwBFXvydhG//AIKBIJg==",
+    "DevExpress.Pdf.Core/18.2.3": {
+      "sha512": "APij7fmULRr2a1vLZFMiFxUvWf/PKbfXXoUYReLcKFqgKgMFcTJRACJJRkZxTLFtDK4z4r4978irVt7q0cga2w==",
       "type": "package",
-      "path": "devexpress.pdf.core/18.1.6",
+      "path": "devexpress.pdf.core/18.2.3",
       "files": [
         ".signature.p7s",
-        "devexpress.pdf.core.18.1.6.nupkg.sha512",
+        "devexpress.pdf.core.18.2.3.nupkg.sha512",
         "devexpress.pdf.core.nuspec",
-        "lib/net40/DevExpress.Pdf.v18.1.Core.dll",
-        "lib/net40/DevExpress.Pdf.v18.1.Core.xml",
-        "lib/netstandard2.0/DevExpress.Pdf.v18.1.Core.dll",
-        "lib/netstandard2.0/DevExpress.Pdf.v18.1.Core.xml"
+        "lib/net452/DevExpress.Pdf.v18.2.Core.dll",
+        "lib/net452/DevExpress.Pdf.v18.2.Core.xml",
+        "lib/netstandard2.0/DevExpress.Pdf.v18.2.Core.dll",
+        "lib/netstandard2.0/DevExpress.Pdf.v18.2.Core.xml"
       ]
     },
-    "DevExpress.PivotGrid.Core/18.1.6": {
-      "sha512": "p0QSly67ztsoMsk1F/o4b7f+b1sZcPHBtcq4aflyx8WtghUsMPnhfqlS7ap5cg7EByBOf4rcdGWrNkNE90Q/JA==",
+    "DevExpress.PivotGrid.Core/18.2.3": {
+      "sha512": "zgDGtUixG2R2v21r1OKbKZi1X+1dlQeYLxkRTRKdU5Q6w3TZunSApjbAfkejFw4U/Kxi1zWZnMEoyNyw0HhHlA==",
       "type": "package",
-      "path": "devexpress.pivotgrid.core/18.1.6",
+      "path": "devexpress.pivotgrid.core/18.2.3",
       "files": [
         ".signature.p7s",
-        "devexpress.pivotgrid.core.18.1.6.nupkg.sha512",
+        "devexpress.pivotgrid.core.18.2.3.nupkg.sha512",
         "devexpress.pivotgrid.core.nuspec",
-        "lib/net40/DevExpress.PivotGrid.v18.1.Core.dll",
-        "lib/net40/DevExpress.PivotGrid.v18.1.Core.xml",
-        "lib/netstandard2.0/DevExpress.PivotGrid.v18.1.Core.dll",
-        "lib/netstandard2.0/DevExpress.PivotGrid.v18.1.Core.xml"
+        "lib/net452/DevExpress.PivotGrid.v18.2.Core.dll",
+        "lib/net452/DevExpress.PivotGrid.v18.2.Core.xml",
+        "lib/netstandard2.0/DevExpress.PivotGrid.v18.2.Core.dll",
+        "lib/netstandard2.0/DevExpress.PivotGrid.v18.2.Core.xml"
       ]
     },
-    "DevExpress.Printing.Core/18.1.6": {
-      "sha512": "XjflWA7GaczRk6PmSmQ4SqlOY385BaM+GqrCtoYjiIfR2FDTdKHsNw/4h0Y6r4JMLkqjeC7D6bB9lud+ixfqcQ==",
+    "DevExpress.Printing.Core/18.2.3": {
+      "sha512": "DB8lM95/X0po1m6UATqRhnvLw/lBeoBh4fpmHdAG6fV6bXCuCgjZk0Vi/xBADA1jITNtukQzBA1aXCGnlSPbkQ==",
       "type": "package",
-      "path": "devexpress.printing.core/18.1.6",
+      "path": "devexpress.printing.core/18.2.3",
       "files": [
         ".signature.p7s",
-        "devexpress.printing.core.18.1.6.nupkg.sha512",
+        "devexpress.printing.core.18.2.3.nupkg.sha512",
         "devexpress.printing.core.nuspec",
-        "lib/net40/DevExpress.Printing.v18.1.Core.dll",
-        "lib/net40/DevExpress.Printing.v18.1.Core.xml",
-        "lib/netstandard2.0/DevExpress.Printing.v18.1.Core.dll",
-        "lib/netstandard2.0/DevExpress.Printing.v18.1.Core.xml"
+        "lib/net452/DevExpress.Printing.v18.2.Core.dll",
+        "lib/net452/DevExpress.Printing.v18.2.Core.xml",
+        "lib/netstandard2.0/DevExpress.Printing.v18.2.Core.dll",
+        "lib/netstandard2.0/DevExpress.Printing.v18.2.Core.xml"
       ]
     },
-    "DevExpress.Reporting.Core/18.1.6": {
-      "sha512": "ohy2OnQ4OBEVOREc5SRmzkMJnIItRzebgQkV6SQXiq3rmf6hYLtbeLOJBuIWMH7XPvXeiSip0iZOe8fq0VCxCg==",
+    "DevExpress.Reporting.Core/18.2.3": {
+      "sha512": "ZQerkEjGT8oRDhdK8oNan5yqDnOtHJtOnMVDx8276yhdLBmgrLRAFaVcpiiSdrLS4JtVHMlx9GFxb10vLZhsmA==",
       "type": "package",
-      "path": "devexpress.reporting.core/18.1.6",
+      "path": "devexpress.reporting.core/18.2.3",
       "files": [
         ".signature.p7s",
-        "devexpress.reporting.core.18.1.6.nupkg.sha512",
+        "devexpress.reporting.core.18.2.3.nupkg.sha512",
         "devexpress.reporting.core.nuspec",
-        "lib/net40/DevExpress.XtraReports.v18.1.dll",
-        "lib/net40/DevExpress.XtraReports.v18.1.xml",
-        "lib/netstandard2.0/DevExpress.XtraReports.v18.1.dll",
-        "lib/netstandard2.0/DevExpress.XtraReports.v18.1.xml"
+        "lib/net452/DevExpress.XtraReports.v18.2.dll",
+        "lib/net452/DevExpress.XtraReports.v18.2.xml",
+        "lib/netstandard2.0/DevExpress.XtraReports.v18.2.dll",
+        "lib/netstandard2.0/DevExpress.XtraReports.v18.2.xml"
       ]
     },
-    "DevExpress.RichEdit.Core/18.1.6": {
-      "sha512": "q5MHTnHLMR1Vxfs/RN0zQkOXQgf39qp2Nn95r9f2LZ4vxqbW/GMO47Zft2n6y9roehXX5+wcBJidqoyir0/Osw==",
+    "DevExpress.RichEdit.Core/18.2.3": {
+      "sha512": "4/okUa87gHW5oDi0jO7GvN2n/LVNvu0x55eiYqryD/rDkn0GZYZvFrufx0RDMkUskJSACdIoB8DsmcNH+XsaNA==",
       "type": "package",
-      "path": "devexpress.richedit.core/18.1.6",
+      "path": "devexpress.richedit.core/18.2.3",
       "files": [
         ".signature.p7s",
-        "devexpress.richedit.core.18.1.6.nupkg.sha512",
+        "devexpress.richedit.core.18.2.3.nupkg.sha512",
         "devexpress.richedit.core.nuspec",
-        "lib/net40/DevExpress.RichEdit.v18.1.Core.dll",
-        "lib/net40/DevExpress.RichEdit.v18.1.Core.xml",
-        "lib/netstandard2.0/DevExpress.RichEdit.v18.1.Core.dll",
-        "lib/netstandard2.0/DevExpress.RichEdit.v18.1.Core.xml"
+        "lib/net452/DevExpress.RichEdit.v18.2.Core.dll",
+        "lib/net452/DevExpress.RichEdit.v18.2.Core.xml",
+        "lib/netstandard2.0/DevExpress.RichEdit.v18.2.Core.dll",
+        "lib/netstandard2.0/DevExpress.RichEdit.v18.2.Core.xml"
       ]
     },
-    "DevExpress.RichEdit.Export/18.1.6": {
-      "sha512": "3sO+HCaBCzeCtJhoOO6m7p2/xsbcnk52HVpfwETTBoljE5emXM18Prc4R52JVqKpcdw+pvEfAQ5JG9d8br0aHA==",
+    "DevExpress.RichEdit.Export/18.2.3": {
+      "sha512": "ftK9p9N5oV1vrNXqJP2L6BVAqDBDLf20HVbto2iE/Jj7BYZs3CeyhVnTZX+QJuYXDmwY7STKtmTXJ0q8FcpO3Q==",
       "type": "package",
-      "path": "devexpress.richedit.export/18.1.6",
+      "path": "devexpress.richedit.export/18.2.3",
       "files": [
         ".signature.p7s",
-        "devexpress.richedit.export.18.1.6.nupkg.sha512",
+        "devexpress.richedit.export.18.2.3.nupkg.sha512",
         "devexpress.richedit.export.nuspec",
-        "lib/net40/DevExpress.RichEdit.v18.1.Export.dll",
-        "lib/netstandard2.0/DevExpress.RichEdit.v18.1.Export.dll"
+        "lib/net452/DevExpress.RichEdit.v18.2.Export.dll",
+        "lib/netstandard2.0/DevExpress.RichEdit.v18.2.Export.dll"
       ]
     },
-    "DevExpress.Sparkline.Core/18.1.6": {
-      "sha512": "adojvIMIdg/wMjzaylTEeCiXqbs5fQV/ei5DT5ONk/vUrWov0hX/eZMm5CU8Lm8zcY28TKPQ/i2MeZRle9Q0Tg==",
+    "DevExpress.Sparkline.Core/18.2.3": {
+      "sha512": "54J5AHE1n4Y3a4HJKzPpkIxa6/Z+D0VrxeHCMMN+CTIZMP8RtteWLCTNaHuiXd8M+iVx9mh1FH3Qc7qb6XKskQ==",
       "type": "package",
-      "path": "devexpress.sparkline.core/18.1.6",
+      "path": "devexpress.sparkline.core/18.2.3",
       "files": [
         ".signature.p7s",
-        "devexpress.sparkline.core.18.1.6.nupkg.sha512",
+        "devexpress.sparkline.core.18.2.3.nupkg.sha512",
         "devexpress.sparkline.core.nuspec",
-        "lib/net40/DevExpress.Sparkline.v18.1.Core.dll",
-        "lib/net40/DevExpress.Sparkline.v18.1.Core.xml",
-        "lib/netstandard2.0/DevExpress.Sparkline.v18.1.Core.dll",
-        "lib/netstandard2.0/DevExpress.Sparkline.v18.1.Core.xml"
+        "lib/net452/DevExpress.Sparkline.v18.2.Core.dll",
+        "lib/net452/DevExpress.Sparkline.v18.2.Core.xml",
+        "lib/netstandard2.0/DevExpress.Sparkline.v18.2.Core.dll",
+        "lib/netstandard2.0/DevExpress.Sparkline.v18.2.Core.xml"
       ]
     },
-    "DevExpress.Xpo/18.1.6": {
-      "sha512": "yXk24OBR6CWFBLvjp8yfoDPPHATznh/r5yTDf+AX/OIiWyBPWJ+XflvOGqCitLtaA9yu9uOUsyvWNbnFYZu/GA==",
+    "DevExpress.Xpo/18.2.3": {
+      "sha512": "4fHeimGDmQntqYI8q+h7VohhXA1QPMcDuAJOnO9P3NOW/FEPkfjxQ+CV8X25q672ZOlwS6q3XVAGCZ2y2WsYjw==",
       "type": "package",
-      "path": "devexpress.xpo/18.1.6",
+      "path": "devexpress.xpo/18.2.3",
       "files": [
         ".signature.p7s",
-        "devexpress.xpo.18.1.6.nupkg.sha512",
+        "devexpress.xpo.18.2.3.nupkg.sha512",
         "devexpress.xpo.nuspec",
-        "lib/net40/DevExpress.Xpo.v18.1.dll",
-        "lib/net40/DevExpress.Xpo.v18.1.xml",
-        "lib/netstandard2.0/DevExpress.Xpo.v18.1.dll",
-        "lib/netstandard2.0/DevExpress.Xpo.v18.1.xml"
+        "lib/net452/DevExpress.Xpo.v18.2.dll",
+        "lib/net452/DevExpress.Xpo.v18.2.xml",
+        "lib/netstandard2.0/DevExpress.Xpo.v18.2.dll",
+        "lib/netstandard2.0/DevExpress.Xpo.v18.2.xml"
       ]
     },
     "FluentValidation/7.5.2": {
@@ -14567,7 +14570,7 @@
     ".NETCoreApp,Version=v2.0": [
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 3.2.0",
       "Automapper >= 6.2.2",
-      "DevExpress.Reporting.Core >= 18.1.6",
+      "DevExpress.Reporting.Core >= 18.2.3",
       "ErpCore >= 1.0.0",
       "ErpInfrastructure >= 1.0.0",
       "FluentValidation.AspNetCore >= 7.5.2",
@@ -14601,6 +14604,7 @@
       "configFilePaths": [
         "C:\\Users\\GBSC-8\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.1.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.2.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -14608,6 +14612,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\DevExpress 18.1\\Components\\System\\Components\\Packages": {},
+        "C:\\Program Files (x86)\\DevExpress 18.2\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
@@ -14642,7 +14647,7 @@
           },
           "DevExpress.Reporting.Core": {
             "target": "Package",
-            "version": "[18.1.6, )"
+            "version": "[18.2.3, )"
           },
           "FluentValidation.AspNetCore": {
             "target": "Package",

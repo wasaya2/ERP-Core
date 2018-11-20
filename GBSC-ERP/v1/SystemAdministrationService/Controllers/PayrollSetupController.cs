@@ -996,6 +996,7 @@ namespace SystemAdministrationService.Controllers
         [ValidateModelAttribute]
         public IActionResult AddPayrollYear([FromBody]PayrollYear model)
         {
+            model.Name = model.From.Value.Year.ToString() + '-' + model.Till.Value.Year.ToString();
             PayrollYear_repo.Add(model);
             return new OkObjectResult(new { PayrollYearID = model.PayrollYearId });
         }
@@ -1004,6 +1005,7 @@ namespace SystemAdministrationService.Controllers
         [ValidateModelAttribute]
         public IActionResult UpdatePayrollYear([FromBody]PayrollYear model)
         {
+            model.Name = model.From.Value.Year.ToString() + '-' + model.Till.Value.Year.ToString();
             PayrollYear_repo.Update(model);
             return new OkObjectResult(new { PayrollYearID = model.PayrollYearId });
         }
@@ -1322,6 +1324,7 @@ namespace SystemAdministrationService.Controllers
         [ValidateModelAttribute]
         public IActionResult AddTaxYear([FromBody]TaxYear model)
         {
+            model.Name = model.From.Value.Year.ToString() + '-' + model.Till.Value.Year.ToString();
             TaxYear_repo.Add(model);
             return new OkObjectResult(new { TaxYearID = model.TaxYearId });
         }
@@ -1330,6 +1333,7 @@ namespace SystemAdministrationService.Controllers
         [ValidateModelAttribute]
         public IActionResult UpdateTaxYear([FromBody]TaxYear model)
         {
+            model.Name = model.From.Value.Year.ToString() + '-' + model.Till.Value.Year.ToString();
             TaxYear_repo.Update(model);
             return new OkObjectResult(new { TaxYearID = model.TaxYearId });
         }

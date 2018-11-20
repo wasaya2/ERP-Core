@@ -49,8 +49,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Utils.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraReports.v18.1.Service, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -65,15 +63,12 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -113,34 +108,33 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="DevExpress.Data.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Web.ASPxThemes.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.RichEdit.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.RichEdit.v18.1.Export, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Web.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Web.Mvc5.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraReports.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraReports.v18.1.Web, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraReports.v18.1.Web.WebForms, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Pdf.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Web.Resources.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Charts.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.CodeParser.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.DataAccess.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Office.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.PivotGrid.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Sparkline.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpo.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraCharts.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraGauges.v18.1.Core, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.ASPxThemes.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v18.2.Export, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.Mvc5.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v18.2.Web, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v18.2.Web.WebForms, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.Resources.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Charts.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.CodeParser.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.4\lib\net45\WebMatrix.Data.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\NWind.mdf" />
-    <Content Include="App_Data\ReportService.mdf" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\Site.css" />
@@ -236,65 +230,53 @@
     <Compile Include="Reports\finance\Voucher.Designer.cs">
       <DependentUpon>Voucher.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\hims\BLOOD CONSULTATION MOVEMENT SUMMARY.cs">
+    <Compile Include="Reports\hims\BloodConsultationMovementSummaryReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\hims\BLOOD CONSULTATION MOVEMENT SUMMARY.Designer.cs">
-      <DependentUpon>BLOOD CONSULTATION MOVEMENT SUMMARY.cs</DependentUpon>
+    <Compile Include="Reports\hims\BloodConsultationMovementSummaryReport.Designer.cs">
+      <DependentUpon>BloodConsultationMovementSummaryReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\hims\BLOOD TEST REFERENCE SUMMARY.cs">
+    <Compile Include="Reports\hims\BloodTestRefferenceSummaryReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\hims\BLOOD TEST REFERENCE SUMMARY.Designer.cs">
-      <DependentUpon>BLOOD TEST REFERENCE SUMMARY.cs</DependentUpon>
+    <Compile Include="Reports\hims\BloodTestRefferenceSummaryReport.Designer.cs">
+      <DependentUpon>BloodTestRefferenceSummaryReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\hims\DAILY ACTIVITY REPORT.cs">
+    <Compile Include="Reports\hims\FC ConsultationMovementSummaryReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\hims\DAILY ACTIVITY REPORT.Designer.cs">
-      <DependentUpon>DAILY ACTIVITY REPORT.cs</DependentUpon>
+    <Compile Include="Reports\hims\FC ConsultationMovementSummaryReport.Designer.cs">
+      <DependentUpon>FC ConsultationMovementSummaryReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\hims\FC CONSULTATION MOVEMENT SUMMARY.cs">
+    <Compile Include="Reports\hims\MedicineDetailsReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\hims\FC CONSULTATION MOVEMENT SUMMARY.Designer.cs">
-      <DependentUpon>FC CONSULTATION MOVEMENT SUMMARY.cs</DependentUpon>
+    <Compile Include="Reports\hims\MedicineDetailsReport.Designer.cs">
+      <DependentUpon>MedicineDetailsReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\hims\MEDICINE DETAILS.cs">
+    <Compile Include="Reports\hims\NewPatientsSummaryReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\hims\MEDICINE DETAILS.Designer.cs">
-      <DependentUpon>MEDICINE DETAILS.cs</DependentUpon>
+    <Compile Include="Reports\hims\NewPatientsSummaryReport.Designer.cs">
+      <DependentUpon>NewPatientsSummaryReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\hims\NEW %28FC + CLINIC %29 PATIENTS SUMMARY.cs">
+    <Compile Include="Reports\hims\NewPatientSheetSemen.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\hims\NEW %28FC + CLINIC %29 PATIENTS SUMMARY.Designer.cs">
-      <DependentUpon>NEW %28FC + CLINIC %29 PATIENTS SUMMARY.cs</DependentUpon>
+    <Compile Include="Reports\hims\NewPatientSheetSemen.Designer.cs">
+      <DependentUpon>NewPatientSheetSemen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\hims\NEW PATIENT SHEET - SEMEN %28 KARACHI%29.cs">
+    <Compile Include="Reports\hims\SemenConsultationMovementSummaryReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\hims\NEW PATIENT SHEET - SEMEN %28 KARACHI%29.Designer.cs">
-      <DependentUpon>NEW PATIENT SHEET - SEMEN %28 KARACHI%29.cs</DependentUpon>
+    <Compile Include="Reports\hims\SemenConsultationMovementSummaryReport.Designer.cs">
+      <DependentUpon>SemenConsultationMovementSummaryReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\hims\SEMEN CONSULTATION MOVEMENT SUMMARY.cs">
+    <Compile Include="Reports\hims\TotalPatientsRefferenceSummaryReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\hims\SEMEN CONSULTATION MOVEMENT SUMMARY.Designer.cs">
-      <DependentUpon>SEMEN CONSULTATION MOVEMENT SUMMARY.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\hims\SEMEN PATIENTS REFERENCE SUMMARY.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\hims\SEMEN PATIENTS REFERENCE SUMMARY.Designer.cs">
-      <DependentUpon>SEMEN PATIENTS REFERENCE SUMMARY.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\hims\TOTAL PATIENTS REFFERENCE SUMMARY.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\hims\TOTAL PATIENTS REFFERENCE SUMMARY.Designer.cs">
-      <DependentUpon>TOTAL PATIENTS REFFERENCE SUMMARY.cs</DependentUpon>
+    <Compile Include="Reports\hims\TotalPatientsRefferenceSummaryReport.Designer.cs">
+      <DependentUpon>TotalPatientsRefferenceSummaryReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\hrms\AttendanceSummaryDepartmentWise.cs">
       <SubType>Component</SubType>
@@ -399,35 +381,29 @@
     <EmbeddedResource Include="Reports\finance\Voucher.resx">
       <DependentUpon>Voucher.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hims\BLOOD CONSULTATION MOVEMENT SUMMARY.resx">
-      <DependentUpon>BLOOD CONSULTATION MOVEMENT SUMMARY.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\hims\BloodConsultationMovementSummaryReport.resx">
+      <DependentUpon>BloodConsultationMovementSummaryReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hims\BLOOD TEST REFERENCE SUMMARY.resx">
-      <DependentUpon>BLOOD TEST REFERENCE SUMMARY.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\hims\BloodTestRefferenceSummaryReport.resx">
+      <DependentUpon>BloodTestRefferenceSummaryReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hims\DAILY ACTIVITY REPORT.resx">
-      <DependentUpon>DAILY ACTIVITY REPORT.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\hims\FC ConsultationMovementSummaryReport.resx">
+      <DependentUpon>FC ConsultationMovementSummaryReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hims\FC CONSULTATION MOVEMENT SUMMARY.resx">
-      <DependentUpon>FC CONSULTATION MOVEMENT SUMMARY.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\hims\MedicineDetailsReport.resx">
+      <DependentUpon>MedicineDetailsReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hims\MEDICINE DETAILS.resx">
-      <DependentUpon>MEDICINE DETAILS.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\hims\NewPatientsSummaryReport.resx">
+      <DependentUpon>NewPatientsSummaryReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hims\NEW %28FC + CLINIC %29 PATIENTS SUMMARY.resx">
-      <DependentUpon>NEW %28FC + CLINIC %29 PATIENTS SUMMARY.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\hims\NewPatientSheetSemen.resx">
+      <DependentUpon>NewPatientSheetSemen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hims\NEW PATIENT SHEET - SEMEN %28 KARACHI%29.resx">
-      <DependentUpon>NEW PATIENT SHEET - SEMEN %28 KARACHI%29.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\hims\SemenConsultationMovementSummaryReport.resx">
+      <DependentUpon>SemenConsultationMovementSummaryReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hims\SEMEN CONSULTATION MOVEMENT SUMMARY.resx">
-      <DependentUpon>SEMEN CONSULTATION MOVEMENT SUMMARY.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hims\SEMEN PATIENTS REFERENCE SUMMARY.resx">
-      <DependentUpon>SEMEN PATIENTS REFERENCE SUMMARY.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hims\TOTAL PATIENTS REFFERENCE SUMMARY.resx">
-      <DependentUpon>TOTAL PATIENTS REFFERENCE SUMMARY.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\hims\TotalPatientsRefferenceSummaryReport.resx">
+      <DependentUpon>TotalPatientsRefferenceSummaryReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hrms\AttendanceSummaryDepartmentWise.resx">
       <DependentUpon>AttendanceSummaryDepartmentWise.cs</DependentUpon>

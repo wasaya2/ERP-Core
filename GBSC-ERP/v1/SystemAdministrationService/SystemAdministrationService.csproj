@@ -20,7 +20,7 @@
   <ItemGroup>
     <PackageReference Include="Automapper" Version="6.2.2" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
-    <PackageReference Include="DevExpress.Reporting.Core" Version="18.1.6" />
+    <PackageReference Include="DevExpress.Reporting.Core" Version="18.2.3" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="7.5.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.3" />

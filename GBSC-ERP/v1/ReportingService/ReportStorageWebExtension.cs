@@ -4,6 +4,7 @@ using DevExpress.XtraReports.UI;
 using ReportingService.Reports;
 using System.IO;
 using System.Linq;
+using ReportingService.Reports.hims;
 
 namespace ReportingService
 {
@@ -13,7 +14,7 @@ namespace ReportingService
 
         public ReportStorageWebExtension1()
         {
-            Reports.Add("Products", new XtraReport1());
+            Reports.Add("Products", new TOTAL_PATIENTS_REFFERENCE_SUMMARY());
         }
 
         public override bool CanSetData(string url)

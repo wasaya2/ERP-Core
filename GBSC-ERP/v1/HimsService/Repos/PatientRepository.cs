@@ -42,7 +42,7 @@ namespace HimsService.Repos
 
         public Patient GetPatientInvoiceReturnsWithDetailsByMRN(string mrn)
         {
-            return Table.Where(a => a.MRN != null && a.MRN == mrn).Include(a => a.PatientInvoiceReturns).Include("PatientInvoiceReturns.PatientInvoiceReturnItems").ToList().FirstOrDefault();
+            return Table.Where(a => a.MRN != null && a.MRN == mrn).Include(a => a.PatientInvoiceReturns).Include("PatientInvoiceReturns.PatientInvoiceReturnItems").Include("PatientInvoiceReturns.PatientInvoice").Include("PatientInvoiceReturns.Patient").ToList().FirstOrDefault();
         }
 
         public IEnumerable<PatientInvoice> GetPatientInvoicesWithDetailsByMRNandDate(string mrn, DateTime date)
