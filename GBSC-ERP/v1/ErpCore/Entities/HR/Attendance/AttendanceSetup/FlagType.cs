@@ -10,6 +10,7 @@ namespace ErpCore.Entities.HR.Attendance.AttendanceSetup
         public FlagType()
         {
             AttendanceFlags = new HashSet<AttendanceFlag>();
+            ShiftAttendanceFlags = new HashSet<ShiftAttendanceFlag>();
         }
 
         [Key]
@@ -18,5 +19,6 @@ namespace ErpCore.Entities.HR.Attendance.AttendanceSetup
         public string Description { get; set; }
 
         public IEnumerable<AttendanceFlag> AttendanceFlags { get; set; }
+        public IEnumerable<ShiftAttendanceFlag> ShiftAttendanceFlags { get; set; }
     }
 }

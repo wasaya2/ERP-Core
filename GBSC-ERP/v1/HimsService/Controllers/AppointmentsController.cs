@@ -57,7 +57,12 @@ namespace HimsService.Controllers
         [HttpGet("GetAppointment/{id}", Name = "GetAppointment")]
         public Appointment GetAppointment(long id) => _repo.GetFirst(a => a.AppointmentId == id, b => b.AppointmentTests, c => c.Patient, d => d.Consultant, e => e.PatientInvoice, f => f.VisitNature);
 
-        [HttpGet("GetAppointmentForInvoiceUpdate/{id}", Name = "GetAppointmentForInvoiceUpdate")]
+        [HttpGet("GetAppointmentTestByAppointmentId/{id}", Name = "GetAppointmentTestByAppointmentId")]
+        public Appointment GetAppointmentTestByAppointmentId(long id) => _repo.GetFirst(a => a.AppointmentId == id, b => b.AppointmentTests);
+
+
+
+    [HttpGet("GetAppointmentForInvoiceUpdate/{id}", Name = "GetAppointmentForInvoiceUpdate")]
         public Appointment GetAppointmentForInvoiceUpdate(long id) => _repo.GetFirst(a => a.AppointmentId == id);
 
         [HttpGet("GetAppointmentDetails/{id}", Name = "GetAppointmentDetails")]

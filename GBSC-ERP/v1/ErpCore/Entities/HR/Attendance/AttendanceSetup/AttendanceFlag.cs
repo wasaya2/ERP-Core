@@ -14,6 +14,7 @@ namespace ErpCore.Entities.HR.Attendance.AttendanceSetup
             AttendanceRules = new HashSet<AttendanceRule>();
             UserRosterAttendanceAttendanceFlags = new HashSet<UserRosterAttendanceAttendanceFlag>();
             AttendanceFlagExemptions = new HashSet<AttendanceFlagExemption>();
+            ShiftAttendanceFlags = new HashSet<ShiftAttendanceFlag>();
         }
 
         [Key]
@@ -22,10 +23,6 @@ namespace ErpCore.Entities.HR.Attendance.AttendanceSetup
         //public string EffectedBy { get; set; } //Count(Days) or Hours 
         public string FlagDayType { get; set; } //FullDay or HalfDay
         public bool? IsActive { get; set; }
-
-        public DateTime? FromTime { get; set; }
-        public DateTime? ToTime { get; set; }
-        public string NoOfHours { get; set; }
 
         public long? FlagValueId { get; set; }
         public FlagValue FlagValue { get; set; }
@@ -42,5 +39,6 @@ namespace ErpCore.Entities.HR.Attendance.AttendanceSetup
         public IEnumerable<AttendanceRule> AttendanceRules { get; set; }
         public IEnumerable<UserRosterAttendanceAttendanceFlag> UserRosterAttendanceAttendanceFlags { get; set; }
         public IEnumerable<AttendanceFlagExemption> AttendanceFlagExemptions { get; set; }
+        public IEnumerable<ShiftAttendanceFlag> ShiftAttendanceFlags { get; set; }
     }
 }

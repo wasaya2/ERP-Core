@@ -27,6 +27,12 @@ namespace HimsService.Controllers
             return _repo.GetAll();
         }
 
+        [HttpGet("GetAllSemenAnalysisByPatientId/{PatientId}")]
+        public IEnumerable<SemenAnalysis> GetAllSemenAnalysisByPatientId(long PatientId)
+        {
+            return _repo.GetList(p=>p.PatientId == PatientId, p=>p.Consultant);
+        }
+
         [HttpGet("GetSemenAnalysis/{id}")]
         public SemenAnalysis GetSemenAnalysis(long id)
         {

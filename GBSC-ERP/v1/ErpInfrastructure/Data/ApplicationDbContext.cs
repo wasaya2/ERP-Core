@@ -219,7 +219,6 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<UserAttendanceFlagExemption>().ToTable("Hr_Attendance_UserAttendanceFlagExemption");
 
             modelBuilder.Entity<AssignRoster>().ToTable("Hr_Attendance_AssignRoster");
-            modelBuilder.Entity<AssignRosterShift>().ToTable("Hr_Attendance_AssignRosterShift");
             modelBuilder.Entity<AttendanceFlag>().ToTable("Hr_Attendance_AttendanceFlag");
             modelBuilder.Entity<AttendanceRequestApprover>().ToTable("Hr_Attendance_AttendanceRequestApprover");
             modelBuilder.Entity<AttendanceRequestType>().ToTable("Hr_Attendance_AttendanceRequestType");
@@ -229,7 +228,9 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<FlagValue>().ToTable("Hr_Attendance_FlagValue");
             modelBuilder.Entity<Roster>().ToTable("Hr_Attendance_Roster");
             modelBuilder.Entity<Shift>().ToTable("Hr_Attendance_Shift");
+            modelBuilder.Entity<ShiftAttendanceFlag>().ToTable("Hr_Attendance_ShiftAttendanceFlag");
             modelBuilder.Entity<UserRosterAttendanceAttendanceFlag>().ToTable("Hr_Attendance_UserRosterAttendanceAttendanceFlag");
+            modelBuilder.Entity<UserAssignRoster>().ToTable("Hr_Attendance_UserAssignRoster");
 
             modelBuilder.Entity<OverTimeFlag>().ToTable("Hr_Attendance_OverTimeFlag");
             modelBuilder.Entity<OverTimeType>().ToTable("Hr_Attendance_OverTimeType");
@@ -578,6 +579,21 @@ namespace ErpInfrastructure.Data
                 .HasOne(a => a.Consultant)
                 .WithMany(b => b.Appointments)
                 .HasForeignKey(d => d.ConsultantId);
+
+            modelBuilder.Entity<EmbryoFreezeThawed>()
+                .HasOne(p => p.Patient)
+                .WithMany(i => i.EmbryoFreezeThaweds)
+                .HasForeignKey(j => j.PatientId);
+
+            modelBuilder.Entity<EmbryoFreezeUnthawed>()
+                .HasOne(p => p.Patient)
+                .WithMany(i => i.EmbryoFreezeUnthaweds)
+                .HasForeignKey(j => j.PatientId);
+
+            modelBuilder.Entity<PatientInvoice>()
+                .HasOne(p => p.Patient)
+                .WithMany(i => i.PatientInvoices)
+                .HasForeignKey(j => j.PatientId);
 
             modelBuilder.Entity<PatientInvoice>()
                 .HasOne(p => p.Patient)
@@ -1249,18 +1265,10 @@ namespace ErpInfrastructure.Data
                 .WithMany(b => b.AssignRosters)
                 .HasForeignKey(c => c.RosterId);
 
-            modelBuilder.Entity<AssignRosterShift>()
-                .HasKey(a => new { a.AssignRosterId, a.ShiftId });
-
-            modelBuilder.Entity<AssignRosterShift>()
-                .HasOne(a => a.AssignRoster)
-                .WithMany(b => b.AssignRosterShifts)
-                .HasForeignKey(c => c.AssignRosterId);
-
-            modelBuilder.Entity<AssignRosterShift>()
+            modelBuilder.Entity<AssignRoster>()
                 .HasOne(a => a.Shift)
-                .WithMany(b => b.AssignRosterShifts)
-                .HasForeignKey(c => c.ShiftId);
+                .WithMany(b => b.AssignRosters)
+                .HasForeignKey(c => c.ShiftsId);
 
             modelBuilder.Entity<AttendanceFlag>()
                 .HasOne(a => a.FlagValue)
@@ -1304,6 +1312,21 @@ namespace ErpInfrastructure.Data
                 .HasOne(a => a.UserRosterAttendance)
                 .WithMany(b => b.UserRosterAttendanceAttendanceFlags)
                 .HasForeignKey(c => c.UserRosterAttendanceId);
+
+            modelBuilder.Entity<ShiftAttendanceFlag>()
+                .HasOne(a => a.Shift)
+                .WithMany(b => b.ShiftAttendanceFlags)
+                .HasForeignKey(c => c.ShiftId);
+
+            modelBuilder.Entity<ShiftAttendanceFlag>()
+                .HasOne(a => a.AttendanceFlag)
+                .WithMany(b => b.ShiftAttendanceFlags)
+                .HasForeignKey(c => c.AttendanceFlagId);
+
+            modelBuilder.Entity<ShiftAttendanceFlag>()
+                .HasOne(a => a.FlagType)
+                .WithMany(b => b.ShiftAttendanceFlags)
+                .HasForeignKey(c => c.FlagTypeId);
 
             modelBuilder.Entity<OverTimeType>()
                 .HasOne(a => a.OverTimeFlag)
@@ -1975,11 +1998,18 @@ namespace ErpInfrastructure.Data
                 .WithMany(b => b.Users)
                 .HasForeignKey(c => c.MasterPayrollId);
 
-            modelBuilder.Entity<User>()
-                .HasOne(a => a.AssignRoster)
-                .WithMany(b => b.Users)
-                .HasForeignKey(c => c.AssignRosterId);
+            modelBuilder.Entity<UserAssignRoster>()
+                .HasKey(a => new { a.UserId, a.AssignRosterId });
 
+            modelBuilder.Entity<UserAssignRoster>()
+                .HasOne(a => a.User)
+                .WithMany(b => b.UserAssignRosters)
+                .HasForeignKey(c => c.UserId);
+
+            modelBuilder.Entity<UserAssignRoster>()
+                .HasOne(a => a.AssignRoster)
+                .WithMany(b => b.UserAssignRosters)
+                .HasForeignKey(c => c.AssignRosterId);
             #endregion
 
         }
@@ -2203,7 +2233,6 @@ namespace ErpInfrastructure.Data
         public DbSet<UserAttendanceFlagExemption> UserAttendanceFlagExemptions { get; set; }
 
         public DbSet<AssignRoster> AssignRosters { get; set; }
-        public DbSet<AssignRosterShift> AssignRosterShifts { get; set; }
         public DbSet<AttendanceFlag> AttendanceFlag { get; set; }
         public DbSet<AttendanceRequestApprover> AttendanceRequestApprovers { get; set; }
         public DbSet<AttendanceRequestType> AttendanceRequestTypes { get; set; }
@@ -2213,7 +2242,9 @@ namespace ErpInfrastructure.Data
         public DbSet<FlagValue> FlagValues { get; set; }
         public DbSet<Roster> Rosters { get; set; }
         public DbSet<Shift> Shifts { get; set; }
+        public DbSet<ShiftAttendanceFlag> ShiftAttendanceFlags { get; set; }
         public DbSet<UserRosterAttendanceAttendanceFlag> UserRosterAttendanceAttendanceFlags { get; set; }
+        public DbSet<UserAssignRoster> UserAssignRosters { get; set; }
 
         public DbSet<OverTimeFlag> OverTimeFlags { get; set; }
         public DbSet<OverTimeType> OverTimeTypes { get; set; }

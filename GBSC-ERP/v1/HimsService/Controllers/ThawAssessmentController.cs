@@ -26,10 +26,28 @@ namespace HimsService.Controllers
             return _repo.GetAll();
         }
 
+        [HttpGet("GetFrozenEmbryos/{PatientId}")]
+        public IEnumerable<EmbryoFreezeUnthawed> GetFrozenEmbryos(long PatientId)
+        {
+            return _repo.GetFrozonEmbryos(PatientId);
+        }
+
+        [HttpGet("GetThawedEmbryos/{PatientId}")]
+        public IEnumerable<EmbryoFreezeThawed> GetThawedEmbryos(long PatientId)
+        {
+            return _repo.GetThawedEmbryos(PatientId);
+        }
+
+        [HttpGet("GetThawAssessmentsByPatientId/{PatientId}")]
+        public IEnumerable<ThawAssessment> GetThawAssessmentsByPatientId(long PatientId)
+        {
+            return _repo.GetList(p => p.PatientClinicalRecord?.PatientId == PatientId, p => p.PatientClinicalRecord, p => p.PatientClinicalRecord.Consultant);
+        }
+
         [HttpGet("GetThawAssessmentByClinicalRecordId/{id}")]
         public ThawAssessment GetThawAssessmentByClinicalRecordId(long id)
         {
-            return _repo.GetFirst(c => c.PatientClinicalRecordId == id, c=>c.EmbryoFreezeThaweds, c=>c.EmbryoFreezeUnthaweds);
+            return _repo.GetFirst(c => c.PatientClinicalRecordId == id, c => c.EmbryoFreezeThaweds, c => c.EmbryoFreezeUnthaweds);
         }
 
         [HttpGet("GetThawAssessmentByTvopuId/{id}")]
@@ -68,6 +86,28 @@ namespace HimsService.Controllers
                 throw;
             }
 
+        }
+
+        [HttpDelete("RemoveFrozenEmbryo/{EmbryoFreezeUnthawedId}")]
+        public void RemoveFrozenEmbryo(long EmbryoFreezeUnthawedId)
+        {
+            _repo.RemoveFrozenEmbryo(EmbryoFreezeUnthawedId);
+        }
+
+        [HttpPost("AddThawedEmbryo")]
+        public IActionResult AddThawedEmbryo([FromBody]EmbryoFreezeThawed embryo)
+        {
+            _repo.AddThawedEmbryo(embryo);
+
+            return new OkObjectResult(new { EmbryoFreezeThawedId = embryo.EmbryoFreezeThawedId });
+        }
+
+        [HttpPut("UpdateThawedEmbryos")]
+        public IActionResult UpdateThawedEmbryos([FromBody]IList<EmbryoFreezeThawed> embryos)
+        {
+            _repo.UpdateThawedEmbryos(embryos);
+
+            return new OkObjectResult(new { result = "Embryos thawed" });
         }
     }
 }

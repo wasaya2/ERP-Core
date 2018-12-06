@@ -27,5 +27,54 @@ namespace HimsService.Repos
             Db.EmbryoFreezeUnthaweds.AddRange(unthawed);
             Db.SaveChanges();
         }
+
+        public IEnumerable<EmbryoFreezeUnthawed> GetFrozonEmbryos(long PatientId)
+        {
+            return Db.EmbryoFreezeUnthaweds.Where(c => c.PatientId == PatientId).ToList();
+        }
+
+        public IEnumerable<EmbryoFreezeThawed> GetThawedEmbryos(long PatientId)
+        {
+            return Db.EmbryoFreezeThaweds.Where(c => c.PatientId == PatientId).ToList();
+        }
+
+        public void RemoveFrozenEmbryo(long EmbryoFreezeUnthawedId)
+        {
+            var embryo = Db.EmbryoFreezeUnthaweds.Find(EmbryoFreezeUnthawedId);
+            if (embryo != null)
+                Db.EmbryoFreezeUnthaweds.Remove(embryo);
+            Db.SaveChanges();
+        }
+
+        public void AddThawedEmbryo(EmbryoFreezeThawed embryo)
+        {
+            try
+            {
+                Db.EmbryoFreezeThaweds.Add(embryo);
+                Db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
+        public void UpdateThawedEmbryos(IList<EmbryoFreezeThawed> embryos)
+        {
+            foreach (var embryo in embryos)
+            {
+                try
+                {
+                    Db.EmbryoFreezeThaweds.Update(embryo);
+                    Db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+
+                    throw;
+                }
+            }
+        }
     }
 }

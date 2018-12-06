@@ -30,6 +30,7 @@ namespace SystemAdministrationService.Controllers
         private IEmployeeOffDayOtRepository EmployeeOffDayOt_repo;
         private IEmployeeIncomingOtRepository EmployeeIncomingOt_repo;
         private IEmployeeOutgoingOtRepository EmployeeOutgoingOt_repo;
+        private IShiftAttendanceFlagRepository ShiftAttendanceFlag_repo;
 
         public AttendanceSetupController(
 
@@ -48,7 +49,8 @@ namespace SystemAdministrationService.Controllers
       IEmployeeWorkingDayOtRepository repo14,
       IEmployeeOffDayOtRepository repo15,
       IEmployeeIncomingOtRepository repo16,
-      IEmployeeOutgoingOtRepository repo17
+      IEmployeeOutgoingOtRepository repo17,
+      IShiftAttendanceFlagRepository repo18
 
       )
         {
@@ -70,7 +72,7 @@ namespace SystemAdministrationService.Controllers
             EmployeeOffDayOt_repo = repo15;
             EmployeeIncomingOt_repo = repo16;
             EmployeeOutgoingOt_repo = repo17;
-
+            ShiftAttendanceFlag_repo = repo18;
 
     }
 
@@ -79,17 +81,18 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetAssignRosters", Name = "GetAssignRosters")]
         public IEnumerable<AssignRoster> GetAssignRosters()
         {
-            return AssignRoster_repo.GetAll().OrderByDescending(a => a.AssignRosterId);
+            return AssignRoster_repo.GetAll().OrderByDescending(a => a.AssignRosterId );
         }
 
         [HttpGet("GetAssignRoster/{id}", Name = "GetAssignRoster")]
-        public AssignRoster GetAssignRoster(long id) => AssignRoster_repo.GetFirst(a => a.AssignRosterId == id);
+        public AssignRoster GetAssignRoster(long id) => AssignRoster_repo.GetFirst(a => a.AssignRosterId == id, b => b.UserAssignRosters);
 
         [HttpPost("AddAssignRoster", Name = "AddAssignRoster")]
         [ValidateModelAttribute]
         public IActionResult AddAssignRoster([FromBody]AssignRoster model)
         {
-            model.Year = model.FromDate.Value.Month.ToString() + '/' + model.FromDate.Value.Year.ToString() + '-' + model.ToDate.Value.Month.ToString() + '/' + model.ToDate.Value.Year.ToString();
+            model.Year = model.FromDate.Value.Year.ToString() + '-' + model.ToDate.Value.Year.ToString();
+            model.Month = model.FromDate.Value.Month.ToString() + ", " + model.FromDate.Value.Year.ToString() + " - " + model.ToDate.Value.Month.ToString() + ", " + model.ToDate.Value.Year.ToString();
             AssignRoster_repo.Add(model);
             return new OkObjectResult(new { AssignRosterID = model.AssignRosterId });
         }
@@ -98,7 +101,8 @@ namespace SystemAdministrationService.Controllers
         [ValidateModelAttribute]
         public IActionResult UpdateAssignRoster([FromBody]AssignRoster model)
         {
-            model.Year = model.FromDate.Value.Month.ToString() + '/' + model.FromDate.Value.Year.ToString() + '-' + model.ToDate.Value.Month.ToString() + '/' + model.ToDate.Value.Year.ToString();
+            model.Year = model.FromDate.Value.Year.ToString() + " - " + model.ToDate.Value.Year.ToString();
+            model.Month = model.FromDate.Value.Month.ToString() + ", " + model.FromDate.Value.Year.ToString() + " - " + model.ToDate.Value.Month.ToString() + ", " + model.ToDate.Value.Year.ToString();
             AssignRoster_repo.Update(model);
             return new OkObjectResult(new { AssignRosterID = model.AssignRosterId });
         }
@@ -443,7 +447,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetShifts", Name = "GetShifts")]
         public IEnumerable<Shift> GetShifts()
         {
-            return Shift_repo.GetAll(a => a.UserRosterAttendanceAttendanceFlags).OrderByDescending(b=>b.ShiftsId);
+            return Shift_repo.GetAll(a => a.ShiftAttendanceFlags).OrderByDescending(b=>b.ShiftsId);
         }
 
         [HttpGet("GetShift/{id}", Name = "GetShift")]
@@ -478,7 +482,47 @@ namespace SystemAdministrationService.Controllers
         }
 
         #endregion
-         
+
+        #region ShiftAttendanceFlag
+        [HttpGet("GetShiftAttendanceFlags", Name = "GetShiftAttendanceFlags")]
+        public IEnumerable<ShiftAttendanceFlag> GetShiftAttendanceFlags()
+        {
+            return ShiftAttendanceFlag_repo.GetAll().OrderByDescending(b => b.ShiftAttendanceFlagId);
+        }
+
+        [HttpGet("GetShiftAttendanceFlag/{id}", Name = "GetShiftAttendanceFlag")]
+        public ShiftAttendanceFlag GetShiftAttendanceFlag(long id) => ShiftAttendanceFlag_repo.GetFirst(a => a.ShiftAttendanceFlagId == id);
+
+        [HttpPost("AddShiftAttendanceFlag", Name = "AddShiftAttendanceFlag")]
+        [ValidateModelAttribute]
+        public IActionResult ShiftAttendanceFlag([FromBody]ShiftAttendanceFlag model)
+        {
+            ShiftAttendanceFlag_repo.Add(model);
+            return new OkObjectResult(new { ShiftAttendanceFlagID = model.ShiftAttendanceFlagId });
+        }
+
+        [HttpPut("UpdateShiftAttendanceFlag", Name = "UpdateShiftAttendanceFlag")]
+        [ValidateModelAttribute]
+        public IActionResult UpdateShiftAttendanceFlag([FromBody]ShiftAttendanceFlag model)
+        {
+            ShiftAttendanceFlag_repo.Update(model);
+            return new OkObjectResult(new { ShiftAttendanceFlagID = model.ShiftAttendanceFlagId });
+        }
+
+        [HttpDelete("DeleteShiftAttendanceFlag/{id}")]
+        public IActionResult DeleteShiftAttendanceFlag(long id)
+        {
+            ShiftAttendanceFlag a = ShiftAttendanceFlag_repo.Find(id);
+            if (a == null)
+            {
+                return NotFound();
+            }
+            ShiftAttendanceFlag_repo.Delete(a);
+            return Ok();
+        }
+
+        #endregion
+
         #region Overtime Flag
         [HttpGet("GetOverTimeFlags", Name = "GetOverTimeFlags")]
         public IEnumerable<OverTimeFlag> GetOverTimeFlags()

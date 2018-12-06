@@ -55,6 +55,9 @@ namespace HimsService.Controllers
             return pat;
         }
 
+        [HttpGet("GetPatientCB")]
+        public IEnumerable<PatientsCB> GetPatientCB() => _repo.GetPatientCB();
+
         [HttpGet("GetPatientWithPartner/{PatientId}")]
         public Patient GetPatientWithPartner(long PatientId)
         {
@@ -73,20 +76,11 @@ namespace HimsService.Controllers
         [HttpGet("GetPatientDetailPatientId/{id}", Name = "GetPatientDetailPatientId")]
         public Patient GetPatientDetailPatientId(long id) => _repo.GetFirst(p => p.PatientId == id, a => a.PatientDocuments, d => d.Partner, e => e.PatientReference ,x=> x.PatientPackage);
 
-        [HttpPost("SearchPatient", Name = "SearchPatient")]
+        [HttpGet("SearchPatient", Name = "SearchPatient")]
         [ValidateModelAttribute]
-        public IEnumerable<Patient> SearchPatient([FromBody]SearchPatientViewModel model)
+        public IEnumerable<Patient> SearchPatient(SearchPatientViewModel model)
         {
-            if (model.PatientId != null)
-                return _repo.GetAll(a => a.PatientId == model.PatientId);
-            else if (model.Name != null)
-                return _repo.SearchPatientByName(model.Name);
-            else if (model.MRN != null)
-                return _repo.SearchPatientByMRN(model.MRN);
-            else if (model.Contact != null)
-                return _repo.SearchPatientByContact(model.Contact);
-            else
-                return null;
+            return _repo.SearchPatient(model);
         }
 
         [HttpGet("GetPatientVisits/{patientid}", Name = "GetPatientVisits")]

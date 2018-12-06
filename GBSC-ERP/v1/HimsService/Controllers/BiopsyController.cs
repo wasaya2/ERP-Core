@@ -27,6 +27,13 @@ namespace HimsService.Controllers
             return _biopsyRepo.GetAll();
         }
 
+        [HttpGet("GetBiopsiesByPatientId/{PatientId}")]
+        public IEnumerable<Biopsy> GetBiopsiesByPatientId(long PatientId)
+        {
+            return _biopsyRepo.GetList(b => (b.PatientClinicalRecord?.PatientId == PatientId || b.PatientId == PatientId), b => b.PatientClinicalRecord, b => b.PatientClinicalRecord.Consultant);
+        }
+
+
         [HttpGet("GetPatientBiopsyByClinicalRecordId/{id}")]
         public Biopsy GetPatientBiopsyByClinicalRecordId(long id)
         {
@@ -34,9 +41,16 @@ namespace HimsService.Controllers
         }
 
         [HttpGet("GetBiopsyByCollectionDate")]
-        public Biopsy GetBiopsyByCollectionDate(DateTime? date)
+        public Biopsy GetBiopsyByCollectionDate(DateTime? date, long? patientid)
         {
-            return _biopsyRepo.GetFirst(s => s.CollectionDate.Value.ToLongDateString() == date.Value.ToLongDateString());
+            if (date != null)
+            {
+                date = date.Value.Date;
+                return _biopsyRepo.GetFirst(s => s.CollectionDate != null && s.CollectionDate.Value.Date == date && s.PatientId == patientid);
+
+            }
+
+            return null;
         }
 
         [HttpGet("GetBiopsyById/{Id}")]
@@ -45,7 +59,7 @@ namespace HimsService.Controllers
             return _biopsyRepo.GetFirst(b => b.BiopsyId == Id);
         }
 
-        [HttpGet("UpdateBiopsy")]
+        [HttpPut("UpdateBiopsy")]
         [ValidateModelAttribute]
         public IActionResult UpdateBiopsy([FromBody]Biopsy biopsy)
         {

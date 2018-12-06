@@ -35,6 +35,8 @@ namespace ErpCore.Entities
 
         public string Status { get; set; }
 
+        public string Remarks { get; set; }
+
         public long? TvopuId { get; set; }
 
         public Tvopu Tvopu { get; set; }

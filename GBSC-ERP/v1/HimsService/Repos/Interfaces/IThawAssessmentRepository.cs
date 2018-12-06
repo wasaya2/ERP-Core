@@ -12,5 +12,15 @@ namespace HimsService.Repos.Interfaces
         void removeThawAssessmentThawDetails(long thawAssessmentId);
 
         void AddThawedUnthawed(List<EmbryoFreezeThawed> thawed, List<EmbryoFreezeUnthawed> unthawed);
+
+        void RemoveFrozenEmbryo(long EmbryoFreezeUnthawedId);
+
+        void AddThawedEmbryo(EmbryoFreezeThawed embryo);
+
+        void UpdateThawedEmbryos(IList<EmbryoFreezeThawed> embryos);
+
+        IEnumerable<EmbryoFreezeUnthawed> GetFrozonEmbryos(long PatientId);
+
+        IEnumerable<EmbryoFreezeThawed> GetThawedEmbryos(long PatientId);
     }
 }

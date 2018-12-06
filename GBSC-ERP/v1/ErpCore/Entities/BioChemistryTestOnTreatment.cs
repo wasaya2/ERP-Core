@@ -18,9 +18,11 @@ namespace ErpCore.Entities
 
         public DateTime? CollectionDate { get; set; }
 
-        public string LMP { get; set; }
+        public DateTime? LMP { get; set; }
 
         public bool? IsRandom { get; set; }
+
+        public string Other { get; set; }
 
         public string RefRange { get; set; }
 

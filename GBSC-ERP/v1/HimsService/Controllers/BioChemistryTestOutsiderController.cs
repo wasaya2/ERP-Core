@@ -30,13 +30,13 @@ namespace HimsService.Controllers
         [HttpGet("GetBioChemistryTestOutsider/{id}")]
         public BioChemistryTestOutsider GetBioChemistryTestOutsider(long id)
         {
-            return _repo.GetFirst(p=>p.BioChemistryTestOutsiderId == id, p=>p.BioChemistryTestDetails);
+            return _repo.GetFirst(p => p.BioChemistryTestOutsiderId == id, p => p.BioChemistryTestDetails);
         }
 
         [HttpGet("GetBioChemistryTestOutsiderByPatientId/{id}")]
         public IEnumerable<BioChemistryTestOutsider> GetBioChemistryTestOutsiderByPatientId(long id)
         {
-            return _repo.GetList(p=>p.PatientId == id);
+            return _repo.GetList(p => p.PatientId == id, p => p.Consultant);
         }
 
         [HttpPut("UpdateBioChemistryTestOutsider")]

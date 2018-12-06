@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ErpCore.Entities.HR.Payroll.LoanSetup;
 using ErpCore.Entities.HR.Payroll.PayrollSetup;
@@ -910,10 +911,32 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetPayrollBank/{id}", Name = "GetPayrollBank")]
         public PayrollBank GetPayrollBank(long id) => PayrollBank_repo.GetFirst(a => a.PayrollBankId == id);
 
+        public string GenPB()
+        {
+            
+            try
+            {
+                string payrollbankuniqueid = PayrollBank_repo.GetLast().UniqueId;
+                string uniqueid = Regex.Match(payrollbankuniqueid, "[0-9]+$").Value;
+
+                return payrollbankuniqueid.Substring(0, payrollbankuniqueid.Length - uniqueid.Length) +
+                       (long.Parse(uniqueid) + 1).ToString().PadLeft(uniqueid.Length, '0');
+            }
+            catch (NullReferenceException)
+            {
+                return "PB0000001";
+            }
+            catch (Exception)
+            {
+                return "PB0000001";
+            }
+        }
+
         [HttpPost("AddPayrollBank", Name = "AddPayrollBank")]
         [ValidateModelAttribute]
         public IActionResult AddPayrollBank([FromBody]PayrollBank model)
         {
+            model.UniqueId = GenPB();
             PayrollBank_repo.Add(model);
             return new OkObjectResult(new { PayrollBankID = model.PayrollBankId });
         }

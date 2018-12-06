@@ -17,6 +17,8 @@ namespace ErpCore.Entities
             PatientInvoices = new HashSet<PatientInvoice>();
             PatientInvoiceReturns = new HashSet<PatientInvoiceReturn>();
             PatientDocuments = new HashSet<PatientDocument>();
+            EmbryoFreezeUnthaweds = new HashSet<EmbryoFreezeUnthawed>();
+            EmbryoFreezeThaweds = new HashSet<EmbryoFreezeThawed>();
         }
 
         [Key]
@@ -69,6 +71,10 @@ namespace ErpCore.Entities
         public IEnumerable<PatientInvoice> PatientInvoices { get; set; }
         public IEnumerable<PatientInvoiceReturn> PatientInvoiceReturns { get; set; }
         public IEnumerable<Visit> Visits { get; set; }
+
+        public IEnumerable<EmbryoFreezeThawed> EmbryoFreezeThaweds { get; set; }
+
+        public IEnumerable<EmbryoFreezeUnthawed> EmbryoFreezeUnthaweds { get; set; }
 
 
     }

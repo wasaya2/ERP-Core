@@ -250,6 +250,7 @@ namespace SystemAdministrationService
             services.AddScoped<IOfficialVisitEntryRepository, OfficialVisitEntryRepository>();
             services.AddScoped<IOverTimeEntitlementRepository, OverTimeEntitlementRepository>();
             services.AddScoped<IUserRosterAttendanceRepository, UserRosterAttendanceRepository>();
+            services.AddScoped<IShiftAttendanceFlagRepository, ShiftAttendanceFlagRepository>();
 
             services.AddMvc().AddJsonOptions(options =>
                         options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);

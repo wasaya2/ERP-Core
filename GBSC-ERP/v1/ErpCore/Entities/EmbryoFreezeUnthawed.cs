@@ -24,9 +24,15 @@ namespace ErpCore.Entities
 
         public string TopBottom { get; set; }
 
-        public string FreeFreeze { get; set; }
+        public DateTime? DateCreated { get; set; }
+
+        public long? CycleNo { get; set; }
 
         public long? ThawAssessmentId { get; set; }
+
+        public long PatientId { get; set; }
+
+        public Patient Patient { get; set; }
 
         public ThawAssessment ThawAssessment { get; set; }
     }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ErpCore.Entities;
 using ErpCore.Entities.HimsSetup;
 using HimsService.Repos.Base;
-
+using HimsService.ViewModels;
 
 namespace HimsService.Repos.Interfaces
 {
@@ -13,10 +13,11 @@ namespace HimsService.Repos.Interfaces
     {
         PatientVital GetLastestPatientVital(long patientid);
         //IEnumerable<Patient> SearchPatientById(long id);
+        IEnumerable<Patient> SearchPatient(SearchPatientViewModel model);
         IEnumerable<Patient> SearchPatientByName(string name);
         IEnumerable<Patient> SearchPatientByMRN(string MRN);
         IEnumerable<Patient> SearchPatientByContact(string contact);
-
+        IEnumerable<PatientsCB> GetPatientCB();
         IList<Diagnosis> GetLastestVisitDiagnos(long patientid);
         IList<Test> GetLatestVisitTests(long patientid);
         Patient GetPatientInvoicesWithDetailsByMRN(string mrn);

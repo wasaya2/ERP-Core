@@ -14,7 +14,12 @@ namespace ErpCore.Entities.HimsSetup
 
         [Key]
         public long BioChemistryTestId { get; set; }
+
+        public string Name { get; set; }
+
         public string Description { get; set; }
+
+        public string ReferenceRange { get; set; }
 
         public IEnumerable<BioChemistryTestDetails> BioChemistryTestDetails { get; set; }
     }

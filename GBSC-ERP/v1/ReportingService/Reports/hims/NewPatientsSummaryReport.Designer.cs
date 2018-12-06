@@ -66,18 +66,6 @@
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.vendorLogo = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.label10 = new DevExpress.XtraReports.UI.XRLabel();
-            this.label17 = new DevExpress.XtraReports.UI.XRLabel();
-            this.label7 = new DevExpress.XtraReports.UI.XRLabel();
-            this.label6 = new DevExpress.XtraReports.UI.XRLabel();
-            this.label9 = new DevExpress.XtraReports.UI.XRLabel();
-            this.label8 = new DevExpress.XtraReports.UI.XRLabel();
-            this.label5 = new DevExpress.XtraReports.UI.XRLabel();
-            this.label13 = new DevExpress.XtraReports.UI.XRLabel();
-            this.label15 = new DevExpress.XtraReports.UI.XRLabel();
-            this.label16 = new DevExpress.XtraReports.UI.XRLabel();
-            this.label18 = new DevExpress.XtraReports.UI.XRLabel();
-            this.label12 = new DevExpress.XtraReports.UI.XRLabel();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.vendorLogo2 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.vendorTable = new DevExpress.XtraReports.UI.XRTable();
@@ -101,10 +89,6 @@
             this.table4,
             this.table2,
             this.table5,
-            this.label20,
-            this.label21,
-            this.label22,
-            this.label23,
             this.line2,
             this.xrLine1,
             this.xrLabel1});
@@ -117,7 +101,7 @@
             // 
             this.table4.BackColor = System.Drawing.Color.Transparent;
             this.table4.Font = new System.Drawing.Font("Times New Roman", 8F);
-            this.table4.LocationFloat = new DevExpress.Utils.PointFloat(0F, 149.8214F);
+            this.table4.LocationFloat = new DevExpress.Utils.PointFloat(0F, 120.6547F);
             this.table4.Name = "table4";
             this.table4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
             this.table4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -234,7 +218,7 @@
             // 
             this.table2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.table2.Font = new System.Drawing.Font("Times New Roman", 8F);
-            this.table2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 109.5296F);
+            this.table2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 80.36292F);
             this.table2.Name = "table2";
             this.table2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
             this.table2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -265,13 +249,15 @@
             // 
             // tableCell4
             // 
+            this.tableCell4.BackColor = System.Drawing.Color.DarkSlateGray;
             this.tableCell4.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tableCell4.Font = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Bold);
+            this.tableCell4.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.tableCell4.Multiline = true;
             this.tableCell4.Name = "tableCell4";
             this.tableCell4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.tableCell4.StylePriority.UseBackColor = false;
             this.tableCell4.StylePriority.UseBorders = false;
             this.tableCell4.StylePriority.UseFont = false;
             this.tableCell4.Text = "SR #";
@@ -279,13 +265,15 @@
             // 
             // tableCell5
             // 
+            this.tableCell5.BackColor = System.Drawing.Color.DarkSlateGray;
             this.tableCell5.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tableCell5.Font = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Bold);
+            this.tableCell5.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.tableCell5.Multiline = true;
             this.tableCell5.Name = "tableCell5";
             this.tableCell5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.tableCell5.StylePriority.UseBackColor = false;
             this.tableCell5.StylePriority.UseBorders = false;
             this.tableCell5.StylePriority.UseFont = false;
             this.tableCell5.Text = "Referral Code";
@@ -293,13 +281,15 @@
             // 
             // tableCell6
             // 
+            this.tableCell6.BackColor = System.Drawing.Color.DarkSlateGray;
             this.tableCell6.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tableCell6.Font = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Bold);
+            this.tableCell6.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.tableCell6.Multiline = true;
             this.tableCell6.Name = "tableCell6";
             this.tableCell6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.tableCell6.StylePriority.UseBackColor = false;
             this.tableCell6.StylePriority.UseBorders = false;
             this.tableCell6.StylePriority.UseFont = false;
             this.tableCell6.Text = "Clinic Reference Name";
@@ -307,13 +297,15 @@
             // 
             // tableCell7
             // 
+            this.tableCell7.BackColor = System.Drawing.Color.DarkSlateGray;
             this.tableCell7.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tableCell7.Font = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Bold);
+            this.tableCell7.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.tableCell7.Multiline = true;
             this.tableCell7.Name = "tableCell7";
             this.tableCell7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.tableCell7.StylePriority.UseBackColor = false;
             this.tableCell7.StylePriority.UseBorders = false;
             this.tableCell7.StylePriority.UseFont = false;
             this.tableCell7.StylePriority.UsePadding = false;
@@ -322,13 +314,15 @@
             // 
             // tableCell1
             // 
+            this.tableCell1.BackColor = System.Drawing.Color.DarkSlateGray;
             this.tableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tableCell1.Font = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Bold);
+            this.tableCell1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.tableCell1.Multiline = true;
             this.tableCell1.Name = "tableCell1";
             this.tableCell1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.tableCell1.StylePriority.UseBackColor = false;
             this.tableCell1.StylePriority.UseBorders = false;
             this.tableCell1.StylePriority.UseFont = false;
             this.tableCell1.StylePriority.UsePadding = false;
@@ -337,13 +331,15 @@
             // 
             // tableCell8
             // 
+            this.tableCell8.BackColor = System.Drawing.Color.DarkSlateGray;
             this.tableCell8.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tableCell8.Font = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Bold);
+            this.tableCell8.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.tableCell8.Multiline = true;
             this.tableCell8.Name = "tableCell8";
             this.tableCell8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.tableCell8.StylePriority.UseBackColor = false;
             this.tableCell8.StylePriority.UseBorders = false;
             this.tableCell8.StylePriority.UseFont = false;
             this.tableCell8.StylePriority.UsePadding = false;
@@ -352,13 +348,15 @@
             // 
             // tableCell9
             // 
+            this.tableCell9.BackColor = System.Drawing.Color.DarkSlateGray;
             this.tableCell9.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tableCell9.Font = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Bold);
+            this.tableCell9.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.tableCell9.Multiline = true;
             this.tableCell9.Name = "tableCell9";
             this.tableCell9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.tableCell9.StylePriority.UseBackColor = false;
             this.tableCell9.StylePriority.UseBorders = false;
             this.tableCell9.StylePriority.UseFont = false;
             this.tableCell9.StylePriority.UsePadding = false;
@@ -369,7 +367,7 @@
             // 
             this.table5.BackColor = System.Drawing.Color.Transparent;
             this.table5.Font = new System.Drawing.Font("Times New Roman", 8F);
-            this.table5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 187.3215F);
+            this.table5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 158.1548F);
             this.table5.Name = "table5";
             this.table5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
             this.table5.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -486,37 +484,37 @@
             // 
             this.label20.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
-            this.label20.LocationFloat = new DevExpress.Utils.PointFloat(39.54166F, 63.54167F);
+            this.label20.LocationFloat = new DevExpress.Utils.PointFloat(474.9583F, 25.65703F);
             this.label20.Multiline = true;
             this.label20.Name = "label20";
             this.label20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label20.SizeF = new System.Drawing.SizeF(92.63864F, 22.99999F);
+            this.label20.SizeF = new System.Drawing.SizeF(46.80531F, 22.99999F);
             this.label20.StylePriority.UseFont = false;
             this.label20.StylePriority.UseForeColor = false;
             this.label20.StylePriority.UseTextAlignment = false;
-            this.label20.Text = "From Date";
+            this.label20.Text = "From";
             this.label20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // label21
             // 
             this.label21.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
-            this.label21.LocationFloat = new DevExpress.Utils.PointFloat(530.912F, 63.54167F);
+            this.label21.LocationFloat = new DevExpress.Utils.PointFloat(634.3253F, 25.65703F);
             this.label21.Multiline = true;
             this.label21.Name = "label21";
             this.label21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label21.SizeF = new System.Drawing.SizeF(92.63864F, 22.99999F);
+            this.label21.SizeF = new System.Drawing.SizeF(32.22205F, 22.99999F);
             this.label21.StylePriority.UseFont = false;
             this.label21.StylePriority.UseForeColor = false;
             this.label21.StylePriority.UseTextAlignment = false;
-            this.label21.Text = "To Date";
+            this.label21.Text = "To";
             this.label21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // label22
             // 
             this.label22.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
-            this.label22.LocationFloat = new DevExpress.Utils.PointFloat(149.5417F, 63.54167F);
+            this.label22.LocationFloat = new DevExpress.Utils.PointFloat(521.7637F, 25.65703F);
             this.label22.Multiline = true;
             this.label22.Name = "label22";
             this.label22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -531,7 +529,7 @@
             // 
             this.label23.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
-            this.label23.LocationFloat = new DevExpress.Utils.PointFloat(661.625F, 63.54167F);
+            this.label23.LocationFloat = new DevExpress.Utils.PointFloat(666.5472F, 25.65703F);
             this.label23.Multiline = true;
             this.label23.Name = "label23";
             this.label23.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -585,19 +583,11 @@
             // TopMargin
             // 
             this.TopMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.vendorLogo,
-            this.label10,
-            this.label17,
-            this.label7,
-            this.label6,
-            this.label9,
-            this.label8,
-            this.label5,
-            this.label13,
-            this.label15,
-            this.label16,
-            this.label18,
-            this.label12});
+            this.label21,
+            this.label23,
+            this.label22,
+            this.label20,
+            this.vendorLogo});
             this.TopMargin.HeightF = 137.5F;
             this.TopMargin.Name = "TopMargin";
             this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -605,8 +595,8 @@
             // 
             // vendorLogo
             // 
-            this.vendorLogo.Image = ((System.Drawing.Image)(resources.GetObject("vendorLogo.Image")));
             this.vendorLogo.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopLeft;
+            this.vendorLogo.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("vendorLogo.ImageSource"));
             this.vendorLogo.LocationFloat = new DevExpress.Utils.PointFloat(0F, 25.65703F);
             this.vendorLogo.Name = "vendorLogo";
             this.vendorLogo.SizeF = new System.Drawing.SizeF(206.7949F, 90.64413F);
@@ -614,180 +604,6 @@
             this.vendorLogo.StylePriority.UseBorderColor = false;
             this.vendorLogo.StylePriority.UseBorders = false;
             this.vendorLogo.StylePriority.UsePadding = false;
-            // 
-            // label10
-            // 
-            this.label10.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.label10.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Italic);
-            this.label10.LocationFloat = new DevExpress.Utils.PointFloat(622.6667F, 41.93907F);
-            this.label10.Multiline = true;
-            this.label10.Name = "label10";
-            this.label10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label10.SizeF = new System.Drawing.SizeF(158.3333F, 16.28203F);
-            this.label10.StylePriority.UseBorders = false;
-            this.label10.StylePriority.UseFont = false;
-            this.label10.Text = "Saima Fawad";
-            // 
-            // label17
-            // 
-            this.label17.AutoWidth = true;
-            this.label17.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
-            this.label17.Font = new System.Drawing.Font("Calibri", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label17.LocationFloat = new DevExpress.Utils.PointFloat(534.798F, 90.78522F);
-            this.label17.Multiline = true;
-            this.label17.Name = "label17";
-            this.label17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label17.SizeF = new System.Drawing.SizeF(84.27884F, 16.28203F);
-            this.label17.StylePriority.UseBorders = false;
-            this.label17.StylePriority.UseFont = false;
-            this.label17.StylePriority.UseTextAlignment = false;
-            this.label17.Text = "Report Date:";
-            this.label17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // label7
-            // 
-            this.label7.AutoWidth = true;
-            this.label7.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
-            this.label7.Font = new System.Drawing.Font("Calibri", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label7.LocationFloat = new DevExpress.Utils.PointFloat(534.798F, 41.93907F);
-            this.label7.Multiline = true;
-            this.label7.Name = "label7";
-            this.label7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label7.SizeF = new System.Drawing.SizeF(84.27884F, 16.28203F);
-            this.label7.StylePriority.UseBorders = false;
-            this.label7.StylePriority.UseFont = false;
-            this.label7.StylePriority.UseTextAlignment = false;
-            this.label7.Text = "Spouse:";
-            this.label7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // label6
-            // 
-            this.label6.AutoWidth = true;
-            this.label6.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
-            this.label6.Font = new System.Drawing.Font("Calibri", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label6.LocationFloat = new DevExpress.Utils.PointFloat(534.798F, 25.65703F);
-            this.label6.Multiline = true;
-            this.label6.Name = "label6";
-            this.label6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label6.SizeF = new System.Drawing.SizeF(84.27884F, 16.28203F);
-            this.label6.StylePriority.UseBorders = false;
-            this.label6.StylePriority.UseFont = false;
-            this.label6.StylePriority.UseTextAlignment = false;
-            this.label6.Text = "Name:";
-            this.label6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // label9
-            // 
-            this.label9.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.label9.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Italic);
-            this.label9.LocationFloat = new DevExpress.Utils.PointFloat(622.6667F, 25.65703F);
-            this.label9.Multiline = true;
-            this.label9.Name = "label9";
-            this.label9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label9.SizeF = new System.Drawing.SizeF(158.3333F, 16.28203F);
-            this.label9.StylePriority.UseBorders = false;
-            this.label9.StylePriority.UseFont = false;
-            this.label9.Text = "Fawad Ahmed Khan";
-            // 
-            // label8
-            // 
-            this.label8.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.label8.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Italic);
-            this.label8.LocationFloat = new DevExpress.Utils.PointFloat(622.6667F, 9.375F);
-            this.label8.Multiline = true;
-            this.label8.Name = "label8";
-            this.label8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label8.SizeF = new System.Drawing.SizeF(96.37225F, 16.28203F);
-            this.label8.StylePriority.UseBorders = false;
-            this.label8.StylePriority.UseFont = false;
-            this.label8.Text = "4472/10";
-            // 
-            // label5
-            // 
-            this.label5.AutoWidth = true;
-            this.label5.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
-            this.label5.Font = new System.Drawing.Font("Calibri", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label5.LocationFloat = new DevExpress.Utils.PointFloat(534.798F, 9.375F);
-            this.label5.Multiline = true;
-            this.label5.Name = "label5";
-            this.label5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label5.SizeF = new System.Drawing.SizeF(84.27884F, 16.28203F);
-            this.label5.StylePriority.UseBorders = false;
-            this.label5.StylePriority.UseFont = false;
-            this.label5.StylePriority.UseTextAlignment = false;
-            this.label5.Text = "File No:";
-            this.label5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // label13
-            // 
-            this.label13.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.label13.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Italic);
-            this.label13.LocationFloat = new DevExpress.Utils.PointFloat(622.6667F, 58.22112F);
-            this.label13.Multiline = true;
-            this.label13.Name = "label13";
-            this.label13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label13.SizeF = new System.Drawing.SizeF(158.3332F, 16.28203F);
-            this.label13.StylePriority.UseBorders = false;
-            this.label13.StylePriority.UseFont = false;
-            this.label13.Text = "03-JUL-71 (47 Years)";
-            // 
-            // label15
-            // 
-            this.label15.AutoWidth = true;
-            this.label15.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
-            this.label15.Font = new System.Drawing.Font("Calibri", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label15.LocationFloat = new DevExpress.Utils.PointFloat(534.798F, 74.50311F);
-            this.label15.Multiline = true;
-            this.label15.Name = "label15";
-            this.label15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label15.SizeF = new System.Drawing.SizeF(84.27884F, 16.28203F);
-            this.label15.StylePriority.UseBorders = false;
-            this.label15.StylePriority.UseFont = false;
-            this.label15.StylePriority.UseTextAlignment = false;
-            this.label15.Text = "Doctor:";
-            this.label15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // label16
-            // 
-            this.label16.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.label16.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Italic);
-            this.label16.LocationFloat = new DevExpress.Utils.PointFloat(622.6667F, 74.50311F);
-            this.label16.Multiline = true;
-            this.label16.Name = "label16";
-            this.label16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label16.SizeF = new System.Drawing.SizeF(158.3332F, 16.28203F);
-            this.label16.StylePriority.UseBorders = false;
-            this.label16.StylePriority.UseFont = false;
-            this.label16.Text = "Dr.Faridon Setna";
-            // 
-            // label18
-            // 
-            this.label18.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.label18.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Italic);
-            this.label18.LocationFloat = new DevExpress.Utils.PointFloat(622.6667F, 90.78513F);
-            this.label18.Multiline = true;
-            this.label18.Name = "label18";
-            this.label18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label18.SizeF = new System.Drawing.SizeF(158.3332F, 16.28203F);
-            this.label18.StylePriority.UseBorders = false;
-            this.label18.StylePriority.UseFont = false;
-            this.label18.Text = "08-11-18 14:55:54 PM";
-            // 
-            // label12
-            // 
-            this.label12.AutoWidth = true;
-            this.label12.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
-            this.label12.Font = new System.Drawing.Font("Calibri", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label12.LocationFloat = new DevExpress.Utils.PointFloat(534.798F, 58.22115F);
-            this.label12.Multiline = true;
-            this.label12.Name = "label12";
-            this.label12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label12.SizeF = new System.Drawing.SizeF(84.27884F, 16.28203F);
-            this.label12.StylePriority.UseBorders = false;
-            this.label12.StylePriority.UseFont = false;
-            this.label12.StylePriority.UseTextAlignment = false;
-            this.label12.Text = "DOB (Age):";
-            this.label12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
             // BottomMargin
             // 
@@ -800,8 +616,8 @@
             // 
             // vendorLogo2
             // 
-            this.vendorLogo2.Image = ((System.Drawing.Image)(resources.GetObject("vendorLogo2.Image")));
             this.vendorLogo2.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopLeft;
+            this.vendorLogo2.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("vendorLogo2.ImageSource"));
             this.vendorLogo2.LocationFloat = new DevExpress.Utils.PointFloat(7.836518F, 9.999979F);
             this.vendorLogo2.Name = "vendorLogo2";
             this.vendorLogo2.SizeF = new System.Drawing.SizeF(105F, 50F);
@@ -910,7 +726,7 @@
             this.TopMargin,
             this.BottomMargin});
             this.Margins = new System.Drawing.Printing.Margins(24, 27, 138, 100);
-            this.Version = "18.1";
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.table4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table5)).EndInit();
@@ -925,18 +741,6 @@
     private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
     private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
     private DevExpress.XtraReports.UI.XRPictureBox vendorLogo;
-    private DevExpress.XtraReports.UI.XRLabel label10;
-    private DevExpress.XtraReports.UI.XRLabel label17;
-    private DevExpress.XtraReports.UI.XRLabel label7;
-    private DevExpress.XtraReports.UI.XRLabel label6;
-    private DevExpress.XtraReports.UI.XRLabel label9;
-    private DevExpress.XtraReports.UI.XRLabel label8;
-    private DevExpress.XtraReports.UI.XRLabel label5;
-    private DevExpress.XtraReports.UI.XRLabel label13;
-    private DevExpress.XtraReports.UI.XRLabel label15;
-    private DevExpress.XtraReports.UI.XRLabel label16;
-    private DevExpress.XtraReports.UI.XRLabel label18;
-    private DevExpress.XtraReports.UI.XRLabel label12;
     private DevExpress.XtraReports.UI.XRPictureBox vendorLogo2;
     private DevExpress.XtraReports.UI.XRTable vendorTable;
     private DevExpress.XtraReports.UI.XRTableRow vendorTableRow1;

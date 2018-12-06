@@ -10,8 +10,7 @@ namespace ErpCore.Entities.HR.Attendance.AttendanceSetup
     {
         public AssignRoster()
         {
-            Users = new HashSet<User>();
-            AssignRosterShifts = new HashSet<AssignRosterShift>();
+            UserAssignRosters = new HashSet<UserAssignRoster>(); 
             UserRosterAttendances = new HashSet<UserRosterAttendance>();
             AttendanceRequests = new HashSet<AttendanceRequest>();
         }
@@ -29,8 +28,10 @@ namespace ErpCore.Entities.HR.Attendance.AttendanceSetup
         public long? RosterId { get; set; }
         public Roster Roster { get; set; }
 
-        public IEnumerable<User> Users { get; set; }
-        public IEnumerable<AssignRosterShift> AssignRosterShifts { get; set; }
+        public long? ShiftsId { get; set; }
+        public Shift Shift { get; set; }
+
+        public IEnumerable<UserAssignRoster> UserAssignRosters { get; set; }
         public IEnumerable<UserRosterAttendance> UserRosterAttendances { get; set; }
         public IEnumerable<AttendanceRequest> AttendanceRequests { get; set; }
     }

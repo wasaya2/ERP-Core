@@ -42,6 +42,7 @@ namespace ErpCore.Entities
             OfficialVisitEntries = new HashSet<OfficialVisitEntry>();
             AttendanceRequestApprovers = new HashSet<AttendanceRequestApprover>();
             AttendanceRequests = new HashSet<AttendanceRequest>();
+            UserAssignRosters = new HashSet<UserAssignRoster>();
 
             //HIMS
             PatientInvoices = new HashSet<PatientInvoice>();
@@ -201,8 +202,7 @@ namespace ErpCore.Entities
         public long? MasterPayrollId { get; set; }
         public MasterPayroll MasterPayroll { get; set; }
 
-        public long? AssignRosterId { get; set; }
-        public AssignRoster AssignRoster { get; set; }
+        public IEnumerable<UserAssignRoster> UserAssignRosters { get; set; }
 
         //Loan
         public IEnumerable<UserLoan> UserLoans { get; set; }

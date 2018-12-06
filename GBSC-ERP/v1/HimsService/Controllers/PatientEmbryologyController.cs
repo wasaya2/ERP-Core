@@ -27,6 +27,12 @@ namespace HimsService.Controllers
             return _repo.GetAll();
         }
 
+        [HttpGet("GetAllPatientEmbryologiesByPatientId/{PatientId}")]
+        public IEnumerable<PatientEmbryology> GetAllPatientEmbryologies(long PatientId)
+        {
+            return _repo.GetList(p=>p.Tvopu?.PatientClinicalRecord?.PatientId == PatientId, p=>p.Tvopu, p=>p.Tvopu.PatientClinicalRecord);
+        }
+
         [HttpGet("GetPatientEmbryologyByTvopuId/{Id}")]
         public PatientEmbryology GetPatientEmbryologyByTvopuId(long Id)
         {

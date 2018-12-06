@@ -37,6 +37,8 @@ namespace ErpCore.Entities
 
         public string TeseResult { get; set; }
 
+        public string Remarks { get; set; }
+
         public long? PatientId { get; set; }
 
         public Patient Patient { get; set; }

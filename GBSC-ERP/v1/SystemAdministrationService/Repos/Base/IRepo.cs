@@ -23,6 +23,8 @@ namespace SystemAdministrationService.Repos.Base
 
         T GetFirst();
 
+        T GetLast();
+
         T GetFirst(Func<T, bool> where);
 
         IEnumerable<T> GetList(Func<T, bool> where);

@@ -27,6 +27,12 @@ namespace HimsService.Controllers
             return _repo.GetAll();
         }
 
+        [HttpGet("GetAllFreezePreprationsByPatientId/{PatientId}")]
+        public IEnumerable<FreezePrepration> GetAllFreezePreprations(long PatientId)
+        {
+            return _repo.GetList(p => p.PatientClinicalRecord?.PatientId == PatientId, p => p.PatientClinicalRecord, p => p.PatientClinicalRecord.Consultant);
+        }
+
         [HttpGet("GetFreezePrepration/{id}")]
         public FreezePrepration GetFreezePrepration(long id)
         {

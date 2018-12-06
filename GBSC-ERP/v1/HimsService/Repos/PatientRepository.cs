@@ -6,6 +6,7 @@ using ErpCore.Entities;
 using ErpCore.Entities.HimsSetup;
 using HimsService.Repos.Base;
 using HimsService.Repos.Interfaces;
+using HimsService.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -48,7 +49,7 @@ namespace HimsService.Repos
         public IEnumerable<PatientInvoice> GetPatientInvoicesWithDetailsByMRNandDate(string mrn, DateTime date)
         {
             long patid = Table.Where(a => a.MRN == mrn).FirstOrDefault().PatientId;
-            if(patid >= 0)
+            if (patid >= 0)
             {
                 return Db.PatientInvoices.Where(a => a.PatientId == patid && a.DateCreated != null && a.DateCreated.Value.Date == date.Date).Include(a => a.PatientInvoiceItems).ToList().OrderByDescending(a => a.PatientInvoiceId);
             }
@@ -77,6 +78,10 @@ namespace HimsService.Repos
             }
             return ad;
         }
+        public IEnumerable<Patient> SearchPatient(SearchPatientViewModel model)
+        {
+            return GetList(p=>(p.FirstName == model.Name && model.Name != null) || (p.LastName == model.Name && model.Name != null) || (p.MRN == model.MRN && model.MRN!=null) || (p.PhoneNumber == model.Contact && model.Contact != null));
+        }
 
         public IEnumerable<Patient> SearchPatientByName(string name)
         {
@@ -102,6 +107,14 @@ namespace HimsService.Repos
             return pat.ToList();
         }
 
+        public IEnumerable<PatientsCB> GetPatientCB()
+        {
+            return Table.Select(c => new PatientsCB
+            {
+                Display = c.Display,
+                PatientId = c.PatientId
+            });
+        }
 
 
     }

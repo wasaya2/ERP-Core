@@ -167,16 +167,14 @@ namespace InventoryService.Controllers
             return new OkObjectResult(new { ItemID = model.InventoryItemId });
         }
 
-        private static string GenIC()
+        private string GenIC()
         {
-            var context = new ApplicationDbContext();
-            var lastItem = context.InventoryItems.LastOrDefault();
             try
             {
-                string value = lastItem.ItemCode;
-                string number = Regex.Match(value, "[0-9]+$").Value;
+                string lastItem = _repo.GetLast().ItemCode;
+                string number = Regex.Match(lastItem, "[0-9]+$").Value;
 
-                return value.Substring(0, value.Length - number.Length) +
+                return lastItem.Substring(0, lastItem.Length - number.Length) +
                        (long.Parse(number) + 1).ToString().PadLeft(number.Length, '0');
             }
             catch (NullReferenceException)
@@ -1373,7 +1371,7 @@ namespace InventoryService.Controllers
         [HttpGet("GetInventories", Name = "GetInventories")]
         public IEnumerable<Inventory> GetInventories()
         {
-            IEnumerable<Inventory> iv = Inv_repo.GetAll(a => a.InventoryItem);
+            IEnumerable<Inventory> iv = Inv_repo.GetAll(a => a.InventoryItem).OrderByDescending(a => a.InventoryId);
             iv = iv.OrderByDescending(a => a.InventoryId);
             return iv;
         }

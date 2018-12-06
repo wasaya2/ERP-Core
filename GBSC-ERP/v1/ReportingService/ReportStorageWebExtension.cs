@@ -5,6 +5,9 @@ using ReportingService.Reports;
 using System.IO;
 using System.Linq;
 using ReportingService.Reports.hims;
+using ReportingService.Reports.hrms;
+using ReportingService.Reports.Lab;
+using ReportingService.Reports.Payroll;
 
 namespace ReportingService
 {
@@ -15,9 +18,40 @@ namespace ReportingService
         public ReportStorageWebExtension1()
         {
             Reports.Add("Products", new TOTAL_PATIENTS_REFFERENCE_SUMMARY());
-        }
+            Reports.Add("EmployeeInformation", new EmployeeDetail());
+            Reports.Add("EmployeeCard", new EmployeeCard());
+            Reports.Add("ListofLeavers", new ListOfLeavers());
+            Reports.Add("EmployeeList", new EmployeeList()); 
+            Reports.Add("ListofJoiners", new ListOfJoiners());
+            Reports.Add("LeaveDetail", new LeaveDetailReport());
+            Reports.Add("In/OutDuration", new InOutDurationAttendance());
+            Reports.Add("MissingEntries", new MissingEntries());
+            Reports.Add("SalaryPayment", new SalaryPayment());
+            Reports.Add("MonthlyLeave", new MonthlyLeaveSheet()); 
+            Reports.Add("OverTime", new MonthlyOvertime()); 
+            Reports.Add("GrossSalary", new GrossSalary()); 
+            Reports.Add("LoanSummary", new LoanSummary()); 
+            Reports.Add("LeaveBalance", new LeaveHistory());
+            Reports.Add("SemenAnalysis", new SemenAnalysis());
+            Reports.Add("BiochemistryOnTreatment", new Biochemistry());
 
-        public override bool CanSetData(string url)
+            //////////HIMS////////////
+            Reports.Add("RegisterationList", new RegisterationInformation());
+            Reports.Add("AppointmenSheet", new AppointmenSheet());
+            Reports.Add("NewPatientSheetFcKarachi", new NewPatientSheetFC());
+            Reports.Add("DailyActivityReport", new DailyActivityReport1());
+            Reports.Add("FcProcedureMovementSummary", new FcProcedureMovementSummary());
+            Reports.Add("FcConsultationMovementSummary", new FC_CONSULTATION_MOVEMENT_SUMMARY());
+            Reports.Add("SemenConsultationMovementSummary", new SEMEN_CONSULTATION_MOVEMENT_SUMMARY());
+            Reports.Add("BloodConsultationMovementSummary", new BloodConsultationMovementSummary1());
+
+    
+
+            //////////HIMS////////////
+
+    }
+
+    public override bool CanSetData(string url)
         {
             return true;
         }

@@ -45,7 +45,7 @@ namespace HimsService.Controllers
         }
 
         [HttpGet("GetBioChemistryTest/{id}", Name = "GetBioChemistryTest")]
-        public BioChemistryTest GetBioChemistryTest(long id) => biotest_repo.GetFirst(a => a.BioChemistryTestId == id);
+        public BioChemistryTest GetBioChemistryTest(long id) => biotest_repo.Find(id);
 
         [HttpPut("UpdateBioChemistryTest", Name = "UpdateBioChemistryTest")]
         [ValidateModelAttribute]
@@ -132,18 +132,33 @@ namespace HimsService.Controllers
             return ap;
         }
 
+        [HttpGet("GetPatientBioChemistryTestsByPatientId/{PatientId}")]
+        public IEnumerable<BioChemistryTestOnTreatment> GetPatientBioChemistryTestsByPatientId(long PatientId)
+        {
+            return patientbio_repo.GetList(b=>b.PatientClinicalRecord?.PatientId == PatientId, b=>b.PatientClinicalRecord, b=>b.PatientClinicalRecord.Consultant);
+        }
+
         [HttpGet("GetPatientBioChemistryTest/{id}", Name = "GetPatientBioChemistryTest")]
         public BioChemistryTestOnTreatment GetPatientBioChemistryTest(long id) => patientbio_repo.Find(id);
 
         [HttpGet("GetPatientBioChemistryTestByClinicalRecordId/{id}")]
-        public BioChemistryTestOnTreatment GetPatientBioChemistryTestByClinicalRecordId(long id) => patientbio_repo.GetFirst(c=>c.PatientClinicalRecordId == id, c=>c.BioChemistryTestDetails);
+        public BioChemistryTestOnTreatment GetPatientBioChemistryTestByClinicalRecordId(long id) => patientbio_repo.GetFirst(c => c.PatientClinicalRecordId == id, c => c.BioChemistryTestDetails);
 
         [HttpPut("UpdatePatientBioChemistryTest", Name = "UpdatePatientBioChemistryTest")]
         [ValidateModelAttribute]
         public IActionResult UpdatePatientBioChemistryTest([FromBody]BioChemistryTestOnTreatment model)
         {
-            patientbio_repo.Update(model);
-            return new OkObjectResult(new { PatientBioChemistryTestID = model.BioChemistryTestOnTreatmentId });
+            try
+            {
+                patientbio_repo.Update(model);
+                return new OkObjectResult(new { PatientBioChemistryTestID = model.BioChemistryTestOnTreatmentId });
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
         }
 
         [HttpPost("AddPatientBioChemistryTest", Name = "AddPatientBioChemistryTest")]

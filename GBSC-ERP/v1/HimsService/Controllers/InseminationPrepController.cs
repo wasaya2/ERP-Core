@@ -27,6 +27,12 @@ namespace HimsService.Controllers
             return _inseminationRepo.GetAll();
         }
 
+        [HttpGet("GetInseminationPrepsByPatientId/{PatientId}")]
+        public IEnumerable<InseminationPrep> GetInseminationPrepsByPatientId(long PatientId)
+        {
+            return _inseminationRepo.GetList(p => p.PatientClinicalRecord?.PatientId == PatientId, p => p.PatientClinicalRecord, p => p.PatientClinicalRecord.Consultant);
+        }
+
         [HttpGet("GetInsemenationPrepByClinicalRecordId/{id}")]
         public InseminationPrep GetInsemenationPrepByClinicalRecordId(long id)
         {

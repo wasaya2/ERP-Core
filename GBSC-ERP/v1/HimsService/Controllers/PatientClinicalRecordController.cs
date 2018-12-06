@@ -34,6 +34,12 @@ namespace HimsService.Controllers
             return _repo.SearchClinicalRecords(patientname, spousename, mrn, cyclenumber, treatmentnumber);
         }
 
+        [HttpGet("GetClinicalRecordsByPatientId/{Id}")]
+        public IEnumerable<PatientClinicalRecord> GetClinicalRecordsByPatientId(long? Id)
+        {
+            return _repo.GetList(p => p.PatientId == Id);
+        }
+
         [HttpGet("GetPatientClinicalRecord/{id}")]
         public PatientClinicalRecord GetPatientClinicalRecord(long id)
         {

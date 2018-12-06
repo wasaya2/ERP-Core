@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -212,7 +212,15 @@ namespace SystemAdministrationService.Controllers
             return UserRosterAttendance_repo.GetAll().OrderByDescending(a => a.UserRosterAttendanceId);
         }
 
-        [HttpGet("GetUserRosterAttendance/{id}", Name = "GetUserRosterAttendance")]
+
+        [HttpGet("GetUserAttendancesbydate/{fromdate}/{todate}", Name = "GetUserAttendancesbydate")]
+        public IEnumerable<UserRosterAttendance> GetUserAttendancesbydate(DateTime fromdate ,DateTime todate)
+        {
+          //  return UserRosterAttendance_repo.GetAll().OrderByDescending(a => a.UserRosterAttendanceId);
+          return UserRosterAttendance_repo.getUserAttendacesByDate(fromdate, todate);
+        }
+
+    [HttpGet("GetUserRosterAttendance/{id}", Name = "GetUserRosterAttendance")]
         public UserRosterAttendance GetUserRosterAttendance(long id) => UserRosterAttendance_repo.GetFirst(a => a.UserRosterAttendanceId == id);
 
         [HttpPost("AddUserRosterAttendance", Name = "AddUserRosterAttendance")]

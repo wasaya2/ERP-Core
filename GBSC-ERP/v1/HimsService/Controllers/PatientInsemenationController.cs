@@ -28,6 +28,12 @@ namespace HimsService.Controllers
             return _PatientInsemenationRepo.GetAll();
         }
 
+        [HttpGet("GetPatientInsemenationsPatientId/{PatientId}")]
+        public IEnumerable<PatientInsemenation> GetPatientInsemenations(long PatientId)
+        {
+            return _PatientInsemenationRepo.GetList(p => p.PatientClinicalRecord?.PatientId == PatientId, p => p.PatientClinicalRecord, p => p.PatientClinicalRecord.Consultant);
+        }
+
         [HttpGet("GetPatientInsemenationByClinicalRecordId/{id}")]
         public PatientInsemenation GetPatientInsemenationByClinicalRecordId(long id)
         {
@@ -40,7 +46,7 @@ namespace HimsService.Controllers
             return _PatientInsemenationRepo.GetFirst(b => b.PatientInsemenationId == Id);
         }
 
-        [HttpGet("UpdatePatientInsemenation")]
+        [HttpPut("UpdatePatientInsemenation")]
         [ValidateModelAttribute]
         public IActionResult UpdatePatientInsemenation([FromBody]PatientInsemenation PatientInsemenation)
         {

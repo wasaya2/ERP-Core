@@ -14,16 +14,25 @@ namespace HimsService.Controllers
     public class TvopuController : Controller
     {
         private readonly ITvopuRepository _repo;
+        private readonly IPatientClinicalRecordRepository _clincRepo;
 
-        public TvopuController(ITvopuRepository repo)
+        public TvopuController(ITvopuRepository repo, IPatientClinicalRecordRepository clincRepo)
         {
             _repo = repo;
+
+            _clincRepo = clincRepo;
         }
 
         [HttpGet("GetTvopus")]
         public IEnumerable<Tvopu> GetTvopus()
         {
             return _repo.GetAll();
+        }
+
+        [HttpGet("GetTvopusByPatientId/{PatientId}")]
+        public IEnumerable<Tvopu> GetTvopusByPatientId(long PatientId)
+        {
+            return _repo.GetList(p => p.PatientClinicalRecord?.PatientId == PatientId, p => p.PatientClinicalRecord, p=>p.PatientClinicalRecord.Consultant);
         }
 
         [HttpGet("GetTvopuByClinicalRecordId/{id}")]

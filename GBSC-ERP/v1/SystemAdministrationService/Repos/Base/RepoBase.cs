@@ -103,6 +103,8 @@ namespace SystemAdministrationService.Repos.Base
 
         public T GetFirst() => Table.FirstOrDefault();
 
+        public T GetLast() => Table.LastOrDefault();
+
         public virtual IEnumerable<T> GetAll() => Table;
 
         internal IEnumerable<T> GetRange(IQueryable<T> query, int skip, int take) => query.Skip(skip).Take(take);

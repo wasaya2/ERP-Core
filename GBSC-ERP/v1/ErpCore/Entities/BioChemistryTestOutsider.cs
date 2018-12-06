@@ -18,7 +18,7 @@ namespace ErpCore.Entities
 
         public DateTime? CollectionDate { get; set; }
 
-        public string LMP { get; set; }
+        public DateTime? LMP { get; set; }
 
         public string Days { get; set; }
 

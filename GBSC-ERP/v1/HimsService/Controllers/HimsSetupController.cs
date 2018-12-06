@@ -62,8 +62,11 @@ namespace HimsService.Controllers
         [HttpGet("GetConsultants", Name = "GetConsultants")]
         public IEnumerable<Consultant> GetConsultants()
         {
-            return con_repo.GetAll();
-        }
+          // return con_repo.GetAll();
+          IEnumerable<Consultant> ap = con_repo.GetAll();
+          ap = ap.OrderByDescending(a => a.ConsultantId);
+          return ap;
+    }
 
         [HttpGet("GetConsultant/{id}", Name = "GetConsultant")]
         public Consultant GetConsultant([FromRoute]long id) => con_repo.GetFirst(a => a.ConsultantId == id);

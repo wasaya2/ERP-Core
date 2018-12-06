@@ -30,7 +30,5 @@ namespace ErpCore.Entities
 
         public BioChemistryTestOutsider BioChemistryTestOutsider { get; set; }
 
-        public string ReferenceRange { get; set; }
-
     }
 }

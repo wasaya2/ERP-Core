@@ -11,8 +11,8 @@ namespace ErpCore.Entities.HR.Attendance.AttendanceSetup
     {
         public Shift()
         {
-            AssignRosterShifts = new HashSet<AssignRosterShift>();
-            UserRosterAttendanceAttendanceFlags = new HashSet<UserRosterAttendanceAttendanceFlag>();
+            AssignRosters = new HashSet<AssignRoster>();
+            ShiftAttendanceFlags = new HashSet<ShiftAttendanceFlag>();
         }
 
         [Key]
@@ -34,7 +34,7 @@ namespace ErpCore.Entities.HR.Attendance.AttendanceSetup
         public double? ShiftHours { get; set; }
         public double? OverTimeRate { get; set; }
 
-        public IEnumerable<UserRosterAttendanceAttendanceFlag> UserRosterAttendanceAttendanceFlags { get; set; }
-        public IEnumerable<AssignRosterShift> AssignRosterShifts { get; set; }
+        public IEnumerable<ShiftAttendanceFlag> ShiftAttendanceFlags { get; set; }
+        public IEnumerable<AssignRoster> AssignRosters { get; set; }
     }
 }
