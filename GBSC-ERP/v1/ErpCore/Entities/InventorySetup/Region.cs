@@ -9,13 +9,13 @@ namespace ErpCore.Entities.InventorySetup
     {
         public Region()
         {
-            Areas = new HashSet<Area>();
+            Cities = new HashSet<City>();
         }
 
         [Key]
         public long RegionId { get; set; }
         public string Name { get; set; }
 
-        public IEnumerable<Area> Areas { get; set; }
+        public IEnumerable<City> Cities { get; set; }
     }
 }

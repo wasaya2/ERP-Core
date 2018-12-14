@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ErpCore.Entities.InventorySetup;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace ErpCore.Entities
         public City()
         {
             Branches = new HashSet<Branch>();
+
+            Areas = new HashSet<Area>();
         }
 
         [Key]
@@ -24,6 +27,9 @@ namespace ErpCore.Entities
         public long? CountryId { get; set; }
         public Country Country { get; set; }
 
+        public long? RegionId { get; set; }
+        public Region Region { get; set; }
+
         public DateTime? CreatedAt { get; set; }
 
         public DateTime? EditedAt { get; set; } = DateTime.Now;
@@ -33,5 +39,7 @@ namespace ErpCore.Entities
         public bool? Deleted { get; set; } = false;
 
         public IEnumerable<Branch> Branches { get; set; }
+
+        public IEnumerable<Area> Areas { get; set; }
     }
 }

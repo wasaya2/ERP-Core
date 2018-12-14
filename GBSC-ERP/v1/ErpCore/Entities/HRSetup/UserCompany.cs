@@ -24,6 +24,9 @@ namespace ErpCore.Entities.HRSetup
         public long? DesignationId { get; set; }
         public Designation Designation { get; set; }
 
+        public long? DepartmentId { get; set; }
+        public Department Department { get; set; }
+
         public long? FunctionId { get; set; }
         public Function Function { get; set; }
 

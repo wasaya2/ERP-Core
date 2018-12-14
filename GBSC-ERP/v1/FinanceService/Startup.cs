@@ -115,6 +115,7 @@ namespace FinanceService
             services.TryAddTransient<IHttpContextAccessor, HttpContextAccessor>();
 
             //FinanceSetup
+            services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IMasterAccountRepository, MasterAccountRepository>();
             services.AddScoped<IDetailAccountRepository, DetailAccountRepository>();
             services.AddScoped<ISubAccountRepository, SubAccountRepository>();

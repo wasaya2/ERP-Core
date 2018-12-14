@@ -25,6 +25,7 @@ namespace HimsService.Controllers
         private ITestTypeRepository testType_repo;
         private ITestCategoryRepository testCategory_repo;
         private IPatientPackageRepository Patientpackage_repo;
+        private IProcedureRepository Procedure_repo;
 
     public HimsSetupController(IPackageRepository packagerepo,
             ITestRepository testrepo,
@@ -35,7 +36,8 @@ namespace HimsService.Controllers
             IVisitNatureRepository _VisitNature_repo,
             ITestTypeRepository tsttyperepo,
             ITestCategoryRepository tstcatrepo,
-            IPatientPackageRepository Patientpackagerepo
+            IPatientPackageRepository Patientpackagerepo,
+            IProcedureRepository Procedurerepo 
        )
         {
             con_repo = consultantRepository;
@@ -48,6 +50,7 @@ namespace HimsService.Controllers
             testType_repo = tsttyperepo;
             testCategory_repo = tstcatrepo;
             Patientpackage_repo = Patientpackagerepo;
+            Procedure_repo = Procedurerepo;
          }
 
         [HttpGet("GetHimsSetupPermissions/{userid}/{roleid}/{featureid}", Name = "GetHimsSetupPermissions")]
@@ -511,6 +514,53 @@ namespace HimsService.Controllers
             return Ok();
         }
 
-        #endregion
+    #endregion
+
+
+
+    #region Procedure
+
+    [HttpGet("GetProcedures", Name = "GetProcedures")]
+    public IEnumerable<Procedure> GetProcedures()
+    {
+      IEnumerable<Procedure> ap = Procedure_repo.GetAll();
+      ap = ap.OrderByDescending(a => a.ProcedureId);
+      return ap;
+    }
+
+    [HttpGet("GetProcedure/{id}", Name = "GetProcedure")]
+    public Procedure GetProcedure(long id) => Procedure_repo.GetFirst(a => a.ProcedureId == id);
+
+    [HttpPut("UpdateProcedure", Name = "UpdateProcedure")]
+    [ValidateModelAttribute]
+    public IActionResult UpdateProcedure([FromBody]Procedure model)
+    {
+      Procedure_repo.Update(model);
+      return new OkObjectResult(new { ProcedureID = model.ProcedureId });
+    }
+
+    [HttpPost("AddProcedure", Name = "AddProcedure")]
+    [ValidateModelAttribute]
+    public IActionResult AddProcedure([FromBody]Procedure model)
+    {
+      model.CreatedAt = DateTime.Now;
+      Procedure_repo.Add(model);
+      return new OkObjectResult(new { ProcedureID = model.ProcedureId });
+    }
+
+    [HttpDelete("DeleteProcedure/{id}")]
+    public IActionResult DeleteProcedure(long id)
+    {
+    Procedure Procedure = Procedure_repo.Find(id);
+      if (Procedure == null)
+      {
+        return NotFound();
+      }
+
+      Procedure_repo.Delete(Procedure);
+      return Ok();
+    }
+
+    #endregion
   }
 }

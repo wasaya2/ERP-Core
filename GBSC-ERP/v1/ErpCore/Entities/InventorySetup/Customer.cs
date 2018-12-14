@@ -48,10 +48,7 @@ namespace ErpCore.Entities.InventorySetup
         public string GroupName { get; set; }
         public long? StNumber { get; set; }
         public string Ntn { get; set; }
-        
-        public long? SalesPersonId { get; set; }
-        public SalesPerson SalesPerson { get; set; }
-
+    
         public long? CustomerTypeId { get; set; }
         public CustomerType CustomerType { get; set; }
 

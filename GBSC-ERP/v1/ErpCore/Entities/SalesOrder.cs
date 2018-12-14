@@ -65,9 +65,6 @@ namespace ErpCore.Entities
         public long? SalesIndentId { get; set; }
         public SalesIndent SalesIndent { get; set; }
 
-        public long? SalesPersonId { get; set; }
-        public SalesPerson SalesPerson { get; set; }
-
         public long? ModeOfPaymentId { get; set; }
         public ModeOfPayment ModeOfPayment { get; set; }
 

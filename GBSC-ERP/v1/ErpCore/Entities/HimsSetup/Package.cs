@@ -16,6 +16,7 @@ namespace ErpCore.Entities.HimsSetup
         public long PackageId { get; set; }
         public string PackageCode { get; set; }
         public string PackageName { get; set; }
+        public string Abbrv { get; set; }
         public double Charges { get; set; }
         public DateTime? EffectiveDate { get; set; }
 

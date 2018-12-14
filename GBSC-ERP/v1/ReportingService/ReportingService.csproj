@@ -49,6 +49,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraLayout.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -64,6 +75,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -99,6 +111,7 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -108,11 +121,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="DevExpress.Data.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Web.ASPxThemes.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.RichEdit.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.RichEdit.v18.2.Export, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Web.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Web.Mvc5.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -125,7 +136,6 @@
     <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.PivotGrid.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Sparkline.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpo.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraCharts.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGauges.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -236,9 +246,11 @@
     <Compile Include="Reports\hims\AppointmenSheet.Designer.cs">
       <DependentUpon>AppointmenSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\hims\BloodConsultationMovementSummaryReport.cs" />
-    <Compile Include="Reports\hims\BloodConsultationMovementSummaryReport.Designer.cs">
-      <DependentUpon>BloodConsultationMovementSummaryReport.cs</DependentUpon>
+    <Compile Include="Reports\hims\BloodConsultationMovementSummary1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\BloodConsultationMovementSummary1.Designer.cs">
+      <DependentUpon>BloodConsultationMovementSummary1.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\hims\BloodTestRefferenceSummaryReport.cs">
       <SubType>Component</SubType>
@@ -270,11 +282,11 @@
     <Compile Include="Reports\hims\DailySemenAnalysisSheet.Designer.cs">
       <DependentUpon>DailySemenAnalysisSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\hims\FC ConsultationMovementSummaryReport.cs">
+    <Compile Include="Reports\hims\FcConsultationMovementSummary.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\hims\FC ConsultationMovementSummaryReport.Designer.cs">
-      <DependentUpon>FC ConsultationMovementSummaryReport.cs</DependentUpon>
+    <Compile Include="Reports\hims\FcConsultationMovementSummary.Designer.cs">
+      <DependentUpon>FcConsultationMovementSummary.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\hims\FCPatientReferenceSummary.cs">
       <SubType>Component</SubType>
@@ -293,6 +305,12 @@
     </Compile>
     <Compile Include="Reports\hims\MedicineDetailsReport.Designer.cs">
       <DependentUpon>MedicineDetailsReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\NewPatientSheetBloodKarachi.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\NewPatientSheetBloodKarachi.designer.cs">
+      <DependentUpon>NewPatientSheetBloodKarachi.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\hims\NewPatientSheetFC.cs">
       <SubType>Component</SubType>
@@ -327,11 +345,11 @@
     <Compile Include="Reports\hims\SemenConsultationMovementSummaryReport.Designer.cs">
       <DependentUpon>SemenConsultationMovementSummaryReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\hims\SemenPatientReferenceSummaryReport.cs">
+    <Compile Include="Reports\hims\SemenPatientsRefferenceSummary.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\hims\SemenPatientReferenceSummaryReport.Designer.cs">
-      <DependentUpon>SemenPatientReferenceSummaryReport.cs</DependentUpon>
+    <Compile Include="Reports\hims\SemenPatientsRefferenceSummary.Designer.cs">
+      <DependentUpon>SemenPatientsRefferenceSummary.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\hims\SubsequentEmbryoFreezingList.cs">
       <SubType>Component</SubType>
@@ -380,10 +398,6 @@
     </Compile>
     <Compile Include="Reports\hrms\EmployeeList.Designer.cs">
       <DependentUpon>EmployeeList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\hrms\GrossSalaryReport.cs" />
-    <Compile Include="Reports\hrms\GrossSalaryReport.Designer.cs">
-      <DependentUpon>GrossSalaryReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\hrms\InOutDurationAttendance.cs">
       <SubType>Component</SubType>
@@ -451,11 +465,11 @@
     <Compile Include="Reports\hrms\SalaryPayment.Designer.cs">
       <DependentUpon>SalaryPayment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\hrms\ShiftSchedule.cs">
+    <Compile Include="Reports\hrms\ScheduleShifts.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\hrms\ShiftSchedule.Designer.cs">
-      <DependentUpon>ShiftSchedule.cs</DependentUpon>
+    <Compile Include="Reports\hrms\ScheduleShifts.Designer.cs">
+      <DependentUpon>ScheduleShifts.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\hrms\TaxCalculation.cs">
       <SubType>Component</SubType>
@@ -463,13 +477,14 @@
     <Compile Include="Reports\hrms\TaxCalculation.Designer.cs">
       <DependentUpon>TaxCalculation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Lab\AntiMullerianHormone.cs" />
-    <Compile Include="Reports\Lab\AntiMullerianHormone.Designer.cs">
-      <DependentUpon>AntiMullerianHormone.cs</DependentUpon>
+    <Compile Include="Reports\Lab\AnalysisWorkSheet-Outsiders.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Lab\BhcgReporting.cs" />
-    <Compile Include="Reports\Lab\BhcgReporting.Designer.cs">
-      <DependentUpon>BhcgReporting.cs</DependentUpon>
+    <Compile Include="Reports\Lab\Bio-ChemistryDetails-OnTreatment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Lab\Biochemistry-Outsider.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Lab\Biochemistry.cs">
       <SubType>Component</SubType>
@@ -477,57 +492,20 @@
     <Compile Include="Reports\Lab\Biochemistry.Designer.cs">
       <DependentUpon>Biochemistry.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Lab\HepatitisB.cs" />
-    <Compile Include="Reports\Lab\HepatitisB.Designer.cs">
-      <DependentUpon>HepatitisB.cs</DependentUpon>
+    <Compile Include="Reports\Lab\LabSummary.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Lab\HepatitisC.cs" />
-    <Compile Include="Reports\Lab\HepatitisC.Designer.cs">
-      <DependentUpon>HepatitisC.cs</DependentUpon>
+    <Compile Include="Reports\Lab\LabSummary.Designer.cs">
+      <DependentUpon>LabSummary.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Lab\HIV.cs" />
-    <Compile Include="Reports\Lab\HIV.Designer.cs">
-      <DependentUpon>HIV.cs</DependentUpon>
+    <Compile Include="Reports\Lab\PESA-TESE.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Lab\SerumEstradiol.cs" />
-    <Compile Include="Reports\Lab\SerumEstradiol.Designer.cs">
-      <DependentUpon>SerumEstradiol.cs</DependentUpon>
+    <Compile Include="Reports\Payroll\EmployeeYearlyTax.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Lab\SerumFSH.cs" />
-    <Compile Include="Reports\Lab\SerumFSH.Designer.cs">
-      <DependentUpon>SerumFSH.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Lab\SerumInsulin.cs" />
-    <Compile Include="Reports\Lab\SerumInsulin.Designer.cs">
-      <DependentUpon>SerumInsulin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Lab\SerumLH.cs" />
-    <Compile Include="Reports\Lab\SerumLH.Designer.cs">
-      <DependentUpon>SerumLH.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Lab\SerumProgesterone.cs" />
-    <Compile Include="Reports\Lab\SerumProgesterone.Designer.cs">
-      <DependentUpon>SerumProgesterone.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Lab\SerumProlactin.cs" />
-    <Compile Include="Reports\Lab\SerumProlactin.Designer.cs">
-      <DependentUpon>SerumProlactin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Lab\SerumRubellaLgG.cs" />
-    <Compile Include="Reports\Lab\SerumRubellaLgG.Designer.cs">
-      <DependentUpon>SerumRubellaLgG.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Lab\SerumTestosterone.cs" />
-    <Compile Include="Reports\Lab\SerumTestosterone.Designer.cs">
-      <DependentUpon>SerumTestosterone.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Lab\SerumTSH.cs" />
-    <Compile Include="Reports\Lab\SerumTSH.Designer.cs">
-      <DependentUpon>SerumTSH.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Lab\VitaminD.cs" />
-    <Compile Include="Reports\Lab\VitaminD.Designer.cs">
-      <DependentUpon>VitaminD.cs</DependentUpon>
+    <Compile Include="Reports\Payroll\EmployeeYearlyTax.Designer.cs">
+      <DependentUpon>EmployeeYearlyTax.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Payroll\GrossSalary.cs">
       <SubType>Component</SubType>
@@ -540,6 +518,15 @@
     </Compile>
     <Compile Include="Reports\Payroll\LoanSummary.Designer.cs">
       <DependentUpon>LoanSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Payroll\TaxChallan.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Payroll\TaxChallan.Designer.cs">
+      <DependentUpon>TaxChallan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\AllPatientWiseSales.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Pharmacy\CashSales.cs">
       <SubType>Component</SubType>
@@ -571,6 +558,9 @@
     <Compile Include="Reports\Pharmacy\GoodsReceiveNote.Designer.cs">
       <DependentUpon>GoodsReceiveNote.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Pharmacy\GRNSupplierWise.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Pharmacy\GRNTabular.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -588,12 +578,6 @@
     </Compile>
     <Compile Include="Reports\Pharmacy\InternalSupplyReportUltraSound.Designer.cs">
       <DependentUpon>InternalSupplyReportUltraSound.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Pharmacy\MedicineDetail.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Pharmacy\MedicineDetail.Designer.cs">
-      <DependentUpon>MedicineDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Pharmacy\MonthlyCaseSaleReport.cs">
       <SubType>Component</SubType>
@@ -659,8 +643,8 @@
     <EmbeddedResource Include="Reports\hims\AppointmenSheet.resx">
       <DependentUpon>AppointmenSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hims\BloodConsultationMovementSummaryReport.resx">
-      <DependentUpon>BloodConsultationMovementSummaryReport.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\hims\BloodConsultationMovementSummary1.resx">
+      <DependentUpon>BloodConsultationMovementSummary1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hims\BloodTestRefferenceSummaryReport.resx">
       <DependentUpon>BloodTestRefferenceSummaryReport.cs</DependentUpon>
@@ -677,8 +661,8 @@
     <EmbeddedResource Include="Reports\hims\DailySemenAnalysisSheet.resx">
       <DependentUpon>DailySemenAnalysisSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hims\FC ConsultationMovementSummaryReport.resx">
-      <DependentUpon>FC ConsultationMovementSummaryReport.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\hims\FcConsultationMovementSummary.resx">
+      <DependentUpon>FcConsultationMovementSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hims\FCPatientReferenceSummary.resx">
       <DependentUpon>FCPatientReferenceSummary.cs</DependentUpon>
@@ -688,6 +672,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hims\MedicineDetailsReport.resx">
       <DependentUpon>MedicineDetailsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\NewPatientSheetBloodKarachi.resx">
+      <DependentUpon>NewPatientSheetBloodKarachi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hims\NewPatientSheetFC.resx">
       <DependentUpon>NewPatientSheetFC.cs</DependentUpon>
@@ -707,8 +694,8 @@
     <EmbeddedResource Include="Reports\hims\SemenConsultationMovementSummaryReport.resx">
       <DependentUpon>SemenConsultationMovementSummaryReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hims\SemenPatientReferenceSummaryReport.resx">
-      <DependentUpon>SemenPatientReferenceSummaryReport.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\hims\SemenPatientsRefferenceSummary.resx">
+      <DependentUpon>SemenPatientsRefferenceSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hims\SubsequentEmbryoFreezingList.resx">
       <DependentUpon>SubsequentEmbryoFreezingList.cs</DependentUpon>
@@ -733,9 +720,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hrms\EmployeeList.resx">
       <DependentUpon>EmployeeList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hrms\GrossSalaryReport.resx">
-      <DependentUpon>GrossSalaryReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hrms\InOutDurationAttendance.resx">
       <DependentUpon>InOutDurationAttendance.cs</DependentUpon>
@@ -770,65 +754,44 @@
     <EmbeddedResource Include="Reports\hrms\SalaryPayment.resx">
       <DependentUpon>SalaryPayment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hrms\ShiftSchedule.resx">
-      <DependentUpon>ShiftSchedule.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\hrms\ScheduleShifts.resx">
+      <DependentUpon>ScheduleShifts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hrms\TaxCalculation.resx">
       <DependentUpon>TaxCalculation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Lab\AntiMullerianHormone.resx">
-      <DependentUpon>AntiMullerianHormone.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\Lab\AnalysisWorkSheet-Outsiders.resx">
+      <DependentUpon>AnalysisWorkSheet-Outsiders.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Lab\BhcgReporting.resx">
-      <DependentUpon>BhcgReporting.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\Lab\Bio-ChemistryDetails-OnTreatment.resx">
+      <DependentUpon>Bio-ChemistryDetails-OnTreatment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Lab\Biochemistry-Outsider.resx">
+      <DependentUpon>Biochemistry-Outsider.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Lab\Biochemistry.resx">
       <DependentUpon>Biochemistry.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Lab\HepatitisB.resx">
-      <DependentUpon>HepatitisB.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\Lab\LabSummary.resx">
+      <DependentUpon>LabSummary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Lab\HepatitisC.resx">
-      <DependentUpon>HepatitisC.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\Lab\PESA-TESE.resx">
+      <DependentUpon>PESA-TESE.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Lab\HIV.resx">
-      <DependentUpon>HIV.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Lab\SerumEstradiol.resx">
-      <DependentUpon>SerumEstradiol.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Lab\SerumFSH.resx">
-      <DependentUpon>SerumFSH.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Lab\SerumInsulin.resx">
-      <DependentUpon>SerumInsulin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Lab\SerumLH.resx">
-      <DependentUpon>SerumLH.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Lab\SerumProgesterone.resx">
-      <DependentUpon>SerumProgesterone.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Lab\SerumProlactin.resx">
-      <DependentUpon>SerumProlactin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Lab\SerumRubellaLgG.resx">
-      <DependentUpon>SerumRubellaLgG.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Lab\SerumTestosterone.resx">
-      <DependentUpon>SerumTestosterone.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Lab\SerumTSH.resx">
-      <DependentUpon>SerumTSH.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Lab\VitaminD.resx">
-      <DependentUpon>VitaminD.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\Payroll\EmployeeYearlyTax.resx">
+      <DependentUpon>EmployeeYearlyTax.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Payroll\GrossSalary.resx">
       <DependentUpon>GrossSalary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Payroll\LoanSummary.resx">
       <DependentUpon>LoanSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Payroll\TaxChallan.resx">
+      <DependentUpon>TaxChallan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\AllPatientWiseSales.resx">
+      <DependentUpon>AllPatientWiseSales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Pharmacy\CashSales.resx">
       <DependentUpon>CashSales.cs</DependentUpon>
@@ -845,6 +808,9 @@
     <EmbeddedResource Include="Reports\Pharmacy\GoodsReceiveNote.resx">
       <DependentUpon>GoodsReceiveNote.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\GRNSupplierWise.resx">
+      <DependentUpon>GRNSupplierWise.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Pharmacy\GRNTabular.resx">
       <DependentUpon>GRNTabular.cs</DependentUpon>
     </EmbeddedResource>
@@ -853,9 +819,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Pharmacy\InternalSupplyReportUltraSound.resx">
       <DependentUpon>InternalSupplyReportUltraSound.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Pharmacy\MedicineDetail.resx">
-      <DependentUpon>MedicineDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Pharmacy\MonthlyCaseSaleReport.resx">
       <DependentUpon>MonthlyCaseSaleReport.cs</DependentUpon>

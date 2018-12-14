@@ -51,6 +51,8 @@ namespace ErpCore.Entities
 
         public double? SpermProgressionNonProgressive { get; set; }
 
+        public double? ReportedMotileCount { get; set; }
+
         public double? Immotile { get; set; }
 
         public string TestPreprationMethod { get; set; }

@@ -17,7 +17,6 @@ namespace ErpCore.Entities.Finance
         public long VoucherId { get; set; }
         public string VoucherCode { get; set; }
         public DateTime? Date { get; set; }
-        public string ChequeNumber { get; set; }
         public string Description { get; set; }
 
         public double? TotalCreditAmount { get; set; }

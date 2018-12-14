@@ -18,7 +18,7 @@ namespace ErpCore.Entities
         public double? DiscountPercentage { get; set; }
         public double? DiscountAmount { get; set; }
         public double? NetAmount { get; set; }
-        public bool? IsPaid { get; set; }
+        public bool? Exclude { get; set; }
         public long? NameId { get; set; }
         public string Name { get; set; }
 

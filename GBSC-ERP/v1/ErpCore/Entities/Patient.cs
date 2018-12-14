@@ -19,6 +19,7 @@ namespace ErpCore.Entities
             PatientDocuments = new HashSet<PatientDocument>();
             EmbryoFreezeUnthaweds = new HashSet<EmbryoFreezeUnthawed>();
             EmbryoFreezeThaweds = new HashSet<EmbryoFreezeThawed>();
+            DailyProcedures = new HashSet<DailyProcedure>();
         }
 
         [Key]
@@ -75,6 +76,7 @@ namespace ErpCore.Entities
         public IEnumerable<EmbryoFreezeThawed> EmbryoFreezeThaweds { get; set; }
 
         public IEnumerable<EmbryoFreezeUnthawed> EmbryoFreezeUnthaweds { get; set; }
+        public IEnumerable<DailyProcedure> DailyProcedures { get; set; }
 
 
     }

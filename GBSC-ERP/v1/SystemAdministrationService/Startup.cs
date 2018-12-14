@@ -153,6 +153,7 @@ namespace SystemAdministrationService
             services.AddScoped<IUserPhotoRepository, UserPhotoRepository>();
             services.AddScoped<IWorkExperienceRepository, WorkExperienceRepository>();
             services.AddScoped<IUserCompanyRepository, UserCompanyRepository>();
+            services.AddScoped<IDependantsRelationRepository, DependantsRelationRepository>();
             //Leave
             services.AddScoped<ILeaveYearRepository, LeaveYearRepository>();
             services.AddScoped<ILeaveRequestRepository, LeaveRequestRepository>();

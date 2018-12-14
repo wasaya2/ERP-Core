@@ -14,6 +14,8 @@ namespace ErpCore.Entities.HimsSetup
         public Consultant()
         {
             Appointments = new HashSet<Appointment>();
+            AssignedDailyProcedures = new HashSet<DailyProcedure>();
+            PerformedDailyProcedures = new HashSet<DailyProcedure>();
         }
         
         [Key]
@@ -23,5 +25,7 @@ namespace ErpCore.Entities.HimsSetup
         public string Title { get; set; }
         public string Specialization { get; set; }
         public IEnumerable<Appointment> Appointments { get; set; }
+        public IEnumerable<DailyProcedure> AssignedDailyProcedures { get; set; }
+        public IEnumerable<DailyProcedure> PerformedDailyProcedures { get; set; }
     }
 }

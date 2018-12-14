@@ -21,6 +21,7 @@ using ErpCore.Entities.HR.Payroll.PayrollAdmin;
 using ErpCore.Entities.HR.Payroll.LoanSetup;
 using ErpCore.Entities.Finance;
 using System;
+using ErpCore.Entities.ETracker;
 
 namespace ErpInfrastructure.Data
 {
@@ -50,6 +51,7 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<VoucherType>().ToTable("Finance_Setup_VoucherType");
 
             //Finance
+            modelBuilder.Entity<Account>().ToTable("Finance_Account");
             modelBuilder.Entity<Voucher>().ToTable("Finance_Voucher");
             modelBuilder.Entity<VoucherDetail>().ToTable("Finance_VoucherDetail");
             modelBuilder.Entity<FinanceSalesInvoice>().ToTable("Finance_SalesInvoice");
@@ -72,7 +74,7 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<PatientReference>().ToTable("Hims_PatientReference");
             modelBuilder.Entity<PatientDocument>().ToTable("Hims_PatientDocument");
             modelBuilder.Entity<SemenAnalysis>().ToTable("Hims_SemenAnalysis");
-
+            modelBuilder.Entity<DailyProcedure>().ToTable("Hims_DailyProcedure");
             //Visit
             modelBuilder.Entity<PatientVital>().ToTable("Hims_PatientVital");
             modelBuilder.Entity<Diagnosis>().ToTable("Hims_Diagnosis");
@@ -119,6 +121,15 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<Event>().ToTable("Hims_Event");
             modelBuilder.Entity<TestType>().ToTable("Hims_TestType");
             modelBuilder.Entity<TestCategory>().ToTable("Hims_TestCategory");
+            modelBuilder.Entity<Procedure>().ToTable("Hims_Procedure");
+
+            //ETracker
+            modelBuilder.Entity<CompetatorStock>().ToTable("ETracker_CompetatorStocks");
+            modelBuilder.Entity<Merchandising>().ToTable("ETracker_Merchandising");
+            modelBuilder.Entity<OrderTaking>().ToTable("ETracker_OrderTaking");
+            modelBuilder.Entity<OutletStock>().ToTable("ETracker_OutletStock");
+            modelBuilder.Entity<StoreVisit>().ToTable("ETracker_StoreVisit");
+            modelBuilder.Entity<VisitDay>().ToTable("ETracker_VisitDay");
 
             //Inventory
             modelBuilder.Entity<Inventory>().ToTable("Inv_Inventory");
@@ -138,7 +149,6 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<PackType>().ToTable("Inv_Setup_PackType");
             modelBuilder.Entity<PackageType>().ToTable("Inv_Setup_PackageType");
             modelBuilder.Entity<ProductType>().ToTable("Inv_Setup_ProductType");
-            modelBuilder.Entity<SalesPerson>().ToTable("Inv_Setup_SalesPerson");
             modelBuilder.Entity<Tax>().ToTable("Inv_Setup_Tax");
             modelBuilder.Entity<Transport>().ToTable("Inv_Setup_Transport");
             modelBuilder.Entity<Units>().ToTable("Inv_Setup_Units");
@@ -150,6 +160,9 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<CustomerType>().ToTable("Inv_Setup_CustomerType");
             modelBuilder.Entity<Region>().ToTable("Inv_Setup_Region");
             modelBuilder.Entity<Territory>().ToTable("Inv_Setup_Territory");
+            modelBuilder.Entity<Section>().ToTable("Inv_Setup_Section");
+            modelBuilder.Entity<Subsection>().ToTable("Inv_Setup_Subsection");
+            modelBuilder.Entity<Store>().ToTable("Inv_Store");
             modelBuilder.Entity<ReturnReason>().ToTable("Inv_Setup_ReturnReason");
             modelBuilder.Entity<InventoryCurrency>().ToTable("Inv_Setup_InventoryCurrency");
 
@@ -211,6 +224,7 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<UserLanguage>().ToTable("Hr_UserLanguage");
             modelBuilder.Entity<UserPhoto>().ToTable("Hr_UserPhoto");
             modelBuilder.Entity<UserDocument>().ToTable("Hr_UserDocument");
+            modelBuilder.Entity<DependantsRelation>().ToTable("Hr_UserDependantRelation");
 
             //HrAttendance
             modelBuilder.Entity<AttendanceFlagExemption>().ToTable("Hr_Attendance_AttendanceFlagExemption");
@@ -321,7 +335,18 @@ namespace ErpInfrastructure.Data
 
 
             //Finance
+            //Account
+            modelBuilder.Entity<Account>()
+                .HasOne(a => a.FinancialYear)
+                .WithMany()
+                .HasForeignKey(c => c.FinancialYearId);
+
             //Finance Setup
+            modelBuilder.Entity<Voucher>()
+                .HasOne(a => a.FinancialYear)
+                .WithMany()
+                .HasForeignKey(c => c.FinancialYearId);
+
             modelBuilder.Entity<DetailAccount>()
                 .HasOne(a => a.SecondSubAccount)
                 .WithMany(b => b.DetailAccounts)
@@ -351,6 +376,11 @@ namespace ErpInfrastructure.Data
                 .HasOne(a => a.DetailAccount)
                 .WithMany()
                 .HasForeignKey(b => b.DetailAccountId);
+
+            modelBuilder.Entity<VoucherDetail>()
+                .HasOne(a => a.Account)
+                .WithMany(b => b.VoucherDetails)
+                .HasForeignKey(c => c.AccountId);
 
             modelBuilder.Entity<Voucher>()
                 .HasOne(a => a.FinancialYear)
@@ -473,7 +503,9 @@ namespace ErpInfrastructure.Data
                       .WithOne(b => b.PatientVital)
                       .HasForeignKey<Visit>(c => c.PatientVitalId);
 
-            //Laboratory
+      //Laboratory
+
+
 
             modelBuilder.Entity<PatientClinicalRecord>()
                 .HasOne(i => i.Tvopu)
@@ -505,6 +537,12 @@ namespace ErpInfrastructure.Data
                 .WithOne(c => c.PatientClinicalRecord)
                 .HasForeignKey<FreezePrepration>(c => c.PatientClinicalRecordId);
 
+
+            modelBuilder.Entity<Biopsy>()
+                .HasOne(i => i.FreezePrepration)
+                .WithOne(c => c.Biopsy)
+                .HasForeignKey<FreezePrepration>(c => c.BiopsyId);
+
             modelBuilder.Entity<PatientClinicalRecord>()
                 .HasOne(i => i.BioChemistryTestOnTreatment)
                 .WithOne(c => c.PatientClinicalRecord)
@@ -526,7 +564,26 @@ namespace ErpInfrastructure.Data
                 .HasForeignKey(b => b.TestUnitId);
 
 
-            //Patient
+      //Patient
+            modelBuilder.Entity<DailyProcedure>()
+              .HasOne(a => a.AssignedConsultant)
+              .WithMany(b => b.AssignedDailyProcedures)
+              .HasForeignKey(c => c.AssignedConsultantId);
+
+            modelBuilder.Entity<DailyProcedure>()
+                .HasOne(a => a.PerformedByConsultant)
+                .WithMany(b => b.PerformedDailyProcedures)
+                .HasForeignKey(c => c.PerformedByConsultantId);
+
+            modelBuilder.Entity<DailyProcedure>()
+                .HasOne(a => a.Patient)
+                .WithMany(b => b.DailyProcedures)
+                .HasForeignKey(c => c.PatientId);
+
+            modelBuilder.Entity<DailyProcedure>()
+              .HasOne(a => a.Procedure)
+              .WithMany()
+              .HasForeignKey(c => c.ProcedureId);
             modelBuilder.Entity<Patient>()
                 .HasOne(a => a.Partner)
                 .WithOne(p => p.Patient)
@@ -690,26 +747,16 @@ namespace ErpInfrastructure.Data
                 .WithMany(b => b.Customers)
                 .HasForeignKey(c => c.ModeOfPaymentId);
 
-            modelBuilder.Entity<Customer>()
-                .HasOne(a => a.SalesPerson)
-                .WithMany(b => b.Customers)
-                .HasForeignKey(c => c.SalesPersonId);
-
             //end
-
-            modelBuilder.Entity<SalesPerson>()
-                .HasOne(a => a.Distributor)
-                .WithMany(b => b.SalesPeople)
-                .HasForeignKey(c => c.DistributorId);
 
             modelBuilder.Entity<Territory>()
                 .HasOne(a => a.Area)
                 .WithMany(b => b.Territories)
                 .HasForeignKey(c => c.AreaId);
 
-            modelBuilder.Entity<Area>()
+            modelBuilder.Entity<City>()
                 .HasOne(a => a.Region)
-                .WithMany(b => b.Areas)
+                .WithMany(b => b.Cities)
                 .HasForeignKey(c => c.RegionId);
 
             modelBuilder.Entity<Territory>()
@@ -717,10 +764,100 @@ namespace ErpInfrastructure.Data
                 .WithOne(b => b.Territory)
                 .HasForeignKey<Distributor>(c => c.TerritoryId);
 
-            modelBuilder.Entity<SalesPerson>()
-                .HasOne(a => a.Distributor)
-                .WithMany(b => b.SalesPeople)
+            //Inventory and Etracker
+            modelBuilder.Entity<Store>()
+                .HasOne(c => c.User)
+                .WithMany(e => e.Stores)
+                .HasForeignKey(c => c.UserId)
+                .IsRequired();
+
+            modelBuilder.Entity<OrderTaking>()
+                .HasOne(c => c.Store)
+                .WithMany(e => e.Orders)
+                .HasForeignKey(c => c.StoreId);
+
+
+            modelBuilder.Entity<StoreVisit>()
+                .HasOne(c => c.Store)
+                .WithMany(e => e.StoreVisits)
+                .HasForeignKey(c => c.StoreId)
+                .IsRequired();
+
+            modelBuilder.Entity<OrderTaking>()
+                .HasOne(c => c.StoreVisit)
+                .WithMany(e => e.OrderTakings)
+                .HasForeignKey(c => c.StoreVisitId)
+                .IsRequired();
+
+            modelBuilder.Entity<Merchandising>()
+                .HasOne(c => c.StoreVisit)
+                .WithMany(e => e.Merchandisings)
+                .HasForeignKey(c => c.StoreVisitId)
+                .IsRequired();
+
+            modelBuilder.Entity<OutletStock>()
+                .HasOne(c => c.StoreVisit)
+                .WithMany(e => e.OutletStocks)
+                .HasForeignKey(c => c.StoreVisitId)
+                .IsRequired();
+
+            modelBuilder.Entity<CompetatorStock>()
+                .HasOne(c => c.StoreVisit)
+                .WithMany(e => e.CompetatorStocks)
+                .HasForeignKey(c => c.StoreVisitId)
+                .IsRequired();
+
+            modelBuilder.Entity<Territory>()
+               .HasOne(c => c.Area)
+               .WithMany(e => e.Territories)
+               .HasForeignKey(c => c.AreaId)
+               .IsRequired();
+
+            modelBuilder.Entity<Section>()
+               .HasOne(c => c.Territory)
+               .WithMany(e => e.Sections)
+               .HasForeignKey(c => c.TerritoryId)
+               .IsRequired();
+
+            modelBuilder.Entity<Subsection>()
+               .HasOne(c => c.Section)
+               .WithMany(e => e.Subsections)
+               .HasForeignKey(c => c.SectionId)
+               .IsRequired();
+
+            modelBuilder.Entity<Store>()
+               .HasOne(c => c.Subsection)
+               .WithMany(e => e.Stores)
+               .HasForeignKey(c => c.SubsectionId)
+               .IsRequired();
+
+            modelBuilder.Entity<VisitDay>()
+               .HasOne(c => c.Store)
+               .WithMany(e => e.VisitDays)
+               .HasForeignKey(c => c.StoreId);
+
+            modelBuilder.Entity<Subsection>()
+               .HasOne(c => c.User)
+               .WithMany(e => e.Subsections)
+               .HasForeignKey(c => c.UserId);
+
+            modelBuilder.Entity<User>()
+                .HasOne(c => c.Distributor)
+                .WithMany(e => e.Users)
                 .HasForeignKey(c => c.DistributorId);
+
+
+            modelBuilder.Entity<Section>()
+                .HasOne(a => a.User)
+                .WithOne(b => b.Section)
+                .HasForeignKey<User>(b => b.SectionId);
+
+            modelBuilder.Entity<Territory>()
+                .HasOne(a => a.Distributor)
+                .WithOne(b => b.Territory)
+                .HasForeignKey<Distributor>(b => b.TerritoryId);
+
+
 
             //Purchase
             //Purchase Indent
@@ -885,11 +1022,6 @@ namespace ErpInfrastructure.Data
                 .HasForeignKey(c => c.InventoryId);
 
             modelBuilder.Entity<SalesOrder>()
-                .HasOne(a => a.SalesPerson)
-                .WithMany(b => b.SalesOrders)
-                .HasForeignKey(c => c.SalesPersonId);
-
-            modelBuilder.Entity<SalesOrder>()
                 .HasOne(a => a.Customer)
                 .WithMany(b => b.SalesOrders)
                 .HasForeignKey(c => c.CustomerId);
@@ -1029,6 +1161,11 @@ namespace ErpInfrastructure.Data
                 .HasOne(a => a.Country)
                 .WithMany(b => b.Cities)
                 .HasForeignKey(c => c.CountryId);
+
+            modelBuilder.Entity<Area>()
+               .HasOne(a => a.City)
+               .WithMany(b => b.Areas)
+               .HasForeignKey(c => c.CityId);
 
             modelBuilder.Entity<Branch>()
             .HasOne(a => a.City)
@@ -1199,6 +1336,11 @@ namespace ErpInfrastructure.Data
                 .HasOne(a => a.User)
                 .WithMany(b => b.Relations)
                 .HasForeignKey(c => c.UserId);
+
+            modelBuilder.Entity<Relation>()
+                .HasOne(a => a.DependantsRelation)
+                .WithMany()
+                .HasForeignKey(c => c.DependantsRelationId);
 
             modelBuilder.Entity<User>()
                 .HasOne(a => a.UserPhoto)
@@ -1527,7 +1669,7 @@ namespace ErpInfrastructure.Data
 
             modelBuilder.Entity<LeaveType>()
                 .HasOne(a => a.LeaveSubType)
-                .WithMany()
+                .WithMany(b => b.LeaveTypes)
                 .HasForeignKey(b => b.LeaveSubTypeId);
 
             modelBuilder.Entity<LeaveTypeBalance>()
@@ -2033,6 +2175,7 @@ namespace ErpInfrastructure.Data
         }
 
         //Finance
+        public DbSet<Account> Accounts { get; set; }
         public DbSet<MasterAccount> MasterAccounts { get; set; }
         public DbSet<DetailAccount> DetailAccounts { get; set; }
         public DbSet<SubAccount> SubAccounts { get; set; }
@@ -2064,11 +2207,12 @@ namespace ErpInfrastructure.Data
         public DbSet<VisitDiagnosis> VisitDiagnoses { get; set; }
         public DbSet<VisitTest> VisitTests { get; set; }
         public DbSet<PatientPackage> PatientPackages { get; set; }
-
+        public DbSet<DailyProcedure> DailyProcedures { get; set; }
         //HimsSetup
         public DbSet<TestType> TestTypes { get; set; }
         public DbSet<TestCategory> TestCategories { get; set; }
         public DbSet<Package> Packages { get; set; }
+        public DbSet<Procedure> Procedures { get; set; }
 
         //Visit
         public DbSet<PatientVital> PatientVitals { get; set; }
@@ -2134,7 +2278,6 @@ namespace ErpInfrastructure.Data
         public DbSet<PackType> PackTypes { get; set; }
         public DbSet<PackageType> PackageTypes { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
-        public DbSet<SalesPerson> SalesPeople { get; set; }
         public DbSet<Tax> Taxes { get; set; }
         public DbSet<Transport> Transports { get; set; }
         public DbSet<Units> Units { get; set; }
@@ -2147,7 +2290,18 @@ namespace ErpInfrastructure.Data
         public DbSet<CustomerType> CustomerTypes { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<Territory> Territories { get; set; }
+        public DbSet<Section> Sections { get; set; }
+        public DbSet<Subsection> Subsections { get; set; }
+        public DbSet<Store> Stores { get; set; }
         public DbSet<InventoryCurrency> InventoryCurrencies { get; set; }
+
+        //Tracker
+        public DbSet<CompetatorStock> CompetatorStocks { get; set; }
+        public DbSet<Merchandising> Merchandisings { get; set; }
+        public DbSet<OrderTaking> OrderTakings { get; set; }
+        public DbSet<OutletStock> OutletStocks { get; set; }
+        public DbSet<StoreVisit> StoreVisits { get; set; }
+        public DbSet<VisitDay> VisitDays { get; set; }
 
         //Sale
         public DbSet<SalesIndent> SalesIndents { get; set; }
@@ -2203,6 +2357,7 @@ namespace ErpInfrastructure.Data
         public DbSet<UserLanguage> UserLanguages { get; set; }
         public DbSet<UserPhoto> UserPhotos { get; set; }
         public DbSet<UserDocument> UserDocuments { get; set; }
+        public DbSet<DependantsRelation> DependantsRelations { get; set; }
 
         //HR Leave
         public DbSet<LeaveApproval> LeaveApprovals { get; set; }
@@ -2288,7 +2443,7 @@ namespace ErpInfrastructure.Data
         public DbSet<PayrollBank> PayrollBanks { get; set; }
         public DbSet<PayrollType> PayrollTypes { get; set; }
         public DbSet<PayrollYear> PayrollYears { get; set; }
-        public DbSet<PfPayment> pfPayments { get; set; }
+        public DbSet<PfPayment> PfPayments { get; set; }
         public DbSet<SalaryCalculationType> SalaryCalculationTypesLeavingReasons { get; set; }
         public DbSet<SalaryStructure> SalaryStructures { get; set; }
         public DbSet<SalaryStructureDetail> SalaryStructureDetails { get; set; }

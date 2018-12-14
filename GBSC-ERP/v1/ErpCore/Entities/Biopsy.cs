@@ -1,4 +1,4 @@
-﻿using ErpCore.Entities.HimsSetup;
+using ErpCore.Entities.HimsSetup;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -46,5 +46,7 @@ namespace ErpCore.Entities
         public long? PatientClinicalRecordId { get; set; }
 
         public PatientClinicalRecord PatientClinicalRecord { get; set; }
-    }
+
+        public FreezePrepration FreezePrepration { get; set; }
+  }
 }

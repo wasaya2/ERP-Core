@@ -257,6 +257,7 @@
             this.xrLabel7.StylePriority.UseTextAlignment = false;
             this.xrLabel7.Text = "15-08-2018";
             this.xrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrLabel7.TextFormatString = "{0:dd-MMM-yy}";
             // 
             // table2
             // 
@@ -483,6 +484,7 @@
             this.tableCell33.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.tableCell33.StylePriority.UseBorders = false;
             this.tableCell33.Text = "5";
+            this.tableCell33.TextFormatString = "{0:dd-MMM-yy}";
             this.tableCell33.Weight = 0.92484819650430672D;
             // 
             // tableCell34
@@ -613,6 +615,7 @@
             this.xrLabel3.StylePriority.UseTextAlignment = false;
             this.xrLabel3.Text = "15-08-2018";
             this.xrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrLabel3.TextFormatString = "{0:dd-MMM-yy}";
             // 
             // xrLabel2
             // 

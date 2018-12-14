@@ -113,7 +113,7 @@ namespace HimsService
 
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IPackageRepository, PackageRepository>();
-            services.AddScoped<IPatientPackageRepository, PatientPackageRepository>();
+            services.AddScoped<IPatientPackageRepository, PatientPackageRepository>();   
             services.AddScoped<IPartnerRepository, PartnerRepository>();
             services.AddScoped<IPatientInvoiceItemRepository, PatientInvoiceItemRepository>();
             services.AddScoped<IPatientInvoiceRepository, PatientInvoiceRepository>();
@@ -125,6 +125,8 @@ namespace HimsService
             services.AddScoped<IPatientReferenceRepository, PatientReferenceRepository>();
             services.AddScoped<IPatientDocumentRepository, PatientDocumentRepository>();
             services.AddScoped<IConsultantRepository, ConsultantRepository>();
+
+            services.AddScoped<IDailyProcedureRepository, DailyProcedureRepository>();
             //Visit
             services.AddScoped<IPatientVitalRepository, PatientVitalRepository>();
             services.AddScoped<IDiagnosisRepository, DiagnosisRepository>();
@@ -135,6 +137,8 @@ namespace HimsService
             //Setup
             services.AddScoped<ITestTypeRepository, TestTypeRepository>();
             services.AddScoped<ITestCategoryRepository, TestCategoryRepository>();
+             services.AddScoped<IProcedureRepository, ProcedureRepository>();
+
             //Laboratory
             services.AddScoped<IEmbryologistRepository, EmbryologistRepository>();
             services.AddScoped<IEmbryologyCodeRepository, EmbryologistCodeRepository>();

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -52,5 +52,10 @@ namespace ErpCore.Entities
 
         public PatientClinicalRecord PatientClinicalRecord { get; set; }
 
-    }
+
+        public long? BiopsyId { get; set; }
+
+        public Biopsy Biopsy { get; set; }
+
+  }
 }

@@ -81,7 +81,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetAssignRosters", Name = "GetAssignRosters")]
         public IEnumerable<AssignRoster> GetAssignRosters()
         {
-            return AssignRoster_repo.GetAll().OrderByDescending(a => a.AssignRosterId );
+            return AssignRoster_repo.GetAll(r => r.UserAssignRosters).OrderByDescending(a => a.AssignRosterId );
         }
 
         [HttpGet("GetAssignRoster/{id}", Name = "GetAssignRoster")]
@@ -451,7 +451,7 @@ namespace SystemAdministrationService.Controllers
         }
 
         [HttpGet("GetShift/{id}", Name = "GetShift")]
-        public Shift GetShift(long id) => Shift_repo.GetFirst(a => a.ShiftsId == id);
+        public Shift GetShift(long id) => Shift_repo.GetFirst(a => a.ShiftsId == id, b => b.ShiftAttendanceFlags);
 
         [HttpPost("AddShift", Name = "AddShift")]
         [ValidateModelAttribute]
@@ -465,8 +465,16 @@ namespace SystemAdministrationService.Controllers
         [ValidateModelAttribute]
         public IActionResult UpdateShift([FromBody]Shift model)
         {
-            Shift_repo.Update(model);
-            return new OkObjectResult(new { ShiftID = model.ShiftsId });
+            try
+            {
+                ShiftAttendanceFlag_repo.DeleteRange(ShiftAttendanceFlag_repo.GetAll().Where(a => a.ShiftId == model.ShiftsId));
+                Shift_repo.Update(model);
+                return new OkObjectResult(new { ShiftID = model.ShiftsId });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         [HttpDelete("DeleteShift/{id}")]

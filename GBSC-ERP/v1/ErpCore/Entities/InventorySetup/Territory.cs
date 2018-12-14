@@ -7,6 +7,10 @@ namespace ErpCore.Entities.InventorySetup
 {
     public class Territory
     {
+        public Territory()
+        {
+            Sections = new HashSet<Section>();
+        }
         [Key]
         public long TerritoryId { get; set; }
         public string Name { get; set; }
@@ -14,8 +18,12 @@ namespace ErpCore.Entities.InventorySetup
 
         public long? AreaId { get; set; }
         public Area Area { get; set; }
-        
+
+        public long? DistributorId { get; set; }
+
         public Distributor Distributor { get; set; }
+
+        public IEnumerable<Section> Sections { get; set; }
 
     }
 }

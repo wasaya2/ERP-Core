@@ -40,6 +40,7 @@ namespace SystemAdministrationService.Controllers
         private IUserDocumentRepository Doc_repo;
         private IUserPhotoRepository Photo_repo;
         private IUserCompanyRepository UserCompany_repo;
+        private IDependantsRelationRepository Dependantsrelation_repo;
 
 
         public HrSetupController( 
@@ -61,7 +62,8 @@ namespace SystemAdministrationService.Controllers
             IWorkExperienceRepository repo26,
             IUserDocumentRepository repo27,
             IUserPhotoRepository repo28,
-            IUserCompanyRepository repo29
+            IUserCompanyRepository repo29,
+            IDependantsRelationRepository repo30
             
             )
         {
@@ -85,6 +87,7 @@ namespace SystemAdministrationService.Controllers
             Doc_repo = repo27;
             Photo_repo = repo28;
             UserCompany_repo = repo29;
+            Dependantsrelation_repo = repo30;
         }
         
         #region Bank
@@ -551,6 +554,46 @@ namespace SystemAdministrationService.Controllers
                 return NotFound();
             }
             Relation_repo.Delete(a);
+            return Ok();
+        }
+
+        #endregion
+
+        #region DependantsRelation
+        [HttpGet("GetDependantsRelations", Name = "GetDependantsRelations")]
+        public IEnumerable<DependantsRelation> GetDependantsRelations()
+        {
+            return Dependantsrelation_repo.GetAll().OrderByDescending(a => a.DependantsRelationId);
+        }
+
+        [HttpGet("GetDependantsRelation/{id}", Name = "GetDependantsRelation")]
+        public DependantsRelation GetDependantsRelation(long id) => Dependantsrelation_repo.GetFirst(a => a.DependantsRelationId == id);
+
+        [HttpPost("AddDependantsRelation", Name = "AddDependantsRelation")]
+        [ValidateModelAttribute]
+        public IActionResult AddDependantsRelation([FromBody]DependantsRelation model)
+        {
+            Dependantsrelation_repo.Add(model);
+            return new OkObjectResult(new { DependantsRelationID = model.DependantsRelationId });
+        }
+
+        [HttpPut("UpdateDependantsRelation", Name = "UpdateDependantsRelation")]
+        [ValidateModelAttribute]
+        public IActionResult UpdateRelation([FromBody]DependantsRelation model)
+        {
+            Dependantsrelation_repo.Update(model);
+            return new OkObjectResult(new { DependantRelationID = model.DependantsRelationId });
+        }
+
+        [HttpDelete("DeleteDependantsRelation/{id}")]
+        public IActionResult DeleteDependantsRelation(long id)
+        {
+            DependantsRelation a = Dependantsrelation_repo.Find(id);
+            if (a == null)
+            {
+                return NotFound();
+            }
+            Dependantsrelation_repo.Delete(a);
             return Ok();
         }
 

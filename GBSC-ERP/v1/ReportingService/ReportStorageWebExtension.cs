@@ -17,7 +17,6 @@ namespace ReportingService
 
         public ReportStorageWebExtension1()
         {
-            Reports.Add("Products", new TOTAL_PATIENTS_REFFERENCE_SUMMARY());
             Reports.Add("EmployeeInformation", new EmployeeDetail());
             Reports.Add("EmployeeCard", new EmployeeCard());
             Reports.Add("ListofLeavers", new ListOfLeavers());
@@ -38,16 +37,28 @@ namespace ReportingService
             //////////HIMS////////////
             Reports.Add("RegisterationList", new RegisterationInformation());
             Reports.Add("AppointmenSheet", new AppointmenSheet());
-            Reports.Add("NewPatientSheetFcKarachi", new NewPatientSheetFC());
             Reports.Add("DailyActivityReport", new DailyActivityReport1());
+
             Reports.Add("FcProcedureMovementSummary", new FcProcedureMovementSummary());
-            Reports.Add("FcConsultationMovementSummary", new FC_CONSULTATION_MOVEMENT_SUMMARY());
-            Reports.Add("SemenConsultationMovementSummary", new SEMEN_CONSULTATION_MOVEMENT_SUMMARY());
             Reports.Add("BloodConsultationMovementSummary", new BloodConsultationMovementSummary1());
+            Reports.Add("SemenConsultationMovementSummary", new SEMEN_CONSULTATION_MOVEMENT_SUMMARY());
 
-    
+            Reports.Add("FcConsultationMovementSummary", new FC_CONSULTATION_MOVEMENT_SUMMARY());
+            Reports.Add("NewPatientSheetSemenKarachi", new NEW_PATIENT_SHEET___SEMEN___KARACHI_());
+            Reports.Add("NewPatientSheetBloodKarachi", new NewPatientSheetBloodKarachi());
 
-            //////////HIMS////////////
+            Reports.Add("NewPatientSheetFcKarachi", new NewPatientSheetFC());
+            Reports.Add("TotalPatientsReferenceSummary", new TOTAL_PATIENTS_REFFERENCE_SUMMARY());
+            Reports.Add("SemenPatientReferenceSummary", new SEMEN_PATIENTS_REFERENCE_SUMMARY());
+
+            Reports.Add("BloodTestReferenceSummary", new XtraReport1());
+            Reports.Add("FcPatientReferenceSummary", new FCPatientReferenceSummary());
+            Reports.Add("NewFcClinicPatientsSummary", new NEW__FC___CLINIC___PATIENTS_SUMMARY());
+ 
+            Reports.Add("SubsequentSemenFreezingList", new SubsequentSemenFreezingList());
+            Reports.Add("MedicineDetails", new MEDICINE_DETAILS());
+            Reports.Add("ConsultantActivtityDetails", new ConsultantActivtityDetails());
+      //////////HIMS////////////
 
     }
 

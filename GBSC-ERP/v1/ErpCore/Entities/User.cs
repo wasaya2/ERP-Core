@@ -16,6 +16,7 @@ using ErpCore.Entities.HR.Attendance.AttendanceAdmin;
 using ErpCore.Entities.HR.Attendance;
 using ErpCore.Entities.HR.Attendance.AttendanceSetup;
 using ErpCore.Entities.HR.Payroll;
+using ErpCore.Entities.InventorySetup;
 
 namespace ErpCore.Entities
 {
@@ -119,7 +120,7 @@ namespace ErpCore.Entities
         public IEnumerable<Appointment> Appointments { get; set; }
 
         //Setup
-        
+
         public long? UserPhotoId { get; set; }
         public UserPhoto UserPhoto { get; set; }
 
@@ -206,6 +207,17 @@ namespace ErpCore.Entities
 
         //Loan
         public IEnumerable<UserLoan> UserLoans { get; set; }
+
+        public long? SectionId { get; set; }
+        public Section Section { get; set; }
+
+        public long? DistributorId { get; set; }
+        public Distributor Distributor { get; set; }
+
+        public IEnumerable<Subsection> Subsections { get; set; }
+
+        public IEnumerable<Store> Stores { get; set; }
+
     }
 }
 

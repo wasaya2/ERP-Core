@@ -21,8 +21,11 @@ namespace ErpCore.Entities.HRSetup
         public string Country { get; set; }
         public string City { get; set; }
         public string Province { get; set; }
-        public string ZipCode { get; set; }  
-         
+        public string ZipCode { get; set; }
+
+        public long? DependantsRelationId { get; set; }
+        public DependantsRelation DependantsRelation { get; set; }
+
         public long? UserId { get; set; }
         public User User { get; set; }
     }

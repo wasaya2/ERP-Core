@@ -18,7 +18,7 @@ namespace ErpCore.Entities.InventorySetup
 
         public IEnumerable<Territory> Territories { get; set; }
 
-        public long? RegionId { get; set; }
-        public Region Region { get; set; }
+        public long? CityId { get; set; }
+        public City City { get; set; }
     }
 }
