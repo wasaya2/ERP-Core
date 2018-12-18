@@ -30,14 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LabSummary));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
-            this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.vendorLogo = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.vendorLogo2 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.vendorTable = new DevExpress.XtraReports.UI.XRTable();
+            this.vendorTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.vendorName = new DevExpress.XtraReports.UI.XRTableCell();
+            this.vendorPhone = new DevExpress.XtraReports.UI.XRTableCell();
+            this.vendorEmail = new DevExpress.XtraReports.UI.XRTableCell();
+            this.vendorTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.vendorAddress = new DevExpress.XtraReports.UI.XRTableCell();
+            this.vendorEmptyCell = new DevExpress.XtraReports.UI.XRTableCell();
+            this.vendorWebsite = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.table2 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -68,19 +73,16 @@
             this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell24 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell25 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.vendorLogo2 = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.vendorTable = new DevExpress.XtraReports.UI.XRTable();
-            this.vendorTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.vendorName = new DevExpress.XtraReports.UI.XRTableCell();
-            this.vendorPhone = new DevExpress.XtraReports.UI.XRTableCell();
-            this.vendorEmail = new DevExpress.XtraReports.UI.XRTableCell();
-            this.vendorTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.vendorAddress = new DevExpress.XtraReports.UI.XRTableCell();
-            this.vendorEmptyCell = new DevExpress.XtraReports.UI.XRTableCell();
-            this.vendorWebsite = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.FromDate = new DevExpress.XtraReports.Parameters.Parameter();
+            this.ToDate = new DevExpress.XtraReports.Parameters.Parameter();
+            ((System.ComponentModel.ISupportInitialize)(this.vendorTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vendorTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
@@ -89,26 +91,6 @@
             this.vendorLogo});
             this.TopMargin.HeightF = 105F;
             this.TopMargin.Name = "TopMargin";
-            // 
-            // BottomMargin
-            // 
-            this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.vendorLogo2,
-            this.vendorTable});
-            this.BottomMargin.Name = "BottomMargin";
-            // 
-            // Detail
-            // 
-            this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.table2,
-            this.table4,
-            this.xrLabel6,
-            this.xrLabel7,
-            this.xrLabel3,
-            this.xrLabel2,
-            this.xrLabel1});
-            this.Detail.HeightF = 167.5F;
-            this.Detail.Name = "Detail";
             // 
             // vendorLogo
             // 
@@ -122,66 +104,130 @@
             this.vendorLogo.StylePriority.UseBorders = false;
             this.vendorLogo.StylePriority.UsePadding = false;
             // 
-            // xrLabel6
+            // BottomMargin
             // 
-            this.xrLabel6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(543.6153F, 39.83335F);
-            this.xrLabel6.Multiline = true;
-            this.xrLabel6.Name = "xrLabel6";
-            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel6.SizeF = new System.Drawing.SizeF(85.12818F, 23F);
-            this.xrLabel6.StylePriority.UseFont = false;
-            this.xrLabel6.StylePriority.UseTextAlignment = false;
-            this.xrLabel6.Text = "To Date:";
-            this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.vendorLogo2,
+            this.vendorTable});
+            this.BottomMargin.Name = "BottomMargin";
             // 
-            // xrLabel7
+            // vendorLogo2
             // 
-            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(628.7435F, 39.83335F);
-            this.xrLabel7.Multiline = true;
-            this.xrLabel7.Name = "xrLabel7";
-            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel7.SizeF = new System.Drawing.SizeF(100F, 23F);
-            this.xrLabel7.StylePriority.UseTextAlignment = false;
-            this.xrLabel7.Text = "15-08-2018";
-            this.xrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.vendorLogo2.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopLeft;
+            this.vendorLogo2.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("vendorLogo2.ImageSource"));
+            this.vendorLogo2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 10F);
+            this.vendorLogo2.Name = "vendorLogo2";
+            this.vendorLogo2.SizeF = new System.Drawing.SizeF(118.3333F, 55.83334F);
+            this.vendorLogo2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
+            this.vendorLogo2.StylePriority.UseBorderColor = false;
+            this.vendorLogo2.StylePriority.UseBorders = false;
+            this.vendorLogo2.StylePriority.UsePadding = false;
             // 
-            // xrLabel3
+            // vendorTable
             // 
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(438.4388F, 39.83337F);
-            this.xrLabel3.Multiline = true;
-            this.xrLabel3.Name = "xrLabel3";
-            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(100F, 23F);
-            this.xrLabel3.StylePriority.UseTextAlignment = false;
-            this.xrLabel3.Text = "15-08-2018";
-            this.xrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.vendorTable.BorderColor = System.Drawing.Color.Gray;
+            this.vendorTable.Borders = DevExpress.XtraPrinting.BorderSide.Left;
+            this.vendorTable.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.vendorTable.LocationFloat = new DevExpress.Utils.PointFloat(438.4388F, 10F);
+            this.vendorTable.Name = "vendorTable";
+            this.vendorTable.Padding = new DevExpress.XtraPrinting.PaddingInfo(12, 0, 0, 0, 100F);
+            this.vendorTable.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.vendorTableRow1,
+            this.vendorTableRow2});
+            this.vendorTable.SizeF = new System.Drawing.SizeF(623.5612F, 80F);
+            this.vendorTable.StylePriority.UseBorderColor = false;
+            this.vendorTable.StylePriority.UseBorders = false;
+            this.vendorTable.StylePriority.UseFont = false;
+            this.vendorTable.StylePriority.UsePadding = false;
             // 
-            // xrLabel2
+            // vendorTableRow1
             // 
-            this.xrLabel2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(353.3105F, 39.83335F);
-            this.xrLabel2.Multiline = true;
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(85.12818F, 23F);
-            this.xrLabel2.StylePriority.UseFont = false;
-            this.xrLabel2.StylePriority.UseTextAlignment = false;
-            this.xrLabel2.Text = "From Date:";
-            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.vendorTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.vendorName,
+            this.vendorPhone,
+            this.vendorEmail});
+            this.vendorTableRow1.Name = "vendorTableRow1";
+            this.vendorTableRow1.Weight = 1.0000282429281655D;
             // 
-            // xrLabel1
+            // vendorName
             // 
-            this.xrLabel1.Font = new System.Drawing.Font("Segoe UI", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(6.357829E-06F, 0F);
-            this.xrLabel1.Multiline = true;
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(1062F, 28.76924F);
-            this.xrLabel1.StylePriority.UseFont = false;
-            this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.Text = "Lab Summary";
-            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.vendorName.CanShrink = true;
+            this.vendorName.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.vendorName.Name = "vendorName";
+            this.vendorName.StylePriority.UseFont = false;
+            this.vendorName.StylePriority.UseTextAlignment = false;
+            this.vendorName.Text = "Address";
+            this.vendorName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            this.vendorName.Weight = 3.2160869766043354D;
+            // 
+            // vendorPhone
+            // 
+            this.vendorPhone.CanShrink = true;
+            this.vendorPhone.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.vendorPhone.Name = "vendorPhone";
+            this.vendorPhone.StylePriority.UseFont = false;
+            this.vendorPhone.StylePriority.UseTextAlignment = false;
+            this.vendorPhone.Text = "Phone";
+            this.vendorPhone.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            this.vendorPhone.Weight = 2.3857055240558696D;
+            // 
+            // vendorEmail
+            // 
+            this.vendorEmail.CanShrink = true;
+            this.vendorEmail.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.vendorEmail.Name = "vendorEmail";
+            this.vendorEmail.StylePriority.UseFont = false;
+            this.vendorEmail.StylePriority.UseTextAlignment = false;
+            this.vendorEmail.Text = "Fax";
+            this.vendorEmail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            this.vendorEmail.Weight = 2.8008962503301023D;
+            // 
+            // vendorTableRow2
+            // 
+            this.vendorTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.vendorAddress,
+            this.vendorEmptyCell,
+            this.vendorWebsite});
+            this.vendorTableRow2.Name = "vendorTableRow2";
+            this.vendorTableRow2.Weight = 1.57413724941719D;
+            // 
+            // vendorAddress
+            // 
+            this.vendorAddress.CanShrink = true;
+            this.vendorAddress.Multiline = true;
+            this.vendorAddress.Name = "vendorAddress";
+            this.vendorAddress.StylePriority.UseBorders = false;
+            this.vendorAddress.StylePriority.UseTextAlignment = false;
+            this.vendorAddress.Text = "F-6/1, Block-8, KDA Scheme No.5,\r\nClifton, Karachi-75600";
+            this.vendorAddress.Weight = 3.2160869766043354D;
+            // 
+            // vendorEmptyCell
+            // 
+            this.vendorEmptyCell.CanShrink = true;
+            this.vendorEmptyCell.Multiline = true;
+            this.vendorEmptyCell.Name = "vendorEmptyCell";
+            this.vendorEmptyCell.Text = "92 21 35361846\r\n          35361397 \r\n          35810049";
+            this.vendorEmptyCell.Weight = 2.3857055240558696D;
+            // 
+            // vendorWebsite
+            // 
+            this.vendorWebsite.CanShrink = true;
+            this.vendorWebsite.Name = "vendorWebsite";
+            this.vendorWebsite.Text = "021-35361397";
+            this.vendorWebsite.Weight = 2.8008962503301023D;
+            // 
+            // Detail
+            // 
+            this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.table2,
+            this.table4,
+            this.xrLabel6,
+            this.xrLabel7,
+            this.xrLabel3,
+            this.xrLabel2,
+            this.xrLabel1});
+            this.Detail.HeightF = 167.5F;
+            this.Detail.Name = "Detail";
             // 
             // table2
             // 
@@ -699,110 +745,86 @@
             this.xrTableCell25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell25.Weight = 0.32496822277204779D;
             // 
-            // vendorLogo2
+            // xrLabel6
             // 
-            this.vendorLogo2.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopLeft;
-            this.vendorLogo2.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("vendorLogo2.ImageSource"));
-            this.vendorLogo2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 10F);
-            this.vendorLogo2.Name = "vendorLogo2";
-            this.vendorLogo2.SizeF = new System.Drawing.SizeF(118.3333F, 55.83334F);
-            this.vendorLogo2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
-            this.vendorLogo2.StylePriority.UseBorderColor = false;
-            this.vendorLogo2.StylePriority.UseBorders = false;
-            this.vendorLogo2.StylePriority.UsePadding = false;
+            this.xrLabel6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(543.6153F, 39.83335F);
+            this.xrLabel6.Multiline = true;
+            this.xrLabel6.Name = "xrLabel6";
+            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel6.SizeF = new System.Drawing.SizeF(85.12818F, 23F);
+            this.xrLabel6.StylePriority.UseFont = false;
+            this.xrLabel6.StylePriority.UseTextAlignment = false;
+            this.xrLabel6.Text = "To Date:";
+            this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
-            // vendorTable
+            // xrLabel7
             // 
-            this.vendorTable.BorderColor = System.Drawing.Color.Gray;
-            this.vendorTable.Borders = DevExpress.XtraPrinting.BorderSide.Left;
-            this.vendorTable.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.vendorTable.LocationFloat = new DevExpress.Utils.PointFloat(438.4388F, 10F);
-            this.vendorTable.Name = "vendorTable";
-            this.vendorTable.Padding = new DevExpress.XtraPrinting.PaddingInfo(12, 0, 0, 0, 100F);
-            this.vendorTable.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.vendorTableRow1,
-            this.vendorTableRow2});
-            this.vendorTable.SizeF = new System.Drawing.SizeF(623.5612F, 80F);
-            this.vendorTable.StylePriority.UseBorderColor = false;
-            this.vendorTable.StylePriority.UseBorders = false;
-            this.vendorTable.StylePriority.UseFont = false;
-            this.vendorTable.StylePriority.UsePadding = false;
+            this.xrLabel7.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?ToDate")});
+            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(628.7435F, 39.83335F);
+            this.xrLabel7.Multiline = true;
+            this.xrLabel7.Name = "xrLabel7";
+            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel7.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel7.StylePriority.UseTextAlignment = false;
+            this.xrLabel7.Text = "15-08-2018";
+            this.xrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrLabel7.TextFormatString = "{0:dd/MM/yyyy}";
             // 
-            // vendorTableRow1
+            // xrLabel3
             // 
-            this.vendorTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.vendorName,
-            this.vendorPhone,
-            this.vendorEmail});
-            this.vendorTableRow1.Name = "vendorTableRow1";
-            this.vendorTableRow1.Weight = 1.0000282429281655D;
+            this.xrLabel3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?FromDate")});
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(438.4388F, 39.83337F);
+            this.xrLabel3.Multiline = true;
+            this.xrLabel3.Name = "xrLabel3";
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel3.StylePriority.UseTextAlignment = false;
+            this.xrLabel3.Text = "15-08-2018";
+            this.xrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrLabel3.TextFormatString = "{0:dd/MM/yyyy}";
             // 
-            // vendorName
+            // xrLabel2
             // 
-            this.vendorName.CanShrink = true;
-            this.vendorName.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.vendorName.Name = "vendorName";
-            this.vendorName.StylePriority.UseFont = false;
-            this.vendorName.StylePriority.UseTextAlignment = false;
-            this.vendorName.Text = "Address";
-            this.vendorName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            this.vendorName.Weight = 3.2160869766043354D;
+            this.xrLabel2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(353.3105F, 39.83335F);
+            this.xrLabel2.Multiline = true;
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(85.12818F, 23F);
+            this.xrLabel2.StylePriority.UseFont = false;
+            this.xrLabel2.StylePriority.UseTextAlignment = false;
+            this.xrLabel2.Text = "From Date:";
+            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
-            // vendorPhone
+            // xrLabel1
             // 
-            this.vendorPhone.CanShrink = true;
-            this.vendorPhone.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.vendorPhone.Name = "vendorPhone";
-            this.vendorPhone.StylePriority.UseFont = false;
-            this.vendorPhone.StylePriority.UseTextAlignment = false;
-            this.vendorPhone.Text = "Phone";
-            this.vendorPhone.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            this.vendorPhone.Weight = 2.3857055240558696D;
+            this.xrLabel1.Font = new System.Drawing.Font("Segoe UI", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(6.357829E-06F, 0F);
+            this.xrLabel1.Multiline = true;
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(1062F, 28.76924F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
+            this.xrLabel1.Text = "Lab Summary";
+            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
-            // vendorEmail
+            // FromDate
             // 
-            this.vendorEmail.CanShrink = true;
-            this.vendorEmail.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.vendorEmail.Name = "vendorEmail";
-            this.vendorEmail.StylePriority.UseFont = false;
-            this.vendorEmail.StylePriority.UseTextAlignment = false;
-            this.vendorEmail.Text = "Fax";
-            this.vendorEmail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            this.vendorEmail.Weight = 2.8008962503301023D;
+            this.FromDate.AllowNull = true;
+            this.FromDate.Description = "From Date";
+            this.FromDate.Name = "FromDate";
+            this.FromDate.Type = typeof(System.DateTime);
             // 
-            // vendorTableRow2
+            // ToDate
             // 
-            this.vendorTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.vendorAddress,
-            this.vendorEmptyCell,
-            this.vendorWebsite});
-            this.vendorTableRow2.Name = "vendorTableRow2";
-            this.vendorTableRow2.Weight = 1.57413724941719D;
-            // 
-            // vendorAddress
-            // 
-            this.vendorAddress.CanShrink = true;
-            this.vendorAddress.Multiline = true;
-            this.vendorAddress.Name = "vendorAddress";
-            this.vendorAddress.StylePriority.UseBorders = false;
-            this.vendorAddress.StylePriority.UseTextAlignment = false;
-            this.vendorAddress.Text = "F-6/1, Block-8, KDA Scheme No.5,\r\nClifton, Karachi-75600";
-            this.vendorAddress.Weight = 3.2160869766043354D;
-            // 
-            // vendorEmptyCell
-            // 
-            this.vendorEmptyCell.CanShrink = true;
-            this.vendorEmptyCell.Multiline = true;
-            this.vendorEmptyCell.Name = "vendorEmptyCell";
-            this.vendorEmptyCell.Text = "92 21 35361846\r\n          35361397 \r\n          35810049";
-            this.vendorEmptyCell.Weight = 2.3857055240558696D;
-            // 
-            // vendorWebsite
-            // 
-            this.vendorWebsite.CanShrink = true;
-            this.vendorWebsite.Name = "vendorWebsite";
-            this.vendorWebsite.Text = "021-35361397";
-            this.vendorWebsite.Weight = 2.8008962503301023D;
+            this.ToDate.AllowNull = true;
+            this.ToDate.Description = "To Date";
+            this.ToDate.Name = "ToDate";
+            this.ToDate.Type = typeof(System.DateTime);
             // 
             // LabSummary
             // 
@@ -815,10 +837,13 @@
             this.Margins = new System.Drawing.Printing.Margins(18, 20, 105, 100);
             this.PageHeight = 850;
             this.PageWidth = 1100;
+            this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
+            this.FromDate,
+            this.ToDate});
             this.Version = "18.2";
+            ((System.ComponentModel.ISupportInitialize)(this.vendorTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vendorTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -874,5 +899,7 @@
         private DevExpress.XtraReports.UI.XRTableCell vendorAddress;
         private DevExpress.XtraReports.UI.XRTableCell vendorEmptyCell;
         private DevExpress.XtraReports.UI.XRTableCell vendorWebsite;
+        private DevExpress.XtraReports.Parameters.Parameter FromDate;
+        private DevExpress.XtraReports.Parameters.Parameter ToDate;
     }
 }

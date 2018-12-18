@@ -21,7 +21,7 @@ namespace SystemAdministrationService.Repos
                 return null;
             }
             var userfeatures = (from user in Db.Users where user.UserId == userid
-                                join rolefeatures in Db.RoleFeatures on user.RoleID equals rolefeatures.RoleId
+                                join rolefeatures in Db.RoleFeatures on user.RoleId equals rolefeatures.RoleId
                                 join features in Db.Features on rolefeatures.FeatureId equals features.FeatureId
                                 select new UserFeaturesViewModel
                                 {
@@ -42,7 +42,7 @@ namespace SystemAdministrationService.Repos
                 return null;
             }
             var usermodules = (from user in Db.Users where user.UserId == id
-                               join rolemodules in Db.RoleModules on user.RoleID equals rolemodules.RoleId
+                               join rolemodules in Db.RoleModules on user.RoleId equals rolemodules.RoleId
                                join modules in Db.Modules on rolemodules.ModuleId equals modules.ModuleId
                                select new UserModulesViewModel
                                {
@@ -244,7 +244,7 @@ namespace SystemAdministrationService.Repos
             {
                 return false;
             }
-            user.RoleID = RoleId;
+            user.RoleId = RoleId;
             Update(user);
             return true;
         }

@@ -21,13 +21,19 @@ namespace ErpCore.Entities.Finance
         public long? AccountLevel { get; set; } //AutoGenerate based on Parent account
         public string Description { get; set; }
         public double? OpeningBalance { get; set; } //Only for detail accounts
-        public double? CurrentBalance { get; set; } // Update when day end process is run
+        //public double? CurrentBalance { get; set; } // Update when day end process is run
 
         public bool? IsBankAccount { get; set; } //True if this is a detail account and a bank account
+        public bool? IsProcessed { get; set; } //Set false as default. Toggle to true when the year End Process has been executed for this account
 
         public long? FinancialYearId { get; set; }
         public FinancialYear FinancialYear { get; set; }
 
         public IEnumerable<VoucherDetail> VoucherDetails { get; set; }
+
+        //Processed and Unprocessed ledger
+        public long? UnprocessedAccountsLedgeId { get; set; }
+
+        public long? ProcessedAccountsLedgerId { get; set; }
     }
 }

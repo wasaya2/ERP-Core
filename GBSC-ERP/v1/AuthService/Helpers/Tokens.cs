@@ -22,15 +22,15 @@ namespace AuthService.Helpers
 
                 var id = identity.Claims.Single(a => a.Type == "id").Value;
 
-                var user1 = Db.Users.Include(u => u.Identity).FirstOrDefault(u=>u.IdentityId == id);
+                var user1 = Db.Users.Include(u => u.Identity).FirstOrDefault(u => u.IdentityId == id);
 
                 var userfeatures = (from user in Db.Users
-                                    join rolefeatures in Db.RoleFeatures on user.RoleID equals rolefeatures.RoleId
+                                    join rolefeatures in Db.RoleFeatures on user.RoleId equals rolefeatures.RoleId
                                     join features in Db.Features on rolefeatures.FeatureId equals features.FeatureId
                                     select features.Name).ToList();
 
                 var usermodules = (from user in Db.Users
-                                   join rolemodules in Db.RoleModules on user.RoleID equals rolemodules.RoleId
+                                   join rolemodules in Db.RoleModules on user.RoleId equals rolemodules.RoleId
                                    join modules in Db.Modules on rolemodules.ModuleId equals modules.ModuleId
                                    where user.UserId == user1.UserId
                                    select modules.Name).ToList();
@@ -40,6 +40,13 @@ namespace AuthService.Helpers
                     //User = usr,
                     Modules = usermodules,
                     Features = userfeatures,
+                    AssignedId = new UserAssignedIds
+                    {
+                        CompanyId = user1.CompanyId,
+                        BranchId = user1.BranchId,
+                        CityId = user1.CityId,
+                        CountryId = user1.CountryId
+                    },
                     Response = new Response
                     {
                         Id = id,

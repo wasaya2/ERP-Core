@@ -127,6 +127,7 @@ namespace HimsService
             services.AddScoped<IConsultantRepository, ConsultantRepository>();
 
             services.AddScoped<IDailyProcedureRepository, DailyProcedureRepository>();
+            services.AddScoped<IDailySemenAnalysis, DailySemenAnalysisRepository>();
             //Visit
             services.AddScoped<IPatientVitalRepository, PatientVitalRepository>();
             services.AddScoped<IDiagnosisRepository, DiagnosisRepository>();

@@ -24,10 +24,10 @@ namespace HimsService.Controllers
             _repo = repo;
         }
 
-        [HttpGet("GetAppointmentPermissions/{userid}/{roleid}/{featureid}", Name = "GetAppointmentPermissions")]
-        public IEnumerable<Permission> GetAppointmentPermissions(long userid, long roleid, long featureid)
+        [HttpGet("GetAppointmentPermissions/{userid}/{RoleId}/{featureid}", Name = "GetAppointmentPermissions")]
+        public IEnumerable<Permission> GetAppointmentPermissions(long userid, long RoleId, long featureid)
         {
-            IEnumerable<Permission> per = _repo.GetFeaturePermissions(userid, roleid, featureid).Permissions.ToList();
+            IEnumerable<Permission> per = _repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
             return per;
         }
 

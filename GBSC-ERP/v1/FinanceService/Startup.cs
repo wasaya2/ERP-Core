@@ -116,6 +116,9 @@ namespace FinanceService
 
             //FinanceSetup
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IUnprocessedAccountsLedgerRepository, UnprocessedAccountsLedgerRepository>();
+            services.AddScoped<IProcessedAccountsLedgerRepository, ProcessedAccountsLedgerRepository>();
+
             services.AddScoped<IMasterAccountRepository, MasterAccountRepository>();
             services.AddScoped<IDetailAccountRepository, DetailAccountRepository>();
             services.AddScoped<ISubAccountRepository, SubAccountRepository>();
@@ -126,6 +129,9 @@ namespace FinanceService
             //Finance
             services.AddScoped<IVoucherRepository, VoucherRepository>();
             services.AddScoped<IVoucherDetailRepository, VoucherDetailRepository>();
+            services.AddScoped<IUnpostedVoucherRepository, UnpostedVoucherRepository>();
+            services.AddScoped<IPostedVoucherRepository, PostedVoucherRepository>();
+
             services.AddScoped<IFinanceSalesReturnRepository, FinanceSalesReturnRepository>();
             services.AddScoped<IFinanceSalesReturnDetailRepository, FinanceSalesReturnDetailRepository>();
             services.AddScoped<IFinanceSalesInvoiceRepository, FinanceSalesInvoiceRepository>();

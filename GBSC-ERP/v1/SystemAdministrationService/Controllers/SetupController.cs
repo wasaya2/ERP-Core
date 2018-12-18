@@ -53,10 +53,10 @@ namespace SystemAdministrationService.Controllers
 
         }
 
-        [HttpGet("GetAdminSetupPermissions/{userid}/{roleid}/{featureid}", Name = "GetAdminSetupPermissions")]
-        public IEnumerable<Permission> GetAdminSetupPermissions(long userid, long roleid, long featureid)
+        [HttpGet("GetAdminSetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetAdminSetupPermissions")]
+        public IEnumerable<Permission> GetAdminSetupPermissions(long userid, long RoleId, long featureid)
         {
-            IEnumerable<Permission> per = per_repo.GetFeaturePermissions(userid, roleid, featureid).Permissions.ToList();
+            IEnumerable<Permission> per = per_repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
             return per;
         }
 
@@ -87,7 +87,13 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetRoles", Name = "GetRoles")]
         public IEnumerable<Role> GetRoles()
         {
-            IEnumerable<Role> ro = role_repo.GetAll(a => a.RoleFeatures, b => b.RoleModules, c => c.Permissions, d => d.Department, e => e.Users);
+            return role_repo.GetAll();
+        }
+
+        [HttpGet("GetRolesByCompanyId/{CompanyId}")]
+        public IEnumerable<Role> GetRolesByCompanyId(long CompanyId)
+        {
+            IEnumerable<Role> ro = role_repo.GetList(r=>r.CompanyId == CompanyId);
             ro = ro.OrderByDescending(a => a.RoleId);
             return ro;
         }
@@ -167,7 +173,7 @@ namespace SystemAdministrationService.Controllers
         public IActionResult UpdateRole([FromBody]Role model)
         {
             role_repo.Update(model);
-            return new OkObjectResult(new { RoleID = model.RoleId });
+            return new OkObjectResult(new { RoleId = model.RoleId });
         }
 
         [HttpPut("UpdateFeature", Name = "UpdateFeature")]
@@ -223,7 +229,7 @@ namespace SystemAdministrationService.Controllers
         public IActionResult AddRole([FromBody]Role model)
         {
             role_repo.Add(model);
-            return new OkObjectResult(new { RoleID = model.RoleId });
+            return new OkObjectResult(new { RoleId = model.RoleId });
         }
 
         [HttpPost("AddFeature", Name = "AddFeature")]
@@ -250,80 +256,6 @@ namespace SystemAdministrationService.Controllers
             return new OkObjectResult(new { ModuleID = model.ModuleId });
         }
 
-        [HttpPost("AddModuleWithAllFeatures")]
-        [ValidateModelAttribute]
-        public IActionResult AddModuleWithAllFeatures([FromBody]Module module)
-        {
-            var AllFeatures = ReadJson();
-
-            string[] features = null;
-
-            if (module.Name == "Human Resource Management")
-            {
-                features = AllFeatures.HRMS;
-            }
-            if (module.Name == "Hospital Management System")
-            {
-                features = AllFeatures.HIMS;
-            }
-            if (module.Name == "Payroll Management System")
-            {
-                features = AllFeatures.Payroll;
-            }
-            if (module.Name == "Lab Information System")
-            {
-                features = AllFeatures.Lab;
-            }
-
-            List<Feature> featureList = new List<Feature>();
-
-            if (features != null)
-            {
-                foreach (var feature in features)
-                {
-
-                    var feat = new Feature
-                    {
-                        ModuleId = module.ModuleId,
-                        Name = feature
-                    };
-
-                    featureList.Add(feat);
-                }
-
-                module.Features = featureList;
-            }
-
-            _module_repo.Add(module);
-
-            return new OkObjectResult(new { ModuleID = module.ModuleId });
-        }
-
-        internal FeaturesViewModel ReadJson()
-        {
-            var rootPath = System.IO.Directory.GetCurrentDirectory();
-
-            DirectoryInfo d = new DirectoryInfo(Path.Combine(rootPath, "JsonFiles"));
-
-            FileInfo[] Files = d.GetFiles("Features.json"); //Getting JSON files
-
-            foreach (var file in Files)
-            {
-                using (StreamReader r = new StreamReader(file.FullName))
-                {
-                    var json = r.ReadToEnd();
-                    var jobj = JObject.Parse(json);
-                    var result = jobj.ToString();
-
-                    var featurs = Newtonsoft.Json.JsonConvert.DeserializeObject<FeaturesViewModel>(result);
-
-                    return featurs;
-                }
-            }
-
-            return null;
-        }
-
 
         #region City
         [HttpGet("GetCities", Name = "GetCities")]
@@ -334,6 +266,12 @@ namespace SystemAdministrationService.Controllers
 
         [HttpGet("GetCity/{id}", Name = "GetCity")]
         public City GetCity(long id) => City_repo.GetFirst(a => a.CityId == id);
+
+        [HttpGet("GetCitiesByCompanyId/{CompanyId}")]
+        public IEnumerable<City> GetCitiesByCompanyId(long CompanyId)
+        {
+            return City_repo.GetList(c => c.CompanyId == CompanyId);
+        }
 
         [HttpPost("AddCity", Name = "AddCity")]
         [ValidateModelAttribute]

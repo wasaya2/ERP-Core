@@ -56,10 +56,10 @@ namespace InventoryService.Controllers
             returnitem_repo = returnitem;
         }
 
-        [HttpGet("GetSalesPermissions/{userid}/{roleid}/{featureid}", Name = "GetSalesPermissions")]
-        public IEnumerable<Permission> GetSalesPermissions(long userid, long roleid, long featureid)
+        [HttpGet("GetSalesPermissions/{userid}/{RoleId}/{featureid}", Name = "GetSalesPermissions")]
+        public IEnumerable<Permission> GetSalesPermissions(long userid, long RoleId, long featureid)
         {
-            IEnumerable<Permission> per = ind_repo.GetFeaturePermissions(userid, roleid, featureid).Permissions.ToList();
+            IEnumerable<Permission> per = ind_repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
             return per;
         }
 

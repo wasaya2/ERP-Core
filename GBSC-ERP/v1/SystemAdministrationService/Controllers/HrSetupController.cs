@@ -406,11 +406,11 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetGroups", Name = "GetGroups")]
         public IEnumerable<Group> GetGroups()
         {
-            return Group_repo.GetAll().OrderByDescending(a=>a.GroupId);
+            return Group_repo.GetAll(b=>b.Users).OrderByDescending(a=>a.GroupId);
         }
 
         [HttpGet("GetGroup/{id}", Name = "GetGroup")]
-        public Group GetGroup(long id) => Group_repo.GetFirst(a => a.GroupId == id);
+        public Group GetGroup(long id) => Group_repo.GetFirst(a => a.GroupId == id, b => b.Users);
 
         [HttpPost("AddGroup", Name = "AddGroup")]
         [ValidateModelAttribute]

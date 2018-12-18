@@ -30,10 +30,10 @@ namespace HimsService.Controllers
             Returnitem_repo = Returnitemrepo;
         }
 
-        [HttpGet("GetPatientInvoicePermissions/{userid}/{roleid}/{featureid}", Name = "GetPatientInvoicePermissions")]
-        public IEnumerable<Permission> GetPatientInvoicePermissions(long userid, long roleid, long featureid)
+        [HttpGet("GetPatientInvoicePermissions/{userid}/{RoleId}/{featureid}", Name = "GetPatientInvoicePermissions")]
+        public IEnumerable<Permission> GetPatientInvoicePermissions(long userid, long RoleId, long featureid)
         {
-            IEnumerable<Permission> per = _repo.GetFeaturePermissions(userid, roleid, featureid).Permissions.ToList();
+            IEnumerable<Permission> per = _repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
             return per;
         }
 

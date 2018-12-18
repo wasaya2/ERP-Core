@@ -21,6 +21,7 @@ namespace SystemAdministrationService.ViewModels
         public IEnumerable<UserLanguage> UserLanguages { get; set; }
         public long? ReligionId { get; set; }
         public long? CityId { get; set; }
+        public long? GroupId { get; set; }
         public string BloodGroup { get; set; }
         public string Gender { get; set; }
         public string MaritalStatus { get; set; }

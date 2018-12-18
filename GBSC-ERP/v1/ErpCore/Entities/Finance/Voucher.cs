@@ -22,7 +22,7 @@ namespace ErpCore.Entities.Finance
         public double? TotalCreditAmount { get; set; }
         public double? TotalDebitAmount { get; set; }
 
-        public bool? IsFinal { get; set; } //Can't be updated once true
+        public bool? IsFinal { get; set; } //Can't be updated once true //If true then posted, if unposted then false
 
         public long? FinancialYearId { get; set; }
         public FinancialYear FinancialYear { get; set; }
@@ -34,5 +34,9 @@ namespace ErpCore.Entities.Finance
         public VoucherType VoucherType { get; set; }
 
         public IEnumerable<VoucherDetail> VoucherDetails { get; set; }
+
+        //Posted and Unposted Vouchers for this Voucher
+        public long? UnpostedVoucherId { get; set; }
+        public long? PostedVoucherId { get; set; }
     }
 }

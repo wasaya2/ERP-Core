@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,11 +15,16 @@ namespace HimsService.Controllers
     public class SemenAnalysisController : Controller
     {
         private ISemenAnalysisRepository _repo;
+    private IDailySemenAnalysis DailySemenAnalysis_repo;
 
-        public SemenAnalysisController(ISemenAnalysisRepository repo)
+    public SemenAnalysisController(ISemenAnalysisRepository repo , IDailySemenAnalysis DailySemenAnalysisrepo)
         {
             _repo = repo;
+      DailySemenAnalysis_repo = DailySemenAnalysisrepo;
+
+
         }
+     
 
         [HttpGet("GetAllSemenAnalyses")]
         public IEnumerable<SemenAnalysis> GetAllSemenAnalyses()
@@ -70,5 +75,65 @@ namespace HimsService.Controllers
 
             _repo.Delete(SemenAnalysis);
         }
+
+
+
+
+
+    #region DailySemenAnalysis
+
+    [HttpGet("GetDailySemenAnalysises", Name = "GetDailySemenAnalysises")]
+    public IEnumerable<DailySemenAnalysis> GetDailySemenAnalysises()
+    {
+      return DailySemenAnalysis_repo.GetAll(b=> b.DailySemenAnalysisProcedures).OrderByDescending(a => a.DailySemenAnalysisId );
     }
+
+    [HttpGet("GetDailySemenAnalysis/{id}", Name = "GetDailySemenAnalysis")]
+    public DailySemenAnalysis GetDailySemenAnalysis(long id) => DailySemenAnalysis_repo.GetFirst(a => a.DailySemenAnalysisId == id);
+
+    [HttpPut("UpdateDailySemenAnalysis", Name = "UpdateDailySemenAnalysis")]
+    [ValidateModelAttribute]
+    public IActionResult UpdateDailySemenAnalysis([FromBody]DailySemenAnalysis model)
+    {
+      DailySemenAnalysis_repo.Update(model);
+      return new OkObjectResult(new { DailySemenAnalysisID = model.DailySemenAnalysisId });
+    }
+
+    [HttpPost("AddDailySemenAnalysis", Name = "AddDailySemenAnalysis")]
+    [ValidateModelAttribute]
+    public IActionResult AddDailySemenAnalysis([FromBody]DailySemenAnalysis model)
+    {
+
+      model.CreatedAt = DateTime.Now;
+      DailySemenAnalysis_repo.Add(model);
+      return new OkObjectResult(new { DailySemenAnalysisID = model.DailySemenAnalysisId });
+    }
+
+    [HttpDelete("DeleteDailySemenAnalysis/{id}")]
+    public IActionResult DeleteDailySemenAnalysis(long id)
+    {
+      DailySemenAnalysis DailySemenAnalysis = DailySemenAnalysis_repo.Find(id);
+      if (DailySemenAnalysis == null)
+      {
+        return NotFound();
+      }
+
+      DailySemenAnalysis_repo.Delete(DailySemenAnalysis);
+      return Ok();
+    }
+
+    #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+  }
 }

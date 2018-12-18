@@ -46,7 +46,5 @@ namespace ErpCore.Entities
         public long? PatientClinicalRecordId { get; set; }
 
         public PatientClinicalRecord PatientClinicalRecord { get; set; }
-
-        public FreezePrepration FreezePrepration { get; set; }
   }
 }

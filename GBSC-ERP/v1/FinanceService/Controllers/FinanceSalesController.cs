@@ -33,10 +33,10 @@ namespace FinanceService.Controllers
             RetDetail_repo = retdetailrepo;
         }
 
-        [HttpGet("GetFinanceSalesPermissions/{userid}/{roleid}/{featureid}", Name = "GetFinanceSalesPermissions")]
-        public IEnumerable<Permission> GetFinancePurchassePermissions(long userid, long roleid, long featureid)
+        [HttpGet("GetFinanceSalesPermissions/{userid}/{RoleId}/{featureid}", Name = "GetFinanceSalesPermissions")]
+        public IEnumerable<Permission> GetFinancePurchassePermissions(long userid, long RoleId, long featureid)
         {
-            IEnumerable<Permission> per = Inv_repo.GetFeaturePermissions(userid, roleid, featureid).Permissions.ToList();
+            IEnumerable<Permission> per = Inv_repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
             return per;
         }
 

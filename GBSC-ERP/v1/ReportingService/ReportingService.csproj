@@ -173,6 +173,7 @@
     <Content Include="Scripts\knockout-3.3.0.debug.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\gbsc-erp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -228,17 +229,14 @@
     <Compile Include="Reports\finance\IncomeStatement.Designer.cs">
       <DependentUpon>IncomeStatement.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\finance\TransactionDetailsByDetailAccount.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\finance\TrialBalance.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\finance\TrialBalance.Designer.cs">
       <DependentUpon>TrialBalance.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\finance\Voucher.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\finance\Voucher.Designer.cs">
-      <DependentUpon>Voucher.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\hims\AppointmenSheet.cs">
       <SubType>Component</SubType>
@@ -269,12 +267,6 @@
     </Compile>
     <Compile Include="Reports\hims\DailyActivityReport1.Designer.cs">
       <DependentUpon>DailyActivityReport1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\hims\DailyAppointmentSheetClinicalRecord.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\hims\DailyAppointmentSheetClinicalRecord.Designer.cs">
-      <DependentUpon>DailyAppointmentSheetClinicalRecord.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\hims\DailySemenAnalysisSheet.cs">
       <SubType>Component</SubType>
@@ -309,7 +301,7 @@
     <Compile Include="Reports\hims\NewPatientSheetBloodKarachi.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\hims\NewPatientSheetBloodKarachi.designer.cs">
+    <Compile Include="Reports\hims\NewPatientSheetBloodKarachi.Designer.cs">
       <DependentUpon>NewPatientSheetBloodKarachi.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\hims\NewPatientSheetFC.cs">
@@ -525,9 +517,6 @@
     <Compile Include="Reports\Payroll\TaxChallan.Designer.cs">
       <DependentUpon>TaxChallan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Pharmacy\AllPatientWiseSales.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reports\Pharmacy\CashSales.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -557,9 +546,6 @@
     </Compile>
     <Compile Include="Reports\Pharmacy\GoodsReceiveNote.Designer.cs">
       <DependentUpon>GoodsReceiveNote.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Pharmacy\GRNSupplierWise.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Pharmacy\GRNTabular.cs">
       <SubType>Component</SubType>
@@ -634,11 +620,11 @@
     <EmbeddedResource Include="Reports\finance\IncomeStatement.resx">
       <DependentUpon>IncomeStatement.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\finance\TransactionDetailsByDetailAccount.resx">
+      <DependentUpon>TransactionDetailsByDetailAccount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\finance\TrialBalance.resx">
       <DependentUpon>TrialBalance.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\finance\Voucher.resx">
-      <DependentUpon>Voucher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hims\AppointmenSheet.resx">
       <DependentUpon>AppointmenSheet.cs</DependentUpon>
@@ -654,9 +640,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hims\DailyActivityReport1.resx">
       <DependentUpon>DailyActivityReport1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hims\DailyAppointmentSheetClinicalRecord.resx">
-      <DependentUpon>DailyAppointmentSheetClinicalRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hims\DailySemenAnalysisSheet.resx">
       <DependentUpon>DailySemenAnalysisSheet.cs</DependentUpon>
@@ -790,9 +773,6 @@
     <EmbeddedResource Include="Reports\Payroll\TaxChallan.resx">
       <DependentUpon>TaxChallan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Pharmacy\AllPatientWiseSales.resx">
-      <DependentUpon>AllPatientWiseSales.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Pharmacy\CashSales.resx">
       <DependentUpon>CashSales.cs</DependentUpon>
     </EmbeddedResource>
@@ -807,9 +787,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Pharmacy\GoodsReceiveNote.resx">
       <DependentUpon>GoodsReceiveNote.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Pharmacy\GRNSupplierWise.resx">
-      <DependentUpon>GRNSupplierWise.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Pharmacy\GRNTabular.resx">
       <DependentUpon>GRNTabular.cs</DependentUpon>

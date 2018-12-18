@@ -54,7 +54,7 @@ namespace ReportingService
             Reports.Add("BloodTestReferenceSummary", new XtraReport1());
             Reports.Add("FcPatientReferenceSummary", new FCPatientReferenceSummary());
             Reports.Add("NewFcClinicPatientsSummary", new NEW__FC___CLINIC___PATIENTS_SUMMARY());
- 
+             Reports.Add("DailySemenAnalysisSheet", new DailySemenAnalysisSheet());  
             Reports.Add("SubsequentSemenFreezingList", new SubsequentSemenFreezingList());
             Reports.Add("MedicineDetails", new MEDICINE_DETAILS());
             Reports.Add("ConsultantActivtityDetails", new ConsultantActivtityDetails());

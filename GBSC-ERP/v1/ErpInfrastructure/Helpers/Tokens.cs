@@ -24,12 +24,12 @@ namespace ErpInfrastructure.Helpers
                     .FirstOrDefault(u => u.Identity.UserName == userName);
 
                 var userfeatures = (from user in Db.Users
-                                    join rolefeatures in Db.RoleFeatures on user.RoleID equals rolefeatures.RoleId
+                                    join rolefeatures in Db.RoleFeatures on user.RoleId equals rolefeatures.RoleId
                                     join features in Db.Features on rolefeatures.FeatureId equals features.FeatureId
                                     select features.Name).ToList();
 
                 var usermodules = (from user in Db.Users
-                                   join rolemodules in Db.RoleModules on user.RoleID equals rolemodules.RoleId
+                                   join rolemodules in Db.RoleModules on user.RoleId equals rolemodules.RoleId
                                    join modules in Db.Modules on rolemodules.ModuleId equals modules.ModuleId
                                    select modules.Name).ToList();
 

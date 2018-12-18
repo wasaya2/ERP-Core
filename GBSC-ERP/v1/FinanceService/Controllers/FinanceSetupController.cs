@@ -40,10 +40,10 @@ namespace FinanceService.Controllers
             SecondSubAccount_repo = secondsubrepo;
         }
 
-        [HttpGet("GetFinanceSetupPermissions/{userid}/{roleid}/{featureid}", Name = "GetFinanceSetupPermissions")]
-        public IEnumerable<Permission> GetFinanceSetupPermissions(long userid, long roleid, long featureid)
+        [HttpGet("GetFinanceSetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetFinanceSetupPermissions")]
+        public IEnumerable<Permission> GetFinanceSetupPermissions(long userid, long RoleId, long featureid)
         {
-            IEnumerable<Permission> per = fin_repo.GetFeaturePermissions(userid, roleid, featureid).Permissions.ToList();
+            IEnumerable<Permission> per = fin_repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
             return per;
         }
 

@@ -10,6 +10,8 @@ namespace AuthService.ViewModels
     {
         public User User { get; set; }
 
+        public UserAssignedIds AssignedId { get; set; }
+
         public List<string> Modules { get; set; }
 
         public List<string> Features { get; set; }
@@ -30,5 +32,16 @@ namespace AuthService.ViewModels
         public string AuthToken { get; set; }
 
         public int Expiry { get; set; }
+    }
+
+    public class UserAssignedIds
+    {
+        public long? CompanyId { get; set; }
+
+        public long? CountryId { get; set; }
+        
+        public long? CityId { get; set; }
+
+        public long? BranchId { get; set; }
     }
 }

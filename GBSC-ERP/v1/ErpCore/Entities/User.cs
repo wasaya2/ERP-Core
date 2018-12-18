@@ -150,7 +150,7 @@ namespace ErpCore.Entities
         public long? DepartmentId { get; set; }
         public Department Department { get; set; }
 
-        public long? RoleID { get; set; }
+        public long? RoleId { get; set; }
         public Role Role { get; set; }
 
         public IEnumerable<UserLanguage> UserLanguages { get; set; }

@@ -80,7 +80,10 @@ namespace HimsService.Repos
         }
         public IEnumerable<Patient> SearchPatient(SearchPatientViewModel model)
         {
-            return GetList(p=>(p.FirstName == model.Name && model.Name != null) || (p.LastName == model.Name && model.Name != null) || (p.MRN == model.MRN && model.MRN!=null) || (p.PhoneNumber == model.Contact && model.Contact != null));
+            return GetList(p=>(model.Name != null && p.FirstName?.ToUpper()?.Trim() == model.Name?.ToUpper()?.Trim()) || 
+                          (model.Name != null && p.LastName?.ToUpper()?.Trim() == model.Name?.ToUpper()?.Trim()) || 
+                          (model.MRN != null && p.MRN?.ToUpper()?.Trim() == model.MRN?.ToUpper()?.Trim()) || 
+                          (model.Contact != null && p.PhoneNumber?.ToUpper()?.Trim() == model.Contact?.ToUpper()?.Trim()));
         }
 
         public IEnumerable<Patient> SearchPatientByName(string name)

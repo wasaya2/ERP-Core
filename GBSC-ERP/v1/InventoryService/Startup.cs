@@ -117,7 +117,6 @@ namespace InventoryService
             services.AddScoped<IDistributorRepository, DistributorRepository>();
             services.AddScoped<IItemPriceStructureRepository, ItemPriceStructureRepository>();
             services.AddScoped<IModeOfPaymentRepository, ModeOfPaymentRepository>();
-            services.AddScoped<ISalesPersonRepository, SalesPersonRepository>();
             services.AddScoped<ITaxRepository, TaxRepository>();
             services.AddScoped<ITransportRepository, TransportRepository>();
             services.AddScoped<IInventoryItemCategoryRepository, InventoryItemCategoryRepository>();

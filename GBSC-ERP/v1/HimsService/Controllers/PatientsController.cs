@@ -39,10 +39,10 @@ namespace HimsService.Controllers
             Appointment_repo = appointmentrepo;
         }
 
-        [HttpGet("GetPatientSetupPermissions/{userid}/{roleid}/{featureid}", Name = "GetPatientSetupPermissions")]
-        public IEnumerable<Permission> GetPatientSetupPermissions(long userid, long roleid, long featureid)
+        [HttpGet("GetPatientSetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetPatientSetupPermissions")]
+        public IEnumerable<Permission> GetPatientSetupPermissions(long userid, long RoleId, long featureid)
         {
-            IEnumerable<Permission> per = _repo.GetFeaturePermissions(userid, roleid, featureid).Permissions.ToList();
+            IEnumerable<Permission> per = _repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
             return per;
         }
 
@@ -77,7 +77,6 @@ namespace HimsService.Controllers
         public Patient GetPatientDetailPatientId(long id) => _repo.GetFirst(p => p.PatientId == id, a => a.PatientDocuments, d => d.Partner, e => e.PatientReference ,x=> x.PatientPackage);
 
         [HttpGet("SearchPatient", Name = "SearchPatient")]
-        [ValidateModelAttribute]
         public IEnumerable<Patient> SearchPatient(SearchPatientViewModel model)
         {
             return _repo.SearchPatient(model);

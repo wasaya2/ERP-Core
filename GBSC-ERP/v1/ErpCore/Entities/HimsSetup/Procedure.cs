@@ -7,11 +7,14 @@ namespace ErpCore.Entities.HimsSetup
 {
    public class Procedure : BaseClass
     {
-
-      [Key]
-      public long ProcedureId { get; set; }
-      public string ProcedureCode { get; set; }
-      public string ProcedureName { get; set; }
-
-    }
+        public Procedure()
+        {
+           DailySemenAnalysisProcedures = new HashSet<DailySemenAnalysisProcedure>();
+        }
+        [Key]
+        public long ProcedureId { get; set; }
+        public string ProcedureCode { get; set; }
+        public string ProcedureName { get; set; }
+        public IEnumerable<DailySemenAnalysisProcedure> DailySemenAnalysisProcedures { get; set; }
+  }
 }

@@ -52,8 +52,15 @@ namespace ErpInfrastructure.Data
 
             //Finance
             modelBuilder.Entity<Account>().ToTable("Finance_Account");
+            modelBuilder.Entity<UnprocessedAccountsLedger>().ToTable("Finance_UnprocessedAccountsLedger");
+            modelBuilder.Entity<ProcessedAccountsLedger>().ToTable("Finance_ProcessedAccountsLedger");
+
             modelBuilder.Entity<Voucher>().ToTable("Finance_Voucher");
             modelBuilder.Entity<VoucherDetail>().ToTable("Finance_VoucherDetail");
+
+            modelBuilder.Entity<UnpostedVoucher>().ToTable("Finance_UnpostedVoucher");
+            modelBuilder.Entity<PostedVoucher>().ToTable("Finance_PostedVoucher");
+
             modelBuilder.Entity<FinanceSalesInvoice>().ToTable("Finance_SalesInvoice");
             modelBuilder.Entity<FinanceSalesInvoiceDetail>().ToTable("Finance_SalesInvoiceDetail");
             modelBuilder.Entity<FinanceSalesReturn>().ToTable("Finance_SalesReturn");
@@ -75,6 +82,7 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<PatientDocument>().ToTable("Hims_PatientDocument");
             modelBuilder.Entity<SemenAnalysis>().ToTable("Hims_SemenAnalysis");
             modelBuilder.Entity<DailyProcedure>().ToTable("Hims_DailyProcedure");
+            modelBuilder.Entity<DailySemenAnalysis>().ToTable("Hims_DailySemenAnalysis");
             //Visit
             modelBuilder.Entity<PatientVital>().ToTable("Hims_PatientVital");
             modelBuilder.Entity<Diagnosis>().ToTable("Hims_Diagnosis");
@@ -342,6 +350,7 @@ namespace ErpInfrastructure.Data
                 .HasForeignKey(c => c.FinancialYearId);
 
             //Finance Setup
+
             modelBuilder.Entity<Voucher>()
                 .HasOne(a => a.FinancialYear)
                 .WithMany()
@@ -538,11 +547,6 @@ namespace ErpInfrastructure.Data
                 .HasForeignKey<FreezePrepration>(c => c.PatientClinicalRecordId);
 
 
-            modelBuilder.Entity<Biopsy>()
-                .HasOne(i => i.FreezePrepration)
-                .WithOne(c => c.Biopsy)
-                .HasForeignKey<FreezePrepration>(c => c.BiopsyId);
-
             modelBuilder.Entity<PatientClinicalRecord>()
                 .HasOne(i => i.BioChemistryTestOnTreatment)
                 .WithOne(c => c.PatientClinicalRecord)
@@ -565,12 +569,37 @@ namespace ErpInfrastructure.Data
 
 
       //Patient
-            modelBuilder.Entity<DailyProcedure>()
+  
+        modelBuilder.Entity<DailySemenAnalysisProcedure>()
+               .HasKey(ds => new { ds.ProcedureId, ds.DailySemenAnalysisId });
+
+        modelBuilder.Entity<DailySemenAnalysisProcedure>()
+             .HasOne(pc => pc.Procedure)
+             .WithMany(p => p.DailySemenAnalysisProcedures)
+             .HasForeignKey(pc => pc.ProcedureId);
+
+        modelBuilder.Entity<DailySemenAnalysisProcedure>()
+        .HasOne(pc => pc.DailySemenAnalysis)
+        .WithMany(p => p.DailySemenAnalysisProcedures)
+        .HasForeignKey(pc => pc.DailySemenAnalysisId);
+ 
+         modelBuilder.Entity<DailySemenAnalysis>()
+            .HasOne(a => a.Patient)
+            .WithMany()
+            .HasForeignKey(c => c.PatientId);
+
+        modelBuilder.Entity<DailySemenAnalysis>()
+          .HasOne(a => a.Consultant)
+          .WithMany()
+          .HasForeignKey(c => c.ConsultantId);
+
+
+         modelBuilder.Entity<DailyProcedure>()
               .HasOne(a => a.AssignedConsultant)
               .WithMany(b => b.AssignedDailyProcedures)
               .HasForeignKey(c => c.AssignedConsultantId);
 
-            modelBuilder.Entity<DailyProcedure>()
+        modelBuilder.Entity<DailyProcedure>()
                 .HasOne(a => a.PerformedByConsultant)
                 .WithMany(b => b.PerformedDailyProcedures)
                 .HasForeignKey(c => c.PerformedByConsultantId);
@@ -1185,7 +1214,7 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<User>()
                 .HasOne(a => a.Role)
                 .WithMany(b => b.Users)
-                .HasForeignKey(c => c.RoleID);
+                .HasForeignKey(c => c.RoleId);
 
             modelBuilder.Entity<User>()
                 .HasOne(a => a.Department)
@@ -2176,6 +2205,8 @@ namespace ErpInfrastructure.Data
 
         //Finance
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<UnprocessedAccountsLedger> UnprocessedAccountsLedgers { get; set; }
+        public DbSet<ProcessedAccountsLedger> ProcessedAccountsLedgers { get; set; }
         public DbSet<MasterAccount> MasterAccounts { get; set; }
         public DbSet<DetailAccount> DetailAccounts { get; set; }
         public DbSet<SubAccount> SubAccounts { get; set; }
@@ -2190,6 +2221,10 @@ namespace ErpInfrastructure.Data
         public DbSet<FinanceSalesInvoiceDetail> FinanceSalesInvoiceDetails { get; set; }
         public DbSet<FinanceSalesReturn> FinanceSalesReturns { get; set; }
         public DbSet<FinanceSalesReturnDetail> FinanceSalesReturnDetails { get; set; }
+        public DbSet<Voucher> Vouchers { get; set; }
+        public DbSet<VoucherDetail> VoucherDetails { get; set; }
+        public DbSet<UnpostedVoucher> UnpostedVouchers { get; set; }
+        public DbSet<PostedVoucher> Postedvouchers { get; set; }
 
         //HIMS
         public DbSet<Patient> Patients { get; set; }
@@ -2208,6 +2243,8 @@ namespace ErpInfrastructure.Data
         public DbSet<VisitTest> VisitTests { get; set; }
         public DbSet<PatientPackage> PatientPackages { get; set; }
         public DbSet<DailyProcedure> DailyProcedures { get; set; }
+        public DbSet<DailySemenAnalysis> DailySemenAnalysis { get; set; }
+
         //HimsSetup
         public DbSet<TestType> TestTypes { get; set; }
         public DbSet<TestCategory> TestCategories { get; set; }

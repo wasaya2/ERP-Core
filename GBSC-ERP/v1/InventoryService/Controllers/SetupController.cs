@@ -26,7 +26,6 @@ namespace InventoryService.Controllers
         private ICustomerRepository Customer_repo;
         private IDistributorRepository Distributor_repo;
         private IItemPriceStructureRepository ItemPriceStructure_repo;
-        private ISalesPersonRepository SalesPerson_repo;
         private ITaxRepository Tax_repo;
         private ITransportRepository Transport_repo;
         private IModeOfPaymentRepository ModeOfPayment_repo;
@@ -58,7 +57,6 @@ namespace InventoryService.Controllers
             ICustomerRepository repo6,
             IDistributorRepository repo7,
             IItemPriceStructureRepository repo8,
-            ISalesPersonRepository repo9,
             ITaxRepository repo10,
             ITransportRepository repo11,
             IModeOfPaymentRepository repo12,
@@ -90,7 +88,6 @@ namespace InventoryService.Controllers
             Customer_repo = repo6;
             Distributor_repo = repo7;
             ItemPriceStructure_repo = repo8;
-            SalesPerson_repo = repo9;
             Tax_repo = repo10;
             Transport_repo = repo11;
             ModeOfPayment_repo = repo12;
@@ -113,10 +110,10 @@ namespace InventoryService.Controllers
             Currency_repo = repo29;
         }
 
-        [HttpGet("GetInventorySetupPermissions/{userid}/{roleid}/{featureid}", Name = "GetInventorySetupPermissions")]
-        public IEnumerable<Permission> GetInventorySetupPermissions(long userid, long roleid, long featureid)
+        [HttpGet("GetInventorySetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetInventorySetupPermissions")]
+        public IEnumerable<Permission> GetInventorySetupPermissions(long userid, long RoleId, long featureid)
         {
-            IEnumerable<Permission> per = _repo.GetFeaturePermissions(userid, roleid, featureid).Permissions.ToList();
+            IEnumerable<Permission> per = _repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
             return per;
         }
 
@@ -850,46 +847,46 @@ namespace InventoryService.Controllers
         }
         #endregion
 
-        #region Sales Person
-        [HttpGet("GetSalesPeople", Name = "GetSalesPeople")]
-        public IEnumerable<SalesPerson> GetSalesPeople()
-        {
-            IEnumerable<SalesPerson> b = SalesPerson_repo.GetAll();
-            b = b.OrderByDescending(a => a.SalesPersonId);
-            return b;
-        }
+        //#region Sales Person
+        //[HttpGet("GetSalesPeople", Name = "GetSalesPeople")]
+        //public IEnumerable<SalesPerson> GetSalesPeople()
+        //{
+        //    IEnumerable<SalesPerson> b = SalesPerson_repo.GetAll();
+        //    b = b.OrderByDescending(a => a.SalesPersonId);
+        //    return b;
+        //}
 
-        [HttpGet("GetSalesPerson/{id}", Name = "GetSalesPerson")]
-        public SalesPerson GetSalesPerson(long id) => SalesPerson_repo.GetFirst(a => a.SalesPersonId == id);
+        //[HttpGet("GetSalesPerson/{id}", Name = "GetSalesPerson")]
+        //public SalesPerson GetSalesPerson(long id) => SalesPerson_repo.GetFirst(a => a.SalesPersonId == id);
 
-        [HttpPut("UpdateSalesPerson", Name = "UpdateSalesPerson")]
-        [ValidateModelAttribute]
-        public IActionResult UpdateSalesPerson([FromBody]SalesPerson model)
-        {
-            SalesPerson_repo.Update(model);
-            return new OkObjectResult(new { SalesPersonID = model.SalesPersonId });
-        }
+        //[HttpPut("UpdateSalesPerson", Name = "UpdateSalesPerson")]
+        //[ValidateModelAttribute]
+        //public IActionResult UpdateSalesPerson([FromBody]SalesPerson model)
+        //{
+        //    SalesPerson_repo.Update(model);
+        //    return new OkObjectResult(new { SalesPersonID = model.SalesPersonId });
+        //}
 
-        [HttpPost("AddSalesPerson", Name = "AddSalesPerson")]
-        [ValidateModelAttribute]
-        public IActionResult AddSalesPerson([FromBody]SalesPerson model)
-        {
-            SalesPerson_repo.Add(model);
-            return new OkObjectResult(new { SalesPersonID = model.SalesPersonId });
-        }
+        //[HttpPost("AddSalesPerson", Name = "AddSalesPerson")]
+        //[ValidateModelAttribute]
+        //public IActionResult AddSalesPerson([FromBody]SalesPerson model)
+        //{
+        //    SalesPerson_repo.Add(model);
+        //    return new OkObjectResult(new { SalesPersonID = model.SalesPersonId });
+        //}
 
-        [HttpDelete("DeleteSalesPerson/{id}")]
-        public IActionResult DeleteSalesPerson(long id)
-        {
-            SalesPerson SalesPerson = SalesPerson_repo.Find(id);
-            if (SalesPerson == null)
-            {
-                return NotFound();
-            }
-            SalesPerson_repo.Delete(SalesPerson);
-            return Ok();
-        }
-        #endregion
+        //[HttpDelete("DeleteSalesPerson/{id}")]
+        //public IActionResult DeleteSalesPerson(long id)
+        //{
+        //    SalesPerson SalesPerson = SalesPerson_repo.Find(id);
+        //    if (SalesPerson == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    SalesPerson_repo.Delete(SalesPerson);
+        //    return Ok();
+        //}
+        //#endregion
 
         #region Tax
         [HttpGet("GetTaxes", Name = "GetTaxes")]

@@ -38,10 +38,10 @@ namespace SystemAdministrationService.Controllers
             exp_repo = exprepo;
         }
 
-        [HttpGet("GetUserSetupPermissions/{userid}/{roleid}/{featureid}", Name = "GetUserSetupPermissions")]
-        public IEnumerable<Permission> GetUserSetupPermissions(long userid, long roleid, long featureid)
+        [HttpGet("GetUserSetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetUserSetupPermissions")]
+        public IEnumerable<Permission> GetUserSetupPermissions(long userid, long RoleId, long featureid)
         {
-            IEnumerable<Permission> per = _repo.GetFeaturePermissions(userid, roleid, featureid).Permissions.ToList();
+            IEnumerable<Permission> per = _repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
             return per;
         }
 
@@ -55,6 +55,7 @@ namespace SystemAdministrationService.Controllers
 
         [HttpGet("GetUser/{id}", Name = "GetUser")]
         public User GetUser(long id) => _repo.Find(id);
+
 
         [HttpPut("UpdateUser", Name = "UpdateUser")]
         [ValidateModelAttribute]
@@ -88,7 +89,8 @@ namespace SystemAdministrationService.Controllers
                 PermanentAddress = model.PermanentAddress,
                 UserLanguages = model.UserLanguages,
                 ReligionId = model.ReligionId,
-                CityId = model.CityId
+                CityId = model.CityId,
+                GroupId = model.GroupId
             };
 
             _repo.Add(usr);
@@ -188,13 +190,20 @@ namespace SystemAdministrationService.Controllers
 
         #region Get By Company, Country, City or Branch
 
-        [HttpGet("GetUsersByCompany/{id}", Name = "GetUsersByCompany")]
-        public IEnumerable<User> GetUsersByCompany(long id)
+        [HttpGet("GetUsersByCompany/{CompanyId}")]
+        public IActionResult GetUsersByCompany(long CompanyId)
         {
-            //IEnumerable<User> us = _repo.GetAll();
-            //us = us.Where(a => a.CompanyId == id);
-            //return us;
-            return _repo.GetList(a => a.CompanyId == id);
+            var users = _repo.GetList(u => u.CompanyId == CompanyId).Select(s => new
+            {
+                UserId = s.UserId,
+                FirstName = s.FirstName,
+                LastName = s.LastName,
+                Phone = s.Phone,
+                Email = s.Email,
+                HasAccount = s.IdentityId != null ? true : false
+            });
+
+            return new JsonResult(users);
         }
 
         [HttpGet("GetUsersByCountry/{id}", Name = "GetUsersByCountry")]

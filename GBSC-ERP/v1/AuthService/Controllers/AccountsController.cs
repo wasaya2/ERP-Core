@@ -36,7 +36,7 @@ namespace AuthService.Controllers
         [ValidateModelAttribute]
         public async Task<IActionResult> CreateAccount([FromBody]RegistrationViewModel model)
         {
-            var userIdentity = new AppUser { UserName = model.UserName };
+            var userIdentity = new AppUser { UserName = model.UserName, Email = model.Email, PhoneNumber = model.Phone };
             var userManager = await user_Manager.CreateAsync(userIdentity, model.Password);
 
             if (!userManager.Succeeded)
@@ -69,6 +69,15 @@ namespace AuthService.Controllers
             app_context.SaveChanges();
 
             return new OkObjectResult("Account Created");
+        }
+
+        [HttpPut("UpdateProfile")]
+        public IActionResult UpdateProfile([FromBody]User user)
+        {
+            app_context.Users.Update(user);
+            app_context.SaveChanges();
+
+            return new OkObjectResult(new { userId = user.UserId });
         }
 
         public Role CreateRoleWithAssignedModules(long? CompanyId)

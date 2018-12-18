@@ -21,6 +21,9 @@ namespace ErpCore.Entities.Finance
         public long? DetailAccountId { get; set; }
         public DetailAccount DetailAccount { get; set; }
 
+        public double? AccountBalanceAmountBeforePosting { get; set; }
+        public double? AccountBalanceAmountAfterPosting { get; set; }
+
         public long? VoucherId { get; set; }
         public Voucher Voucher { get; set; }
 

@@ -20,5 +20,14 @@
     "Biochemistry Test",
     "BioChemistry On Treatment",
     "Reference Range"
+  ],
+  "Security": [
+    "User Registration",
+    "City",
+    "Branch",
+    "Company",
+    "Country",
+    "Department",
+    "Roles and Privileges"
   ]
 }

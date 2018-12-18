@@ -1,4 +1,4 @@
-﻿using ErpCore.Entities;
+using ErpCore.Entities;
 using HimsService.Repos.Base;
 using System;
 using System.Collections.Generic;
