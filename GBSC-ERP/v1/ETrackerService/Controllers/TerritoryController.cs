@@ -7,6 +7,8 @@ using eTrackerInfrastructure.Repos.Interfaces;
 using eTrackerCore.Entities;
 using eTrackerInfrastructure.Filters;
 using ErpCore.Entities.InventorySetup;
+using ETrackerService.ViewModels;
+using ErpCore.Entities;
 
 namespace eTrackerInfrastructure.Controllers
 {
@@ -38,6 +40,12 @@ namespace eTrackerInfrastructure.Controllers
         [HttpGet("GetSections")]
         public IEnumerable<Section> GetSections() => _repo.GetSections();
 
+        [HttpGet("GetUsersBySection/{sectionid}")]
+        public IEnumerable<User> GetUsersBySection([FromRoute]long sectionid)
+        {
+            return _repo.GetUsersBySection(sectionid);
+        }
+
         [HttpGet("GetSectionsByDistributor/{Distributorid}")]
         public IEnumerable<Section> GetSections(long Distributorid) => _repo.GetSectionsByDistributor(Distributorid);
 
@@ -55,6 +63,39 @@ namespace eTrackerInfrastructure.Controllers
 
         [HttpGet("GetSubsectionsBySection/{sectionid}")]
         public IEnumerable<Subsection> GetSubsectionsBySection(long sectionid) => _repo.GetSubsectionsBySectionId(sectionid);
+
+        [HttpGet("GetAssignedSubsectionsBySection/{sectionid}/{userid}")]
+        public IEnumerable<AssignedSubsectionsViewModel> GetAssignedSubsectionsBySection(long sectionid, long userid)
+        {
+            var subsections = _repo.GetSubsectionsBySectionId(sectionid)
+                .Select(s => new AssignedSubsectionsViewModel
+                {
+                    SubsectionId = s.SubsectionId,
+                    Name = s.Name,
+                    IsAssigned = false,
+                    UserId = s.UserId ?? 0
+                }).ToList();
+
+            for (int i = 0; i < subsections.Count(); i++)
+            {
+                if (subsections[i].UserId == userid)
+                    subsections[i].IsAssigned = true;
+            }
+
+            return subsections;
+        }
+
+        [HttpGet("GetRegionsByUser/{id}")]
+        public IEnumerable<Region> GetRegionsByUser(long id) => _repo.GetRegionsByUser(id);
+
+        [HttpGet("GetCitiesByUser/{id}")]
+        public IEnumerable<City> GetCitiesByUser(long id) => _repo.GetCitiesByUser(id);
+
+        [HttpGet("GetAreasByUser/{id}")]
+        public IEnumerable<Area> GetAreasByUser(long id) => _repo.GetAreasByUser(id);
+
+        [HttpGet("GetTerritoriesByUser/{id}")]
+        public IEnumerable<Territory> GetTerritoriesByUser(long id) => _repo.GetTerritoriesByUser(id);
 
         [HttpGet("GetSectionIdByUser/{userid}")]
         public long? GetSectionIdByUser(long userid) => _repo.GetSectionIdByUser(userid);
@@ -184,6 +225,66 @@ namespace eTrackerInfrastructure.Controllers
             _repo.DeleteSubsection(id);
 
             return Ok();
+        }
+
+        [HttpGet("GetRegionByCity/{cityid}")]
+        public Region GetRegionByCity([FromRoute]long cityid)
+        {
+            return _repo.GetRegionByCity(cityid);
+        }
+
+        [HttpGet("GetCityByArea/{areaid}")]
+        public City GetCityByArea([FromRoute]long areaid)
+        {
+            return _repo.GetCityByArea(areaid);
+        }
+
+        [HttpGet("GetCitiesByUserAndRegion/{regionid}/{userid}")]
+        public IEnumerable<City> GetCitiesByUserAndRegion([FromRoute]long regionid, [FromRoute]long userid)
+        {
+            return _repo.GetCitiesByUserAndRegion(regionid, userid);
+        }
+
+        [HttpGet("GetCitiesByRegion/{regionid}")]
+        public IEnumerable<City> GetCitiesByRegion([FromRoute]long regionid)
+        {
+            return _repo.GetCitiesByRegion(regionid);
+        }
+
+        [HttpGet("GetAreasByUserAndCity/{cityid}/{userid}")]
+        public IEnumerable<Area> GetAreasByUserAndCity([FromRoute]long cityid, [FromRoute]long userid)
+        {
+            return _repo.GetAreasByUserAndCity(cityid, userid);
+        }
+
+        [HttpGet("GetDistributorsByUserAndArea/{areaid}/{userid}")]
+        public IEnumerable<Distributor> GetDistributorsByUserAndArea([FromRoute]long areaid, [FromRoute]long userid)
+        {
+            return _repo.GetDistributorsByUserAndArea(areaid, userid);
+        }
+
+        [HttpGet("GetDistributorsByArea/{areaid}")]
+        public IEnumerable<Distributor> GetDistributorsByArea([FromRoute]long areaid)
+        {
+            return _repo.GetDistributorsByArea(areaid);
+        }
+
+        [HttpGet("GetTerritoriesByUserAndDistributor/{distributorid}/{userid}")]
+        public IEnumerable<Territory> GetTerritoriesByUserAndDistributor([FromRoute]long distributorid, [FromRoute]long userid)
+        {
+            return _repo.GetTerritoriesByUserAndDistributor(distributorid, userid);
+        }
+
+        [HttpGet("GetTerritoriesByDistributor/{distributorid}")]
+        public IEnumerable<Territory> GetTerritoriesByDistributor([FromRoute]long distributorid)
+        {
+            return _repo.GetTerritoriesByDistributor(distributorid);
+        }
+
+        [HttpGet("GetSectionsByUserAndTerritory/{territoryid}/{userid}")]
+        public IEnumerable<Section> GetSectionsByUserAndTerritory([FromRoute]long territoryid, [FromRoute]long userid)
+        {
+            return _repo.GetSectionsByUserAndTerritory(territoryid, userid);
         }
     }
 }

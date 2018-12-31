@@ -12,11 +12,9 @@ namespace ErpCore.Entities.ETracker
         [Key]
         public long OrderTakingId { get; set; }
 
-        [Required]
-        public string Item { get; set; }
+        public int? Quantity { get; set; }
 
-        [Required]
-        public int Quantity { get; set; }
+        public string NoOrderReason { get; set; }
 
         public long? StoreVisitId { get; set; }
 
@@ -25,5 +23,9 @@ namespace ErpCore.Entities.ETracker
         public long? StoreId { get; set; }
 
         public Store Store { get; set; }
+
+        public long? InventoryItemId { get; set; }
+
+        public InventoryItem inventoryItem { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InventoryService.Repos.Base
 {
-    public interface IRepo<T> : IFeaturePermissions
+    public interface IRepo<T>
     {
         int Count { get; }
 

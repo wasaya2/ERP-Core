@@ -147,6 +147,7 @@
     <Content Include="App_Data\NWind.mdf" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\logo.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\ace.js" />
@@ -217,6 +218,54 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ReportStorageWebExtension.cs" />
+    <Compile Include="Reports\etracker\SalesPersonLocation.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\SalesPersonLocation.Designer.cs">
+      <DependentUpon>SalesPersonLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\etracker\SalesPersonLocation1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\SalesPersonLocation1.Designer.cs">
+      <DependentUpon>SalesPersonLocation1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopCensusDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopCensusDetail.Designer.cs">
+      <DependentUpon>ShopCensusDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopCensusSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopCensusSummary.Designer.cs">
+      <DependentUpon>ShopCensusSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopStatusDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopStatusDetail.Designer.cs">
+      <DependentUpon>ShopStatusDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopStatusSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopStatusSummary.Designer.cs">
+      <DependentUpon>ShopStatusSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\etracker\VisitDetailReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\VisitDetailReport.Designer.cs">
+      <DependentUpon>VisitDetailReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\etracker\VisitSummaryReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\VisitSummaryReport.Designer.cs">
+      <DependentUpon>VisitSummaryReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\finance\BalanceSheet.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -237,6 +286,9 @@
     </Compile>
     <Compile Include="Reports\finance\TrialBalance.Designer.cs">
       <DependentUpon>TrialBalance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\finance\TrialBalanceSummary.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\hims\AppointmenSheet.cs">
       <SubType>Component</SubType>
@@ -409,11 +461,11 @@
     <Compile Include="Reports\hrms\LeaveHistory.Designer.cs">
       <DependentUpon>LeaveHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\hrms\LeaveRegister.cs">
+    <Compile Include="Reports\hrms\LeaveLedger1.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\hrms\LeaveRegister.Designer.cs">
-      <DependentUpon>LeaveRegister.cs</DependentUpon>
+    <Compile Include="Reports\hrms\LeaveLedger1.Designer.cs">
+      <DependentUpon>LeaveLedger1.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\hrms\ListOfJoiners.cs">
       <SubType>Component</SubType>
@@ -468,6 +520,33 @@
     </Compile>
     <Compile Include="Reports\hrms\TaxCalculation.Designer.cs">
       <DependentUpon>TaxCalculation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\Test.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Inventory\ListofProductsWithUnits.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Inventory\ListofProductsWithUnits.Designer.cs">
+      <DependentUpon>ListofProductsWithUnits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Inventory\OrderDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Inventory\OrderDetail.Designer.cs">
+      <DependentUpon>OrderDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Inventory\OrderSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Inventory\OrderSummary.Designer.cs">
+      <DependentUpon>OrderSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Inventory\ProductUnitsForSecondarySales.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Inventory\ProductUnitsForSecondarySales.Designer.cs">
+      <DependentUpon>ProductUnitsForSecondarySales.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Lab\AnalysisWorkSheet-Outsiders.cs">
       <SubType>Component</SubType>
@@ -614,6 +693,30 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Reports\etracker\SalesPersonLocation.resx">
+      <DependentUpon>SalesPersonLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\etracker\SalesPersonLocation1.resx">
+      <DependentUpon>SalesPersonLocation1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\etracker\ShopCensusDetail.resx">
+      <DependentUpon>ShopCensusDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\etracker\ShopCensusSummary.resx">
+      <DependentUpon>ShopCensusSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\etracker\ShopStatusDetail.resx">
+      <DependentUpon>ShopStatusDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\etracker\ShopStatusSummary.resx">
+      <DependentUpon>ShopStatusSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\etracker\VisitDetailReport.resx">
+      <DependentUpon>VisitDetailReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\etracker\VisitSummaryReport.resx">
+      <DependentUpon>VisitSummaryReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\finance\BalanceSheet.resx">
       <DependentUpon>BalanceSheet.cs</DependentUpon>
     </EmbeddedResource>
@@ -625,6 +728,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\finance\TrialBalance.resx">
       <DependentUpon>TrialBalance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\finance\TrialBalanceSummary.resx">
+      <DependentUpon>TrialBalanceSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hims\AppointmenSheet.resx">
       <DependentUpon>AppointmenSheet.cs</DependentUpon>
@@ -713,8 +819,8 @@
     <EmbeddedResource Include="Reports\hrms\LeaveHistory.resx">
       <DependentUpon>LeaveHistory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\hrms\LeaveRegister.resx">
-      <DependentUpon>LeaveRegister.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\hrms\LeaveLedger1.resx">
+      <DependentUpon>LeaveLedger1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hrms\ListOfJoiners.resx">
       <DependentUpon>ListOfJoiners.cs</DependentUpon>
@@ -742,6 +848,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hrms\TaxCalculation.resx">
       <DependentUpon>TaxCalculation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Inventory\ListofProductsWithUnits.resx">
+      <DependentUpon>ListofProductsWithUnits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Inventory\OrderDetail.resx">
+      <DependentUpon>OrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Inventory\OrderSummary.resx">
+      <DependentUpon>OrderSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Inventory\ProductUnitsForSecondarySales.resx">
+      <DependentUpon>ProductUnitsForSecondarySales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Lab\AnalysisWorkSheet-Outsiders.resx">
       <DependentUpon>AnalysisWorkSheet-Outsiders.cs</DependentUpon>

@@ -31,14 +31,21 @@ namespace eTrackerInfrastructure.Controllers
         [HttpGet("GetStore/{id}", Name = "GetStore")]
         public Store GetStore(int id) => Repo.Find(id);
 
+
+        [HttpGet("GetStore/{storeid}/{companyid}")]
+        public Store GetStore(long storeid, long companyid) => Repo.GetFirst(c => c.StoreId == storeid && c.CompanyId == companyid);
+
         [HttpGet("GetAllStores")]
         public IEnumerable<Store> GetAllStores() => Repo.GetAll();
 
         [HttpGet("GetAllStoresForAccountRegistration/{id}")]
         public IEnumerable<StoreViewModel> GetAllStoresForAccountRegistration(long id) => Repo.GetStoresForAccountRegistration(id);
 
-        [HttpGet("GetAllStoresWithDistributor")]
-        public IEnumerable<StoreViewModel> GetAllStoresWithDistributor() => Repo.GetStoresWithDistributors();
+        [HttpGet("GetStoresWithChildren")]
+        public IEnumerable<StoreViewModel> GetStoresWithChildren() => Repo.GetStoresWithChildren();
+
+        [HttpGet("GetStoresWithChildren/{CompanyId}")]
+        public IEnumerable<StoreViewModel> GetStoresWithChildren(long CompanyId) => Repo.GetStoresWithChildren(CompanyId);
 
         [HttpGet("GetAllUserStores/{id}")]
         public IEnumerable<Store> GetAllUserStores(long id) => Repo.GetUserStores(id);

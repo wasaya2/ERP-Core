@@ -133,11 +133,14 @@ namespace InventoryService
             services.AddScoped<IInventoryCurrencyRepository, InventoryCurrencyRepository>();
 
             services.AddScoped<IAreaRepository, AreaRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<ICustomerWarehousesRepository, CustomerWarehouseRepository>();
             services.AddScoped<ICustomerAccountRepository, CustomerAccountRepository>();
             services.AddScoped<ICustomerPricePickLevelRepository, CustomerPricePickLevelRepository>();
             services.AddScoped<ICustomerTypeRepository, CustomerTypeRepository>();
             services.AddScoped<IRegionRepository, RegionRepository>();
+            services.AddScoped<ISectionRepository, SectionRepository>();
+            services.AddScoped<ISubsectionRepository, SubsectionRepository>();
             services.AddScoped<ITerritoryRepository, TerritoryRepository>();
 
             //Sales

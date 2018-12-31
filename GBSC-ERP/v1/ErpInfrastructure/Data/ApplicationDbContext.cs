@@ -25,8 +25,6 @@ using ErpCore.Entities.ETracker;
 
 namespace ErpInfrastructure.Data
 {
-
-
     public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
         public ApplicationDbContext()
@@ -52,8 +50,7 @@ namespace ErpInfrastructure.Data
 
             //Finance
             modelBuilder.Entity<Account>().ToTable("Finance_Account");
-            modelBuilder.Entity<UnprocessedAccountsLedger>().ToTable("Finance_UnprocessedAccountsLedger");
-            modelBuilder.Entity<ProcessedAccountsLedger>().ToTable("Finance_ProcessedAccountsLedger");
+            modelBuilder.Entity<TransactionAccount>().ToTable("Finance_TransactionAccount");
 
             modelBuilder.Entity<Voucher>().ToTable("Finance_Voucher");
             modelBuilder.Entity<VoucherDetail>().ToTable("Finance_VoucherDetail");
@@ -135,9 +132,11 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<CompetatorStock>().ToTable("ETracker_CompetatorStocks");
             modelBuilder.Entity<Merchandising>().ToTable("ETracker_Merchandising");
             modelBuilder.Entity<OrderTaking>().ToTable("ETracker_OrderTaking");
+            modelBuilder.Entity<InventoryTaking>().ToTable("ETracker_InventoryTaking");
             modelBuilder.Entity<OutletStock>().ToTable("ETracker_OutletStock");
             modelBuilder.Entity<StoreVisit>().ToTable("ETracker_StoreVisit");
             modelBuilder.Entity<VisitDay>().ToTable("ETracker_VisitDay");
+            modelBuilder.Entity<PJP>().ToTable("ETracker_PJP");
 
             //Inventory
             modelBuilder.Entity<Inventory>().ToTable("Inv_Inventory");
@@ -241,6 +240,8 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<UserAttendanceFlagExemption>().ToTable("Hr_Attendance_UserAttendanceFlagExemption");
 
             modelBuilder.Entity<AssignRoster>().ToTable("Hr_Attendance_AssignRoster");
+            modelBuilder.Entity<Daysoff>().ToTable("Hr_Attendance_Daysoff");
+
             modelBuilder.Entity<AttendanceFlag>().ToTable("Hr_Attendance_AttendanceFlag");
             modelBuilder.Entity<AttendanceRequestApprover>().ToTable("Hr_Attendance_AttendanceRequestApprover");
             modelBuilder.Entity<AttendanceRequestType>().ToTable("Hr_Attendance_AttendanceRequestType");
@@ -788,11 +789,6 @@ namespace ErpInfrastructure.Data
                 .WithMany(b => b.Cities)
                 .HasForeignKey(c => c.RegionId);
 
-            modelBuilder.Entity<Territory>()
-                .HasOne(a => a.Distributor)
-                .WithOne(b => b.Territory)
-                .HasForeignKey<Distributor>(c => c.TerritoryId);
-
             //Inventory and Etracker
             modelBuilder.Entity<Store>()
                 .HasOne(c => c.User)
@@ -815,6 +811,12 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<OrderTaking>()
                 .HasOne(c => c.StoreVisit)
                 .WithMany(e => e.OrderTakings)
+                .HasForeignKey(c => c.StoreVisitId)
+                .IsRequired();
+
+            modelBuilder.Entity<InventoryTaking>()
+                .HasOne(c => c.StoreVisit)
+                .WithMany(e => e.InventoryTakings)
                 .HasForeignKey(c => c.StoreVisitId)
                 .IsRequired();
 
@@ -870,10 +872,25 @@ namespace ErpInfrastructure.Data
                .WithMany(e => e.Subsections)
                .HasForeignKey(c => c.UserId);
 
-            modelBuilder.Entity<User>()
-                .HasOne(c => c.Distributor)
-                .WithMany(e => e.Users)
-                .HasForeignKey(c => c.DistributorId);
+            modelBuilder.Entity<Region>()
+               .HasOne(c => c.User)
+               .WithMany(e => e.Regions)
+               .HasForeignKey(c => c.UserId);
+
+            modelBuilder.Entity<City>()
+               .HasOne(c => c.User)
+               .WithMany(e => e.Cities)
+               .HasForeignKey(c => c.UserId);
+
+            modelBuilder.Entity<Area>()
+               .HasOne(c => c.User)
+               .WithMany(e => e.Areas)
+               .HasForeignKey(c => c.UserId);
+
+            modelBuilder.Entity<Territory>()
+               .HasOne(c => c.User)
+               .WithMany(e => e.Territories)
+               .HasForeignKey(c => c.UserId);
 
 
             modelBuilder.Entity<Section>()
@@ -883,9 +900,18 @@ namespace ErpInfrastructure.Data
 
             modelBuilder.Entity<Territory>()
                 .HasOne(a => a.Distributor)
-                .WithOne(b => b.Territory)
-                .HasForeignKey<Distributor>(b => b.TerritoryId);
+                .WithMany(b => b.Territories)
+                .HasForeignKey(b => b.DistributorId);
 
+            modelBuilder.Entity<PJP>()
+                .HasOne(a => a.User)
+                .WithMany(b => b.PJPs)
+                .HasForeignKey(c => c.UserId);
+
+            modelBuilder.Entity<PJP>()
+                .HasOne(a => a.Subsection)
+                .WithMany(b => b.PJPs)
+                .HasForeignKey(c => c.SubsectionId);
 
 
             //Purchase
@@ -1440,6 +1466,12 @@ namespace ErpInfrastructure.Data
                 .HasOne(a => a.Shift)
                 .WithMany(b => b.AssignRosters)
                 .HasForeignKey(c => c.ShiftsId);
+
+
+            modelBuilder.Entity<Daysoff>()
+                .HasOne(a => a.AssignRoster)
+                .WithMany(a => a.Daysoffs)
+                .HasForeignKey(c => c.AssignRosterId);
 
             modelBuilder.Entity<AttendanceFlag>()
                 .HasOne(a => a.FlagValue)
@@ -2205,8 +2237,7 @@ namespace ErpInfrastructure.Data
 
         //Finance
         public DbSet<Account> Accounts { get; set; }
-        public DbSet<UnprocessedAccountsLedger> UnprocessedAccountsLedgers { get; set; }
-        public DbSet<ProcessedAccountsLedger> ProcessedAccountsLedgers { get; set; }
+        public DbSet<TransactionAccount> TransactionAccounts { get; set; }
         public DbSet<MasterAccount> MasterAccounts { get; set; }
         public DbSet<DetailAccount> DetailAccounts { get; set; }
         public DbSet<SubAccount> SubAccounts { get; set; }
@@ -2335,10 +2366,12 @@ namespace ErpInfrastructure.Data
         //Tracker
         public DbSet<CompetatorStock> CompetatorStocks { get; set; }
         public DbSet<Merchandising> Merchandisings { get; set; }
+        public DbSet<InventoryTaking> InventoryTakings { get; set; }
         public DbSet<OrderTaking> OrderTakings { get; set; }
         public DbSet<OutletStock> OutletStocks { get; set; }
         public DbSet<StoreVisit> StoreVisits { get; set; }
         public DbSet<VisitDay> VisitDays { get; set; }
+        public DbSet<PJP> PJPs { get; set; }
 
         //Sale
         public DbSet<SalesIndent> SalesIndents { get; set; }
@@ -2425,6 +2458,7 @@ namespace ErpInfrastructure.Data
         public DbSet<UserAttendanceFlagExemption> UserAttendanceFlagExemptions { get; set; }
 
         public DbSet<AssignRoster> AssignRosters { get; set; }
+        public DbSet<Daysoff> Daysoffs { get; set; }
         public DbSet<AttendanceFlag> AttendanceFlag { get; set; }
         public DbSet<AttendanceRequestApprover> AttendanceRequestApprovers { get; set; }
         public DbSet<AttendanceRequestType> AttendanceRequestTypes { get; set; }

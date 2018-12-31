@@ -9,7 +9,6 @@ namespace ErpCore.Entities.InventorySetup
     {
         public Distributor()
         {
-            Users = new HashSet<User>();
         }
 
         [Key]
@@ -30,9 +29,6 @@ namespace ErpCore.Entities.InventorySetup
 
         public bool? HasTerritory { get; set; }
 
-        public long? TerritoryId { get; set; }
-        public Territory Territory { get; set; }
-
-        public IEnumerable<User> Users { get; set; }
+        public IEnumerable<Territory> Territories { get; set; }
     }
 }

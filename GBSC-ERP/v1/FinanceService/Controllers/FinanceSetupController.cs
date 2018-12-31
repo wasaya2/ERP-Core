@@ -40,22 +40,19 @@ namespace FinanceService.Controllers
             SecondSubAccount_repo = secondsubrepo;
         }
 
-        [HttpGet("GetFinanceSetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetFinanceSetupPermissions")]
-        public IEnumerable<Permission> GetFinanceSetupPermissions(long userid, long RoleId, long featureid)
-        {
-            IEnumerable<Permission> per = fin_repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
-            return per;
-        }
+        //[HttpGet("GetFinanceSetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetFinanceSetupPermissions")]
+        //public IEnumerable<Permission> GetFinanceSetupPermissions(long userid, long RoleId, long featureid)
+        //{
+        //    IEnumerable<Permission> per = fin_repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
+        //    return per;
+        //}
 
         #region Financial Year
-
 
         [HttpGet("GetFinancialYears", Name = "GetFinancialYears")]
         public IEnumerable<FinancialYear> GetFinancialYears()
         {
-            IEnumerable<FinancialYear> ap = fin_repo.GetAll();
-            ap = ap.OrderByDescending(a => a.FinancialYearId);
-            return ap;
+            return fin_repo.GetAll().OrderByDescending(a => a.FinancialYearId);
         }
 
         [HttpGet("GetFinancialYear/{id}", Name = "GetFinancialYear")]
@@ -65,6 +62,20 @@ namespace FinanceService.Controllers
         [ValidateModelAttribute]
         public IActionResult UpdateFinancialYear([FromBody]FinancialYear model)
         {
+            if(model.IsActive == true)
+            {
+                try
+                {
+                    if (model.FinancialYearId == fin_repo.GetFirst(a => a.IsActive == true).FinancialYearId)
+                        model.IsActive = true;
+                    else
+                        model.IsActive = false;
+                }
+                catch(NullReferenceException)
+                {
+                    model.IsActive = true;
+                }
+            }
             model.Name = model.StartDate.Value.Year.ToString() + '-' + model.EndDate.Value.Year.ToString();
             fin_repo.Update(model);
             return new OkObjectResult(new { FinancialYearID = model.FinancialYearId });
@@ -74,6 +85,20 @@ namespace FinanceService.Controllers
         [ValidateModelAttribute]
         public IActionResult AddFinancialYear([FromBody]FinancialYear model)
         {
+            if(model.IsActive == true)
+            {
+                try
+                {
+                    if (fin_repo.GetFirst(a => a.IsActive == true) == null)
+                        model.IsActive = true;
+                    else
+                        model.IsActive = false;
+                }
+                catch(NullReferenceException)
+                {
+                    model.IsActive = true;
+                }
+            }
             model.Name = model.StartDate.Value.Year.ToString() + '-' + model.EndDate.Value.Year.ToString();
             fin_repo.Add(model);
             return new OkObjectResult(new { FinancialYearID = model.FinancialYearId });

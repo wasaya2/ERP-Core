@@ -11,5 +11,17 @@ namespace SystemAdministrationService.Repos
 {
     public class PermissionRepository : RepoBase<Permission>, IPermissionRepository
     {
+        public UserPermissionsViewModel GetFeaturePermissions(long UserId, long RoleId, long FeatureId)
+        {
+            var _permissions = Db.Permissions.Where(p => p.FeatureId == FeatureId && p.RoleId == RoleId && p.UserId == UserId);
+
+            return new UserPermissionsViewModel
+            {
+                Permissions = _permissions.ToList(),
+                UserId = UserId,
+                RoleId = RoleId,
+                FeatureId = FeatureId
+            };
+        }
     }
 }

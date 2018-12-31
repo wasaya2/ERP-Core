@@ -8,13 +8,15 @@ namespace AuthService.ViewModels
 {
     public class AuthResponseViewModel
     {
-        public User User { get; set; }
+        public string UserLevel { get; set; }
+
+        public string FullName { get; set; }
+
+        public long UserId { get; set; }
 
         public UserAssignedIds AssignedId { get; set; }
 
-        public List<string> Modules { get; set; }
-
-        public List<string> Features { get; set; }
+        public List<FeatureModule> ModuleFeatures { get; set; }
 
         public bool Status { get; set; }
 
@@ -43,5 +45,11 @@ namespace AuthService.ViewModels
         public long? CityId { get; set; }
 
         public long? BranchId { get; set; }
+    }
+
+    public class FeatureModule
+    {
+        public string ModuleName { get; set; }
+        public IList<string> Features { get; set; }
     }
 }

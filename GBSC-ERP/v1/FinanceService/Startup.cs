@@ -102,6 +102,7 @@ namespace FinanceService
                 o.Password.RequireNonAlphanumeric = false;
                 o.Password.RequiredLength = 6;
             });
+
             buildr = new IdentityBuilder(buildr.UserType, typeof(IdentityRole), buildr.Services);
             buildr.AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
@@ -116,8 +117,7 @@ namespace FinanceService
 
             //FinanceSetup
             services.AddScoped<IAccountRepository, AccountRepository>();
-            services.AddScoped<IUnprocessedAccountsLedgerRepository, UnprocessedAccountsLedgerRepository>();
-            services.AddScoped<IProcessedAccountsLedgerRepository, ProcessedAccountsLedgerRepository>();
+            services.AddScoped<ITransactionAccountRepository, TransactionAccountRepository>();
 
             services.AddScoped<IMasterAccountRepository, MasterAccountRepository>();
             services.AddScoped<IDetailAccountRepository, DetailAccountRepository>();

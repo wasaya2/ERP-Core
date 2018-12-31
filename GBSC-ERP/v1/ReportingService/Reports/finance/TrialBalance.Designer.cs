@@ -43,10 +43,7 @@
             DevExpress.DataAccess.Sql.QueryParameter queryParameter5 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter6 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter7 = new DevExpress.DataAccess.Sql.QueryParameter();
-            DevExpress.DataAccess.Sql.QueryParameter queryParameter8 = new DevExpress.DataAccess.Sql.QueryParameter();
-            DevExpress.DataAccess.Sql.QueryParameter queryParameter9 = new DevExpress.DataAccess.Sql.QueryParameter();
-            DevExpress.DataAccess.Sql.MasterDetailInfo masterDetailInfo1 = new DevExpress.DataAccess.Sql.MasterDetailInfo();
-            DevExpress.DataAccess.Sql.RelationColumnInfo relationColumnInfo1 = new DevExpress.DataAccess.Sql.RelationColumnInfo();
+            DevExpress.XtraReports.Parameters.DynamicListLookUpSettings dynamicListLookUpSettings1 = new DevExpress.XtraReports.Parameters.DynamicListLookUpSettings();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.line2 = new DevExpress.XtraReports.UI.XRLine();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
@@ -81,9 +78,6 @@
             this.vendorLogo2 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
-            this.DetailReport = new DevExpress.XtraReports.UI.DetailReportBand();
-            this.Detail1 = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -94,7 +88,13 @@
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.NullParam = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
+            this.AsOfDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
+            this.FinancialYear = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vendorTable)).BeginInit();
@@ -104,8 +104,8 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel2});
-            this.Detail.HeightF = 23F;
+            this.xrTable1});
+            this.Detail.HeightF = 25F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -185,7 +185,7 @@
             // tableCell85
             // 
             this.tableCell85.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([Finance_GetMasterAccountsFinance_TrialBalanceDetail].[Debit])")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([Finance_TrialBalanceDetailAsOfDate].[Debit])")});
             this.tableCell85.Multiline = true;
             this.tableCell85.Name = "tableCell85";
             this.tableCell85.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -196,7 +196,7 @@
             // tableCell86
             // 
             this.tableCell86.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([Finance_GetMasterAccountsFinance_TrialBalanceDetail].[Credit])")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([Finance_TrialBalanceDetailAsOfDate].[Credit])")});
             this.tableCell86.Multiline = true;
             this.tableCell86.Name = "tableCell86";
             this.tableCell86.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -207,7 +207,7 @@
             // tableCell87
             // 
             this.tableCell87.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([Finance_GetMasterAccountsFinance_TrialBalanceDetail].[Movement])")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([Finance_TrialBalanceDetailAsOfDate].[Movement])")});
             this.tableCell87.Multiline = true;
             this.tableCell87.Name = "tableCell87";
             this.tableCell87.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -218,7 +218,7 @@
             // tableCell88
             // 
             this.tableCell88.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([Finance_GetMasterAccountsFinance_TrialBalanceDetail].[Net Balance])")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([Finance_TrialBalanceDetailAsOfDate].[Net Balance])")});
             this.tableCell88.Multiline = true;
             this.tableCell88.Name = "tableCell88";
             this.tableCell88.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -233,7 +233,7 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.table1.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.table1.LocationFloat = new DevExpress.Utils.PointFloat(0.1666546F, 64F);
+            this.table1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 104.625F);
             this.table1.Name = "table1";
             this.table1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow1});
@@ -478,11 +478,15 @@
             // ReportHeader
             // 
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel5,
+            this.xrLabel4,
+            this.xrLabel3,
+            this.xrLabel2,
             this.table1,
             this.xrLabel1,
             this.xrLine1,
             this.line2});
-            this.ReportHeader.HeightF = 90F;
+            this.ReportHeader.HeightF = 130.625F;
             this.ReportHeader.Name = "ReportHeader";
             // 
             // GroupFooter1
@@ -491,33 +495,6 @@
             this.table2});
             this.GroupFooter1.HeightF = 28.125F;
             this.GroupFooter1.Name = "GroupFooter1";
-            // 
-            // DetailReport
-            // 
-            this.DetailReport.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
-            this.Detail1});
-            this.DetailReport.DataMember = "Finance_GetMasterAccounts.Finance_GetMasterAccountsFinance_TrialBalanceDetail";
-            this.DetailReport.DataSource = this.sqlDataSource1;
-            this.DetailReport.Level = 0;
-            this.DetailReport.Name = "DetailReport";
-            // 
-            // Detail1
-            // 
-            this.Detail1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrTable1});
-            this.Detail1.HeightF = 25F;
-            this.Detail1.Name = "Detail1";
-            // 
-            // xrLabel2
-            // 
-            this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Display Account Info]")});
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.xrLabel2.Multiline = true;
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(800.233F, 23F);
-            this.xrLabel2.Text = "xrLabel2";
             // 
             // xrTable1
             // 
@@ -543,8 +520,7 @@
             // xrTableCell1
             // 
             this.xrTableCell1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Finance_GetMasterAccounts].[Finance_GetMasterAccountsFinance_TrialBalanceDetail]" +
-                    ".[Account Code]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Finance_TrialBalanceDetailAsOfDate].[Account Code]")});
             this.xrTableCell1.Multiline = true;
             this.xrTableCell1.Name = "xrTableCell1";
             this.xrTableCell1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -554,8 +530,7 @@
             // xrTableCell2
             // 
             this.xrTableCell2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Finance_GetMasterAccounts].[Finance_GetMasterAccountsFinance_TrialBalanceDetail]" +
-                    ".[Description]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Finance_TrialBalanceDetailAsOfDate].[Description]")});
             this.xrTableCell2.Multiline = true;
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -565,8 +540,7 @@
             // xrTableCell3
             // 
             this.xrTableCell3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Finance_GetMasterAccounts].[Finance_GetMasterAccountsFinance_TrialBalanceDetail]" +
-                    ".[Opening]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Finance_TrialBalanceDetailAsOfDate].[Opening Balance]")});
             this.xrTableCell3.Multiline = true;
             this.xrTableCell3.Name = "xrTableCell3";
             this.xrTableCell3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -576,8 +550,7 @@
             // xrTableCell4
             // 
             this.xrTableCell4.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Finance_GetMasterAccounts].[Finance_GetMasterAccountsFinance_TrialBalanceDetail]" +
-                    ".[Debit]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Finance_TrialBalanceDetailAsOfDate].[Debit]")});
             this.xrTableCell4.Multiline = true;
             this.xrTableCell4.Name = "xrTableCell4";
             this.xrTableCell4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -588,8 +561,7 @@
             // xrTableCell5
             // 
             this.xrTableCell5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Finance_GetMasterAccounts].[Finance_GetMasterAccountsFinance_TrialBalanceDetail]" +
-                    ".[Credit]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Finance_TrialBalanceDetailAsOfDate].[Credit]")});
             this.xrTableCell5.Multiline = true;
             this.xrTableCell5.Name = "xrTableCell5";
             this.xrTableCell5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -600,8 +572,7 @@
             // xrTableCell6
             // 
             this.xrTableCell6.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Finance_GetMasterAccounts].[Finance_GetMasterAccountsFinance_TrialBalanceDetail]" +
-                    ".[Movement]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Finance_TrialBalanceDetailAsOfDate].[Movement]")});
             this.xrTableCell6.Multiline = true;
             this.xrTableCell6.Name = "xrTableCell6";
             this.xrTableCell6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -612,8 +583,7 @@
             // xrTableCell7
             // 
             this.xrTableCell7.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Finance_GetMasterAccounts].[Finance_GetMasterAccountsFinance_TrialBalanceDetail]" +
-                    ".[Net Balance]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Finance_TrialBalanceDetailAsOfDate].[Net Balance]")});
             this.xrTableCell7.Multiline = true;
             this.xrTableCell7.Name = "xrTableCell7";
             this.xrTableCell7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -629,12 +599,59 @@
             this.NullParam.Type = typeof(long);
             this.NullParam.Visible = false;
             // 
+            // xrLabel2
+            // 
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(41.66667F, 54.12499F);
+            this.xrLabel2.Multiline = true;
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel2.Text = "Financial Year:";
+            // 
+            // xrLabel3
+            // 
+            this.xrLabel3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Name]")});
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(141.6667F, 54.12499F);
+            this.xrLabel3.Multiline = true;
+            this.xrLabel3.Name = "xrLabel3";
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel3.Text = "xrLabel3";
+            // 
+            // xrLabel4
+            // 
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(492.7083F, 54.12499F);
+            this.xrLabel4.Multiline = true;
+            this.xrLabel4.Name = "xrLabel4";
+            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel4.Text = "As Of Date:";
+            // 
+            // xrLabel5
+            // 
+            this.xrLabel5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?AsOfDate")});
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(592.7083F, 54.12499F);
+            this.xrLabel5.Multiline = true;
+            this.xrLabel5.Name = "xrLabel5";
+            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel5.Text = "xrLabel5";
+            this.xrLabel5.TextFormatString = "{0:dd-MMM-yy}";
+            // 
+            // AsOfDate
+            // 
+            this.AsOfDate.Description = "AsOfDate";
+            this.AsOfDate.Name = "AsOfDate";
+            this.AsOfDate.Type = typeof(System.DateTime);
+            this.AsOfDate.ValueInfo = "2001-01-01";
+            // 
             // sqlDataSource1
             // 
             this.sqlDataSource1.ConnectionName = "ERPDB_Connection";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            storedProcQuery1.MetaSerializable = "<Meta X=\"-70\" Y=\"20\" Width=\"100\" Height=\"105\" />";
-            storedProcQuery1.Name = "Finance_GetMasterAccounts";
+            storedProcQuery1.Name = "Finance_GetFinancialYears";
             queryParameter1.Name = "@companyid";
             queryParameter1.Type = typeof(DevExpress.DataAccess.Expression);
             queryParameter1.Value = new DevExpress.DataAccess.Expression("?NullParam", typeof(long));
@@ -651,41 +668,38 @@
             storedProcQuery1.Parameters.Add(queryParameter2);
             storedProcQuery1.Parameters.Add(queryParameter3);
             storedProcQuery1.Parameters.Add(queryParameter4);
-            storedProcQuery1.StoredProcName = "Finance_GetMasterAccounts";
-            storedProcQuery2.MetaSerializable = "<Meta X=\"190\" Y=\"20\" Width=\"100\" Height=\"173\" />";
-            storedProcQuery2.Name = "Finance_TrialBalanceDetail";
-            queryParameter5.Name = "@mastercode";
+            storedProcQuery1.StoredProcName = "Finance_GetFinancialYears";
+            storedProcQuery2.Name = "Finance_TrialBalanceDetailAsOfDate";
+            queryParameter5.Name = "@FinancialYearId";
             queryParameter5.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter5.Value = new DevExpress.DataAccess.Expression("?AccountCode", typeof(string));
-            queryParameter6.Name = "@companyid";
+            queryParameter5.Value = new DevExpress.DataAccess.Expression("?FinancialYear", typeof(long));
+            queryParameter6.Name = "@AsOfDate";
             queryParameter6.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter6.Value = new DevExpress.DataAccess.Expression("?NullParam", typeof(long));
-            queryParameter7.Name = "@countryid";
+            queryParameter6.Value = new DevExpress.DataAccess.Expression("?AsOfDate", typeof(string));
+            queryParameter7.Name = "@companyid";
             queryParameter7.Type = typeof(DevExpress.DataAccess.Expression);
             queryParameter7.Value = new DevExpress.DataAccess.Expression("?NullParam", typeof(long));
-            queryParameter8.Name = "@branchid";
-            queryParameter8.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter8.Value = new DevExpress.DataAccess.Expression("?NullParam", typeof(long));
-            queryParameter9.Name = "@cityid";
-            queryParameter9.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter9.Value = new DevExpress.DataAccess.Expression("?NullParam", typeof(long));
             storedProcQuery2.Parameters.Add(queryParameter5);
             storedProcQuery2.Parameters.Add(queryParameter6);
             storedProcQuery2.Parameters.Add(queryParameter7);
-            storedProcQuery2.Parameters.Add(queryParameter8);
-            storedProcQuery2.Parameters.Add(queryParameter9);
-            storedProcQuery2.StoredProcName = "Finance_TrialBalanceDetail";
+            storedProcQuery2.StoredProcName = "Finance_TrialBalanceDetailAsOfDate";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             storedProcQuery1,
             storedProcQuery2});
-            masterDetailInfo1.DetailQueryName = "Finance_TrialBalanceDetail";
-            relationColumnInfo1.NestedKeyColumn = "Account ID";
-            relationColumnInfo1.ParentKeyColumn = "Account ID";
-            masterDetailInfo1.KeyColumns.Add(relationColumnInfo1);
-            masterDetailInfo1.MasterQueryName = "Finance_GetMasterAccounts";
-            this.sqlDataSource1.Relations.AddRange(new DevExpress.DataAccess.Sql.MasterDetailInfo[] {
-            masterDetailInfo1});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
+            // 
+            // FinancialYear
+            // 
+            this.FinancialYear.Description = "FinancialYear";
+            dynamicListLookUpSettings1.DataMember = "Finance_GetFinancialYears";
+            dynamicListLookUpSettings1.DataSource = this.sqlDataSource1;
+            dynamicListLookUpSettings1.DisplayMember = "Name";
+            dynamicListLookUpSettings1.SortMember = null;
+            dynamicListLookUpSettings1.ValueMember = "FinancialYearId";
+            this.FinancialYear.LookUpSettings = dynamicListLookUpSettings1;
+            this.FinancialYear.Name = "FinancialYear";
+            this.FinancialYear.Type = typeof(long);
+            this.FinancialYear.ValueInfo = "0";
             // 
             // TrialBalance
             // 
@@ -694,15 +708,16 @@
             this.TopMargin,
             this.BottomMargin,
             this.ReportHeader,
-            this.GroupFooter1,
-            this.DetailReport});
+            this.GroupFooter1});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.sqlDataSource1});
-            this.DataMember = "Finance_GetMasterAccounts";
+            this.DataMember = "Finance_TrialBalanceDetailAsOfDate";
             this.DataSource = this.sqlDataSource1;
             this.Margins = new System.Drawing.Printing.Margins(25, 26, 119, 100);
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
-            this.NullParam});
+            this.NullParam,
+            this.AsOfDate,
+            this.FinancialYear});
             this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.table2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).EndInit();
@@ -746,11 +761,8 @@
         private DevExpress.XtraReports.UI.XRLine line2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private DevExpress.XtraReports.UI.XRLine xrLine1;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;
         private DevExpress.XtraReports.UI.GroupFooterBand GroupFooter1;
-        private DevExpress.XtraReports.UI.DetailReportBand DetailReport;
-        private DevExpress.XtraReports.UI.DetailBand Detail1;
         private DevExpress.XtraReports.UI.XRTable xrTable1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
@@ -760,7 +772,13 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell5;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell6;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell7;
-        private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
         private DevExpress.XtraReports.Parameters.Parameter NullParam;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel5;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel4;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel3;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
+        private DevExpress.XtraReports.Parameters.Parameter AsOfDate;
+        private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
+        private DevExpress.XtraReports.Parameters.Parameter FinancialYear;
     }
 }

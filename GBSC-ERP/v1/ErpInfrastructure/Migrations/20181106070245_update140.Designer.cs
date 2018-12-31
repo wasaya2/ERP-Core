@@ -9337,7 +9337,7 @@ namespace ErpInfrastructure.Migrations
 
                     b.Property<long?>("ReligionId");
 
-                    b.Property<long?>("RoleID");
+                    b.Property<long?>("RoleId");
 
                     b.Property<string>("TwitterUrl");
 
@@ -9377,7 +9377,7 @@ namespace ErpInfrastructure.Migrations
 
                     b.HasIndex("ReligionId");
 
-                    b.HasIndex("RoleID");
+                    b.HasIndex("RoleId");
 
                     b.HasIndex("UserPhotoId")
                         .IsUnique()
@@ -11317,7 +11317,7 @@ namespace ErpInfrastructure.Migrations
 
                     b.HasOne("ErpCore.Entities.Role", "Role")
                         .WithMany("Users")
-                        .HasForeignKey("RoleID");
+                        .HasForeignKey("RoleId");
 
                     b.HasOne("ErpCore.Entities.HRSetup.UserPhoto", "UserPhoto")
                         .WithOne("User")

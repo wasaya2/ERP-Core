@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ErpCore.Entities;
 using ErpCore.Entities.Finance;
+using ErpCore.Entities.FinanceSetup;
 using ErpCore.Filters;
 using FinanceService.Repos.Interfaces;
 using FinanceService.Repos.Interfaces.SetupInterfaces;
@@ -19,8 +20,7 @@ namespace FinanceService.Controllers
     public class FinanceController : Controller
     {
         private IAccountRepository Account_Repo;
-        private IUnprocessedAccountsLedgerRepository UAL_Repo;
-        private IProcessedAccountsLedgerRepository PAL_Repo;
+        private ITransactionAccountRepository UAL_Repo;
 
         private IVoucherRepository Vou_repo;
         private IVoucherDetailRepository VouDetail_repo;
@@ -31,13 +31,12 @@ namespace FinanceService.Controllers
         private IVoucherTypeRepository VoucherType_Repo;
 
         public FinanceController(IAccountRepository accountrepo, IVoucherRepository vourepo, IVoucherDetailRepository voudetailrepo,
-                                    IUnprocessedAccountsLedgerRepository ualrepo, IProcessedAccountsLedgerRepository palrepo,
+                                    ITransactionAccountRepository ualrepo,
                                     IPostedVoucherRepository postvourepo, IUnpostedVoucherRepository unpostvourepo,
                                     IFinancialYearRepository financeyearrepo, IVoucherTypeRepository vouchertyperepo)
         {
             Account_Repo = accountrepo;
             UAL_Repo = ualrepo;
-            PAL_Repo = palrepo;
 
             Vou_repo = vourepo;
             VouDetail_repo = voudetailrepo;
@@ -48,12 +47,12 @@ namespace FinanceService.Controllers
             VoucherType_Repo = vouchertyperepo;
         }
 
-        [HttpGet("GetVoucherPermissions/{userid}/{RoleId}/{featureid}", Name = "GetVoucherPermissions")]
-        public IEnumerable<Permission> GetPurchassePermissions(long userid, long RoleId, long featureid)
-        {
-            IEnumerable<Permission> per = Vou_repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
-            return per;
-        }
+        //[HttpGet("GetVoucherPermissions/{userid}/{RoleId}/{featureid}", Name = "GetVoucherPermissions")]
+        //public IEnumerable<Permission> GetPurchassePermissions(long userid, long RoleId, long featureid)
+        //{
+        //    IEnumerable<Permission> per = Vou_repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
+        //    return per;
+        //}
 
         #region Account
 
@@ -71,7 +70,14 @@ namespace FinanceService.Controllers
         public IActionResult UpdateAccount([FromBody]Account model)
         {
             Account updateAccount = Account_Repo.Find(model.AccountId);
-            updateAccount.OpeningBalance = model.OpeningBalance;
+            if (updateAccount.IsGeneralOrDetail == false)
+            {
+                updateAccount.OpeningBalance = model.OpeningBalance;
+                TransactionAccount UAL = UAL_Repo.GetFirst(a => a.AccountId == model.AccountId);
+                UAL.Description = model.Description;
+                UAL.OpeningBalance = model.OpeningBalance;
+                UAL_Repo.Update(UAL);
+            }
             updateAccount.Description = model.Description;
             Account_Repo.Update(updateAccount);
             return new OkObjectResult(new { AccountId = model.AccountId });
@@ -120,7 +126,7 @@ namespace FinanceService.Controllers
             }
             catch (NullReferenceException)
             {
-
+                
             }
 
 
@@ -131,33 +137,42 @@ namespace FinanceService.Controllers
 
             Account newAccount = new Account()
             {
-                ParentAccountCode = model.ParentAccountCode,
+                OldAccountId = null,
+                FinancialYearId = model.FinancialYearId,
                 AccountCode = GenerateAccountCode(model),
+                ParentAccountCode = model.ParentAccountCode,
+                IsGeneralOrDetail = model.IsGeneralOrDetail,
                 AccountLevel = model.ParentAccountLevel + 1,
                 Description = model.Description,
-                IsGeneralOrDetail = model.IsGeneralOrDetail,
-                FinancialYearId = model.FinancialYearId,
-                OpeningBalance = model.OpeningBalance
+                OpeningBalance = model.OpeningBalance,
+                TotalCredit = null,
+                TotalDebit = null,
+                TotalTransactionsAgainstThisAccount = null,
+                ClosingBalance = null,
+                IsProcessed = false
             };
 
             Account_Repo.Add(newAccount);
 
-            UnprocessedAccountsLedger newUAL = new UnprocessedAccountsLedger()
+            if(model.IsGeneralOrDetail == false)
             {
-                AccountId = newAccount.AccountId,
-                FinancialYearId = newAccount.FinancialYearId,
-                AccountCode = newAccount.AccountCode,
-                ParentAccountCode = newAccount.ParentAccountCode,
-                IsGeneralOrDetail = newAccount.IsGeneralOrDetail,
-                AccountLevel = newAccount.AccountLevel,
-                Description = newAccount.Description,
-                OpeningBalance = newAccount.OpeningBalance,
-                TotalCredit = 0,
-                TotalDebit = 0,
-                CurrentBalance = newAccount.OpeningBalance
-            };
+                TransactionAccount newUAL = new TransactionAccount()
+                {
+                    AccountId = newAccount.AccountId,
+                    FinancialYearId = newAccount.FinancialYearId,
+                    AccountCode = newAccount.AccountCode,
+                    ParentAccountCode = newAccount.ParentAccountCode,
+                    AccountLevel = newAccount.AccountLevel,
+                    Description = newAccount.Description,
+                    OpeningBalance = newAccount.OpeningBalance,
+                    TotalCredit = 0,
+                    TotalDebit = 0,
+                    CurrentBalance = newAccount.OpeningBalance,
+                    TotalTransactionsAgainstThisAccount = 0
+                };
 
-            UAL_Repo.Add(newUAL);
+                UAL_Repo.Add(newUAL);
+            }
 
             return new OkObjectResult(new { AccountId = newAccount.AccountId });
         }
@@ -168,98 +183,90 @@ namespace FinanceService.Controllers
             return BadRequest("Restricted");
         }
 
-        [HttpPost("ProcessAccountsForLedger", Name = "ProcessAccountsForLedger")]
-        public IActionResult ProcessAccountsForLedger(EndYearProcessRequestViewModel model)
+        [HttpGet("GetCurrentlyActiveAccounts", Name = "GetCurrentlyActiveAccounts")]
+        public IEnumerable<Account> GetCurrentlyActiveAccounts()
+        {
+            return Account_Repo.GetList(a => a.FinancialYearId != null && a.IsProcessed != true && a.FinancialYearId == FinancialYear_Repo.GetFirst(b => b.IsActive == true).FinancialYearId); 
+        }
+
+        [HttpGet("ProcessAccountsForLedger/{newfinancialyearid}", Name = "ProcessAccountsForLedger")]
+        public IActionResult ProcessAccountsForLedger(long newfinancialyearid)
         {
             try
             {
-                //GEt all unprocessed accounts for year to be processed
-                IEnumerable<UnprocessedAccountsLedger> UALs = UAL_Repo.GetList(a => a.FinancialYearId == model.FinancialYearProcessId);
+                //Get all unprocessed accounts and transaction accounts for year to be processed
+                IEnumerable<Account> UnprocessedAccounts = Account_Repo.GetList(a => a.FinancialYearId != null && a.IsProcessed != true && a.FinancialYearId == FinancialYear_Repo.GetFirst(b => b.IsActive == true).FinancialYearId);
+                IEnumerable<TransactionAccount> OldTransactionAccounts = UAL_Repo.GetList(a => a.FinancialYearId != null && a.FinancialYearId == FinancialYear_Repo.GetFirst(b => b.IsActive == true).FinancialYearId);
 
-                IList<UnprocessedAccountsLedger> newUALs = new List<UnprocessedAccountsLedger>();
-                IList<ProcessedAccountsLedger> PALs = new List<ProcessedAccountsLedger>();
-                IList<Account> Accounts = new List<Account>();
-
-                foreach (UnprocessedAccountsLedger UAL in UALs)
+                //Add new Accounts
+                IList<Account> newAccounts = new List<Account>();
+                foreach (Account UnprocessedAccount in UnprocessedAccounts)
                 {
-                    //AddToProcessedLedger
-                    ProcessedAccountsLedger PAL = new ProcessedAccountsLedger()
+                    Account NewAccount = new Account()
                     {
-                        AccountId = UAL.AccountId,
-                        FinancialYearId = UAL.FinancialYearId,
-                        AccountCode = UAL.AccountCode,
-                        ParentAccountCode = UAL.ParentAccountCode,
-                        IsGeneralOrDetail = UAL.IsGeneralOrDetail,
-                        AccountLevel = UAL.AccountLevel,
-                        Description = UAL.Description,
-                        OpeningBalance = UAL.OpeningBalance,
-                        TotalCredit = UAL.TotalCredit,
-                        TotalDebit = UAL.TotalDebit,
-                        ClosingBalance = UAL.CurrentBalance
+                        OldAccountId = UnprocessedAccount.AccountId,
+                        FinancialYearId = newfinancialyearid,
+                        AccountCode = UnprocessedAccount.AccountCode,
+                        ParentAccountCode = UnprocessedAccount.ParentAccountCode,
+                        IsGeneralOrDetail = UnprocessedAccount.IsGeneralOrDetail,
+                        AccountLevel = UnprocessedAccount.AccountLevel,
+                        Description = UnprocessedAccount.Description,
+                        OpeningBalance = OldTransactionAccounts.FirstOrDefault(a => a.AccountId == UnprocessedAccount.AccountId).CurrentBalance,
+                        TotalCredit = null,
+                        TotalDebit = null,
+                        TotalTransactionsAgainstThisAccount = null,
+                        ClosingBalance = null,
+                        IsProcessed = false
                     };
+                    newAccounts.Add(NewAccount);
+                }
+                Account_Repo.AddRange(newAccounts);
 
-                    PALs.Add(PAL);
-
-                    Account acc = new Account()
+                //Add new Transaction Accounts
+                IList<TransactionAccount> newTransactionAccounts = new List<TransactionAccount>();
+                foreach (Account account in newAccounts.Where(a => a.IsGeneralOrDetail == false))
+                {
+                    TransactionAccount newTransactionAccount = new TransactionAccount()
                     {
-                        AccountCode = UAL.AccountCode,
-                        ParentAccountCode = UAL.ParentAccountCode,
-                        IsGeneralOrDetail = UAL.IsGeneralOrDetail,
-                        AccountLevel = UAL.AccountLevel,
-                        Description = UAL.Description,
-                        OpeningBalance = UAL.CurrentBalance,
-                        IsBankAccount = UAL.IsBankAccount,
-                        IsProcessed = false,
-                        FinancialYearId = model.NewFinancialYearCoaId
-                    };
-
-                    //Add new account with new opneing balance = PAL.closingBalance = UAL.CurrentBalance && financialyearId = Id of the new financial year to start
-                    Account_Repo.Add(acc);
-
-                    //Now create new UALs based on Accounts where new accounts are created with total credit && total debit == 0
-                    UnprocessedAccountsLedger newUAL = new UnprocessedAccountsLedger()
-                    {
-                        AccountId = acc.AccountId,
-                        FinancialYearId = model.NewFinancialYearCoaId,
-                        AccountCode = acc.AccountCode,
-                        ParentAccountCode = acc.ParentAccountCode,
-                        IsGeneralOrDetail = acc.IsGeneralOrDetail,
-                        AccountLevel = acc.AccountLevel,
-                        Description = acc.Description,
-                        IsBankAccount = acc.IsBankAccount,
-                        OpeningBalance = acc.OpeningBalance,
+                        AccountId = account.AccountId,
+                        FinancialYearId = newfinancialyearid,
+                        AccountCode = account.AccountCode,
+                        ParentAccountCode = account.ParentAccountCode,
+                        AccountLevel = account.AccountLevel,
+                        Description = account.Description,
+                        OpeningBalance = account.OpeningBalance,
                         TotalCredit = 0,
                         TotalDebit = 0,
-                        CurrentBalance = acc.OpeningBalance
+                        CurrentBalance = account.OpeningBalance,
+                        TotalTransactionsAgainstThisAccount = 0
                     };
-
-                    newUALs.Add(newUAL);
-
+                    newTransactionAccounts.Add(newTransactionAccount);
                 }
+                UAL_Repo.AddRange(newTransactionAccounts);
 
-                //Add newly processed PALs
-                PAL_Repo.AddRange(PALs);
-                //delete the old UALs
-                UAL_Repo.DeleteRange(UALs);
-                //Add new UALs
-                UAL_Repo.AddRange(newUALs);
-
-
-                //UpdateAccountInAccountWhereFinancialID=IdOfTheYearBeingProcessed
-                IEnumerable<Account> UpdateAccounts = Account_Repo.GetList(a => a.FinancialYearId == model.FinancialYearProcessId);
-                IEnumerable<ProcessedAccountsLedger> NewlyAddedPALs = PAL_Repo.GetList(a => a.FinancialYearId == model.FinancialYearProcessId);
-                IList<Account> UpdatedAccounts = new List<Account>();
-
-                foreach (Account acc in UpdateAccounts)
-                {
-                    acc.UnprocessedAccountsLedgeId = UALs.FirstOrDefault(a => a.FinancialYearId == acc.FinancialYearId && a.AccountId == acc.AccountId && a.AccountCode == acc.AccountCode).UnprocessedAccountsLedgerId;
-                    acc.ProcessedAccountsLedgerId = NewlyAddedPALs.FirstOrDefault(a => a.FinancialYearId == acc.FinancialYearId && a.AccountId == acc.AccountId && a.AccountCode == acc.AccountCode).ProcessedAccountsLedgerId;
-                    acc.IsProcessed = true;
-
-                    UpdatedAccounts.Add(acc);
-                }
                 //Update processed accounts
-                Account_Repo.UpdateRange(UpdatedAccounts);
+                IList<Account> UpdateOldAccounts = new List<Account>();
+                foreach (Account acc in UnprocessedAccounts)
+                {
+                    acc.IsProcessed = true;
+                    acc.TotalCredit = OldTransactionAccounts.FirstOrDefault(a => a.AccountId == acc.AccountId).TotalCredit;
+                    acc.TotalDebit = OldTransactionAccounts.FirstOrDefault(a => a.AccountId == acc.AccountId).TotalDebit;
+                    acc.TotalTransactionsAgainstThisAccount = OldTransactionAccounts.FirstOrDefault(a => a.AccountId == acc.AccountId).TotalTransactionsAgainstThisAccount;
+                    acc.ClosingBalance = OldTransactionAccounts.FirstOrDefault(a => a.AccountId == acc.AccountId).CurrentBalance;
+                    UpdateOldAccounts.Add(acc);
+                }
+                Account_Repo.UpdateRange(UpdateOldAccounts);
+
+                //Delete Old Transaction Accounts
+                UAL_Repo.DeleteRange(OldTransactionAccounts);
+
+                //Update the financial year and set the new year as active
+                FinancialYear OldYear = FinancialYear_Repo.GetFirst(b => b.IsActive == true);
+                OldYear.IsActive = false;
+                FinancialYear NewYear = FinancialYear_Repo.GetFirst(c => c.FinancialYearId == newfinancialyearid);
+                NewYear.IsActive = true;
+                IList<FinancialYear> UpdateYears = new List<FinancialYear>() { OldYear, NewYear };
+                FinancialYear_Repo.UpdateRange(UpdateYears);
 
                 return Ok("Processed");
             }
@@ -271,70 +278,35 @@ namespace FinanceService.Controllers
 
         #endregion
 
-        #region Processed Account
+        #region Transaction Account
 
-        [HttpGet("GetProcessedAccountsLedgers", Name = "GetProcessedAccountsLedgers")]
-        public IEnumerable<ProcessedAccountsLedger> GetProcessedAccountsLedgers()
-        {
-            return PAL_Repo.GetAll().OrderByDescending(a => a.FinancialYearId).ThenBy(a => a.AccountCode);
-        }
-
-        [HttpGet("GetProcessedAccountsLedger/{id}", Name = "GetProcessedAccountsLedger")]
-        public ProcessedAccountsLedger GetProcessedAccountsLedger(long id) => PAL_Repo.GetFirst(a => a.ProcessedAccountsLedgerId == id);
-
-        [HttpPut("UpdateProcessedAccountsLedger", Name = "UpdateProcessedAccountsLedger")]
-        [ValidateModelAttribute]
-        public IActionResult UpdateProcessedAccountsLedger([FromBody]ProcessedAccountsLedger model)
-        {
-            PAL_Repo.Update(model);
-            return new OkObjectResult(new { ProcessedAccountsLedgerId = model.ProcessedAccountsLedgerId });
-        }
-
-        [HttpPost("AddProcessedAccountsLedgers", Name = "AddProcessedAccountsLedgers")]
-        [ValidateModelAttribute]
-        public IActionResult AddProcessedAccountsLedgers([FromBody]IEnumerable<ProcessedAccountsLedger> models)
-        {
-            PAL_Repo.AddRange(models);
-            return Ok("Success");
-        }
-
-        [HttpDelete("DeleteProcessedAccountsLedger/{id}")]
-        public IActionResult DeleteProcessedAccountsLedger(long id)
-        {
-            return Ok();
-        }
-
-        #endregion
-
-        #region Unprocessed Account
-
-        [HttpGet("GetUnprocessedAccountsLedgers", Name = "GetUnprocessedAccountsLedgers")]
-        public IEnumerable<UnprocessedAccountsLedger> GetUnprocessedAccountsLedgers()
+        [HttpGet("GetTransactionAccounts", Name = "GetTransactionAccounts")]
+        public IEnumerable<TransactionAccount> GetTransactionAccounts()
         {
             return UAL_Repo.GetAll().OrderBy(a => a.AccountCode);
         }
 
-        [HttpGet("GetUnprocessedAccountsLedger/{id}", Name = "GetUnprocessedAccountsLedger")]
-        public UnprocessedAccountsLedger GetUnprocessedAccountsLedger(long id) => UAL_Repo.GetFirst(a => a.UnprocessedAccountsLedgerId == id);
+        [HttpGet("GetTransactionAccount/{id}", Name = "GetTransactionAccount")]
+        public TransactionAccount GetTransactionAccount(long id) => UAL_Repo.GetFirst(a => a.TransactionAccountId == id);
 
-        [HttpPut("UpdateUnprocessedAccountsLedger", Name = "UpdateUnprocessedAccountsLedger")]
+        [HttpPut("UpdateTransactionAccount", Name = "UpdateTransactionAccount")]
         [ValidateModelAttribute]
-        public IActionResult UpdateUnprocessedAccountsLedger([FromBody]UnprocessedAccountsLedger model)
+        public IActionResult UpdateTransactionAccount([FromBody]TransactionAccount model)
         {
             UAL_Repo.Update(model);
-            return new OkObjectResult(new { UnprocessedAccountsLedgerId = model.UnprocessedAccountsLedgerId });
+            return new OkObjectResult(new { UnprocessedAccountsLedgerId = model.TransactionAccountId });
         }
 
-        [HttpPost("AddUnprocessedAccountsLedgers", Name = "AddUnprocessedAccountsLedgers")]
+        [HttpPost("AddTransactionAccounts", Name = "AddTransactionAccounts")]
         [ValidateModelAttribute]
-        public IActionResult AddUnprocessedAccountsLedgers([FromBody]IEnumerable<UnprocessedAccountsLedger> models)
+        public IActionResult AddTransactionAccounts([FromBody]IEnumerable<TransactionAccount> models)
         {
             UAL_Repo.AddRange(models);
             return Ok("Success");
         }
 
-        [HttpDelete("DeleteUnprocessedAccountsLedger/{id}")]
-        public IActionResult DeleteUnprocessedAccountsLedger(long id)
+        [HttpDelete("DeleteTransactionAccount/{id}")]
+        public IActionResult DeleteTransactionAccount(long id)
         {
             try
             {
@@ -360,7 +332,7 @@ namespace FinanceService.Controllers
         }
 
         [HttpGet("GetVoucher/{id}", Name = "GetVoucher")]
-        public Voucher GetVoucher(long id) => Vou_repo.GetFirst(a => a.VoucherId == id, b => b.VoucherDetails);
+        public Voucher GetVoucher([FromRoute]long id) => Vou_repo.GetFirst(a => a.VoucherId == id, b => b.VoucherDetails);
 
         [HttpPut("UpdateVoucher", Name = "UpdateVoucher")]
         [ValidateModelAttribute]
@@ -368,7 +340,6 @@ namespace FinanceService.Controllers
         {
             try
             {
-                VouDetail_repo.DeleteRange(VouDetail_repo.GetAll().Where(a => a.VoucherId == model.VoucherId));
                 Vou_repo.Update(model);
                 return new OkObjectResult(new { VoucherID = model.VoucherId });
             }
@@ -394,16 +365,17 @@ namespace FinanceService.Controllers
                     TotalCreditAmount = model.TotalCreditAmount,
                     TotalDebitAmount = model.TotalDebitAmount,
                     FinancialYearId = model.FinancialYearId,
-                    VoucherTypeId = model.VoucherTypeId
+                    VoucherTypeId = model.VoucherTypeId,
+                    CreatedAt = DateTime.Now
                 };
 
-                IEnumerable<UnprocessedAccountsLedger> UALs = UAL_Repo.GetList(a => a.IsGeneralOrDetail == false);
-                IList<UnprocessedAccountsLedger> UpdateUALs = new List<UnprocessedAccountsLedger>();
+                IEnumerable<TransactionAccount> UALs = UAL_Repo.GetAll();
+                IList<TransactionAccount> UpdateUALs = new List<TransactionAccount>();
                 IList<VoucherDetail> UpdateVoucherDetails = new List<VoucherDetail>();
 
                 foreach (VoucherDetail VD in model.VoucherDetails)
                 {
-                    UnprocessedAccountsLedger UL = UALs.FirstOrDefault(a => a.AccountId == VD.AccountId);
+                    TransactionAccount UL = UALs.FirstOrDefault(a => a.AccountId == VD.AccountId);
                     VD.AccountBalanceAmountBeforePosting = UL.CurrentBalance;
                     UL.TotalDebit += VD.DebitAmount;
                     UL.TotalCredit += VD.CreditAmount;
@@ -418,11 +390,9 @@ namespace FinanceService.Controllers
 
                 PostedVou_repo.Add(PV);
                 model.PostedVoucherId = PV.PostedVoucherId;
-
-                VouDetail_repo.UpdateRange(UpdateVoucherDetails);
-                model.VoucherDetails = null;
+                model.VoucherDetails = UpdateVoucherDetails;
             }
-            else if (model.IsFinal == false)
+            else if (model.IsFinal == false || model.IsFinal == null)
             {
                 UnpostedVoucher UV = new UnpostedVoucher()
                 {
@@ -444,7 +414,7 @@ namespace FinanceService.Controllers
         }
 
         [HttpDelete("DeleteVoucher/{id}")]
-        public IActionResult DeleteVoucher(long id)
+        public IActionResult DeleteVoucher([FromRoute]long id)
         {
             Voucher fin = Vou_repo.Find(id);
             if (fin == null)
@@ -472,7 +442,7 @@ namespace FinanceService.Controllers
         }
 
         [HttpGet("GetVoucherDetail/{id}", Name = "GetVoucherDetail")]
-        public VoucherDetail GetVoucherDetail(long id) => VouDetail_repo.GetFirst(a => a.VoucherDetailId == id);
+        public VoucherDetail GetVoucherDetail([FromRoute]long id) => VouDetail_repo.GetFirst(a => a.VoucherDetailId == id);
 
         [HttpPut("UpdateVoucherDetail", Name = "UpdateVoucherDetail")]
         [ValidateModelAttribute]
@@ -513,7 +483,7 @@ namespace FinanceService.Controllers
         }
 
         [HttpDelete("DeleteVoucherDetail/{id}")]
-        public IActionResult DeleteVoucherDetail(long id)
+        public IActionResult DeleteVoucherDetail([FromRoute]long id)
         {
             VoucherDetail fin = VouDetail_repo.Find(id);
             if (fin == null)
@@ -553,7 +523,7 @@ namespace FinanceService.Controllers
         }
 
         [HttpGet("GetUnpostedVoucher/{id}", Name = "GetUnpostedVoucher")]
-        public IActionResult GetUnpostedVoucher(long id)
+        public IActionResult GetUnpostedVoucher([FromRoute]long id)
         {
             try
             {
@@ -579,7 +549,7 @@ namespace FinanceService.Controllers
         }
 
         [HttpPut("UpdateUnpostedVoucher", Name = "UpdateUnpostedVoucher")]
-        public IActionResult UpdateUnpostedVoucher(UnpostedVoucherViewModel model)
+        public IActionResult UpdateUnpostedVoucher([FromBody]UnpostedVoucherViewModel model)
         {
             Voucher V = Vou_repo.GetFirst(a => a.VoucherId == model.VoucherId);
             V.Date = model.Date;
@@ -606,21 +576,23 @@ namespace FinanceService.Controllers
                     TotalCreditAmount = model.TotalCreditAmount,
                     TotalDebitAmount = model.TotalDebitAmount,
                     FinancialYearId = model.FinancialYearId,
-                    VoucherTypeId = model.VoucherTypeId
+                    VoucherTypeId = model.VoucherTypeId,
+                    CreatedAt = DateTime.Now
                 };
 
                 PostedVou_repo.Add(PV);
                 V.IsFinal = true;
                 V.PostedVoucherId = PV.PostedVoucherId;
 
-                IEnumerable<UnprocessedAccountsLedger> UALs = UAL_Repo.GetList(a => a.IsGeneralOrDetail == false);
-                IList<UnprocessedAccountsLedger> UpdateUALs = new List<UnprocessedAccountsLedger>();
+                IEnumerable<TransactionAccount> UALs = UAL_Repo.GetAll();
+                IList<TransactionAccount> UpdateUALs = new List<TransactionAccount>();
                 IList<VoucherDetail> updateVoucherDetails = new List<VoucherDetail>();
 
                 foreach (VoucherDetail VD in V.VoucherDetails)
                 {
-                    UnprocessedAccountsLedger UL = UALs.FirstOrDefault(a => a.AccountId == VD.AccountId);
+                    TransactionAccount UL = UALs.FirstOrDefault(a => a.AccountId == VD.AccountId);
                     VD.AccountBalanceAmountBeforePosting = UL.CurrentBalance;
+                    UL.TotalTransactionsAgainstThisAccount += 1;
                     UL.TotalDebit += VD.DebitAmount;
                     UL.TotalCredit += VD.CreditAmount;
                     UL.CurrentBalance = UL.CurrentBalance - VD.DebitAmount + VD.CreditAmount;
@@ -632,8 +604,7 @@ namespace FinanceService.Controllers
                 UAL_Repo.UpdateRange(UpdateUALs);
                 UnpostedVou_repo.Delete(UV);
 
-                V.VoucherDetails = null;
-                VouDetail_repo.UpdateRange(updateVoucherDetails);
+                V.VoucherDetails = updateVoucherDetails;
             }
             else if(model.Posted == false)
             {
@@ -654,7 +625,7 @@ namespace FinanceService.Controllers
         }
 
         [HttpDelete("DeleteUnpostedVoucher/{id}", Name = "DeleteUnpostedVoucher")]
-        public IActionResult DeleteUnpostedVoucher(long id)
+        public IActionResult DeleteUnpostedVoucher([FromRoute]long id)
         {
             try
             {
@@ -665,8 +636,8 @@ namespace FinanceService.Controllers
                     return BadRequest("Posted Vouchers can't be deleted");
                 }
                 UnpostedVou_repo.Delete(UV);
-                Vou_repo.Delete(V);
                 VouDetail_repo.DeleteRange(VouDetail_repo.GetList(a => a.VoucherId == V.VoucherId));
+                Vou_repo.Delete(V);
                 return Ok("Deleted");
             }
             catch(NullReferenceException)
@@ -675,6 +646,109 @@ namespace FinanceService.Controllers
             }
         }
 
+        [HttpPost("PostUnpostedVouchers", Name = "PostUnpostedVouchers")]
+        public IActionResult PostUnpostedVouchers ([FromBody]IEnumerable<UnpostedVoucherViewModel> models)
+        {
+            IList<Voucher> Vs = new List<Voucher>();
+            IList<UnpostedVoucher> UVs = new List<UnpostedVoucher>();
+
+            IList<TransactionAccount> UpdateUALs = new List<TransactionAccount>();
+            IList<VoucherDetail> updateVoucherDetails = new List<VoucherDetail>();
+
+            IEnumerable<TransactionAccount> UALs = UAL_Repo.GetAll();
+
+            foreach (UnpostedVoucherViewModel model in models)
+            {
+                PostedVoucher PV = new PostedVoucher()
+                {
+                    VoucherId = model.VoucherId,
+                    VoucherCode = model.VoucherCode,
+                    Date = model.Date,
+                    Description = model.Description,
+                    TotalCreditAmount = model.TotalCreditAmount,
+                    TotalDebitAmount = model.TotalDebitAmount,
+                    FinancialYearId = model.FinancialYearId,
+                    VoucherTypeId = model.VoucherTypeId,
+                    CreatedAt = DateTime.Now
+                };
+                PostedVou_repo.Add(PV);
+
+                Voucher V = Vou_repo.GetFirst(a => a.VoucherId == model.VoucherId);
+                V.PostedVoucherId = PV.PostedVoucherId;
+                V.IsFinal = true;
+
+                foreach (VoucherDetail VD in model.VoucherDetails)
+                {
+                    TransactionAccount UL = UALs.FirstOrDefault(a => a.AccountId == VD.AccountId);
+                    VD.AccountBalanceAmountBeforePosting = UL.CurrentBalance;
+                    UL.TotalTransactionsAgainstThisAccount += 1;
+                    UL.TotalDebit += VD.DebitAmount;
+                    UL.TotalCredit += VD.CreditAmount;
+                    UL.CurrentBalance = UL.CurrentBalance - VD.DebitAmount + VD.CreditAmount;
+                    VD.AccountBalanceAmountAfterPosting = UL.CurrentBalance;
+
+                    UpdateUALs.Add(UL);
+                    updateVoucherDetails.Add(VD);
+                };
+
+                V.VoucherDetails = updateVoucherDetails;
+                Vs.Add(V);
+                UVs.Add(UnpostedVou_repo.Find(model.UnpostedVoucherId));
+            }
+
+            Vou_repo.UpdateRange(Vs);
+            UAL_Repo.UpdateRange(UpdateUALs);
+
+            UnpostedVou_repo.DeleteRange(UVs);
+            return Ok("Posted");
+        }
+
+        [HttpPost("PostUnpostedVoucher", Name = "PostUnpostedVoucher")]
+        public IActionResult PostUnpostedVoucher([FromBody]UnpostedVoucherViewModel model)
+        {
+            IList<TransactionAccount> UpdateUALs = new List<TransactionAccount>();
+            IList<VoucherDetail> updateVoucherDetails = new List<VoucherDetail>();
+            
+            PostedVoucher PV = new PostedVoucher()
+            {
+                VoucherId = model.VoucherId,
+                VoucherCode = model.VoucherCode,
+                Date = model.Date,
+                Description = model.Description,
+                TotalCreditAmount = model.TotalCreditAmount,
+                TotalDebitAmount = model.TotalDebitAmount,
+                FinancialYearId = model.FinancialYearId,
+                VoucherTypeId = model.VoucherTypeId,
+                CreatedAt = DateTime.Now
+            };
+            PostedVou_repo.Add(PV);
+
+            Voucher V = Vou_repo.GetFirst(a => a.VoucherId == model.VoucherId, b => b.VoucherDetails);
+            V.PostedVoucherId = PV.PostedVoucherId;
+            V.IsFinal = true;
+
+            IEnumerable<TransactionAccount> UALs = UAL_Repo.GetAll();
+            foreach (VoucherDetail VD in V.VoucherDetails)
+            {
+                TransactionAccount UL = UALs.FirstOrDefault(a => a.AccountId == VD.AccountId);
+                VD.AccountBalanceAmountBeforePosting = UL.CurrentBalance;
+                UL.TotalTransactionsAgainstThisAccount += 1;
+                UL.TotalDebit += VD.DebitAmount;
+                UL.TotalCredit += VD.CreditAmount;
+                UL.CurrentBalance = UL.CurrentBalance - VD.DebitAmount + VD.CreditAmount;
+                VD.AccountBalanceAmountAfterPosting = UL.CurrentBalance;
+
+                UpdateUALs.Add(UL);
+                updateVoucherDetails.Add(VD);
+            };
+            V.VoucherDetails = updateVoucherDetails;
+            Vou_repo.Update(V);
+            UAL_Repo.UpdateRange(UpdateUALs);
+
+            UnpostedVou_repo.Delete(UnpostedVou_repo.Find(model.UnpostedVoucherId));
+            return Ok("Posted");
+        }
+        
         #endregion
 
         #region Posted Voucher
@@ -695,7 +769,7 @@ namespace FinanceService.Controllers
                     TotalDebitAmount = PV.TotalDebitAmount,
                     FinancialYear = FinancialYear_Repo.GetFirst(a => a.FinancialYearId == PV.FinancialYearId),
                     VoucherType = VoucherType_Repo.GetFirst(a => a.VoucherTypeId == PV.VoucherTypeId),
-                    VoucherDetails = VouDetail_repo.GetList(a => a.VoucherId == PV.VoucherId)
+                    VoucherDetails = VouDetail_repo.GetList(a => a.VoucherId == PV.VoucherId, b => b.Account)
                 };
                 PVVMs.Add(PVVM);
             }
@@ -703,7 +777,7 @@ namespace FinanceService.Controllers
         }
 
         [HttpGet("GetPostedVouchersByFinancialYear/{id}", Name = "GetPostedVouchersByFinancialYear")]
-        public IEnumerable<PostedVoucherViewModel> GetPostedVouchersByFinancialYear(long id)
+        public IEnumerable<PostedVoucherViewModel> GetPostedVouchersByFinancialYear([FromRoute]long id)
         {
             IList<PostedVoucherViewModel> PVVMs = new List<PostedVoucherViewModel>();
             foreach (PostedVoucher PV in PostedVou_repo.GetList(a => a.FinancialYearId == id))
@@ -718,14 +792,14 @@ namespace FinanceService.Controllers
                     TotalDebitAmount = PV.TotalDebitAmount,
                     FinancialYear = FinancialYear_Repo.GetFirst(a => a.FinancialYearId == PV.FinancialYearId),
                     VoucherType = VoucherType_Repo.GetFirst(a => a.VoucherTypeId == PV.VoucherTypeId),
-                    VoucherDetails = VouDetail_repo.GetList(a => a.VoucherId == PV.VoucherId)
+                    VoucherDetails = VouDetail_repo.GetList(a => a.VoucherId == PV.VoucherId, b => b.Account)
                 };
                 PVVMs.Add(PVVM);
             }
             return PVVMs;
         }
 
-        [HttpGet("GetPostedVouchersByDateRange/{fromdate}/{todate}", Name = "GetPostedVouchersByDateRange")]
+        [HttpGet("GetPostedVouchersByDateRange", Name = "GetPostedVouchersByDateRange")]
         public IEnumerable<PostedVoucherViewModel> GetPostedVouchersByDateRange(DateTime fromdate, DateTime todate)
         {
             IList<PostedVoucherViewModel> PVVMs = new List<PostedVoucherViewModel>();
@@ -741,7 +815,30 @@ namespace FinanceService.Controllers
                     TotalDebitAmount = PV.TotalDebitAmount,
                     FinancialYear = FinancialYear_Repo.GetFirst(a => a.FinancialYearId == PV.FinancialYearId),
                     VoucherType = VoucherType_Repo.GetFirst(a => a.VoucherTypeId == PV.VoucherTypeId),
-                    VoucherDetails = VouDetail_repo.GetList(a => a.VoucherId == PV.VoucherId)
+                    VoucherDetails = VouDetail_repo.GetList(a => a.VoucherId == PV.VoucherId, b => b.Account)
+                };
+                PVVMs.Add(PVVM);
+            }
+            return PVVMs;
+        }
+
+        [HttpGet("GetPostedVouchersByDate", Name = "GetPostedVouchersByDate")]
+        public IEnumerable<PostedVoucherViewModel> GetPostedVouchersByDate(DateTime date)
+        {
+            IList<PostedVoucherViewModel> PVVMs = new List<PostedVoucherViewModel>();
+            foreach (PostedVoucher PV in PostedVou_repo.GetList(a => a.Date.Value.Year == date.Year && a.Date.Value.Month == date.Month && a.Date.Value.Day == date.Day))
+            {
+                PostedVoucherViewModel PVVM = new PostedVoucherViewModel()
+                {
+                    PostedVoucherId = PV.PostedVoucherId,
+                    VoucherId = PV.VoucherId,
+                    Date = PV.Date,
+                    Description = PV.Description,
+                    TotalCreditAmount = PV.TotalCreditAmount,
+                    TotalDebitAmount = PV.TotalDebitAmount,
+                    FinancialYear = FinancialYear_Repo.GetFirst(a => a.FinancialYearId == PV.FinancialYearId),
+                    VoucherType = VoucherType_Repo.GetFirst(a => a.VoucherTypeId == PV.VoucherTypeId),
+                    VoucherDetails = VouDetail_repo.GetList(a => a.VoucherId == PV.VoucherId, b => b.Account)
                 };
                 PVVMs.Add(PVVM);
             }

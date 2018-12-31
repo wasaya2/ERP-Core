@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ErpCore.Entities.InventorySetup;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -28,6 +29,15 @@ namespace ErpCore.Entities
         public string CustomerSecondName { get; set; }
         public string CustomerCode { get; set; }
         /*******************************************/
+
+
+        //For integration with eTracker OrderTaking
+        public long StoreId { get; set; }
+        public long StoreVisitId { get; set; }
+
+        public long? DistributorId { get; set; }
+        public Distributor Distributor { get; set; }
+        /*****************************************/
 
         public DateTime? IssueDate { get; set; }
         public bool? IsIssued { get; set; }

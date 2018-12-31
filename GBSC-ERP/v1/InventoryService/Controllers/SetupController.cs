@@ -11,6 +11,7 @@ using InventoryService.Repos.Interfaces;
 using ErpCore.Filters;
 using System.Text.RegularExpressions;
 using ErpCore.Entities;
+using InventoryService.ViewModels;
 
 namespace InventoryService.Controllers
 {
@@ -37,12 +38,15 @@ namespace InventoryService.Controllers
         private ISupplierRepository Supplier_repo;
         private IPackageTypeRepository PackageType_repo;
         private IAreaRepository Area_repo;
+        private ICityRepository cityRepo;
         private ICustomerWarehousesRepository Warehouse_repo;
         private ICustomerAccountRepository Account_repo;
         private ICustomerPricePickLevelRepository PricePickLevel_repo;
         private ICustomerTypeRepository Type_repo;
         private IRegionRepository Region_repo;
         private ITerritoryRepository Territory_repo;
+        private ISectionRepository sectionRepo;
+        private ISubsectionRepository subsectionRepo;
         private IReturnReasonRepository Reason_repo;
         private IInventoryRepository Inv_repo;
         private IInventoryCurrencyRepository Currency_repo;
@@ -68,12 +72,15 @@ namespace InventoryService.Controllers
             ISupplierRepository repo18,
             IPackageTypeRepository repo19,
             IAreaRepository repo20,
+            ICityRepository _cityRepo,
             ICustomerWarehousesRepository repo21,
             ICustomerAccountRepository repo22,
             ICustomerPricePickLevelRepository repo23,
             ICustomerTypeRepository repo24,
             IRegionRepository repo25,
             ITerritoryRepository repo26,
+            ISectionRepository _sectionRepo,
+            ISubsectionRepository _subsectionRepo,
             IReturnReasonRepository repo27,
             IInventoryRepository repo28,
             IInventoryCurrencyRepository repo29
@@ -99,39 +106,44 @@ namespace InventoryService.Controllers
             Supplier_repo = repo18;
             PackageType_repo = repo19;
             Area_repo = repo20;
+            sectionRepo = _sectionRepo;
+            subsectionRepo = _subsectionRepo;
             Warehouse_repo = repo21;
             Account_repo = repo22;
             PricePickLevel_repo = repo23;
             Type_repo = repo24;
             Region_repo = repo25;
+            cityRepo = _cityRepo;
             Territory_repo = repo26;
             Reason_repo = repo27;
             Inv_repo = repo28;
             Currency_repo = repo29;
         }
 
-        [HttpGet("GetInventorySetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetInventorySetupPermissions")]
-        public IEnumerable<Permission> GetInventorySetupPermissions(long userid, long RoleId, long featureid)
-        {
-            IEnumerable<Permission> per = _repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
-            return per;
-        }
+        //[HttpGet("GetInventorySetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetInventorySetupPermissions")]
+        //public IEnumerable<Permission> GetInventorySetupPermissions(long userid, long RoleId, long featureid)
+        //{
+        //    IEnumerable<Permission> per = _repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
+        //    return per;
+        //}
 
         #region Inventory Item
         [HttpGet("GetInventoryItems", Name = "GetInventoryItems")]
         public IEnumerable<InventoryItem> GetInventoryItems()
         {
-            IEnumerable<InventoryItem> iv = _repo.GetAll(a => a.Inventory,
-                                                            b => b.InventoryItemCategory,
-                                                            c => c.PackageType,
-                                                            d => d.PackCategory,
-                                                            e => e.PackSize,
-                                                            f => f.PackType,
-                                                            g => g.ProductType,
-                                                            h => h.Unit);
+            IEnumerable<InventoryItem> iv = _repo.GetAll();
 
             iv = iv.OrderByDescending(a => a.InventoryItemId);
             return iv;
+        }
+
+
+        [HttpGet("GetBrandsWithInventoryItems/{CompanyId}")]
+        public IActionResult GetBrandsWithInventoryItems(long CompanyId)
+        {
+            var brands = Brand_repo.GetInventoryItems(CompanyId);
+
+            return Json(brands);
         }
 
         [HttpGet("GetInventoryItem/{id}", Name = "GetInventoryItem")]
@@ -211,6 +223,19 @@ namespace InventoryService.Controllers
             return b;
         }
 
+
+
+        [HttpGet("GetAreasByCompany/{CompanyId}")]
+        public IEnumerable<Area> GetAreasByCompany(long CompanyId)
+        {
+            IEnumerable<Area> b = Area_repo.GetList(c => c.CompanyId == CompanyId);
+            b = b.OrderByDescending(a => a.AreaId);
+            return b;
+        }
+
+        [HttpGet("GetAreasByUser/{id}")]
+        public IEnumerable<Area> GetAreasByUser(long id) => Area_repo.GetList(u => u.UserId == id);
+
         [HttpGet("GetArea/{id}", Name = "GetArea")]
         public Area GetArea(long id) => Area_repo.GetFirst(a => a.AreaId == id);
 
@@ -243,11 +268,74 @@ namespace InventoryService.Controllers
         }
         #endregion
 
+        #region City
+        [HttpGet("GetCities")]
+        public IEnumerable<City> GetCities()
+        {
+            IEnumerable<City> c = cityRepo.GetAll();
+            c = c.OrderByDescending(a => a.CityId);
+            return c;
+        }
+
+        [HttpGet("GetCitiesByUser/{id}")]
+        public IEnumerable<City> GetCitiesByUser(long id) => cityRepo.GetList(u => u.UserId == id);
+
+        [HttpGet("GetCitiesByCompany/{CompanyId}")]
+        public IEnumerable<City> GetCitiesByCompany(long CompanyId)
+        {
+            IEnumerable<City> b = cityRepo.GetList(c => c.CompanyId == CompanyId);
+            b = b.OrderByDescending(a => a.CityId);
+            return b;
+        }
+
+        [HttpGet("GetCity/{id}")]
+        public City GetCity(long id) => cityRepo.GetFirst(a => a.CityId == id);
+
+        [HttpPut("UpdateCity")]
+        [ValidateModelAttribute]
+        public IActionResult UpdateCity([FromBody]City model)
+        {
+            cityRepo.Update(model);
+            return new OkObjectResult(new { CityId = model.CityId });
+        }
+
+        [HttpPost("AddCity")]
+        [ValidateModelAttribute]
+        public IActionResult AddCity([FromBody]City model)
+        {
+            cityRepo.Add(model);
+            return new OkObjectResult(new { CityId = model.CityId });
+        }
+
+        [HttpDelete("DeleteCity/{id}")]
+        public IActionResult DeleteCity(long id)
+        {
+            City city = cityRepo.Find(id);
+            if (city == null)
+            {
+                return NotFound();
+            }
+            cityRepo.Delete(city);
+            return Ok();
+        }
+        #endregion
+
         #region Region
         [HttpGet("GetRegions", Name = "GetRegions")]
         public IEnumerable<Region> GetRegions()
         {
             IEnumerable<Region> b = Region_repo.GetAll();
+            b = b.OrderByDescending(a => a.RegionId);
+            return b;
+        }
+
+        [HttpGet("GetRegionsByUser/{id}")]
+        public IEnumerable<Region> GetRegionsByUser(long id) => Region_repo.GetList(u=>u.UserId == id);
+
+        [HttpGet("GetRegionsByCompany/{CompanyId}")]
+        public IEnumerable<Region> GetRegionsByCompany(long CompanyId)
+        {
+            IEnumerable<Region> b = Region_repo.GetList(c => c.CompanyId == CompanyId);
             b = b.OrderByDescending(a => a.RegionId);
             return b;
         }
@@ -293,6 +381,25 @@ namespace InventoryService.Controllers
             return b;
         }
 
+        [HttpGet("GetTerritoriesByUser/{id}")]
+        public IEnumerable<Territory> GetTerritoriesByUser(long id) => Territory_repo.GetList(u => u.UserId == id);
+
+        [HttpGet("GetTerritoriesByCompany/{CompanyId}")]
+        public IEnumerable<Territory> GetTerritoriesByCompany(long CompanyId)
+        {
+            IEnumerable<Territory> b = Territory_repo.GetList(t => t.CompanyId == CompanyId);
+            b = b.OrderByDescending(a => a.TerritoryId);
+            return b;
+        }
+
+        [HttpGet("GetTerritoriesByDistributor/{DistributorId}")]
+        public IEnumerable<Territory> GetTerritoriesByDistributor(long DistributorId)
+        {
+            IEnumerable<Territory> b = Territory_repo.GetList(t => t.DistributorId == DistributorId);
+            b = b.OrderByDescending(a => a.TerritoryId);
+            return b;
+        }
+
         [HttpGet("GetTerritory/{id}", Name = "GetTerritory")]
         public Territory GetTerritory(long id) => Territory_repo.GetFirst(c => c.TerritoryId == id, a => a.Area, b => b.Distributor);
 
@@ -321,6 +428,112 @@ namespace InventoryService.Controllers
                 return NotFound();
             }
             Territory_repo.Delete(Territory);
+            return Ok();
+        }
+        #endregion
+
+        #region Section
+        [HttpGet("GetSections")]
+        public IEnumerable<Section> GetSections()
+        {
+            IEnumerable<Section> sections = sectionRepo.GetAll(a => a.Territory);
+            sections = sections.OrderByDescending(a => a.SectionId);
+            return sections;
+        }
+
+        [HttpGet("GetSectionsByCompany/{CompanyId}")]
+        public IEnumerable<Section> GetSectionsByCompany(long CompanyId)
+        {
+            IEnumerable<Section> sections = sectionRepo.GetList(c => c.CompanyId == CompanyId);
+            sections = sections.OrderByDescending(a => a.SectionId);
+            return sections;
+        }
+
+        [HttpGet("GetSectionsByTerritory/{TerritoryId}")]
+        public IEnumerable<Section> GetSectionsByTerritory(long TerritoryId)
+        {
+            IEnumerable<Section> sections = sectionRepo.GetList(c => c.TerritoryId == TerritoryId);
+            sections = sections.OrderByDescending(a => a.SectionId);
+            return sections;
+        }
+
+        [HttpGet("GetSection/{id}")]
+        public Section GetSection(long id) => sectionRepo.GetFirst(c => c.SectionId == id);
+
+        [HttpPut("UpdateSection")]
+        [ValidateModelAttribute]
+        public IActionResult UpdateSection([FromBody]Section model)
+        {
+            sectionRepo.Update(model);
+            return new OkObjectResult(new { SectionId = model.SectionId });
+        }
+
+        [HttpPost("AddSection")]
+        [ValidateModelAttribute]
+        public IActionResult AddSection([FromBody]Section model)
+        {
+            sectionRepo.Add(model);
+            return new OkObjectResult(new { SectionId = model.SectionId });
+        }
+
+        [HttpDelete("DeleteSection/{id}")]
+        public IActionResult DeleteSection(long id)
+        {
+            Section section = sectionRepo.Find(id);
+            if (section == null)
+            {
+                return NotFound();
+            }
+            sectionRepo.Delete(section);
+            return Ok();
+        }
+        #endregion
+
+        #region Subsection
+        [HttpGet("GetSubsections")]
+        public IEnumerable<Subsection> GetSubsections()
+        {
+            IEnumerable<Subsection> subsections = subsectionRepo.GetAll(a => a.Section);
+            subsections = subsections.OrderByDescending(a => a.SubsectionId);
+            return subsections;
+        }
+
+        [HttpGet("GetSubsectionsByCompany/{CompanyId}")]
+        public IEnumerable<Subsection> GetSubsectionsByCompany(long CompanyId)
+        {
+            IEnumerable<Subsection> subsections = subsectionRepo.GetList(c => c.CompanyId == CompanyId);
+            subsections = subsections.OrderByDescending(a => a.SubsectionId);
+            return subsections;
+        }
+
+        [HttpGet("GetSubsection/{id}")]
+        public Subsection GetSubsection(long id) => subsectionRepo.GetFirst(c => c.SubsectionId == id);
+
+        [HttpPut("UpdateSubsection")]
+        [ValidateModelAttribute]
+        public IActionResult UpdateSubsection([FromBody]Subsection model)
+        {
+            subsectionRepo.Update(model);
+            return new OkObjectResult(new { SubsectionId = model.SubsectionId });
+        }
+
+        [HttpPost("AddSubsection")]
+        [ValidateModelAttribute]
+        public IActionResult AddSubsection([FromBody]Subsection model)
+        {
+            subsectionRepo.Add(model);
+            return new OkObjectResult(new { SubsectionId = model.SubsectionId });
+        }
+
+        [HttpDelete("DeleteSubsection/{id}")]
+        public IActionResult DeleteSubsection(long id)
+        {
+            Subsection subsection = subsectionRepo.Find(id);
+            if (subsection == null)
+            {
+                return NotFound();
+            }
+            subsectionRepo.Delete(subsection);
             return Ok();
         }
         #endregion
@@ -377,6 +590,14 @@ namespace InventoryService.Controllers
             return un;
         }
 
+        [HttpGet("GetUnitsByCompany/{CompanyId}")]
+        public IEnumerable<Units> GetUnitsByCompany(long CompanyId)
+        {
+            IEnumerable<Units> un = uni_repo.GetList(c => c.CompanyId == CompanyId);
+            un = un.OrderByDescending(a => a.UnitId);
+            return un;
+        }
+
         [HttpGet("GetUnit/{id}", Name = "GetUnit")]
         public Units GetUnit(long id) => uni_repo.GetFirst(a => a.UnitId == id);
 
@@ -418,6 +639,14 @@ namespace InventoryService.Controllers
             return b;
         }
 
+        [HttpGet("GetBrandsByCompanyId/{CompanyId}")]
+        public IEnumerable<Brand> GetBrandsByCompanyId(long CompanyId)
+        {
+            IEnumerable<Brand> b = Brand_repo.GetList(c => c.CompanyId == CompanyId);
+            b = b.OrderByDescending(a => a.BrandId);
+            return b;
+        }
+
         [HttpGet("GetBrand/{id}", Name = "GetBrand")]
         public Brand GetBrand(long id) => Brand_repo.GetFirst(a => a.BrandId == id);
 
@@ -450,7 +679,7 @@ namespace InventoryService.Controllers
         }
         #endregion
 
-        #region Get By Company, Country, City or Branch
+        #region inventory Items Get By Company, Country, City or Branch
 
         [HttpGet("GetInventoryItemsByCompany/{id}", Name = "GetInventoryItemsByCompany")]
         public IEnumerable<InventoryItem> GetInventoryItemsByCompany(long id)
@@ -750,13 +979,21 @@ namespace InventoryService.Controllers
         [HttpGet("GetDistributors", Name = "GetDistributors")]
         public IEnumerable<Distributor> GetDistributors()
         {
-            IEnumerable<Distributor> b = Distributor_repo.GetAll(a => a.Territory);
+            IEnumerable<Distributor> b = Distributor_repo.GetAll();
+            b = b.OrderByDescending(a => a.DistributorId);
+            return b;
+        }
+
+        [HttpGet("GetDistributorsByCompany/{CompanyId}")]
+        public IEnumerable<Distributor> GetDistributorsByCompany(long CompanyId)
+        {
+            IEnumerable<Distributor> b = Distributor_repo.GetList(d => d.CompanyId == CompanyId);
             b = b.OrderByDescending(a => a.DistributorId);
             return b;
         }
 
         [HttpGet("GetDistributor/{id}", Name = "GetDistributor")]
-        public Distributor GetDistributor(long id) => Distributor_repo.GetFirst(a => a.DistributorId == id, b => b.Territory);
+        public Distributor GetDistributor(long id) => Distributor_repo.GetFirst(a => a.DistributorId == id, t => t.Territories);
 
         [HttpPut("UpdateDistributor", Name = "UpdateDistributor")]
         [ValidateModelAttribute]
@@ -791,6 +1028,69 @@ namespace InventoryService.Controllers
             model.DRN = GenDRN();
             Distributor_repo.Add(model);
             return new OkObjectResult(new { DistributorID = model.DistributorId });
+        }
+
+        [HttpPost("AddDistributorWithTerritories")]
+        [ValidateModelAttribute]
+        public IActionResult AddDistributorWithTerritories([FromBody]DistributorWithTerritoriesViewModel model)
+        {
+            var distributor = model.Distributor;
+            //distributor.DRN = GenDRN();
+            Distributor_repo.Add(distributor);
+
+            var territories = new List<Territory>();
+
+            foreach (var territoryId in model.TerritoryIds)
+            {
+                var territory = Territory_repo.Find(territoryId);
+                if (territory != null)
+                {
+                    territory.DistributorId = distributor.DistributorId;
+                    territories.Add(territory);
+                }
+            }
+
+            if (territories.Count > 0)
+                Territory_repo.UpdateRange(territories);
+
+            return new OkObjectResult(new { DistributorId = distributor.DistributorId });
+        }
+
+        [HttpPost("UpdateDistributorWithTerritories")]
+        [ValidateModelAttribute]
+        public IActionResult UpdateDistributorWithTerritories([FromBody]DistributorWithTerritoriesViewModel model)
+        {
+            var distributor = model.Distributor;
+            Distributor_repo.Update(distributor);
+            //Remove Territories
+            var territories = Territory_repo.GetList(d => d.DistributorId == distributor.DistributorId).ToList();
+
+            foreach (var territory in territories)
+            {
+                territory.DistributorId = null;
+            }
+
+            if (territories.Count > 0)
+                Territory_repo.UpdateRange(territories);
+
+
+            //Re-assign Territories
+            territories = new List<Territory>();
+
+            foreach (var territoryId in model.TerritoryIds)
+            {
+                var territory = Territory_repo.Find(territoryId);
+                if (territory != null)
+                {
+                    territory.DistributorId = distributor.DistributorId;
+                    territories.Add(territory);
+                }
+            }
+
+            if (territories.Count > 0)
+                Territory_repo.UpdateRange(territories);
+
+            return new OkObjectResult(new { DistributorId = distributor.DistributorId });
         }
 
         [HttpDelete("DeleteDistributor/{id}")]
@@ -846,47 +1146,6 @@ namespace InventoryService.Controllers
             return Ok();
         }
         #endregion
-
-        //#region Sales Person
-        //[HttpGet("GetSalesPeople", Name = "GetSalesPeople")]
-        //public IEnumerable<SalesPerson> GetSalesPeople()
-        //{
-        //    IEnumerable<SalesPerson> b = SalesPerson_repo.GetAll();
-        //    b = b.OrderByDescending(a => a.SalesPersonId);
-        //    return b;
-        //}
-
-        //[HttpGet("GetSalesPerson/{id}", Name = "GetSalesPerson")]
-        //public SalesPerson GetSalesPerson(long id) => SalesPerson_repo.GetFirst(a => a.SalesPersonId == id);
-
-        //[HttpPut("UpdateSalesPerson", Name = "UpdateSalesPerson")]
-        //[ValidateModelAttribute]
-        //public IActionResult UpdateSalesPerson([FromBody]SalesPerson model)
-        //{
-        //    SalesPerson_repo.Update(model);
-        //    return new OkObjectResult(new { SalesPersonID = model.SalesPersonId });
-        //}
-
-        //[HttpPost("AddSalesPerson", Name = "AddSalesPerson")]
-        //[ValidateModelAttribute]
-        //public IActionResult AddSalesPerson([FromBody]SalesPerson model)
-        //{
-        //    SalesPerson_repo.Add(model);
-        //    return new OkObjectResult(new { SalesPersonID = model.SalesPersonId });
-        //}
-
-        //[HttpDelete("DeleteSalesPerson/{id}")]
-        //public IActionResult DeleteSalesPerson(long id)
-        //{
-        //    SalesPerson SalesPerson = SalesPerson_repo.Find(id);
-        //    if (SalesPerson == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    SalesPerson_repo.Delete(SalesPerson);
-        //    return Ok();
-        //}
-        //#endregion
 
         #region Tax
         [HttpGet("GetTaxes", Name = "GetTaxes")]
@@ -1061,6 +1320,14 @@ namespace InventoryService.Controllers
             return b;
         }
 
+        [HttpGet("GetProductTypesByCompany/{CompanyId}")]
+        public IEnumerable<ProductType> GetProductTypesByCompany(long CompanyId)
+        {
+            IEnumerable<ProductType> b = ProductType_repo.GetList(c => c.CompanyId == CompanyId);
+            b = b.OrderByDescending(a => a.ProductTypeId);
+            return b;
+        }
+
         [HttpGet("GetProductType/{id}", Name = "GetProductType")]
         public ProductType GetProductType(long id) => ProductType_repo.GetFirst(a => a.ProductTypeId == id);
 
@@ -1098,6 +1365,14 @@ namespace InventoryService.Controllers
         public IEnumerable<PackageType> GetPackageTypes()
         {
             IEnumerable<PackageType> b = PackageType_repo.GetAll();
+            b = b.OrderByDescending(a => a.PackageTypeId);
+            return b;
+        }
+
+        [HttpGet("GetPackageTypesByCompany{CompanyId}")]
+        public IEnumerable<PackageType> GetPackageTypesByCompany(long CompanyId)
+        {
+            IEnumerable<PackageType> b = PackageType_repo.GetList(c => c.CompanyId == CompanyId);
             b = b.OrderByDescending(a => a.PackageTypeId);
             return b;
         }
@@ -1143,6 +1418,14 @@ namespace InventoryService.Controllers
             return b;
         }
 
+        [HttpGet("GetPackTypesByCompany{CompanyId}")]
+        public IEnumerable<PackType> GetPackTypesByCompany(long CompanyId)
+        {
+            IEnumerable<PackType> b = PackType_repo.GetList(c => c.CompanyId == CompanyId);
+            b = b.OrderByDescending(a => a.PackTypeId);
+            return b;
+        }
+
         [HttpGet("GetPackType/{id}", Name = "GetPackType")]
         public PackType GetPackType(long id) => PackType_repo.GetFirst(a => a.PackTypeId == id);
 
@@ -1184,6 +1467,14 @@ namespace InventoryService.Controllers
             return b;
         }
 
+        [HttpGet("GetPackSizesByCompany/{CompanyId}")]
+        public IEnumerable<PackSize> GetPackSizesByCompany(long CompanyId)
+        {
+            IEnumerable<PackSize> b = PackSize_repo.GetList(c => c.CompanyId == CompanyId);
+            b = b.OrderByDescending(a => a.PackSizeId);
+            return b;
+        }
+
         [HttpGet("GetPackSize/{id}", Name = "GetPackSize")]
         public PackSize GetPackSize(long id) => PackSize_repo.GetFirst(a => a.PackSizeId == id);
 
@@ -1221,6 +1512,14 @@ namespace InventoryService.Controllers
         public IEnumerable<PackCategory> GetPackCategories()
         {
             IEnumerable<PackCategory> b = PackCategory_repo.GetAll();
+            b = b.OrderByDescending(a => a.PackCategoryId);
+            return b;
+        }
+
+        [HttpGet("GetPackCategoriesByCompany/{CompanyId}")]
+        public IEnumerable<PackCategory> GetPackCategoriesByCompany(long CompanyId)
+        {
+            IEnumerable<PackCategory> b = PackCategory_repo.GetList(c => c.CompanyId == CompanyId);
             b = b.OrderByDescending(a => a.PackCategoryId);
             return b;
         }

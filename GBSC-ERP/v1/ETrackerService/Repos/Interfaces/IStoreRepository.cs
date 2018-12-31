@@ -17,7 +17,9 @@ namespace eTrackerInfrastructure.Repos.Interfaces
 
         IEnumerable<StoreViewModel> GetStoresForAccountRegistration(long id);
 
-        IList<StoreViewModel> GetStoresWithDistributors();
+        IList<StoreViewModel> GetStoresWithChildren(long CompanyId);
+
+        IList<StoreViewModel> GetStoresWithChildren();
 
         IList<Store> GetStoresBySubsection(long subsectionid);
 

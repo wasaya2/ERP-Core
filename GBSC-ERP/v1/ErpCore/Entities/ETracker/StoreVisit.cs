@@ -15,6 +15,7 @@ namespace ErpCore.Entities.ETracker
             Merchandisings = new HashSet<Merchandising>();
             CompetatorStocks = new HashSet<CompetatorStock>();
             OrderTakings = new HashSet<OrderTaking>();
+            InventoryTakings = new HashSet<InventoryTaking>();
         }
 
         [Key]
@@ -55,6 +56,8 @@ namespace ErpCore.Entities.ETracker
         public ICollection<CompetatorStock> CompetatorStocks { get; set; }
 
         public ICollection<OrderTaking> OrderTakings { get; set; }
+
+        public ICollection<InventoryTaking> InventoryTakings { get; set; }
 
     }
 }

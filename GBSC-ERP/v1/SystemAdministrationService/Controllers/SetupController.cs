@@ -53,13 +53,6 @@ namespace SystemAdministrationService.Controllers
 
         }
 
-        [HttpGet("GetAdminSetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetAdminSetupPermissions")]
-        public IEnumerable<Permission> GetAdminSetupPermissions(long userid, long RoleId, long featureid)
-        {
-            IEnumerable<Permission> per = per_repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
-            return per;
-        }
-
         [HttpGet("GetCompanies", Name = "GetCompanies")]
         public IEnumerable<Company> GetCompanies()
         {
@@ -76,12 +69,24 @@ namespace SystemAdministrationService.Controllers
             return br;
         }
 
+        [HttpGet("GetBranchesByCompanyId/{compid}", Name = "GetBranchesByCompanyId")]
+        public IEnumerable<Branch> GetBranchesByCompanyId([FromRoute]long compid)
+        {
+            return bra_repo.GetList(c => c.CompanyId == compid).OrderByDescending(a => a.BranchId);
+        }
+
         [HttpGet("GetDepartments", Name = "GetDepartments")]
         public IEnumerable<Department> GetDepartments()
         {
             IEnumerable<Department> de = dep_repo.GetAll();
             de = de.OrderByDescending(a => a.DepartmentId);
             return de;
+        }
+
+        [HttpGet("GetDepartmentsByCompanyId/{compid}", Name = "GetDepartmentsByCompanyId")]
+        public IEnumerable<Department> GetDepartmentsByCompanyId([FromRoute]long compid)
+        {
+            return dep_repo.GetList(a => a.CompanyId == compid).OrderByDescending(a => a.DepartmentId);
         }
 
         [HttpGet("GetRoles", Name = "GetRoles")]
@@ -104,6 +109,12 @@ namespace SystemAdministrationService.Controllers
             IEnumerable<Feature> fe = fea_repo.GetAll(b => b.Permissions, c => c.Module);
             fe = fe.OrderByDescending(a => a.FeatureId);
             return fe;
+        }
+
+        [HttpGet("GetFeaturesByRoleId/{RoleId}")]
+        public IEnumerable<FeaturesAndPermissionViewModel> GetFeaturesByRoleId(long RoleId)
+        {
+            return fea_repo.GetFeaturesByRoleId(RoleId);
         }
 
         [HttpGet("GetPermissions", Name = "GetPermissions")]
@@ -264,14 +275,14 @@ namespace SystemAdministrationService.Controllers
             return City_repo.GetList(c => c.CityId != null).OrderByDescending(a => a.CityId);
         }
 
+        [HttpGet("GetCitiesByCompanyId/{compid}", Name = "GetCitiesByCompanyId")]
+        public IEnumerable<City> GetCitiesByCompanyId([FromRoute]long compid)
+        {
+            return City_repo.GetList(c => c.CompanyId == compid).OrderByDescending(a => a.CityId);
+        }
+
         [HttpGet("GetCity/{id}", Name = "GetCity")]
         public City GetCity(long id) => City_repo.GetFirst(a => a.CityId == id);
-
-        [HttpGet("GetCitiesByCompanyId/{CompanyId}")]
-        public IEnumerable<City> GetCitiesByCompanyId(long CompanyId)
-        {
-            return City_repo.GetList(c => c.CompanyId == CompanyId);
-        }
 
         [HttpPost("AddCity", Name = "AddCity")]
         [ValidateModelAttribute]
@@ -308,6 +319,12 @@ namespace SystemAdministrationService.Controllers
         {
 
             return Country_repo.GetList(c => c.CountryId != null).OrderByDescending(a => a.CountryId);
+        }
+
+        [HttpGet("GetCountriesByCompanyId/{compid}", Name = "GetCountriesByCompanyId")]
+        public IEnumerable<Country> GetCountriesByCompanyId([FromRoute]long compid)
+        {
+            return Country_repo.GetList(c => c.CompanyId == compid).OrderByDescending(a => a.CountryId);
         }
 
         [HttpGet("GetCountry/{id}", Name = "GetCountry")]

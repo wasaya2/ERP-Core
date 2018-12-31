@@ -17,6 +17,7 @@ using ErpCore.Entities.HR.Attendance;
 using ErpCore.Entities.HR.Attendance.AttendanceSetup;
 using ErpCore.Entities.HR.Payroll;
 using ErpCore.Entities.InventorySetup;
+using ErpCore.Entities.ETracker;
 
 namespace ErpCore.Entities
 {
@@ -73,10 +74,21 @@ namespace ErpCore.Entities
 
             //Permissions
             Permissions = new HashSet<Permission>();
+
+            Subsections = new HashSet<Subsection>();
+            Stores = new HashSet<Store>();
+            Regions = new HashSet<Region>();
+            Cities = new HashSet<City>();
+            Areas = new HashSet<Area>();
+            Territories = new HashSet<Territory>();
+            PJPs = new HashSet<PJP>();
         }
 
         [Key]
         public long UserId { get; set; }
+
+        public string UserLevel { get; set; }
+
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -211,13 +223,14 @@ namespace ErpCore.Entities
         public long? SectionId { get; set; }
         public Section Section { get; set; }
 
-        public long? DistributorId { get; set; }
-        public Distributor Distributor { get; set; }
-
         public IEnumerable<Subsection> Subsections { get; set; }
+        public IEnumerable<Region> Regions { get; set; }
+        public IEnumerable<City> Cities { get; set; }
+        public IEnumerable<Area> Areas { get; set; }
+        public IEnumerable<Territory> Territories { get; set; }
 
         public IEnumerable<Store> Stores { get; set; }
-
+        public IEnumerable<PJP> PJPs { get; set; }
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ErpCore.Entities.InventorySetup;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,15 +12,14 @@ namespace ErpCore.Entities.ETracker
         [Key]
         public long CompetatorStockId { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Item { get; set; }
-
-        [Required]
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
         public long? StoreVisitId { get; set; }
 
         public StoreVisit StoreVisit { get; set; }
+
+        public long? InventoryItemId { get; set; }
+
+        public InventoryItem inventoryItem { get; set; }
     }
 }

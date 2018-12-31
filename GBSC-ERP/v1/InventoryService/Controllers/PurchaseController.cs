@@ -55,12 +55,12 @@ namespace InventoryService.Controllers
             returnitem_repo = rtnitemrepo;
         }
 
-        [HttpGet("GetPurchasePermissions/{userid}/{RoleId}/{featureid}", Name = "GetPurchasePermissions")]
-        public IEnumerable<Permission> GetPurchasePermissions(long userid, long RoleId, long featureid)
-        {
-            IEnumerable<Permission> per = Indent_repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
-            return per;
-        }
+        //[HttpGet("GetPurchasePermissions/{userid}/{RoleId}/{featureid}", Name = "GetPurchasePermissions")]
+        //public IEnumerable<Permission> GetPurchasePermissions(long userid, long RoleId, long featureid)
+        //{
+        //    IEnumerable<Permission> per = Indent_repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
+        //    return per;
+        //}
         
         #region Purchase Indent
         [HttpGet("GetPurchaseIndents", Name = "GetPurchaseIndents")]

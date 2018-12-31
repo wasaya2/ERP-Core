@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using eTrackerInfrastructure.Helpers;
 using ErpCore.Entities;
+using ETrackerService.ViewModels;
 
 namespace eTrackerInfrastructure.Controllers
 {
@@ -18,10 +19,20 @@ namespace eTrackerInfrastructure.Controllers
     public class UserController : Controller
     {
         private IUserRepository _repo;
+        private ITerritoryRepository _tRepo;
 
-        public UserController(IUserRepository repo)
+        public UserController(IUserRepository repo, ITerritoryRepository tRepo)
         {
             _repo = repo;
+            _tRepo = tRepo;
+        }
+
+        [HttpGet("GetUser/{UserId}")]
+        public User GetUser(long UserId)
+        {
+            var user = _repo.GetFirst(u => u.UserId == UserId, u => u.Section);
+
+            return user;
         }
 
         [HttpPost("CreateUser")]
@@ -34,7 +45,6 @@ namespace eTrackerInfrastructure.Controllers
 
             try
             {
-                user.Distributor = null;
                 _repo.Add(user);
                 _repo.Update(user);
             }
@@ -45,6 +55,71 @@ namespace eTrackerInfrastructure.Controllers
             }
 
             return new OkObjectResult(user.UserId.ToString());
+        }
+
+        [HttpPost("AssignUserLevel")]
+        public IActionResult AssignUserLevel([FromBody]AssignUserLevelViewModel model)
+        {
+            try
+            {
+                var user = _repo.Find(model.UserId);
+
+                _repo.ClearAssignments(model.UserId);
+
+                user.UserLevel = model.UserLevel;
+
+                if (model.UserLevel == "Admin" || model.UserLevel == "NSM" || model.UserLevel == "RSM" || model.UserLevel == "HO")
+                {
+                    foreach (var id in model.RegionIds)
+                    {
+                        var region = _tRepo.FindRegion(id);
+                        region.UserId = model.UserId;
+                        _tRepo.UpdateRegion(region);
+                    }
+                }
+                else if (model.UserLevel == "ZSM")
+                {
+                    foreach (var id in model.CityIds)
+                    {
+                        var city = _tRepo.FindCity(id);
+                        city.UserId = model.UserId;
+                        _tRepo.UpdateCity(city);
+                    }
+                }
+                else if (model.UserLevel == "ASM")
+                {
+                    foreach (var id in model.AreaIds)
+                    {
+                        var area = _tRepo.FindArea(id);
+                        area.UserId = model.UserId;
+                        _tRepo.UpdateArea(area);
+                    }
+                }
+                else if (model.UserLevel == "TSO/KPO")
+                {
+                    foreach (var id in model.TerritoryIds)
+                    {
+                        var territory = _tRepo.Find(id);
+                        territory.UserId = model.UserId;
+                        _tRepo.Update(territory);
+                    }
+                }
+                else if (model.UserLevel == "DSF")
+                {
+                    var section = _tRepo.FindSection(model.SectionId);
+                    section.UserId = model.UserId;
+                    _tRepo.UpdateSection(section);
+                }
+
+                _repo.Update(user);
+
+                return new OkObjectResult(new { UserId = model.UserId });
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }           
         }
 
         [HttpPost("AssignSubsections")]
@@ -58,6 +133,7 @@ namespace eTrackerInfrastructure.Controllers
             return new OkObjectResult(new { result = result });
 
         }
+
 
         [HttpPut("UpdateUser")]
         public IActionResult UpdateUser([FromBody]User user)
@@ -99,6 +175,41 @@ namespace eTrackerInfrastructure.Controllers
             var _users = _repo.GetSalesUsers();
             _users = _users.OrderByDescending(u => u.UserId).ToList();
             return _users;
+        }
+
+        [HttpGet("GetUsers/{UserId}")]
+        public IEnumerable<UsersViewModel> GetUsers(long UserId) => _repo.GetUsers(UserId);
+
+        [HttpGet("GetUsersByCompanyId/{CompanyId}")]
+        public JsonResult GetUsersByCompanyId(long CompanyId)
+        {
+            try
+            {
+                var _users = _repo.GetList(c => c.CompanyId == CompanyId, c => c.Section, c => c.Section.Territory)
+                  .Select(u => new
+                  {
+                      UserId = u.UserId,
+                      UserLevel = u.UserLevel,
+                      FirstName = u.FirstName,
+                      LastName = u.LastName,
+                      Territory = u.Section?.Territory?.Name,
+                      Section = u.Section?.Name,
+                      SectionId = u.SectionId,
+                      Email = u.Email,
+                      Phone = u.Phone,
+                      Cnic = u.CNIC,
+                      DOB = u.DOB,
+                      Address = u.Address
+                  });
+
+                return Json(_users);
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
         }
 
         [HttpGet("GetAllUsersWithRelationships")]

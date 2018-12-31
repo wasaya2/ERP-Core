@@ -46,29 +46,43 @@ namespace AuthService.Controllers
 
             var lockout = await user_Manager.SetLockoutEnabledAsync(userIdentity, false);
 
-            User user = new User
+            User user = new User();
+
+            if (model.UserExists)
             {
-                FirstName = model.FirstName,
-                IdentityId = userIdentity.Id,
-                LastName = model.LastName,
-                CompanyId = model.CompanyId,
-                Phone = model.Phone,
-                DOB = model.DOB,
-                Gender = model.Gender,
-                CNIC = model.CNIC,
-                DateCreated = DateTime.Now,
-                Email = model.Email
-            };
+                user = app_context.Users.Find(model.UserId);
+                user.IdentityId = userIdentity.Id;
+            }
+            else
+            {
+                user = new User
+                {
+                    FirstName = model.FirstName,
+                    IdentityId = userIdentity.Id,
+                    LastName = model.LastName,
+                    FullName = model.FirstName+" "+model.LastName,
+                    CompanyId = model.CompanyId,
+                    CityId = model.CityId,
+                    RoleId = model.RoleId,
+                    Phone = model.Phone,
+                    DOB = model.DOB,
+                    Gender = model.Gender,
+                    CNIC = model.CNIC,
+                    DateCreated = DateTime.Now,
+                    Email = model.Email
+                };
+            }
 
             if (model.IsSystemAdmin)
             {
+                user.UserLevel = "Admin";
                 user.Role = CreateRoleWithAssignedModules(model.CompanyId);
             }
 
             app_context.Users.Add(user);
             app_context.SaveChanges();
 
-            return new OkObjectResult("Account Created");
+            return new OkObjectResult(new { UserId = user.UserId });
         }
 
         [HttpPut("UpdateProfile")]
@@ -89,11 +103,15 @@ namespace AuthService.Controllers
 
                 List<RoleFeature> roleFeatures = new List<RoleFeature>();
 
+                List<Permission> permissions = new List<Permission>();
+
                 var AllFeatures = ReadJson();
 
                 var modules = app_context.Modules.Include(f => f.Features)
                     .Where(c => c.CompanyId == CompanyId)
                     .ToList();
+
+                var permissionAttributes = new string[] { "Read", "Write", "Update", "Delete" };
 
                 foreach (var module in modules)
                 {
@@ -112,6 +130,16 @@ namespace AuthService.Controllers
                         {
                             FeatureId = feature.FeatureId
                         });
+
+                        foreach (var att in permissionAttributes)
+                        {
+                            permissions.Add(new Permission
+                            {
+                                Attribute = att,
+                                FeatureId = feature.FeatureId,
+                                CompanyId = CompanyId
+                            });
+                        }
                     }
                 }
 
@@ -125,6 +153,14 @@ namespace AuthService.Controllers
 
                 app_context.Modules.UpdateRange(modules);
                 app_context.Roles.Add(role);
+                app_context.SaveChanges();
+
+                for (int i = 0; i < permissions.Count; i++)
+                {
+                    permissions[i].RoleId = role.RoleId;
+                }
+
+                app_context.Permissions.AddRange(permissions);
                 app_context.SaveChanges();
 
                 return role;
@@ -159,5 +195,16 @@ namespace AuthService.Controllers
             return null;
         }
 
+        [HttpPost("ChangePassword")]
+        public async Task<IActionResult> ChangePassword([FromBody]ChangePasswordViewModel usermodel)
+        {
+            var user = await user_Manager.FindByNameAsync(usermodel.Username);
+            var result = await user_Manager.ChangePasswordAsync(user, usermodel.OldPassword, usermodel.NewPassword);
+            if (!result.Succeeded)
+            {
+                return new BadRequestObjectResult("Password could not be changed");
+            }
+            return new OkObjectResult("Password successfully changed");
+        }
     }
 }

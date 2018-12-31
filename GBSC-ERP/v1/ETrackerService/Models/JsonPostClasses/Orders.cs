@@ -21,4 +21,9 @@ namespace eTrackerInfrastructure.Models.JsonPostClasses
     {
         public CompetatorStock[] CompetatorStock { get; set; }
     }
+
+    public class InventoryTakings
+    {
+        public InventoryTaking[] InventoryTaking { get; set; }
+    }
 }

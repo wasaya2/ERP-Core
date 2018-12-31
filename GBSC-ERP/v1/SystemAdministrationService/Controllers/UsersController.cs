@@ -26,8 +26,9 @@ namespace SystemAdministrationService.Controllers
         private IRelationRepository relation_repo;
         private IWorkExperienceRepository exp_repo; 
         private IUniversityRepository uni_repo;
+        private IUserLanguageRepository usrlang_repo;
 
-        public UsersController(IUserRepository repo, IUserDocumentRepository docrepo, IUniversityRepository unirepo, IUserCompanyRepository usercomrepo, IBankRepository userbankrepo,IRelationRepository relationrepo, IWorkExperienceRepository exprepo)
+        public UsersController(IUserRepository repo, IUserLanguageRepository usrlangrepo, IUserDocumentRepository docrepo, IUniversityRepository unirepo, IUserCompanyRepository usercomrepo, IBankRepository userbankrepo,IRelationRepository relationrepo, IWorkExperienceRepository exprepo)
         {
             _repo = repo;
             doc_repo = docrepo;
@@ -36,15 +37,10 @@ namespace SystemAdministrationService.Controllers
             userBank_repo = userbankrepo;
             relation_repo = relationrepo;
             exp_repo = exprepo;
+            usrlang_repo = usrlangrepo;
         }
 
-        [HttpGet("GetUserSetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetUserSetupPermissions")]
-        public IEnumerable<Permission> GetUserSetupPermissions(long userid, long RoleId, long featureid)
-        {
-            IEnumerable<Permission> per = _repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
-            return per;
-        }
-
+        #region User
         [HttpGet("GetUsers", Name = "GetUsers")]
         public IEnumerable<User> GetUsers()
         {
@@ -56,12 +52,41 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetUser/{id}", Name = "GetUser")]
         public User GetUser(long id) => _repo.Find(id);
 
-
         [HttpPut("UpdateUser", Name = "UpdateUser")]
         [ValidateModelAttribute]
         public IActionResult UpdateUser([FromBody]User model)
-        {
+        { 
             _repo.Update(model);
+            return new OkObjectResult(new { UserID = model.UserId });
+        }
+
+        [HttpPut("UpdateUserBasicInfo", Name = "UpdateUserBasicInfo")]
+        [ValidateModelAttribute]
+        public IActionResult UpdateUserBasicInfo([FromBody]UpdateUserViewModel model)
+        {
+            User usr = _repo.Find(model.UserId);
+            usrlang_repo.DeleteRange(usrlang_repo.GetList(a => a.UserId == model.UserId));
+            usr.FirstName = model.FirstName;
+            usr.LastName = model.LastName;
+            usr.FullName = (string)(model.FirstName + " " + model.LastName);
+            usr.FatherName = model.FatherName;
+            usr.POB = model.POB;
+            usr.DOB = model.DOB;
+            usr.CNIC = model.CNIC;
+            usr.CNICExpiry = model.CNICExpiry;
+            usr.Email = model.Email;
+            usr.BloodGroup = model.BloodGroup;
+            usr.Gender = model.Gender;
+            usr.MaritalStatus = model.MaritalStatus;
+            usr.HomePhone = model.HomePhone;
+            usr.Phone = model.Phone;
+            usr.Address = model.Address;
+            usr.PermanentAddress = model.PermanentAddress;
+            usr.UserLanguages = model.UserLanguages;
+            usr.ReligionId = model.ReligionId;
+            usr.CityId = model.CityId;
+            usr.GroupId = model.GroupId;
+            _repo.Update(usr);
             return new OkObjectResult(new { UserID = model.UserId });
         }
 
@@ -108,6 +133,9 @@ namespace SystemAdministrationService.Controllers
             _repo.Delete(user);
             return Ok();
         }
+        #endregion
+
+        #region User Features and Modules
 
         [HttpGet("GetUserFeatures/{id}", Name = "GetUserFeatures")]
         public List<UserFeaturesViewModel> GetUserApplicationFeature(long id)
@@ -127,6 +155,9 @@ namespace SystemAdministrationService.Controllers
         {
             return _repo.GetUserFeaturesAndModules(id);
         }
+        #endregion
+
+        #region User Documents
 
         [HttpGet("GetDocumentsByUserId/{userId}", Name = "GetDocumentsByUserId")]
         public IEnumerable<UserDocument> GetDocumentsByUserId(long userId)
@@ -134,6 +165,8 @@ namespace SystemAdministrationService.Controllers
             var a = doc_repo.GetAll().OrderByDescending(b => b.UserDocumentId);
             return a.Where(c => c.UserId == userId);
         }
+
+        #endregion
 
         #region User Company
 
@@ -171,22 +204,6 @@ namespace SystemAdministrationService.Controllers
         }
 
         #endregion
-
-
-        [HttpGet("GetUniversityByUserId/{userid}", Name = "GetUniversityByUserId")]
-        public IEnumerable<University> GetUniversityByUserId(long userid)
-        {
-            if (userid <= 0)
-            {
-                return null;
-            }
-            User user = _repo.Find(userid);
-            if (user == null)
-            {
-                return null;
-            }
-            return uni_repo.GetAll().Where(a => a.UserId == userid);
-        }
 
         #region Get By Company, Country, City or Branch
 
@@ -243,7 +260,6 @@ namespace SystemAdministrationService.Controllers
             return _repo.GetList(a => a.DepartmentId == id);
         }
         #endregion
-
 
         #region User Relations
 

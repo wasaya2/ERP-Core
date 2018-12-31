@@ -30,10 +30,11 @@ namespace ErpCore.Entities.Finance
         public FinancialYear FinancialYear { get; set; }
 
         public IEnumerable<VoucherDetail> VoucherDetails { get; set; }
-
-        //Processed and Unprocessed ledger
-        public long? UnprocessedAccountsLedgeId { get; set; }
-
-        public long? ProcessedAccountsLedgerId { get; set; }
+        
+        public double? ClosingBalance { get; set; }
+        public double? TotalCredit { get; set; }
+        public double? TotalDebit { get; set; }
+        public long? OldAccountId { get; set; }
+        public long? TotalTransactionsAgainstThisAccount { get; set; }
     }
 }

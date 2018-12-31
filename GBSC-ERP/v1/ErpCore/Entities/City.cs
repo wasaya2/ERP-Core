@@ -41,5 +41,9 @@ namespace ErpCore.Entities
         public IEnumerable<Branch> Branches { get; set; }
 
         public IEnumerable<Area> Areas { get; set; }
+
+        public long? UserId { get; set; }
+
+        public User User { get; set; }
     }
 }

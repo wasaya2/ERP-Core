@@ -8,6 +8,7 @@ using ReportingService.Reports.hims;
 using ReportingService.Reports.hrms;
 using ReportingService.Reports.Lab;
 using ReportingService.Reports.Payroll;
+using ReportingService.Reports.etracker;
 
 namespace ReportingService
 {
@@ -23,6 +24,8 @@ namespace ReportingService
             Reports.Add("EmployeeList", new EmployeeList()); 
             Reports.Add("ListofJoiners", new ListOfJoiners());
             Reports.Add("LeaveDetail", new LeaveDetailReport());
+            Reports.Add("LeaveLedger", new LeaveLedger1());
+            Reports.Add("LeaveBalance", new LeaveHistory());
             Reports.Add("In/OutDuration", new InOutDurationAttendance());
             Reports.Add("MissingEntries", new MissingEntries());
             Reports.Add("SalaryPayment", new SalaryPayment());
@@ -58,11 +61,31 @@ namespace ReportingService
             Reports.Add("SubsequentSemenFreezingList", new SubsequentSemenFreezingList());
             Reports.Add("MedicineDetails", new MEDICINE_DETAILS());
             Reports.Add("ConsultantActivtityDetails", new ConsultantActivtityDetails());
-      //////////HIMS////////////
+            //////////HIMS////////////
+            ///
 
-    }
+            #region Lab Reports
 
-    public override bool CanSetData(string url)
+            Reports.Add("SemenAnalysisOutsider", new AnalysisWorkSheet_Outsiders());
+            Reports.Add("BiochemistryDetailsOntreatment", new Bio_ChemistryDetails_OnTreatment());
+            Reports.Add("BiochemistryOutsider", new Biochemistry_Outsider());
+            Reports.Add("BiochemistryOntreatment", new Biochemistry());
+            Reports.Add("LabSummary", new LabSummary());
+            Reports.Add("Biopsy", new PESA_TESE());
+
+            #endregion
+
+            #region etracker reports
+            Reports.Add("ShopCensusSummary", new ShopCensusSummary());
+            Reports.Add("ShopCensusDetail", new ShopCensusDetail());
+            Reports.Add("ShopStatusDetail", new ShopStatusDetail());
+            Reports.Add("VisitSummary", new VisitSummaryReport());
+
+            #endregion
+
+        }
+
+        public override bool CanSetData(string url)
         {
             return true;
         }

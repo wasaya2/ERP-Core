@@ -1,8 +1,9 @@
-﻿using ErpCore.Entities.ETracker;
+using ErpCore.Entities.ETracker;
 using ErpCore.Entities.InventorySetup;
 using eTrackerCore.Entities;
 using eTrackerInfrastructure.Models.JsonPostClasses;
 using eTrackerInfrastructure.Repos.Base;
+using ETrackerService.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,10 @@ namespace eTrackerInfrastructure.Repos.Interfaces
 
         void AddMultipleOrders(Orders orders);
 
+        void AddInventoryTaking(InventoryTaking inventory);
+
+        void AddMultipleInventoryTakings(InventoryTakings inventory);
+
         void AddMerchendize(Merchandising merch);
 
         void AddOutletStock(OutletStock stock);
@@ -29,6 +34,11 @@ namespace eTrackerInfrastructure.Repos.Interfaces
 
         void UpdateStock(OutletStock stock);
 
+        string GetNoOrderReason(long StoreVisitId);
+
+        IEnumerable<OrderTakingViewModel> GetVisitOrders(long StoreVisitId);
+    
+        IEnumerable<OrderTakingViewModel> GetVisitInventories(long StoreVisitId);
 
         IEnumerable<StoreVisit> GetVisitsByStoreId(long id);
 

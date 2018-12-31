@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -81,11 +81,11 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetAssignRosters", Name = "GetAssignRosters")]
         public IEnumerable<AssignRoster> GetAssignRosters()
         {
-            return AssignRoster_repo.GetAll(r => r.UserAssignRosters).OrderByDescending(a => a.AssignRosterId );
+            return AssignRoster_repo.GetAll(r => r.UserAssignRosters , x => x.Daysoffs).OrderByDescending(a => a.AssignRosterId );
         }
 
         [HttpGet("GetAssignRoster/{id}", Name = "GetAssignRoster")]
-        public AssignRoster GetAssignRoster(long id) => AssignRoster_repo.GetFirst(a => a.AssignRosterId == id, b => b.UserAssignRosters);
+        public AssignRoster GetAssignRoster(long id) => AssignRoster_repo.GetFirst(a => a.AssignRosterId == id, b => b.UserAssignRosters , x => x.Daysoffs);
 
         [HttpPost("AddAssignRoster", Name = "AddAssignRoster")]
         [ValidateModelAttribute]

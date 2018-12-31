@@ -33,6 +33,7 @@ using SystemAdministrationService.Repos.Hr.PayrollRepos;
 using PayrollService.Repos;
 using SystemAdministrationService.Repos.Hr.AttendanceRepos.Interfaces;
 using SystemAdministrationService.Repos.Hr.AttendanceRepos;
+using AutoMapper;
 
 namespace SystemAdministrationService
 {
@@ -141,6 +142,7 @@ namespace SystemAdministrationService
             services.AddScoped<IGazettedHolidaysRepository, GazettedHolidaysRepository>();
             services.AddScoped<IGroupRepository, GroupRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
+            services.AddScoped<IUserLanguageRepository, UserLanguageRepository>();
             //services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
             services.AddScoped<IManagementLevelRepository, ManagementLevelRepository>();
             services.AddScoped<IReligionRepository, ReligionRepository>();
@@ -229,6 +231,8 @@ namespace SystemAdministrationService
             services.AddScoped<IAttendanceRuleRepository, AttendanceRuleRepository>();
 
             services.AddScoped<IAssignRosterRepository, AssignRosterRepository>();
+            services.AddScoped<IDaysOffRepository, DaysOffRepository>();
+
             services.AddScoped<IAttendanceFlagRepository, AttendanceFlagRepository>();
             services.AddScoped<IAttendanceRequestApproverRepository, AttendanceRequestApproverRepository>();
             services.AddScoped<IAttendanceRequestTypeRepository, AttendanceRequestTypeRepository>();
@@ -253,6 +257,7 @@ namespace SystemAdministrationService
             services.AddScoped<IUserRosterAttendanceRepository, UserRosterAttendanceRepository>();
             services.AddScoped<IShiftAttendanceFlagRepository, ShiftAttendanceFlagRepository>();
 
+            services.AddAutoMapper();
             services.AddMvc().AddJsonOptions(options =>
                         options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
         }

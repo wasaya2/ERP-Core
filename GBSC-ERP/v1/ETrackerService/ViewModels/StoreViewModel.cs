@@ -14,9 +14,9 @@ namespace eTrackerCore.Entities.ViewModels
 
         public string ContactNumber { get; set; }
 
-        public string Distributor { get; set; }
+        public string Section { get; set; }
 
-        public string Territory { get; set; }
+        public string Subsection { get; set; }
 
         public string Address { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿using ErpCore.Entities;
 using eTrackerInfrastructure.Repos.Base;
 using eTrackerInfrastructure.ViewModels;
+using ETrackerService.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace eTrackerInfrastructure.Repos.Interfaces
     {
         string AssignSubsections(IList<SectionAssignmentViewModel> model);
 
-        //IdentityUserViewModel GetIdentityInfo(string id);
+        void ClearAssignments(long UserId);
+
+        IEnumerable<UsersViewModel> GetUsers(long userId);
 
         User GetUserByIdentityId(string id);
 

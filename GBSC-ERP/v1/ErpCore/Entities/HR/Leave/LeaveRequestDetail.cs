@@ -23,6 +23,7 @@ namespace ErpCore.Entities.HR.Leave
         public double? Value { get; set; } //0.25, 0.5, 0.75, 1
         public string FirstSecondHalf { get; set; } //Short Leave for first half or second half
         public double? TotalLeaveDetailValue { get; set; } //Multiply value by number of days to get here
+        public double? TotalLeave { get; set; } //Total Leave here
 
         public long? LeaveRequestId { get; set; }
         public LeaveRequest LeaveRequest { get; set; }

@@ -27,19 +27,21 @@ namespace AuthService.Helpers
                 var userfeatures = (from user in Db.Users
                                     join rolefeatures in Db.RoleFeatures on user.RoleId equals rolefeatures.RoleId
                                     join features in Db.Features on rolefeatures.FeatureId equals features.FeatureId
-                                    select features.Name).ToList();
-
-                var usermodules = (from user in Db.Users
-                                   join rolemodules in Db.RoleModules on user.RoleId equals rolemodules.RoleId
-                                   join modules in Db.Modules on rolemodules.ModuleId equals modules.ModuleId
-                                   where user.UserId == user1.UserId
-                                   select modules.Name).ToList();
+                                    join modules in Db.Modules on features.ModuleId equals modules.ModuleId
+                                    where user.UserId == user1.UserId
+                                    group features.Name by features.Module.Name into g
+                                    select new FeatureModule()
+                                    {
+                                        ModuleName = g.Key,
+                                        Features = g.ToList()
+                                    }).ToList();
 
                 AuthResponseViewModel ar = new AuthResponseViewModel
                 {
-                    //User = usr,
-                    Modules = usermodules,
-                    Features = userfeatures,
+                    UserLevel = user1?.UserLevel,
+                    FullName = user1.FullName,
+                    UserId = user1.UserId,
+                    ModuleFeatures = userfeatures,
                     AssignedId = new UserAssignedIds
                     {
                         CompanyId = user1.CompanyId,

@@ -59,6 +59,7 @@ namespace SystemAdministrationService.Controllers
         [ValidateModelAttribute]
         public IActionResult AddLeaverequest([FromBody]LeaveRequest model)
         {
+            model.RequestDate = DateTime.Now;
             LeaveRequest_repo.Add(model);
             return new OkObjectResult(new { LeaverequestID = model.LeaveRequestId });
         }

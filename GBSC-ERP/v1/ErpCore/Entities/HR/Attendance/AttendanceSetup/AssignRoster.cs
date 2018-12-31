@@ -1,4 +1,4 @@
-﻿using ErpCore.Entities.HR.Attendance.AttendanceSetup;
+using ErpCore.Entities.HR.Attendance.AttendanceSetup;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,9 +13,10 @@ namespace ErpCore.Entities.HR.Attendance.AttendanceSetup
             UserAssignRosters = new HashSet<UserAssignRoster>(); 
             UserRosterAttendances = new HashSet<UserRosterAttendance>();
             AttendanceRequests = new HashSet<AttendanceRequest>();
+            Daysoffs = new HashSet<Daysoff>();
         }
 
-        [Key]
+  [Key]
         public long AssignRosterId { get; set; }
         public string Description { get; set; }
 
@@ -34,5 +35,7 @@ namespace ErpCore.Entities.HR.Attendance.AttendanceSetup
         public IEnumerable<UserAssignRoster> UserAssignRosters { get; set; }
         public IEnumerable<UserRosterAttendance> UserRosterAttendances { get; set; }
         public IEnumerable<AttendanceRequest> AttendanceRequests { get; set; }
-    }
+        public IEnumerable<Daysoff> Daysoffs { get; set; }
+
+  }
 }

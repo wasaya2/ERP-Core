@@ -1,4 +1,5 @@
 ﻿using ErpCore.Entities;
+using ErpCore.Entities.ETracker;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,6 +13,7 @@ namespace ErpCore.Entities.InventorySetup
         public Subsection()
         {
             Stores = new HashSet<Store>();
+            PJPs = new HashSet<PJP>();
         }
 
         [Key]
@@ -29,5 +31,6 @@ namespace ErpCore.Entities.InventorySetup
         public User User { get; set; }
 
         public IEnumerable<Store> Stores { get; set; }
+        public IEnumerable<PJP> PJPs { get; set; }
     }
 }

@@ -17,5 +17,9 @@ namespace ErpCore.Entities.InventorySetup
         public string Name { get; set; }
 
         public IEnumerable<City> Cities { get; set; }
+
+        public long? UserId { get; set; }
+
+        public User User { get; set; }
     }
 }

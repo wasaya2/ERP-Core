@@ -16,7 +16,7 @@ namespace ErpCore.Entities.Finance
         public double? DebitAmount { get; set; }
         public string UniqueName { get; set; }
         public string Description { get; set; }
-        public string ChequeNUmber { get; set; }
+        public string ChequeNumber { get; set; }
 
         public long? DetailAccountId { get; set; }
         public DetailAccount DetailAccount { get; set; }

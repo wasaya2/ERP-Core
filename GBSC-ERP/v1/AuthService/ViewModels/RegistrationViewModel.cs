@@ -22,8 +22,11 @@ namespace AuthService.ViewModels
         public string Gender { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
+        public long? CityId { get; set; }
+        public long? RoleId { get; set; }
         public string CNIC { get; set; }
         public DateTime DateCreated { get; set; }
         public bool IsSystemAdmin { get; set; }
+        public bool UserExists { get; set; }
     }
 }

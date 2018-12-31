@@ -13,15 +13,31 @@ namespace eTrackerInfrastructure.Repos.Interfaces
     {
         IList<Region> GetRegions();
 
+        Region FindRegion(long RegionId);
+
+        City FindCity(long CityId);
+
+        Area FindArea(long AreaId);
+
+        Section FindSection(long SectionId);
+
         IList<Area> GetAreasByCity(long cityid);
+
+        IList<Region> GetRegionsByUser(long userid);
+
+        IList<City> GetCitiesByUser(long userid);
+
+        IList<Area> GetAreasByUser(long userid);
 
         IList<Territory> GetTerritoriesByArea(long areaid);
 
+        IList<Territory> GetTerritoriesByUser(long userid);
+
         IList<Territory> GetTerritoriesWithArea();
 
-        IList<User> GetUsersByDistributor(long Distributorid);
-
         long? GetSectionIdByUser(long userid);
+
+        IList<User> GetUsersBySection(long sectionid);
 
         IList<Section> GetSectionsByTerritoryId(long territoryid);
 
@@ -55,9 +71,9 @@ namespace eTrackerInfrastructure.Repos.Interfaces
 
         void UpdateArea(Area model);
 
-        void UpdateTerritory(Territory model);
-
         void UpdateSection(Section model);
+
+        void UpdateCity(City model);
 
         void UpdateSubsection(Subsection model);
 
@@ -68,5 +84,29 @@ namespace eTrackerInfrastructure.Repos.Interfaces
         void DeleteSection(long id);
 
         void DeleteSubsection(long id);
+
+        //
+
+        Region GetRegionByCity(long cityid);
+
+        City GetCityByArea(long areaid);
+
+        IEnumerable<City> GetCitiesByUserAndRegion(long regionid, long userid);
+
+        IEnumerable<Area> GetAreasByUserAndCity(long cityid, long userid);
+
+        IEnumerable<Distributor> GetDistributorsByUserAndArea(long areaid, long userid);
+
+        IEnumerable<Territory> GetTerritoriesByUserAndDistributor(long distributorid, long userid);
+
+        IEnumerable<Section> GetSectionsByUserAndTerritory(long territoryid, long userid);
+
+        IEnumerable<City> GetCitiesByRegion(long regionid);
+
+        IEnumerable<Distributor> GetDistributorsByArea(long areaid);
+
+        IEnumerable<Territory> GetTerritoriesByDistributor(long distributorid);
+
+        IEnumerable<Section> GetSectionsByTerritory(long territoryid);
     }
 }

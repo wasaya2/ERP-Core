@@ -213,11 +213,11 @@ namespace SystemAdministrationService.Controllers
         }
 
 
-        [HttpGet("GetUserAttendancesbydate/{fromdate}/{todate}", Name = "GetUserAttendancesbydate")]
-        public IEnumerable<UserRosterAttendance> GetUserAttendancesbydate(DateTime fromdate ,DateTime todate)
+        [HttpGet("GetUserAttendancesbyIddate/{userid}/{fromdate}/{todate}", Name = "GetUserAttendancesbydate")]
+        public IEnumerable<UserRosterAttendance> GetUserAttendancesbydate(long userid , DateTime fromdate ,DateTime todate)
         {
           //  return UserRosterAttendance_repo.GetAll().OrderByDescending(a => a.UserRosterAttendanceId);
-          return UserRosterAttendance_repo.getUserAttendacesByDate(fromdate, todate);
+          return UserRosterAttendance_repo.getUserAttendacesByDate(userid , fromdate, todate);
         }
 
     [HttpGet("GetUserRosterAttendance/{id}", Name = "GetUserRosterAttendance")]
@@ -227,6 +227,7 @@ namespace SystemAdministrationService.Controllers
         [ValidateModelAttribute]
         public IActionResult AddUserRosterAttendance([FromBody]UserRosterAttendance model)
         {
+            model.AttendanceDate = DateTime.Now;
             UserRosterAttendance_repo.Add(model);
             return new OkObjectResult(new { UserRosterAttendanceID = model.UserRosterAttendanceId });
         }

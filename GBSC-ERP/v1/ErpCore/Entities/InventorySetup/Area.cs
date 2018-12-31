@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ErpCore.Entities.InventorySetup
 {
-    public class Area
+    public class Area : BaseClass
     {
         public Area()
         {
@@ -14,11 +14,15 @@ namespace ErpCore.Entities.InventorySetup
 
         [Key]
         public long AreaId { get; set; }
+
         public string Name { get; set; }
 
         public IEnumerable<Territory> Territories { get; set; }
 
-        public long? CityId { get; set; }
         public City City { get; set; }
+
+        public long? UserId { get; set; }
+
+        public User User { get; set; }
     }
 }

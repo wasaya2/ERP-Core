@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ErpCore.Entities.InventorySetup
 {
-    public class Territory
+    public class Territory : BaseClass
     {
         public Territory()
         {
@@ -24,6 +24,10 @@ namespace ErpCore.Entities.InventorySetup
         public Distributor Distributor { get; set; }
 
         public IEnumerable<Section> Sections { get; set; }
+
+        public long? UserId { get; set; }
+
+        public User User { get; set; }
 
     }
 }

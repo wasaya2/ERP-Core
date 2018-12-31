@@ -7,7 +7,7 @@ using SystemAdministrationService.Repos.Interfaces;
 
 namespace SystemAdministrationService.Repos.Base
 {
-    public interface IRepo<T> : IFeaturePermissions
+    public interface IRepo<T>
     {
         int Count { get; }
 

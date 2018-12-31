@@ -12,17 +12,18 @@ using eTrackerInfrastructure.Auth;
 using eTrackerInfrastructure.Models;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
+using ErpCore.Entities;
 
 namespace eTrackerInfrastructure.Controllers
 {
     [Route("api/[controller]")]
     public class AuthController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IJwtFactory _jwtFactory;
         private readonly JwtIssuerOptions _jwtOptions;
 
-        public AuthController(UserManager<IdentityUser> userManager, IJwtFactory jwtFactory, IOptions<JwtIssuerOptions> jwtOptions)
+        public AuthController(UserManager<AppUser> userManager, IJwtFactory jwtFactory, IOptions<JwtIssuerOptions> jwtOptions)
         {
             _userManager = userManager;
             _jwtFactory = jwtFactory;

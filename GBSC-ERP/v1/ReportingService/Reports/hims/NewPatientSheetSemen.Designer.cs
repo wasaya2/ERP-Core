@@ -122,11 +122,13 @@
             this.GroupHeader2 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
+            this.formattingRule2 = new DevExpress.XtraReports.UI.FormattingRule();
+            this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
             this.EmptyRow = new DevExpress.XtraReports.UI.FormattingRule();
             this.startdate = new DevExpress.XtraReports.Parameters.Parameter();
             this.endDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.NullParam = new DevExpress.XtraReports.Parameters.Parameter();
-            this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
+            this.formattingRule3 = new DevExpress.XtraReports.UI.FormattingRule();
             ((System.ComponentModel.ISupportInitialize)(this.table4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vendorTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
@@ -832,7 +834,7 @@
             this.GroupHeader2});
             this.DetailReport.DataMember = "Hims_PatientReference.Hims_PatientReferencesp_newPatientSheetSemenKarachi";
             this.DetailReport.DataSource = this.sqlDataSource1;
-            this.DetailReport.FormattingRules.Add(this.formattingRule1);
+            this.DetailReport.FormattingRules.Add(this.formattingRule3);
             this.DetailReport.Level = 0;
             this.DetailReport.Name = "DetailReport";
             // 
@@ -965,6 +967,18 @@
             masterDetailInfo1});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
+            // formattingRule2
+            // 
+            this.formattingRule2.DataMember = "Hims_PatientReference";
+            this.formattingRule2.Formatting.Visible = DevExpress.Utils.DefaultBoolean.False;
+            this.formattingRule2.Name = "formattingRule2";
+            // 
+            // formattingRule1
+            // 
+            this.formattingRule1.DataMember = "Hims_PatientReference.Hims_PatientReferencesp_newPatientSheetSemenKarachi";
+            this.formattingRule1.Formatting.Visible = DevExpress.Utils.DefaultBoolean.False;
+            this.formattingRule1.Name = "formattingRule1";
+            // 
             // EmptyRow
             // 
             this.EmptyRow.DataMember = "Hims_PatientReference.Hims_PatientReferencesp_newPatientSheetSemenKarachi";
@@ -993,12 +1007,12 @@
             this.NullParam.Type = typeof(long);
             this.NullParam.Visible = false;
             // 
-            // formattingRule1
+            // formattingRule3
             // 
-            this.formattingRule1.Condition = "[DataSource.RowCount] < 1";
-            this.formattingRule1.DataMember = "Hims_PatientReference.Hims_PatientReferencesp_newPatientSheetSemenKarachi";
-            this.formattingRule1.Formatting.Visible = DevExpress.Utils.DefaultBoolean.False;
-            this.formattingRule1.Name = "formattingRule1";
+            this.formattingRule3.Condition = "[DataSource.RowCount] = 0";
+            this.formattingRule3.DataMember = "Hims_PatientReference.Hims_PatientReferencesp_newPatientSheetSemenKarachi";
+            this.formattingRule3.Formatting.Visible = DevExpress.Utils.DefaultBoolean.False;
+            this.formattingRule3.Name = "formattingRule3";
             // 
             // NEW_PATIENT_SHEET___SEMEN___KARACHI_
             // 
@@ -1084,5 +1098,7 @@
     private DevExpress.XtraReports.Parameters.Parameter NullParam;
     private DevExpress.XtraReports.UI.FormattingRule EmptyRow;
     private DevExpress.XtraReports.UI.FormattingRule formattingRule1;
+    private DevExpress.XtraReports.UI.FormattingRule formattingRule2;
+    private DevExpress.XtraReports.UI.FormattingRule formattingRule3;
   }
 }

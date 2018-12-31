@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HimsService.Repos.Base
 {
-    public interface IRepo<T> : IFeaturePermissionsRepository
+    public interface IRepo<T>
     {
         int Count { get; }
 

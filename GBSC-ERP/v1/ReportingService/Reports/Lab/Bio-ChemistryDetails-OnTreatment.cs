@@ -47,6 +47,11 @@ public class Bio_ChemistryDetails_OnTreatment : DevExpress.XtraReports.UI.XtraRe
     private XRTableCell tableCell16;
     private XRTableCell xrTableCell1;
     private XRTableCell xrTableCell2;
+    private DevExpress.XtraReports.Parameters.Parameter FromDate;
+    private DevExpress.XtraReports.Parameters.Parameter ToDate;
+    private DevExpress.XtraReports.Parameters.Parameter NullParam;
+    private DevExpress.XtraReports.Parameters.Parameter MRN;
+    private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
 
     /// <summary>
     /// Required designer variable.
@@ -82,7 +87,16 @@ public class Bio_ChemistryDetails_OnTreatment : DevExpress.XtraReports.UI.XtraRe
     /// </summary>
     private void InitializeComponent()
     {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bio_ChemistryDetails_OnTreatment));
+            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery1 = new DevExpress.DataAccess.Sql.StoredProcQuery();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter1 = new DevExpress.DataAccess.Sql.QueryParameter();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter2 = new DevExpress.DataAccess.Sql.QueryParameter();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter3 = new DevExpress.DataAccess.Sql.QueryParameter();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter4 = new DevExpress.DataAccess.Sql.QueryParameter();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter5 = new DevExpress.DataAccess.Sql.QueryParameter();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter6 = new DevExpress.DataAccess.Sql.QueryParameter();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter7 = new DevExpress.DataAccess.Sql.QueryParameter();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.vendorLogo = new DevExpress.XtraReports.UI.XRPictureBox();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
@@ -121,6 +135,11 @@ public class Bio_ChemistryDetails_OnTreatment : DevExpress.XtraReports.UI.XtraRe
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.FromDate = new DevExpress.XtraReports.Parameters.Parameter();
+            this.ToDate = new DevExpress.XtraReports.Parameters.Parameter();
+            this.NullParam = new DevExpress.XtraReports.Parameters.Parameter();
+            this.MRN = new DevExpress.XtraReports.Parameters.Parameter();
+            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.vendorTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
@@ -310,12 +329,15 @@ public class Bio_ChemistryDetails_OnTreatment : DevExpress.XtraReports.UI.XtraRe
             this.tableCell34.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.tableCell34.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[collectiondate]")});
             this.tableCell34.Multiline = true;
             this.tableCell34.Name = "tableCell34";
             this.tableCell34.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.tableCell34.StylePriority.UseBorders = false;
             this.tableCell34.StylePriority.UseTextAlignment = false;
             this.tableCell34.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.tableCell34.TextFormatString = "{0:dd/MM/yyyy}";
             this.tableCell34.Weight = 1.1245444048226929D;
             // 
             // tableCell35
@@ -323,6 +345,8 @@ public class Bio_ChemistryDetails_OnTreatment : DevExpress.XtraReports.UI.XtraRe
             this.tableCell35.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.tableCell35.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[mrn]")});
             this.tableCell35.Multiline = true;
             this.tableCell35.Name = "tableCell35";
             this.tableCell35.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -337,6 +361,8 @@ public class Bio_ChemistryDetails_OnTreatment : DevExpress.XtraReports.UI.XtraRe
             this.tableCell36.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.tableCell36.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[patient]")});
             this.tableCell36.Multiline = true;
             this.tableCell36.Name = "tableCell36";
             this.tableCell36.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -352,6 +378,8 @@ public class Bio_ChemistryDetails_OnTreatment : DevExpress.XtraReports.UI.XtraRe
             this.tableCell16.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.tableCell16.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[dob]")});
             this.tableCell16.Multiline = true;
             this.tableCell16.Name = "tableCell16";
             this.tableCell16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -360,6 +388,7 @@ public class Bio_ChemistryDetails_OnTreatment : DevExpress.XtraReports.UI.XtraRe
             this.tableCell16.StylePriority.UseTextAlignment = false;
             this.tableCell16.Text = "0";
             this.tableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell16.TextFormatString = "{0:dd/MM/yyyy}";
             this.tableCell16.Weight = 0.94900068264858162D;
             // 
             // xrTableCell1
@@ -367,6 +396,8 @@ public class Bio_ChemistryDetails_OnTreatment : DevExpress.XtraReports.UI.XtraRe
             this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[particulars]")});
             this.xrTableCell1.Multiline = true;
             this.xrTableCell1.Name = "xrTableCell1";
             this.xrTableCell1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -381,6 +412,8 @@ public class Bio_ChemistryDetails_OnTreatment : DevExpress.XtraReports.UI.XtraRe
             this.xrTableCell2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[result]")});
             this.xrTableCell2.Multiline = true;
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -583,6 +616,8 @@ public class Bio_ChemistryDetails_OnTreatment : DevExpress.XtraReports.UI.XtraRe
             // 
             // xrLabel7
             // 
+            this.xrLabel7.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?ToDate")});
             this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(491.2435F, 40.43592F);
             this.xrLabel7.Multiline = true;
             this.xrLabel7.Name = "xrLabel7";
@@ -591,9 +626,12 @@ public class Bio_ChemistryDetails_OnTreatment : DevExpress.XtraReports.UI.XtraRe
             this.xrLabel7.StylePriority.UseTextAlignment = false;
             this.xrLabel7.Text = "15-08-2018";
             this.xrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrLabel7.TextFormatString = "{0:dd/MM/yyyy}";
             // 
             // xrLabel3
             // 
+            this.xrLabel3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?FromDate")});
             this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(300.9388F, 40.43597F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
@@ -602,6 +640,7 @@ public class Bio_ChemistryDetails_OnTreatment : DevExpress.XtraReports.UI.XtraRe
             this.xrLabel3.StylePriority.UseTextAlignment = false;
             this.xrLabel3.Text = "15-08-2018";
             this.xrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrLabel3.TextFormatString = "{0:dd/MM/yyyy}";
             // 
             // xrLabel2
             // 
@@ -630,6 +669,71 @@ public class Bio_ChemistryDetails_OnTreatment : DevExpress.XtraReports.UI.XtraRe
             this.xrLabel1.Text = "Bio-Chemistry Details (On Treatment)";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
+            // FromDate
+            // 
+            this.FromDate.AllowNull = true;
+            this.FromDate.Description = "From Date";
+            this.FromDate.Name = "FromDate";
+            this.FromDate.Type = typeof(System.DateTime);
+            // 
+            // ToDate
+            // 
+            this.ToDate.AllowNull = true;
+            this.ToDate.Description = "To Date";
+            this.ToDate.Name = "ToDate";
+            this.ToDate.Type = typeof(System.DateTime);
+            // 
+            // NullParam
+            // 
+            this.NullParam.AllowNull = true;
+            this.NullParam.Description = "Null";
+            this.NullParam.Name = "NullParam";
+            this.NullParam.Visible = false;
+            // 
+            // MRN
+            // 
+            this.MRN.AllowNull = true;
+            this.MRN.Description = "MRN";
+            this.MRN.Name = "MRN";
+            // 
+            // sqlDataSource1
+            // 
+            this.sqlDataSource1.ConnectionName = "ERPDB_Connection";
+            this.sqlDataSource1.Name = "sqlDataSource1";
+            storedProcQuery1.Name = "sp_biochemistry_details_ontreatment";
+            queryParameter1.Name = "@fromdate";
+            queryParameter1.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter1.Value = new DevExpress.DataAccess.Expression("?FromDate", typeof(System.DateTime));
+            queryParameter2.Name = "@todate";
+            queryParameter2.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter2.Value = new DevExpress.DataAccess.Expression("?ToDate", typeof(System.DateTime));
+            queryParameter3.Name = "@mrn";
+            queryParameter3.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter3.Value = new DevExpress.DataAccess.Expression("?MRN", typeof(string));
+            queryParameter4.Name = "@companyid";
+            queryParameter4.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter4.Value = new DevExpress.DataAccess.Expression("?NullParam", typeof(long));
+            queryParameter5.Name = "@countryid";
+            queryParameter5.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter5.Value = new DevExpress.DataAccess.Expression("?NullParam", typeof(long));
+            queryParameter6.Name = "@branchid";
+            queryParameter6.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter6.Value = new DevExpress.DataAccess.Expression("?NullParam", typeof(long));
+            queryParameter7.Name = "@cityid";
+            queryParameter7.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter7.Value = new DevExpress.DataAccess.Expression("?NullParam", typeof(long));
+            storedProcQuery1.Parameters.Add(queryParameter1);
+            storedProcQuery1.Parameters.Add(queryParameter2);
+            storedProcQuery1.Parameters.Add(queryParameter3);
+            storedProcQuery1.Parameters.Add(queryParameter4);
+            storedProcQuery1.Parameters.Add(queryParameter5);
+            storedProcQuery1.Parameters.Add(queryParameter6);
+            storedProcQuery1.Parameters.Add(queryParameter7);
+            storedProcQuery1.StoredProcName = "sp_biochemistry_details_ontreatment";
+            this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
+            storedProcQuery1});
+            this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
+            // 
             // Bio_ChemistryDetails_OnTreatment
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -637,8 +741,17 @@ public class Bio_ChemistryDetails_OnTreatment : DevExpress.XtraReports.UI.XtraRe
             this.BottomMargin,
             this.Detail,
             this.GroupHeader1});
+            this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
+            this.sqlDataSource1});
+            this.DataMember = "sp_biochemistry_details_ontreatment";
+            this.DataSource = this.sqlDataSource1;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
             this.Margins = new System.Drawing.Printing.Margins(25, 25, 100, 108);
+            this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
+            this.FromDate,
+            this.ToDate,
+            this.NullParam,
+            this.MRN});
             this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.vendorTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table4)).EndInit();

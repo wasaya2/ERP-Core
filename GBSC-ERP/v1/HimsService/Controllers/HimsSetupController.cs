@@ -53,12 +53,12 @@ namespace HimsService.Controllers
             Procedure_repo = Procedurerepo;
          }
 
-        [HttpGet("GetHimsSetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetHimsSetupPermissions")]
-        public IEnumerable<Permission> GetHimsSetupPermissions(long userid, long RoleId, long featureid)
-        {
-            IEnumerable<Permission> per = con_repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
-            return per;
-        }
+        //[HttpGet("GetHimsSetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetHimsSetupPermissions")]
+        //public IEnumerable<Permission> GetHimsSetupPermissions(long userid, long RoleId, long featureid)
+        //{
+        //    IEnumerable<Permission> per = con_repo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
+        //    return per;
+        //}
 
         #region Consultant
 

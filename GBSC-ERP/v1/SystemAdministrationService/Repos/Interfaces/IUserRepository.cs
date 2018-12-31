@@ -28,6 +28,6 @@ namespace SystemAdministrationService.Repos.Interfaces
         bool UpdateDepartment(long UserId, long DepartmentId);
         bool UpdateRole(long UserId, long RoleId);
 
-       // IEnumerable<UserDocument> GetUserDocuments(long userId);
+        UserPermissionsViewModel GetFeaturePermissions(long UserId, long RoleId, long FeatureId);
     }
 }

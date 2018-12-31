@@ -18,12 +18,13 @@ namespace eTrackerInfrastructure.Helpers
         public static async Task<string> GenerateJwt(ClaimsIdentity identity, IJwtFactory jwtFactory, string userName, JwtIssuerOptions jwtOptions, JsonSerializerSettings serializerSettings)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            var user = db.Users.Include("Distributor")
+            var user = db.Users
                 .Where(u => u.IdentityId == identity.Claims.Single(c => c.Type == "id").Value)
                 .Select(u => new AuthResponseViewModel
                 {
                     userid = u.UserId != 0 ? u.UserId : 0,
-                    territoryid = u.Distributor != null ? u.Distributor.TerritoryId : 0,
+                    territoryid = u.Section != null ? u.Section.TerritoryId : 0,
+                    companyid = u.CompanyId,
                     email = u.Email,
                     firstname = u.FirstName,
                     lastname = u.LastName

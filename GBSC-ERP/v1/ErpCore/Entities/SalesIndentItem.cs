@@ -25,6 +25,14 @@ namespace ErpCore.Entities
         public bool? IsPaid { get; set; }
         /********************************************/
 
+        //For integration with eTracker OrderTaking
+        public long OrderTakingId { get; set; }
+            /********************************/
+
+        public double? ItemGrossAmount { get; set; }
+        public double? ItemDiscountAmount { get; set; }
+        public double? ItemNetAmount { get; set; }
+
         public long? SalesIndentId { get; set; }
         public SalesIndent SalesIndent { get; set; }
 

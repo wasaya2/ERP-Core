@@ -14,39 +14,56 @@ namespace eTrackerInfrastructure.Repos
 {
     public class StoreRepository : RepoBase<Store>, IStoreRepository
     {
-        public Store GetStoreByIdWithChildren(long id) => Table.Include(s => s.StoreVisits).Include(s => s.User).ThenInclude(u => u.Distributor).FirstOrDefault(s => s.StoreId == id);
+        public Store GetStoreByIdWithChildren(long id) => Table.Include(s => s.StoreVisits).Include(s => s.User).FirstOrDefault(s => s.StoreId == id);
 
         public IList<Store> GetStoresBySubsection(long subsectionid) => Table.OrderByDescending(a => a.StoreId).Where(s => s.SubsectionId == subsectionid).ToList();
 
-        public IList<StoreViewModel> GetStoresWithDistributors()
+        public IList<StoreViewModel> GetStoresWithChildren()
+        {
+            return GetAll(s => s.Subsection, s => s.Subsection.Section, u => u.User)
+                                        .OrderByDescending(s => s.StoreId)
+                                        .Select(s => new StoreViewModel
+                                        {
+                                            ShopName = s.ShopName,
+                                            Address = s.Address,
+                                            Cnic = s.Cnic,
+                                            ContactNumber = s.ContactNo,
+                                            Section = s.Subsection?.Section?.Name,
+                                            Subsection = s.Subsection?.Name,
+                                            Landline = s.Landline,
+                                            SalesPerson = s.User?.FirstName + " " + s.User?.LastName,
+                                            Latitude = s.Latitude,
+                                            Longitude = s.Longitude,
+                                            ShopKeeper = s.ShopKeeper,
+                                            StoreId = s.StoreId,
+                                            StartTime = s.StartTime,
+                                            EndTime = s.EndTime
+                                        }).ToList();
+
+        }
+
+        public IList<StoreViewModel> GetStoresWithChildren(long CompanyId)
         {
 
-            var innerJoinQuery = from s in Table
-                                 join u in Db.Users on s.UserId equals u.UserId
-                                 join d in Db.Distributors on u.DistributorId equals d.DistributorId
-                                 join t in Db.Territories on d.TerritoryId equals t.TerritoryId
-                                 orderby s.StoreId descending
-                                 select new StoreViewModel
-                                 {
-                                     ShopName = s.ShopName,
-                                     Address = s.Address,
-                                     Cnic = s.Cnic,
-                                     ContactNumber = s.ContactNo,
-                                     Distributor = d.Name,
-                                     Territory = t.Name,
-                                     Landline = s.Landline,
-                                     SalesPerson = u.FirstName+" "+u.LastName,
-                                     Latitude = s.Latitude,
-                                     Longitude = s.Longitude,
-                                     ShopKeeper = s.ShopKeeper,
-                                     StoreId = s.StoreId,
-                                     StartTime = s.StartTime,
-                                     EndTime = s.EndTime
-                                 };
-
-            var stores = innerJoinQuery.ToList();
-
-            return stores;
+            return GetList(s => s.CompanyId == CompanyId, s => s.Subsection, s => s.Subsection.Section, u => u.User)
+                                        .OrderByDescending(s => s.StoreId)
+                                        .Select(s => new StoreViewModel
+                                        {
+                                            ShopName = s.ShopName,
+                                            Address = s.Address,
+                                            Cnic = s.Cnic,
+                                            ContactNumber = s.ContactNo,
+                                            Section = s.Subsection?.Section?.Name,
+                                            Subsection = s.Subsection?.Name,
+                                            Landline = s.Landline,
+                                            SalesPerson = s.User?.FirstName + " " + s.User?.LastName,
+                                            Latitude = s.Latitude,
+                                            Longitude = s.Longitude,
+                                            ShopKeeper = s.ShopKeeper,
+                                            StoreId = s.StoreId,
+                                            StartTime = s.StartTime,
+                                            EndTime = s.EndTime
+                                        }).ToList();
 
         }
 

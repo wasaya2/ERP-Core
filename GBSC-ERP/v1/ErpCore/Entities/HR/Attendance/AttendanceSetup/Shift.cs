@@ -1,4 +1,4 @@
-﻿using ErpCore.Entities.HRSetup;
+using ErpCore.Entities.HRSetup;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -28,7 +28,7 @@ namespace ErpCore.Entities.HR.Attendance.AttendanceSetup
         public DateTime? GraceTime { get; set; }
         public bool? IsMultiple { get; set; }
         public DateTime? OverTimeStartTime { get; set; } //HH:MM
-        public DateTime? MinimumOverTime { get; set; } //HH:MM
+        public double? MinimumOverTime { get; set; } //HH:MM
         public DateTime? InTimeShiftThreshold { get; set; } //Minutes
         public DateTime? OutTimeShiftThreshold { get; set; } //Minutes
         public double? ShiftHours { get; set; }

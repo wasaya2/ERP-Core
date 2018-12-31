@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +11,7 @@ using eTrackerInfrastructure.Helpers;
 using System.IO;
 using eTrackerInfrastructure.Models.JsonPostClasses;
 using ErpCore.Entities.ETracker;
+using ETrackerService.ViewModels;
 
 namespace eTrackerInfrastructure.Controllers
 {
@@ -51,7 +52,7 @@ namespace eTrackerInfrastructure.Controllers
         public IActionResult AddOrder([FromBody]OrderTaking order)
         {
             Repo.AddOrder(order);
-            
+
             return Ok(new { OrderTakingId = order.OrderTakingId });
         }
 
@@ -62,6 +63,25 @@ namespace eTrackerInfrastructure.Controllers
             Repo.AddMultipleOrders(orders);
 
             return new OkObjectResult(new { response = "All Orders Successfully Added" });
+        }
+
+
+        [HttpPost("AddInventoryTaking")]
+        [ValidateModelAttribute]
+        public IActionResult AddInventoryTaking([FromBody]InventoryTaking inventory)
+        {
+            Repo.AddInventoryTaking(inventory);
+
+            return Ok(new { InventoryTakingId = inventory.InventoryTakingId });
+        }
+
+        [HttpPost("AddMultipleInventoryTakings")]
+        [ValidateModelAttribute]
+        public IActionResult AddMultipleInventoryTakings([FromBody]InventoryTakings inventory)
+        {
+            Repo.AddMultipleInventoryTakings(inventory);
+
+            return new OkObjectResult(new { response = "All Items Successfully Added" });
         }
 
         [HttpPost("AddMerchendise")]
@@ -113,7 +133,10 @@ namespace eTrackerInfrastructure.Controllers
         public IEnumerable<OutletStock> GetOutletStockList(long storeVisitId) => Repo.GetOutletStocks(storeVisitId);
 
         [HttpGet("GetOrders/{storeVisitId}")]
-        public IEnumerable<OrderTaking> GetOrders(long storeVisitId) => Repo.GetOrders(storeVisitId);
+        public IEnumerable<OrderTakingViewModel> GetOrders(long storeVisitId) => Repo.GetVisitOrders(storeVisitId);
+
+        [HttpGet("GetInventories/{storeVisitId}")]
+        public IEnumerable<OrderTakingViewModel> GetInventories(long storeVisitId) => Repo.GetVisitInventories(storeVisitId);
 
         [HttpGet("CompetativeStocks/{storeVisitId}")]
         public IEnumerable<CompetatorStock> CompetativeStockList(long storeVisitId) => Repo.CompetativeStocks(storeVisitId);
@@ -124,14 +147,17 @@ namespace eTrackerInfrastructure.Controllers
         [HttpGet("GetStoreVisit/{id}")]
         public StoreVisit GetStoreVisit(long id) => Repo.Find(id);
 
+        [HttpGet("GetStoreNoOrderReason/{storevisitid}")]
+        public IActionResult GetStoreNoOrderReason(long storevisitid) => new OkObjectResult(new { Reason = Repo.GetNoOrderReason(storevisitid) });
+
         [HttpGet("GetMostRecenetStoreVisit/{storeid}")]
         public StoreVisit GetMostRecenetStoreVisit(long storeid)
         {
             return Repo.MostRecenetStoreVisit(storeid);
         }
 
-        [HttpGet("GetStoreVisitWithStore/{id}")]
-        public StoreVisit GetStoreVisitWithStore(long id) => Repo.GetStoreVisitWithStore(id);
+        [HttpGet("GetStoreVisitWithStore/{id}/{companyid}")]
+        public StoreVisit GetStoreVisitWithStore(long id, long companyid) => Repo.GetStoreVisitWithStore(id);
 
         [HttpGet("GetVisits/{id}")]
         public IEnumerable<StoreVisit> GetVisits(long id) => Repo.GetVisitsByStoreId(id);
