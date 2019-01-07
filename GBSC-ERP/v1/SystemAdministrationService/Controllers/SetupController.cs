@@ -111,6 +111,24 @@ namespace SystemAdministrationService.Controllers
             return fe;
         }
 
+        [HttpGet("GetFeaturesByCompany/{CompanyId}")]
+        public IEnumerable<Feature> GetFeaturesByCompany(long CompanyId)
+        {
+            return fea_repo.GetList(f => f.CompanyId == CompanyId, f => f.Module);
+        }
+
+        [HttpPost("GetFeaturesByModules", Name = "GetFeaturesByModules")]
+        public IEnumerable<Feature> GetFeaturesByModules([FromBody]IEnumerable<long> moduleids)
+        {
+            List<Feature> Features = new List<Feature>();
+
+            foreach(long moduleid in moduleids)
+            {
+                Features.AddRange(fea_repo.GetList(a => a.ModuleId != null && a.ModuleId == moduleid));
+            }
+            return Features.OrderBy(a => a.ModuleId);
+        }
+
         [HttpGet("GetFeaturesByRoleId/{RoleId}")]
         public IEnumerable<FeaturesAndPermissionViewModel> GetFeaturesByRoleId(long RoleId)
         {
@@ -125,6 +143,13 @@ namespace SystemAdministrationService.Controllers
             return fp;
         }
 
+        [HttpGet("GetPermissionsByCompany/{companyid}", Name = "GetPermissionsByCompany")]
+        public IEnumerable<Permission> GetPermissionsByCompany([FromRoute]long companyid)
+        {
+            return per_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid, b => b.Feature, c => c.Role, d => d.User).OrderByDescending(a => a.PermissionId);
+        }
+
+
         [HttpGet("GetModules", Name = "GetModules")]
         public IEnumerable<Module> GetModules(long CompanyId)
         {
@@ -132,6 +157,12 @@ namespace SystemAdministrationService.Controllers
                 return _module_repo.GetList(r => r.CompanyId == CompanyId, a => a.Features, b => b.RoleModules);
             else
                 return _module_repo.GetAll(a => a.Features, b => b.RoleModules);
+        }
+
+        [HttpGet("GetModulesByCompany/{companyId}", Name = "GetModulesByCompany")]
+        public IEnumerable<Module> GetModulesByCompany([FromRoute]long CompanyId)
+        {
+            return _module_repo.GetList(r => r.CompanyId == CompanyId);
         }
 
         [HttpGet("GetCompany/{id}", Name = "GetCompany")]

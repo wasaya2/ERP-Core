@@ -1137,7 +1137,7 @@ namespace SystemAdministrationService.Controllers
         }
 
         [HttpGet("GetSalaryStructure/{id}", Name = "GetSalaryStructure")]
-        public SalaryStructure GetSalaryStructure(long id) => SalaryStructure_repo.GetFirst(a => a.SalaryStructureId == id);
+        public SalaryStructure GetSalaryStructure(long id) => SalaryStructure_repo.GetFirst(a => a.SalaryStructureId == id, b=> b.SalaryStructureDetails);
 
         [HttpPost("AddSalaryStructure", Name = "AddSalaryStructure")]
         [ValidateModelAttribute]
@@ -1151,8 +1151,16 @@ namespace SystemAdministrationService.Controllers
         [ValidateModelAttribute]
         public IActionResult UpdateSalaryStructure([FromBody]SalaryStructure model)
         {
-            SalaryStructure_repo.Update(model);
-            return new OkObjectResult(new { SalaryStructureID = model.SalaryStructureId });
+            try
+            {
+                SalaryStructureDetail_repo.DeleteRange(SalaryStructureDetail_repo.GetAll().Where(a => a.SalaryStructureId == model.SalaryStructureId));
+                SalaryStructure_repo.Update(model);
+                return new OkObjectResult(new { SalaryStructureID = model.SalaryStructureId });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         [HttpDelete("DeleteSalaryStructure/{id}")]

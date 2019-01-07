@@ -61,6 +61,7 @@ namespace AuthService.Controllers
                     IdentityId = userIdentity.Id,
                     LastName = model.LastName,
                     FullName = model.FirstName+" "+model.LastName,
+                    UserType = model.UserType,
                     CompanyId = model.CompanyId,
                     CityId = model.CityId,
                     RoleId = model.RoleId,

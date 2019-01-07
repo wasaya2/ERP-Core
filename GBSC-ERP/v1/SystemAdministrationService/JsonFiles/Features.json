@@ -93,7 +93,6 @@
     "Gratuity",
     "Monthly User Salary",
     "Payslip"
-
   ],
   "Payroll": [
     "Allowance Deduction",
@@ -108,30 +107,28 @@
     "Reference Range"
   ],
   "Security": [
-    "User Setup",
     "User Registration",
     "Users",
-    "Setup",
     "Company Setup",
-    "Roles and Privileges",
-    "All roles"
+    "Roles and Privileges"
   ],
   "eTracker": [
     "Users",
     "Locator",
     "Territory Management",
     "Stores",
-    "Reports"
+    "Shop Status Detail",
+    "Shop Status Summary",
+    "Visit Detail",
+    "Visit Summary",
+    "Shop Census Detail",
+    "Shop Census Summary"
   ],
   "Inventory": [
     "Inventory Setup",
-    "Reports"
-  ],
-  "Finance": [
-    "Accounts",
-    "Voucher",
-    "Financial Year",
-    "Voucher Type",
-    "Finance Reports"
+    "Sales Indent",
+    "Sales Indent Process",
+    "Order Summary Report",
+    "Order Detail Report"
   ]
 }

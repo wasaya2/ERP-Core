@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ErpCore.Entities;
+using ErpCore.Entities.InventorySetup;
 using ErpCore.Filters;
 using ErpInfrastructure.Data;
 using InventoryService.Repos.Interfaces;
@@ -33,6 +34,9 @@ namespace InventoryService.Controllers
         private ISalesReturnRepository return_repo;
         private ISalesReturnItemRepository returnitem_repo;
 
+        private IInventoryItemRepository item_repo;
+        private IDistributorRepository dis_repo;
+
         public SalesController(ISalesIndentRepository indrepo,
             ISalesIndentItemRepository inditemrepo,
             ISalesOrderRepository order,
@@ -42,7 +46,9 @@ namespace InventoryService.Controllers
             IDeliveryChallanRepository challan,
             ISalesInvoiceRepository invoicerepo,
             ISalesReturnRepository retrn, 
-            ISalesReturnItemRepository returnitem)
+            ISalesReturnItemRepository returnitem,
+            IInventoryItemRepository itemrepo,
+            IDistributorRepository disrepo)
         {
             ind_repo = indrepo;
             ind_item_repo = inditemrepo;
@@ -54,6 +60,8 @@ namespace InventoryService.Controllers
             Invoice_repo = invoicerepo;
             return_repo = retrn;
             returnitem_repo = returnitem;
+            item_repo = itemrepo;
+            dis_repo = disrepo;
         }
 
         //[HttpGet("GetSalesPermissions/{userid}/{RoleId}/{featureid}", Name = "GetSalesPermissions")]
@@ -65,12 +73,87 @@ namespace InventoryService.Controllers
 
         #region Sales Indent
 
+        [HttpPost("GenerateSalesIndents", Name = "GenerateSalesIndents")]
+        public IActionResult GenerateSalesIndents([FromBody]IList<OrderTakingToIndentIntegrationViewModel> models)
+        {
+            IList<SalesIndent> indents = new List<SalesIndent>();
+
+            var b = models.GroupBy(c => c.StoreVisitId);
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            foreach (IList<OrderTakingToIndentIntegrationViewModel> si in b)
+            {
+                int countindents = 0;
+                SalesIndent newindent = new SalesIndent();
+                IList<SalesIndentItem> newindentitems = new List<SalesIndentItem>();
+
+                foreach(OrderTakingToIndentIntegrationViewModel s in si)
+                {
+                    countindents += 1;
+                    var a = item_repo.GetFirst(c => c.InventoryItemId == s.InventoryItemId);
+
+                    SalesIndentItem sii = new SalesIndentItem()
+                    {
+                        Quantity = s.Quantity,
+                        TradeOfferPricePerUnit = a.UnitPrice,
+                        OrderTakingId = s.OrderTakingId,
+                        ItemGrossAmount = s.Quantity * a.RetailPrice,
+                        ItemDiscountAmount = 0,
+                        ItemNetAmount = (s.Quantity * a.RetailPrice) - 0,
+                        InventoryItemId = s.InventoryItemId
+                    };
+
+                    newindentitems.Add(sii);
+
+                    long? subsectionid = db.Stores.Where(x => x.StoreId == s.StoreId).FirstOrDefault().SubsectionId;
+                    long? sectionid = db.Subsections.Where(y => y.SubsectionId == subsectionid).FirstOrDefault().SectionId;
+                    long? territoryid = db.Sections.Where(z => z.SectionId == sectionid).FirstOrDefault().TerritoryId;
+                    long? distributorid = db.Territories.Where(w => w.TerritoryId == territoryid).FirstOrDefault().DistributorId;
+                    Store shop = db.Stores.Where(v => v.StoreId == s.StoreId).FirstOrDefault();
+
+                    if (countindents == 1)
+                    {
+                        newindent.Date = DateTime.Now;
+                        newindent.SalesIndentNumber = GenSIN();
+                        newindent.StoreId = s.StoreId;
+                        newindent.CustomerName = shop?.ShopKeeper;
+                        newindent.CustomerCode = shop?.ShopName;
+                        newindent.StoreVisitId = s.StoreVisitId;
+                        newindent.DistributorId = distributorid;
+                        newindent.IsIssued = true;
+                        newindent.UserId = s.UserId;
+                        newindent.CompanyId = s.CompanyId;
+                    }
+
+                    newindent.TotalQuantity += sii.Quantity;
+                    newindent.TotalTradePrice += sii.ItemGrossAmount;
+                    newindent.TotalTradeOfferDiscount += sii.ItemDiscountAmount;
+                    newindent.TotalTradeOffer += sii.ItemNetAmount;
+
+                }
+
+                newindent.SalesIndentItems = newindentitems;
+                indents.Add(newindent);
+
+                countindents = 0;
+            }
+
+            ind_repo.AddRange(indents);
+            return Ok("Integration successful");
+        }
+
         [HttpGet("GetSalesIndents", Name = "GetSalesIndents")]
         public IEnumerable<SalesIndent> GetSalesIndents()
         {
             IEnumerable<SalesIndent> so = ind_repo.GetAll();
             so = so.OrderByDescending(p => p.SalesIndentId);
             return so;
+        }
+
+        [HttpGet("GetUnprocessedSalesIndents", Name = "GetUnprocessedSalesIndents")]
+        public IEnumerable<SalesIndent> GetUnprocessedSalesIndents()
+        {
+            return ind_repo.GetList(a => a.IsProcessed == false || a.IsProcessed == null, b => b.SalesIndentItems).OrderByDescending(a => a.SalesIndentId);
         }
 
         [HttpGet("GetSalesIndent/{id}", Name = "GetSalesIndent")]
@@ -82,6 +165,14 @@ namespace InventoryService.Controllers
         {
             ind_repo.Update(model);
             return new OkObjectResult(new { SalesIndentID = model.SalesIndentId });
+        }
+
+        [HttpPut("UpdateSalesIndents", Name = "UpdateSalesIndents")]
+        [ValidateModelAttribute]
+        public IActionResult UpdateSalesIndents([FromBody]IList<SalesIndent> models)
+        {
+            ind_repo.UpdateRange(models);
+            return Ok("Updated");
         }
 
         private string GenSIN()
@@ -223,6 +314,19 @@ namespace InventoryService.Controllers
             model.SalesOrderCode = GenSC();
             order_repo.Add(model);
             return new OkObjectResult(new { SalesOrderID = model.SalesOrderId });
+        }
+
+        [HttpPost("AddSalesOrders", Name = "AddSalesOrders")]
+        [ValidateModelAttribute]
+        public IActionResult AddSalesOrders([FromBody]IList<SalesOrder> models)
+        {
+            foreach(SalesOrder so in models)
+            {
+                so.SalesOrderCode = GenSC();
+            }
+            
+            order_repo.AddRange(models);
+            return Ok("Orders generated");
         }
 
         [HttpDelete("DeleteSalesOrder/{id}")]

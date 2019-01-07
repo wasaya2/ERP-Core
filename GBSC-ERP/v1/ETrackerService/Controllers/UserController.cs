@@ -106,9 +106,17 @@ namespace eTrackerInfrastructure.Controllers
                 }
                 else if (model.UserLevel == "DSF")
                 {
+                    var assignedSecUser = _repo.GetFirst(u => u.SectionId == model.SectionId);
+                    if(assignedSecUser!=null)
+                    {
+                        assignedSecUser.SectionId = null;
+                        _repo.Update(assignedSecUser);
+                    }
                     var section = _tRepo.FindSection(model.SectionId);
                     section.UserId = model.UserId;
                     _tRepo.UpdateSection(section);
+
+                    user.SectionId = model.SectionId;
                 }
 
                 _repo.Update(user);
@@ -185,7 +193,7 @@ namespace eTrackerInfrastructure.Controllers
         {
             try
             {
-                var _users = _repo.GetList(c => c.CompanyId == CompanyId, c => c.Section, c => c.Section.Territory)
+                var _users = _repo.GetList(c => c.CompanyId == CompanyId && (c.UserType == "Android" || c.UserType == "Both"), c => c.Section, c => c.Section.Territory)
                   .Select(u => new
                   {
                       UserId = u.UserId,

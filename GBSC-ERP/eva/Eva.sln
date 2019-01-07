@@ -1,0 +1,133 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A84A0A90-6409-407A-86AD-C82A7752B9D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HimsService", "HimsService\HimsService.csproj", "{331835C8-B8EA-4623-BA4B-58CC3FD885C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryService", "InventoryService\InventoryService.csproj", "{CFE4AB7A-5958-4AAE-852A-96DE24A1CE5A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{020592B4-15B6-45FC-8529-9028C9521AA3} = {020592B4-15B6-45FC-8529-9028C9521AA3}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{845DA0D0-8E06-408E-A0DF-81CD90C79127}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErpInfrastructure", "ErpInfrastructure\ErpInfrastructure.csproj", "{020592B4-15B6-45FC-8529-9028C9521AA3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService", "AuthService\AuthService.csproj", "{74D0F925-43CA-4F82-BDBF-E96FBA2D070C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceService", "FinanceService\FinanceService.csproj", "{522E1019-B8F3-4A66-8FAB-B293E2102AFE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErpCore", "ErpCore\ErpCore.csproj", "{2BE49A33-F23C-4AF8-A73F-59302BCAD238}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ErpCore", "ErpCore", "{F56FF13F-19D6-404A-AE24-B61CABAAB1C2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemAdministrationService", "SystemAdministrationService\SystemAdministrationService.csproj", "{F222073B-337D-4D06-8177-55643E315CE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingService", "ReportingService\ReportingService.csproj", "{1178950F-30CB-438D-873A-C26B5B8D617E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETrackerService", "ETrackerService\ETrackerService.csproj", "{C0A94A72-DE79-4BB9-8B7B-87C16A42BE85}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{331835C8-B8EA-4623-BA4B-58CC3FD885C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{331835C8-B8EA-4623-BA4B-58CC3FD885C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{331835C8-B8EA-4623-BA4B-58CC3FD885C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{331835C8-B8EA-4623-BA4B-58CC3FD885C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFE4AB7A-5958-4AAE-852A-96DE24A1CE5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFE4AB7A-5958-4AAE-852A-96DE24A1CE5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFE4AB7A-5958-4AAE-852A-96DE24A1CE5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFE4AB7A-5958-4AAE-852A-96DE24A1CE5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{020592B4-15B6-45FC-8529-9028C9521AA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{020592B4-15B6-45FC-8529-9028C9521AA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{020592B4-15B6-45FC-8529-9028C9521AA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{020592B4-15B6-45FC-8529-9028C9521AA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74D0F925-43CA-4F82-BDBF-E96FBA2D070C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74D0F925-43CA-4F82-BDBF-E96FBA2D070C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74D0F925-43CA-4F82-BDBF-E96FBA2D070C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74D0F925-43CA-4F82-BDBF-E96FBA2D070C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{522E1019-B8F3-4A66-8FAB-B293E2102AFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{522E1019-B8F3-4A66-8FAB-B293E2102AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{522E1019-B8F3-4A66-8FAB-B293E2102AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{522E1019-B8F3-4A66-8FAB-B293E2102AFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BE49A33-F23C-4AF8-A73F-59302BCAD238}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BE49A33-F23C-4AF8-A73F-59302BCAD238}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BE49A33-F23C-4AF8-A73F-59302BCAD238}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BE49A33-F23C-4AF8-A73F-59302BCAD238}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F222073B-337D-4D06-8177-55643E315CE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F222073B-337D-4D06-8177-55643E315CE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F222073B-337D-4D06-8177-55643E315CE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F222073B-337D-4D06-8177-55643E315CE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1178950F-30CB-438D-873A-C26B5B8D617E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1178950F-30CB-438D-873A-C26B5B8D617E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1178950F-30CB-438D-873A-C26B5B8D617E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1178950F-30CB-438D-873A-C26B5B8D617E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0A94A72-DE79-4BB9-8B7B-87C16A42BE85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0A94A72-DE79-4BB9-8B7B-87C16A42BE85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0A94A72-DE79-4BB9-8B7B-87C16A42BE85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0A94A72-DE79-4BB9-8B7B-87C16A42BE85}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{331835C8-B8EA-4623-BA4B-58CC3FD885C4} = {A84A0A90-6409-407A-86AD-C82A7752B9D5}
+		{CFE4AB7A-5958-4AAE-852A-96DE24A1CE5A} = {A84A0A90-6409-407A-86AD-C82A7752B9D5}
+		{020592B4-15B6-45FC-8529-9028C9521AA3} = {845DA0D0-8E06-408E-A0DF-81CD90C79127}
+		{74D0F925-43CA-4F82-BDBF-E96FBA2D070C} = {A84A0A90-6409-407A-86AD-C82A7752B9D5}
+		{522E1019-B8F3-4A66-8FAB-B293E2102AFE} = {A84A0A90-6409-407A-86AD-C82A7752B9D5}
+		{2BE49A33-F23C-4AF8-A73F-59302BCAD238} = {F56FF13F-19D6-404A-AE24-B61CABAAB1C2}
+		{F222073B-337D-4D06-8177-55643E315CE6} = {A84A0A90-6409-407A-86AD-C82A7752B9D5}
+		{C0A94A72-DE79-4BB9-8B7B-87C16A42BE85} = {A84A0A90-6409-407A-86AD-C82A7752B9D5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6A690473-D48D-414E-AEC5-241EAB5925C7}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 10
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://gbsc.visualstudio.com/
+		SccProjectUniqueName0 = HimsService\\HimsService.csproj
+		SccProjectTopLevelParentUniqueName0 = Eva.sln
+		SccProjectName0 = HimsService
+		SccLocalPath0 = HimsService
+		SccProjectUniqueName1 = InventoryService\\InventoryService.csproj
+		SccProjectTopLevelParentUniqueName1 = Eva.sln
+		SccProjectName1 = InventoryService
+		SccLocalPath1 = InventoryService
+		SccProjectUniqueName2 = ErpInfrastructure\\ErpInfrastructure.csproj
+		SccProjectTopLevelParentUniqueName2 = Eva.sln
+		SccProjectName2 = ErpInfrastructure
+		SccLocalPath2 = ErpInfrastructure
+		SccProjectUniqueName3 = AuthService\\AuthService.csproj
+		SccProjectTopLevelParentUniqueName3 = Eva.sln
+		SccProjectName3 = AuthService
+		SccLocalPath3 = AuthService
+		SccProjectUniqueName4 = FinanceService\\FinanceService.csproj
+		SccProjectTopLevelParentUniqueName4 = Eva.sln
+		SccProjectName4 = FinanceService
+		SccLocalPath4 = FinanceService
+		SccProjectUniqueName5 = ErpCore\\ErpCore.csproj
+		SccProjectTopLevelParentUniqueName5 = Eva.sln
+		SccProjectName5 = ErpCore
+		SccLocalPath5 = ErpCore
+		SccProjectUniqueName6 = SystemAdministrationService\\SystemAdministrationService.csproj
+		SccProjectTopLevelParentUniqueName6 = Eva.sln
+		SccProjectName6 = SystemAdministrationService
+		SccLocalPath6 = SystemAdministrationService
+		SccProjectUniqueName7 = ReportingService\\ReportingService.csproj
+		SccProjectName7 = ReportingService
+		SccLocalPath7 = ReportingService
+		SccProjectUniqueName8 = ETrackerService\\ETrackerService.csproj
+		SccProjectTopLevelParentUniqueName8 = Eva.sln
+		SccProjectName8 = ETrackerService
+		SccLocalPath8 = ETrackerService
+		SccLocalPath9 = .
+	EndGlobalSection
+EndGlobal

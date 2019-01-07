@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XtraReportsLayoutSerializer SerializerVersion="18.1.6.0" Ref="0" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="XtraReport" Margins="40, 41, 131, 89" PageWidth="850" PageHeight="1100" Version="18.1">
+  <Bands>
+    <Item1 Ref="1" ControlType="TopMarginBand" Name="topMarginBand1" HeightF="131" Font="Times New Roman, 9.85pt" BackColor="Transparent">
+      <Controls>
+        <Item1 Ref="2" ControlType="XRPictureBox" Name="pictureBox1" ImageUrl="E:\GBSC-ERP-SERVICES\GBSC-ERP\v1\HimsService\wwwroot\images\ConceptFertilityLogo.png" Sizing="Squeeze" ProcessDuplicatesMode="SuppressAndShrink" ProcessNullValues="Suppress" AnchorHorizontal="Left" KeepTogether="false" SizeF="174.519272,72.7603149" LocationFloat="0, 24.14786" BackColor="Transparent" CanPublish="false">
+          <StylePriority Ref="3" UseBackColor="false" />
+        </Item1>
+      </Controls>
+      <StylePriority Ref="4" UseFont="false" UseBackColor="false" />
+    </Item1>
+    <Item2 Ref="5" ControlType="DetailBand" Name="detailBand1" HeightF="850.5681">
+      <Controls>
+        <Item1 Ref="6" ControlType="XRTable" Name="table2" SizeF="768.375,26.0416679" LocationFloat="0, 71.875">
+          <Rows>
+            <Item1 Ref="7" ControlType="XRTableRow" Name="tableRow2" Weight="1" TextAlignment="TopRight" Font="Calibri, 10pt, style=Bold" ForeColor="Black" BackColor="CornflowerBlue" Padding="0,0,3,0,100" Borders="All">
+              <Cells>
+                <Item1 Ref="8" ControlType="XRTableCell" Name="tableCell11" Weight="11.497196092228455" Multiline="true" Text="Non Current ASSETS" TextAlignment="TopCenter" Font="Calibri, 10pt, style=Bold" BackColor="CornflowerBlue" Padding="0,0,3,0,100">
+                  <StylePriority Ref="9" UseFont="false" UseBackColor="false" UsePadding="false" UseTextAlignment="false" />
+                </Item1>
+                <Item2 Ref="10" ControlType="XRTableCell" Name="tableCell12" Weight="4.4825204740310607" Multiline="true" Padding="0,0,0,0,100">
+                  <StylePriority Ref="11" UsePadding="false" />
+                </Item2>
+                <Item3 Ref="12" ControlType="XRTableCell" Name="tableCell13" Weight="4.613898283602782" Multiline="true" Padding="2,2,0,0,100" />
+                <Item4 Ref="13" ControlType="XRTableCell" Name="tableCell14" Weight="4.6163654869341872" Multiline="true" Padding="2,2,0,0,100">
+                  <StylePriority Ref="14" UsePadding="false" />
+                </Item4>
+                <Item5 Ref="15" ControlType="XRTableCell" Name="tableCell15" Weight="3.9181304776671784" Multiline="true" Padding="2,2,0,0,100">
+                  <StylePriority Ref="16" UsePadding="false" />
+                </Item5>
+                <Item6 Ref="17" ControlType="XRTableCell" Name="tableCell16" Weight="18.93425662409815" Multiline="true" Text="Capital" TextAlignment="TopCenter" Font="Calibri, 10pt, style=Bold" Padding="0,0,3,0,100">
+                  <StylePriority Ref="18" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+                </Item6>
+                <Item7 Ref="19" ControlType="XRTableCell" Name="tableCell17" Weight="4.952542012760186" Multiline="true" Text="-" Padding="2,2,0,0,100">
+                  <StylePriority Ref="20" UsePadding="false" />
+                </Item7>
+                <Item8 Ref="21" ControlType="XRTableCell" Name="tableCell18" Weight="4.1587759341187294" Multiline="true" Text="-" Padding="2,2,0,0,100">
+                  <StylePriority Ref="22" UsePadding="false" />
+                </Item8>
+                <Item9 Ref="23" ControlType="XRTableCell" Name="tableCell19" Weight="4.1587759341187258" Multiline="true" Text="-" Padding="2,2,0,0,100">
+                  <StylePriority Ref="24" UsePadding="false" />
+                </Item9>
+                <Item10 Ref="25" ControlType="XRTableCell" Name="tableCell20" Weight="4.8224506963672606" Multiline="true" Text="-" Padding="2,2,0,0,100">
+                  <StylePriority Ref="26" UsePadding="false" />
+                </Item10>
+              </Cells>
+              <StylePriority Ref="27" UseFont="false" UseForeColor="false" UseBackColor="false" UsePadding="false" UseBorders="false" UseTextAlignment="false" />
+            </Item1>
+          </Rows>
+        </Item1>
+        <Item2 Ref="28" ControlType="XRTable" Name="table1" SizeF="768.375,26.0416679" LocationFloat="0.6249984, 45.8333321">
+          <Rows>
+            <Item1 Ref="29" ControlType="XRTableRow" Name="tableRow1" Weight="1" TextAlignment="TopCenter" Font="Calibri, 10pt, style=Bold" ForeColor="White" BackColor="SteelBlue" Padding="0,0,3,0,100" Borders="All">
+              <Cells>
+                <Item1 Ref="30" ControlType="XRTableCell" Name="tableCell1" Weight="11.443385361777889" Multiline="true" Text="ASSETS" Padding="0,0,3,0,100">
+                  <StylePriority Ref="31" UsePadding="false" />
+                </Item1>
+                <Item2 Ref="32" ControlType="XRTableCell" Name="tableCell2" Weight="4.4825204740310607" Multiline="true" Text="Jan-18" Padding="0,0,3,0,100">
+                  <StylePriority Ref="33" UsePadding="false" />
+                </Item2>
+                <Item3 Ref="34" ControlType="XRTableCell" Name="tableCell3" Weight="4.613898283602782" Multiline="true" Text="Feb-18" Padding="0,0,3,0,100">
+                  <StylePriority Ref="35" UsePadding="false" />
+                </Item3>
+                <Item4 Ref="36" ControlType="XRTableCell" Name="tableCell4" Weight="4.6701762173847543" Multiline="true" Text="Mar-18" Padding="0,0,3,0,100">
+                  <StylePriority Ref="37" UsePadding="false" />
+                </Item4>
+                <Item5 Ref="38" ControlType="XRTableCell" Name="tableCell5" Weight="3.864317119739539" Multiline="true" Text="Var%" Padding="0,0,3,0,100">
+                  <StylePriority Ref="39" UsePadding="false" />
+                </Item5>
+                <Item6 Ref="40" ControlType="XRTableCell" Name="tableCell6" Weight="18.93425925157522" Multiline="true" Text="SHAREHOLDERS' EQUITY &amp; LIABILITIES" Font="Calibri, 10pt, style=Bold" Padding="0,0,3,0,100">
+                  <StylePriority Ref="41" UseFont="false" UsePadding="false" />
+                </Item6>
+                <Item7 Ref="42" ControlType="XRTableCell" Name="tableCell7" Weight="4.9525420127601869" Multiline="true" Text="Jan-18" Padding="0,0,3,0,100">
+                  <StylePriority Ref="43" UsePadding="false" />
+                </Item7>
+                <Item8 Ref="44" ControlType="XRTableCell" Name="tableCell8" Weight="4.15877593411873" Multiline="true" Text="Feb-18" Padding="0,0,3,0,100">
+                  <StylePriority Ref="45" UsePadding="false" />
+                </Item8>
+                <Item9 Ref="46" ControlType="XRTableCell" Name="tableCell9" Weight="4.1587759341187258" Multiline="true" Text="Mar-18" Padding="0,0,3,0,100">
+                  <StylePriority Ref="47" UsePadding="false" />
+                </Item9>
+                <Item10 Ref="48" ControlType="XRTableCell" Name="tableCell10" Weight="4.8762614268178268" Multiline="true" Text="Var%" Padding="0,0,3,0,100">
+                  <StylePriority Ref="49" UsePadding="false" />
+                </Item10>
+              </Cells>
+              <StylePriority Ref="50" UseFont="false" UseForeColor="false" UseBackColor="false" UsePadding="false" UseBorders="false" UseTextAlignment="false" />
+            </Item1>
+          </Rows>
+        </Item2>
+        <Item3 Ref="51" ControlType="XRPanel" Name="panel1" SizeF="769,281.25" LocationFloat="0, 78.1250153">
+          <Controls>
+            <Item1 Ref="52" ControlType="XRTable" Name="table10" SizeF="768.375,26.0416679" LocationFloat="0, 123.958313" ForeColor="Transparent">
+              <Rows>
+                <Item1 Ref="53" ControlType="XRTableRow" Name="tableRow10" Weight="1" TextAlignment="TopCenter" Font="Calibri, 10pt" ForeColor="Black" BackColor="Transparent" Padding="2,2,2,2,100" Borders="All">
+                  <Cells>
+                    <Item1 Ref="54" ControlType="XRTableCell" Name="tableCell91" Weight="11.497197405966992" Multiline="true" Text=" " ForeColor="Black" Padding="0,0,3,0,100">
+                      <StylePriority Ref="55" UseForeColor="false" UsePadding="false" />
+                    </Item1>
+                    <Item2 Ref="56" ControlType="XRTableCell" Name="tableCell92" Weight="4.4825204740310607" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="57" UsePadding="false" />
+                    </Item2>
+                    <Item3 Ref="58" ControlType="XRTableCell" Name="tableCell93" Weight="4.61389565612571" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="59" UsePadding="false" />
+                    </Item3>
+                    <Item4 Ref="60" ControlType="XRTableCell" Name="tableCell94" Weight="4.6163668006727239" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="61" UsePadding="false" />
+                    </Item4>
+                    <Item5 Ref="62" ControlType="XRTableCell" Name="tableCell95" Weight="3.9181304776671784" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="63" UsePadding="false" />
+                    </Item5>
+                    <Item6 Ref="64" ControlType="XRTableCell" Name="tableCell96" Weight="18.934256624098147" Multiline="true" Text="Loan from related parties " Font="Calibri, 10pt" ForeColor="Black" BackColor="Transparent" Padding="0,0,3,0,100">
+                      <StylePriority Ref="65" UseFont="false" UseForeColor="false" UseBackColor="false" UsePadding="false" />
+                    </Item6>
+                    <Item7 Ref="66" ControlType="XRTableCell" Name="tableCell97" Weight="4.952542012760186" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="67" UsePadding="false" />
+                    </Item7>
+                    <Item8 Ref="68" ControlType="XRTableCell" Name="tableCell98" Weight="4.1587759341187294" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="69" UsePadding="false" />
+                    </Item8>
+                    <Item9 Ref="70" ControlType="XRTableCell" Name="tableCell99" Weight="4.1587759341187258" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="71" UsePadding="false" />
+                    </Item9>
+                    <Item10 Ref="72" ControlType="XRTableCell" Name="tableCell100" Weight="4.8224506963672606" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="73" UsePadding="false" />
+                    </Item10>
+                  </Cells>
+                  <StylePriority Ref="74" UseFont="false" UseForeColor="false" UseBackColor="false" UsePadding="false" UseBorders="false" UseTextAlignment="false" />
+                </Item1>
+              </Rows>
+              <StylePriority Ref="75" UseForeColor="false" />
+            </Item1>
+            <Item2 Ref="76" ControlType="XRTable" Name="table9" SizeF="768.375,26.0416679" LocationFloat="0, 149.999985" ForeColor="Transparent">
+              <Rows>
+                <Item1 Ref="77" ControlType="XRTableRow" Name="tableRow9" Weight="1" TextAlignment="TopCenter" Font="Calibri, 10pt" ForeColor="Black" BackColor="Transparent" Padding="2,2,2,2,100" Borders="All">
+                  <Cells>
+                    <Item1 Ref="78" ControlType="XRTableCell" Name="tableCell81" Weight="11.497197405966992" Multiline="true" Text=" " ForeColor="Black" Padding="0,0,3,0,100">
+                      <StylePriority Ref="79" UseForeColor="false" UsePadding="false" />
+                    </Item1>
+                    <Item2 Ref="80" ControlType="XRTableCell" Name="tableCell82" Weight="4.4825204740310607" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="81" UsePadding="false" />
+                    </Item2>
+                    <Item3 Ref="82" ControlType="XRTableCell" Name="tableCell83" Weight="4.61389565612571" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="83" UsePadding="false" />
+                    </Item3>
+                    <Item4 Ref="84" ControlType="XRTableCell" Name="tableCell84" Weight="4.6163668006727239" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="85" UsePadding="false" />
+                    </Item4>
+                    <Item5 Ref="86" ControlType="XRTableCell" Name="tableCell85" Weight="3.9181304776671784" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="87" UsePadding="false" />
+                    </Item5>
+                    <Item6 Ref="88" ControlType="XRTableCell" Name="tableCell86" Weight="18.934256624098147" Multiline="true" Text="Loan from Bank - secured" Font="Calibri, 10pt" ForeColor="Black" BackColor="Transparent" Padding="0,0,3,0,100">
+                      <StylePriority Ref="89" UseFont="false" UseForeColor="false" UseBackColor="false" UsePadding="false" />
+                    </Item6>
+                    <Item7 Ref="90" ControlType="XRTableCell" Name="tableCell87" Weight="4.952542012760186" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="91" UsePadding="false" />
+                    </Item7>
+                    <Item8 Ref="92" ControlType="XRTableCell" Name="tableCell88" Weight="4.1587759341187294" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="93" UsePadding="false" />
+                    </Item8>
+                    <Item9 Ref="94" ControlType="XRTableCell" Name="tableCell89" Weight="4.1587759341187258" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="95" UsePadding="false" />
+                    </Item9>
+                    <Item10 Ref="96" ControlType="XRTableCell" Name="tableCell90" Weight="4.8224506963672606" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="97" UsePadding="false" />
+                    </Item10>
+                  </Cells>
+                  <StylePriority Ref="98" UseFont="false" UseForeColor="false" UseBackColor="false" UsePadding="false" UseBorders="false" UseTextAlignment="false" />
+                </Item1>
+              </Rows>
+              <StylePriority Ref="99" UseForeColor="false" />
+            </Item2>
+            <Item3 Ref="100" ControlType="XRTable" Name="table8" SizeF="768.375,26.0416679" LocationFloat="0, 176.041656" ForeColor="Transparent">
+              <Rows>
+                <Item1 Ref="101" ControlType="XRTableRow" Name="tableRow8" Weight="1" TextAlignment="TopCenter" Font="Calibri, 10pt" ForeColor="Black" BackColor="Transparent" Padding="2,2,2,2,100" Borders="All">
+                  <Cells>
+                    <Item1 Ref="102" ControlType="XRTableCell" Name="tableCell71" Weight="11.497197405966992" Multiline="true" Text=" " ForeColor="Black" Padding="0,0,3,0,100">
+                      <StylePriority Ref="103" UseForeColor="false" UsePadding="false" />
+                    </Item1>
+                    <Item2 Ref="104" ControlType="XRTableCell" Name="tableCell72" Weight="4.4825204740310607" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="105" UsePadding="false" />
+                    </Item2>
+                    <Item3 Ref="106" ControlType="XRTableCell" Name="tableCell73" Weight="4.61389565612571" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="107" UsePadding="false" />
+                    </Item3>
+                    <Item4 Ref="108" ControlType="XRTableCell" Name="tableCell74" Weight="4.6163668006727239" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="109" UsePadding="false" />
+                    </Item4>
+                    <Item5 Ref="110" ControlType="XRTableCell" Name="tableCell75" Weight="3.9181304776671784" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="111" UsePadding="false" />
+                    </Item5>
+                    <Item6 Ref="112" ControlType="XRTableCell" Name="tableCell76" Weight="18.934256624098147" Multiline="true" Text="Liabilities against Sale &amp; Ijarah back" Font="Calibri, 10pt" ForeColor="Black" BackColor="Transparent" Padding="0,0,3,0,100">
+                      <StylePriority Ref="113" UseFont="false" UseForeColor="false" UseBackColor="false" UsePadding="false" />
+                    </Item6>
+                    <Item7 Ref="114" ControlType="XRTableCell" Name="tableCell77" Weight="4.952542012760186" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="115" UsePadding="false" />
+                    </Item7>
+                    <Item8 Ref="116" ControlType="XRTableCell" Name="tableCell78" Weight="4.1587759341187294" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="117" UsePadding="false" />
+                    </Item8>
+                    <Item9 Ref="118" ControlType="XRTableCell" Name="tableCell79" Weight="4.1587759341187258" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="119" UsePadding="false" />
+                    </Item9>
+                    <Item10 Ref="120" ControlType="XRTableCell" Name="tableCell80" Weight="4.8224506963672606" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="121" UsePadding="false" />
+                    </Item10>
+                  </Cells>
+                  <StylePriority Ref="122" UseFont="false" UseForeColor="false" UseBackColor="false" UsePadding="false" UseBorders="false" UseTextAlignment="false" />
+                </Item1>
+              </Rows>
+              <StylePriority Ref="123" UseForeColor="false" />
+            </Item3>
+            <Item4 Ref="124" ControlType="XRTable" Name="table7" SizeF="768.375,26.0416679" LocationFloat="0, 202.083328" ForeColor="Transparent">
+              <Rows>
+                <Item1 Ref="125" ControlType="XRTableRow" Name="tableRow7" Weight="1" TextAlignment="TopCenter" Font="Calibri, 10pt" ForeColor="White" BackColor="SteelBlue" Padding="2,2,2,2,100" Borders="All">
+                  <Cells>
+                    <Item1 Ref="126" ControlType="XRTableCell" Name="tableCell61" Weight="11.497197405966992" Multiline="true" Text="Total Assets" ForeColor="Black" Padding="0,0,3,0,100">
+                      <StylePriority Ref="127" UseForeColor="false" UsePadding="false" />
+                    </Item1>
+                    <Item2 Ref="128" ControlType="XRTableCell" Name="tableCell62" Weight="4.4825204740310607" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="129" UsePadding="false" />
+                    </Item2>
+                    <Item3 Ref="130" ControlType="XRTableCell" Name="tableCell63" Weight="4.61389565612571" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="131" UsePadding="false" />
+                    </Item3>
+                    <Item4 Ref="132" ControlType="XRTableCell" Name="tableCell64" Weight="4.6163668006727239" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="133" UsePadding="false" />
+                    </Item4>
+                    <Item5 Ref="134" ControlType="XRTableCell" Name="tableCell65" Weight="3.9181304776671784" Multiline="true" Text="0%" Padding="0,0,3,0,100">
+                      <StylePriority Ref="135" UsePadding="false" />
+                    </Item5>
+                    <Item6 Ref="136" ControlType="XRTableCell" Name="tableCell66" Weight="18.934256624098147" Multiline="true" Text="SHAREHOLDERS' EQUITY &amp; TOTAL LIABILITIES" Font="Calibri, 9pt, style=Bold" ForeColor="White" BackColor="SteelBlue" Padding="0,0,3,0,100">
+                      <StylePriority Ref="137" UseFont="false" UseForeColor="false" UseBackColor="false" UsePadding="false" />
+                    </Item6>
+                    <Item7 Ref="138" ControlType="XRTableCell" Name="tableCell67" Weight="4.952542012760186" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="139" UsePadding="false" />
+                    </Item7>
+                    <Item8 Ref="140" ControlType="XRTableCell" Name="tableCell68" Weight="4.1587759341187294" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="141" UsePadding="false" />
+                    </Item8>
+                    <Item9 Ref="142" ControlType="XRTableCell" Name="tableCell69" Weight="4.1587759341187258" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="143" UsePadding="false" />
+                    </Item9>
+                    <Item10 Ref="144" ControlType="XRTableCell" Name="tableCell70" Weight="4.8224506963672606" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="145" UsePadding="false" />
+                    </Item10>
+                  </Cells>
+                  <StylePriority Ref="146" UseFont="false" UseForeColor="false" UseBackColor="false" UsePadding="false" UseBorders="false" UseTextAlignment="false" />
+                </Item1>
+              </Rows>
+              <StylePriority Ref="147" UseForeColor="false" />
+            </Item4>
+            <Item5 Ref="148" ControlType="XRTable" Name="table6" SizeF="768.375,26.0416679" LocationFloat="0, 71.8749847" ForeColor="Transparent">
+              <Rows>
+                <Item1 Ref="149" ControlType="XRTableRow" Name="tableRow6" Weight="1" TextAlignment="TopCenter" Font="Calibri, 10pt" ForeColor="Black" BackColor="Transparent" Padding="2,2,2,2,100" Borders="All">
+                  <Cells>
+                    <Item1 Ref="150" ControlType="XRTableCell" Name="tableCell51" Weight="11.497197405966992" Multiline="true" Text=" " ForeColor="Black" Padding="0,0,3,0,100">
+                      <StylePriority Ref="151" UseForeColor="false" UsePadding="false" />
+                    </Item1>
+                    <Item2 Ref="152" ControlType="XRTableCell" Name="tableCell52" Weight="4.4825178465539883" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="153" UsePadding="false" />
+                    </Item2>
+                    <Item3 Ref="154" ControlType="XRTableCell" Name="tableCell53" Weight="4.613898283602782" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="155" UsePadding="false" />
+                    </Item3>
+                    <Item4 Ref="156" ControlType="XRTableCell" Name="tableCell54" Weight="4.6163668006727239" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="157" UsePadding="false" />
+                    </Item4>
+                    <Item5 Ref="158" ControlType="XRTableCell" Name="tableCell55" Weight="3.9181304776671784" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="159" UsePadding="false" />
+                    </Item5>
+                    <Item6 Ref="160" ControlType="XRTableCell" Name="tableCell56" Weight="18.934256624098147" Multiline="true" Text="Total  CURRENT LIABILITIES" Font="Calibri, 9pt, style=Bold" ForeColor="Black" Padding="0,0,3,0,100">
+                      <StylePriority Ref="161" UseFont="false" UseForeColor="false" UsePadding="false" />
+                    </Item6>
+                    <Item7 Ref="162" ControlType="XRTableCell" Name="tableCell57" Weight="4.95253675780604" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="163" UsePadding="false" />
+                    </Item7>
+                    <Item8 Ref="164" ControlType="XRTableCell" Name="tableCell58" Weight="4.1587811890728759" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="165" UsePadding="false" />
+                    </Item8>
+                    <Item9 Ref="166" ControlType="XRTableCell" Name="tableCell59" Weight="4.1587811890728705" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="167" UsePadding="false" />
+                    </Item9>
+                    <Item10 Ref="168" ControlType="XRTableCell" Name="tableCell60" Weight="4.822445441413115" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="169" UsePadding="false" />
+                    </Item10>
+                  </Cells>
+                  <StylePriority Ref="170" UseFont="false" UseForeColor="false" UseBackColor="false" UsePadding="false" UseBorders="false" UseTextAlignment="false" />
+                </Item1>
+              </Rows>
+              <StylePriority Ref="171" UseForeColor="false" />
+            </Item5>
+            <Item6 Ref="172" ControlType="XRTable" Name="table5" SizeF="768.375,26.0416679" LocationFloat="0, 97.91666" ForeColor="Transparent">
+              <Rows>
+                <Item1 Ref="173" ControlType="XRTableRow" Name="tableRow5" Weight="1" TextAlignment="TopCenter" Font="Calibri, 10pt" ForeColor="Black" BackColor="Transparent" Padding="2,2,2,2,100" Borders="All">
+                  <Cells>
+                    <Item1 Ref="174" ControlType="XRTableCell" Name="tableCell41" Weight="11.497197405966992" Multiline="true" Text=" " ForeColor="Black" Padding="0,0,3,0,100">
+                      <StylePriority Ref="175" UseForeColor="false" UsePadding="false" />
+                    </Item1>
+                    <Item2 Ref="176" ControlType="XRTableCell" Name="tableCell42" Weight="4.4825204740310607" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="177" UsePadding="false" />
+                    </Item2>
+                    <Item3 Ref="178" ControlType="XRTableCell" Name="tableCell43" Weight="4.61389565612571" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="179" UsePadding="false" />
+                    </Item3>
+                    <Item4 Ref="180" ControlType="XRTableCell" Name="tableCell44" Weight="4.6163668006727239" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="181" UsePadding="false" />
+                    </Item4>
+                    <Item5 Ref="182" ControlType="XRTableCell" Name="tableCell45" Weight="3.9181304776671784" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="183" UsePadding="false" />
+                    </Item5>
+                    <Item6 Ref="184" ControlType="XRTableCell" Name="tableCell46" Weight="18.934256624098147" Multiline="true" Text="Non Current Liablities" Font="Calibri, 9pt, style=Bold" ForeColor="Black" BackColor="CornflowerBlue" Padding="0,0,3,0,100">
+                      <StylePriority Ref="185" UseFont="false" UseForeColor="false" UseBackColor="false" UsePadding="false" />
+                    </Item6>
+                    <Item7 Ref="186" ControlType="XRTableCell" Name="tableCell47" Weight="4.952542012760186" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="187" UsePadding="false" />
+                    </Item7>
+                    <Item8 Ref="188" ControlType="XRTableCell" Name="tableCell48" Weight="4.1587759341187294" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="189" UsePadding="false" />
+                    </Item8>
+                    <Item9 Ref="190" ControlType="XRTableCell" Name="tableCell49" Weight="4.1587811890728705" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="191" UsePadding="false" />
+                    </Item9>
+                    <Item10 Ref="192" ControlType="XRTableCell" Name="tableCell50" Weight="4.822445441413115" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="193" UsePadding="false" />
+                    </Item10>
+                  </Cells>
+                  <StylePriority Ref="194" UseFont="false" UseForeColor="false" UseBackColor="false" UsePadding="false" UseBorders="false" UseTextAlignment="false" />
+                </Item1>
+              </Rows>
+              <StylePriority Ref="195" UseForeColor="false" />
+            </Item6>
+            <Item7 Ref="196" ControlType="XRTable" Name="table3" SizeF="768.375,26.0416679" LocationFloat="0.6249984, 19.7916489">
+              <Rows>
+                <Item1 Ref="197" ControlType="XRTableRow" Name="tableRow3" Weight="1" TextAlignment="TopCenter" Font="Calibri, 10pt" ForeColor="Black" BackColor="Transparent" Padding="0,0,3,1,100" Borders="All">
+                  <Cells>
+                    <Item1 Ref="198" ControlType="XRTableCell" Name="tableCell21" Weight="11.443385361777889" Multiline="true" Text="Tangible Fixed Assets" ForeColor="Black" Padding="0,0,3,0,100">
+                      <StylePriority Ref="199" UseForeColor="false" UsePadding="false" />
+                    </Item1>
+                    <Item2 Ref="200" ControlType="XRTableCell" Name="tableCell22" Weight="4.4825204740310607" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="201" UsePadding="false" />
+                    </Item2>
+                    <Item3 Ref="202" ControlType="XRTableCell" Name="tableCell23" Weight="4.613898283602782" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="203" UsePadding="false" />
+                    </Item3>
+                    <Item4 Ref="204" ControlType="XRTableCell" Name="tableCell24" Weight="4.6163654869341872" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="205" UsePadding="false" />
+                    </Item4>
+                    <Item5 Ref="206" ControlType="XRTableCell" Name="tableCell25" Weight="3.9181304776671793" Multiline="true" Text="0%" Padding="0,0,3,0,100">
+                      <StylePriority Ref="207" UsePadding="false" />
+                    </Item5>
+                    <Item6 Ref="208" ControlType="XRTableCell" Name="tableCell26" Weight="18.93425662409815" Multiline="true" Text="Authorized share capital" Font="Calibri, 10pt" Padding="0,0,3,0,100">
+                      <StylePriority Ref="209" UseFont="false" UsePadding="false" />
+                    </Item6>
+                    <Item7 Ref="210" ControlType="XRTableCell" Name="tableCell27" Weight="4.9525420127601878" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="211" UsePadding="false" />
+                    </Item7>
+                    <Item8 Ref="212" ControlType="XRTableCell" Name="tableCell28" Weight="4.15877593411873" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="213" UsePadding="false" />
+                    </Item8>
+                    <Item9 Ref="214" ControlType="XRTableCell" Name="tableCell29" Weight="4.1587811890728714" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="215" UsePadding="false" />
+                    </Item9>
+                    <Item10 Ref="216" ControlType="XRTableCell" Name="tableCell30" Weight="4.8762561718636812" Multiline="true" Text=" " Padding="0,0,3,0,100">
+                      <StylePriority Ref="217" UsePadding="false" />
+                    </Item10>
+                  </Cells>
+                  <StylePriority Ref="218" UseFont="false" UseForeColor="false" UseBackColor="false" UsePadding="false" UseBorders="false" UseTextAlignment="false" />
+                </Item1>
+              </Rows>
+            </Item7>
+            <Item8 Ref="219" ControlType="XRTable" Name="table4" SizeF="768.375,26.0416679" LocationFloat="0, 45.83332" ForeColor="Transparent">
+              <Rows>
+                <Item1 Ref="220" ControlType="XRTableRow" Name="tableRow4" Weight="1" TextAlignment="TopCenter" Font="Calibri, 10pt" ForeColor="Black" BackColor="Transparent" Padding="2,2,2,2,100" Borders="All">
+                  <Cells>
+                    <Item1 Ref="221" ControlType="XRTableCell" Name="tableCell31" Weight="11.497197405966992" Multiline="true" Text="Intangible Fixed Assets " ForeColor="Black" Padding="0,0,3,0,100">
+                      <StylePriority Ref="222" UseForeColor="false" UsePadding="false" />
+                    </Item1>
+                    <Item2 Ref="223" ControlType="XRTableCell" Name="tableCell32" Weight="4.4825178465539883" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="224" UsePadding="false" />
+                    </Item2>
+                    <Item3 Ref="225" ControlType="XRTableCell" Name="tableCell33" Weight="4.613898283602782" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="226" UsePadding="false" />
+                    </Item3>
+                    <Item4 Ref="227" ControlType="XRTableCell" Name="tableCell34" Weight="4.6163668006727239" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="228" UsePadding="false" />
+                    </Item4>
+                    <Item5 Ref="229" ControlType="XRTableCell" Name="tableCell35" Weight="3.9181304776671784" Multiline="true" Text="0%" Padding="0,0,3,0,100">
+                      <StylePriority Ref="230" UsePadding="false" />
+                    </Item5>
+                    <Item6 Ref="231" ControlType="XRTableCell" Name="tableCell36" Weight="18.934256624098147" Multiline="true" Text="Issued, subscribed and paid up share capital" Font="Calibri, 10pt" ForeColor="Black" Padding="0,0,3,0,100">
+                      <StylePriority Ref="232" UseFont="false" UseForeColor="false" UsePadding="false" />
+                    </Item6>
+                    <Item7 Ref="233" ControlType="XRTableCell" Name="tableCell37" Weight="4.952542012760186" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="234" UsePadding="false" />
+                    </Item7>
+                    <Item8 Ref="235" ControlType="XRTableCell" Name="tableCell38" Weight="4.1587759341187294" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="236" UsePadding="false" />
+                    </Item8>
+                    <Item9 Ref="237" ControlType="XRTableCell" Name="tableCell39" Weight="4.1587811890728705" Multiline="true" Text="-" Padding="0,0,3,0,100">
+                      <StylePriority Ref="238" UsePadding="false" />
+                    </Item9>
+                    <Item10 Ref="239" ControlType="XRTableCell" Name="tableCell40" Weight="4.822445441413115" Multiline="true" Padding="0,0,3,0,100">
+                      <StylePriority Ref="240" UsePadding="false" />
+                    </Item10>
+                  </Cells>
+                  <StylePriority Ref="241" UseFont="false" UseForeColor="false" UseBackColor="false" UsePadding="false" UseBorders="false" UseTextAlignment="false" />
+                </Item1>
+              </Rows>
+              <StylePriority Ref="242" UseForeColor="false" />
+            </Item8>
+          </Controls>
+        </Item3>
+        <Item4 Ref="243" ControlType="XRLabel" Name="label11" Multiline="true" Text="REFERENCE RANGES:" SizeF="129.519241,23" LocationFloat="0, 788.499939" Font="Calibri, 9pt, style=Bold" Padding="2,2,0,0,100">
+          <StylePriority Ref="244" UseFont="false" />
+        </Item4>
+        <Item5 Ref="245" ControlType="XRLabel" Name="label25" Multiline="true" Text="(WHO 5th Edition) Reference Ranges are based on semen characteristics from men whose wives are pragnantwithin 12 months of stopping contraception. Values are 5th centiles and 95% confidence limits.Volume: 1.5(1.4-1.7)ml Count: 15(12-16) million/ml, 39(33-46)million/ejaculate. Total Motility: 40(38-42)%, Progressive Motility:32(31-34)%. Morphology: 4(3-4)% Normal forms." SizeF="657.814331,52.0681763" LocationFloat="111.185913, 788.499939" Font="Calibri, 9pt" ForeColor="DarkSlateGray" Padding="2,2,0,0,100">
+          <StylePriority Ref="246" UseFont="false" UseForeColor="false" />
+        </Item5>
+        <Item6 Ref="247" ControlType="XRLine" Name="line2" LineWidth="3" SizeF="769.1667,5" LocationFloat="0, 38.80081" ForeColor="255,199,31,101" BorderWidth="0">
+          <StylePriority Ref="248" UseForeColor="false" UseBorderWidth="false" />
+        </Item6>
+        <Item7 Ref="249" ControlType="XRLine" Name="line1" LineWidth="3" SizeF="769.1667,5" LocationFloat="0, 0" ForeColor="255,199,31,101" BorderWidth="0">
+          <StylePriority Ref="250" UseForeColor="false" UseBorderWidth="false" />
+        </Item7>
+        <Item8 Ref="251" ControlType="XRLabel" Name="label4" RightToLeft="Yes" Multiline="true" Text="Balance Sheet" TextAlignment="MiddleCenter" SizeF="759.000061,28.8008137" LocationFloat="9.999998, 4.999987" StyleName="Style1" Font="Calibri, 18pt" ForeColor="Black" BackColor="0,0,0,0" Padding="2,2,0,0,100">
+          <StylePriority Ref="252" UseFont="false" UseForeColor="false" UseBackColor="false" UseTextAlignment="false" />
+        </Item8>
+      </Controls>
+    </Item2>
+    <Item3 Ref="253" ControlType="BottomMarginBand" Name="bottomMarginBand1" HeightF="89.2045441">
+      <Controls>
+        <Item1 Ref="254" ControlType="XRLine" Name="line3" SizeF="769.000061,5.06815624" LocationFloat="0, 0" />
+        <Item2 Ref="255" ControlType="XRLabel" Name="label2" Multiline="true" AutoWidth="true" TextTrimming="Word" Text="F-6/1, Block-8, KDA Scheme No.5,&#xD;&#xA;Clifton, Karachi-75600" TextAlignment="MiddleCenter" SizeF="282.499969,35.83334" LocationFloat="225.953766, 30.3712273" Font="Times New Roman, 9pt" Padding="2,2,0,0,100">
+          <StylePriority Ref="256" UseFont="false" UseTextAlignment="false" />
+        </Item2>
+        <Item3 Ref="257" ControlType="XRLabel" Name="label1" Multiline="true" Text="Concept Fertility Centre" TextAlignment="TopCenter" SizeF="282.5,20.3788071" LocationFloat="225.95372, 9.99242" Font="Microsoft Sans Serif, 12pt, style=Underline" Padding="2,2,0,0,100">
+          <StylePriority Ref="258" UseFont="false" UseTextAlignment="false" />
+        </Item3>
+        <Item4 Ref="259" ControlType="XRLabel" Name="label3" Multiline="true" Text="Ph: 92 21 35361846, 35361397, 35810049, Fax: 021-35361397" TextAlignment="TopCenter" SizeF="375.416565,22.9999924" LocationFloat="182.817383, 66.20455" Font="Times New Roman, 9pt" Padding="2,2,0,0,100">
+          <StylePriority Ref="260" UseFont="false" UseTextAlignment="false" />
+        </Item4>
+      </Controls>
+    </Item3>
+  </Bands>
+  <StyleSheet>
+    <Item1 Ref="261" Name="Style1" BorderStyle="Inset" Padding="0,0,0,0,100" BackColor="255,224,224,224" StringFormat="Center;Far;0;None;Character;Default" TextAlignment="BottomCenter" />
+  </StyleSheet>
+</XtraReportsLayoutSerializer>

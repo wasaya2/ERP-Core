@@ -158,10 +158,6 @@ namespace eTrackerInfrastructure.Repos
             var items = (from storevisit in Db.StoreVisits
                          join order in Db.OrderTakings on storevisit.StoreVisitId equals order.StoreVisitId
                          join item in Db.InventoryItems on order.InventoryItemId equals item.InventoryItemId
-                         join brand in Db.Brands on item.BrandId equals brand.BrandId
-                         join unit in Db.Units on item.UnitId equals unit.UnitId
-                         join packtype in Db.PackTypes on item.PackageTypeId equals packtype.PackTypeId
-                         join packsize in Db.PackSizes on item.PackSizeId equals packsize.PackSizeId
                          join producttype in Db.ProductTypes on item.ProductTypeId equals producttype.ProductTypeId
                          where storevisit.StoreVisitId == StoreVisitId
                          group item by item.Brand.Name into g
@@ -193,7 +189,38 @@ namespace eTrackerInfrastructure.Repos
             return items;
         }
 
-            public IEnumerable<OrderTakingViewModel> GetVisitInventories(long StoreVisitId)
+        public IEnumerable<LastTwoVisits> GetLastTwoVisits(long StoreId)
+        {
+            var visitHistory = (from
+                                indent in Db.SalesIndents
+                                join user in Db.Users on indent.UserId equals user.UserId
+                                join storevisit in Db.StoreVisits on indent.StoreVisitId equals storevisit.StoreVisitId
+                                where indent.StoreId == StoreId
+                                orderby indent.ProcessedDate
+                                select new LastTwoVisits
+                                {
+                                    SalesIndentId = indent.SalesIndentId,
+                                    BillDate = indent.ProcessedDate,
+                                    BilledTo = indent.CustomerCode,
+                                    VisitDateTime = storevisit.StartTime,
+                                    VisitedBy = user.FullName,
+                                    Total = indent.TotalTradePrice,
+                                    Items = (from
+                                             indentItem in Db.SalesIndentItems
+                                             where indentItem.SalesIndentId == indent.SalesIndentId
+                                             select new LastvisitOrderItem
+                                             {
+                                                 ItemName = indentItem.InventoryItem.Name,
+                                                 PackType = indentItem.InventoryItem.PackType.Name,
+                                                 Quantity = indentItem.Quantity,
+                                                 UnitPrice = indentItem.InventoryItem.UnitPrice
+                                             }).ToList()
+                                }).ToList().TakeLast(2);
+
+            return visitHistory;
+        }
+
+        public IEnumerable<OrderTakingViewModel> GetVisitInventories(long StoreVisitId)
         {
 
             var items = (from storevisit in Db.StoreVisits

@@ -137,6 +137,7 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<StoreVisit>().ToTable("ETracker_StoreVisit");
             modelBuilder.Entity<VisitDay>().ToTable("ETracker_VisitDay");
             modelBuilder.Entity<PJP>().ToTable("ETracker_PJP");
+            modelBuilder.Entity<NonproductiveVisitReason>().ToTable("ETracker_NonproductiveVisitReason");
 
             //Inventory
             modelBuilder.Entity<Inventory>().ToTable("Inv_Inventory");
@@ -172,6 +173,7 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<Store>().ToTable("Inv_Store");
             modelBuilder.Entity<ReturnReason>().ToTable("Inv_Setup_ReturnReason");
             modelBuilder.Entity<InventoryCurrency>().ToTable("Inv_Setup_InventoryCurrency");
+            modelBuilder.Entity<GeneralSKU>().ToTable("Inv_Setup_GeneralSKU");
 
             //Purchase
             modelBuilder.Entity<PurchaseIndent>().ToTable("Inv_PurchaseIndent");
@@ -1845,6 +1847,20 @@ namespace ErpInfrastructure.Data
                 .WithMany(c => c.StopSalaries)
                 .HasForeignKey(b => b.PayrollTypeId);
 
+            modelBuilder.Entity<UserStopSalary>()
+        .HasKey(a => new { a.UserId, a.StopSalaryId });
+
+            modelBuilder.Entity<UserStopSalary>()
+                .HasOne(a => a.User)
+                .WithMany(b => b.UserStopSalaries)
+                .HasForeignKey(c => c.UserId);
+
+            modelBuilder.Entity<UserStopSalary>()
+                .HasOne(a => a.StopSalary)
+                .WithMany(b => b.UserStopSalaries)
+                .HasForeignKey(c => c.StopSalaryId);
+
+
             modelBuilder.Entity<Allowance>()
                 .HasOne(a => a.AllowanceDeduction)
                 .WithMany(b => b.Allowances)
@@ -2362,6 +2378,7 @@ namespace ErpInfrastructure.Data
         public DbSet<Subsection> Subsections { get; set; }
         public DbSet<Store> Stores { get; set; }
         public DbSet<InventoryCurrency> InventoryCurrencies { get; set; }
+        public DbSet<GeneralSKU> GeneralSKUs { get; set; }
 
         //Tracker
         public DbSet<CompetatorStock> CompetatorStocks { get; set; }
@@ -2372,6 +2389,7 @@ namespace ErpInfrastructure.Data
         public DbSet<StoreVisit> StoreVisits { get; set; }
         public DbSet<VisitDay> VisitDays { get; set; }
         public DbSet<PJP> PJPs { get; set; }
+        public DbSet<NonproductiveVisitReason> NonproductiveVisitReasons { get; set; }
 
         //Sale
         public DbSet<SalesIndent> SalesIndents { get; set; }

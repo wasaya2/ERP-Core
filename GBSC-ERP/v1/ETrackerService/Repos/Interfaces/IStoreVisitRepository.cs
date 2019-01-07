@@ -50,6 +50,8 @@ namespace eTrackerInfrastructure.Repos.Interfaces
 
         IEnumerable<Merchandising> GetMerchendiseList(long storeVisitId);
 
+        IEnumerable<LastTwoVisits> GetLastTwoVisits(long StoreId);
+
         StoreVisit GetStoreVisitWithStore(long storevisitId);
 
         StoreVisit MostRecenetStoreVisit(long storeid);

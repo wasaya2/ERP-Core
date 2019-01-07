@@ -12,5 +12,7 @@ namespace SystemAdministrationService.ViewModels
         public long? NumberOfEmployees { get; set; }
 
         public List<string> Modules { get; set; }
+
+        public List<long> ModuleIds { get; set; }
     }
 }

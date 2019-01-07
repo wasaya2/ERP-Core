@@ -413,11 +413,23 @@
     <Compile Include="Reports\hims\TotalPatientsRefferenceSummaryReport.Designer.cs">
       <DependentUpon>TotalPatientsRefferenceSummaryReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\hrms\assignRosterExcelSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\assignRosterExcelSheet.Designer.cs">
+      <DependentUpon>assignRosterExcelSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\hrms\AttendanceSummaryDepartmentWise.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\hrms\AttendanceSummaryDepartmentWise.Designer.cs">
       <DependentUpon>AttendanceSummaryDepartmentWise.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\dailyattendanceandleave.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\dailyattendanceandleave.Designer.cs">
+      <DependentUpon>dailyattendanceandleave.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\hrms\EmployeeCard.cs">
       <SubType>Component</SubType>
@@ -795,8 +807,14 @@
     <EmbeddedResource Include="Reports\hims\TotalPatientsRefferenceSummaryReport.resx">
       <DependentUpon>TotalPatientsRefferenceSummaryReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\assignRosterExcelSheet.resx">
+      <DependentUpon>assignRosterExcelSheet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\hrms\AttendanceSummaryDepartmentWise.resx">
       <DependentUpon>AttendanceSummaryDepartmentWise.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\dailyattendanceandleave.resx">
+      <DependentUpon>dailyattendanceandleave.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hrms\EmployeeCard.resx">
       <DependentUpon>EmployeeCard.cs</DependentUpon>

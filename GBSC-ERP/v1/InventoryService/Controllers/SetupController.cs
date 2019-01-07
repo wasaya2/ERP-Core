@@ -50,6 +50,7 @@ namespace InventoryService.Controllers
         private IReturnReasonRepository Reason_repo;
         private IInventoryRepository Inv_repo;
         private IInventoryCurrencyRepository Currency_repo;
+        private IGeneralSKURepository gen_repo;
 
 
         public SetupController(
@@ -83,7 +84,8 @@ namespace InventoryService.Controllers
             ISubsectionRepository _subsectionRepo,
             IReturnReasonRepository repo27,
             IInventoryRepository repo28,
-            IInventoryCurrencyRepository repo29
+            IInventoryCurrencyRepository repo29,
+            IGeneralSKURepository repo30
             )
 
         {
@@ -118,6 +120,7 @@ namespace InventoryService.Controllers
             Reason_repo = repo27;
             Inv_repo = repo28;
             Currency_repo = repo29;
+            gen_repo = repo30;
         }
 
         //[HttpGet("GetInventorySetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetInventorySetupPermissions")]
@@ -547,6 +550,14 @@ namespace InventoryService.Controllers
             return ct;
         }
 
+        [HttpGet("GetCategoriesByCompany/{CompanyId}", Name = "GetCategoriesByCompany")]
+        public IEnumerable<InventoryItemCategory> GetCategories(long CompanyId)
+        {
+            IEnumerable<InventoryItemCategory> ct = cat_repo.GetList(c => c.CompanyId == CompanyId);
+            ct = ct.OrderByDescending(a => a.InventoryItemCategoryId);
+            return ct;
+        }
+
         [HttpGet("GetCategory/{id}", Name = "GetCategory")]
         public InventoryItemCategory GetCategory(long id) => cat_repo.GetFirst(a => a.InventoryItemCategoryId == id);
 
@@ -713,6 +724,12 @@ namespace InventoryService.Controllers
             IEnumerable<Comission> b = Comission_repo.GetAll();
             b = b.OrderByDescending(a => a.ComissionId);
             return b;
+        }
+
+        [HttpGet("GetComissionsByCompany/{companyid}", Name = "GetComissionsByCompany")]
+        public IEnumerable<Comission> GetComissionsByCompany([FromRoute]long companyid)
+        {
+            return Comission_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid).OrderByDescending(a => a.ComissionId);
         }
 
         [HttpGet("GetComission/{id}", Name = "GetComission")]
@@ -1369,7 +1386,7 @@ namespace InventoryService.Controllers
             return b;
         }
 
-        [HttpGet("GetPackageTypesByCompany{CompanyId}")]
+        [HttpGet("GetPackageTypesByCompany/{CompanyId}")]
         public IEnumerable<PackageType> GetPackageTypesByCompany(long CompanyId)
         {
             IEnumerable<PackageType> b = PackageType_repo.GetList(c => c.CompanyId == CompanyId);
@@ -1418,7 +1435,7 @@ namespace InventoryService.Controllers
             return b;
         }
 
-        [HttpGet("GetPackTypesByCompany{CompanyId}")]
+        [HttpGet("GetPackTypesByCompany/{CompanyId}", Name = "GetPackTypesByCompany")]
         public IEnumerable<PackType> GetPackTypesByCompany(long CompanyId)
         {
             IEnumerable<PackType> b = PackType_repo.GetList(c => c.CompanyId == CompanyId);
@@ -1766,6 +1783,56 @@ namespace InventoryService.Controllers
             Currency_repo.Delete(inventoryCurrency);
             return Ok();
         }
+        #endregion
+
+        #region General SKU
+
+        [HttpGet("GetGeneralSKUs", Name = "GetGeneralSKUs")]
+        public IEnumerable<GeneralSKU> GetGeneralSKUs()
+        {
+            return gen_repo.GetAll().ToList().OrderByDescending(a => a.GeneralSKUId);
+        }
+
+        [HttpGet("GetGeneralSKUsByCompany/{companyid}", Name = "GetGeneralSKUsByCompany")]
+        public IEnumerable<GeneralSKU> GetGeneralSKUsByCompany([FromRoute]long companyid)
+        {
+            return gen_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid).OrderByDescending(a => a.GeneralSKUId);
+        }
+
+        [HttpGet("GetGeneralSKU/{id}", Name = "GetGeneralSKU")]
+        public GeneralSKU GetGeneralSKU([FromRoute]long id)
+        {
+            return gen_repo.GetFirst(a => a.GeneralSKUId == id);
+        }
+
+        [HttpPost("AddGeneralSKU", Name = "AddGeneralSKU")]
+        [ValidateModelAttribute]
+        public IActionResult AddGeneralSKU([FromBody]GeneralSKU model)
+        {
+            gen_repo.Add(model);
+            return new OkObjectResult(new { GeneralSKUId = model.GeneralSKUId });
+        }
+
+        [HttpPut("UpdateGeneralSKU", Name = "UpdateGeneralSKU")]
+        [ValidateModelAttribute]
+        public IActionResult UpdateGeneralSKU([FromBody]GeneralSKU model)
+        {
+            gen_repo.Update(model);
+            return new OkObjectResult(new { GeneralSKUId = model.GeneralSKUId });
+        }
+
+        [HttpDelete("DeleteGeneralSKU/{id}", Name = "DeleteGeneralSKU")]
+        public IActionResult DeleteGeneralSKU([FromRoute]long id)
+        {
+            GeneralSKU gsku = gen_repo.GetFirst(a => a.GeneralSKUId == id);
+            if (gsku == null)
+            {
+                return BadRequest();
+            }
+            gen_repo.Delete(gsku);
+            return Ok();
+        }
+
         #endregion
     }
 }

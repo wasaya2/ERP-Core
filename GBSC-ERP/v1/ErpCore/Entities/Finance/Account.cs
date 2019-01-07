@@ -36,5 +36,7 @@ namespace ErpCore.Entities.Finance
         public double? TotalDebit { get; set; }
         public long? OldAccountId { get; set; }
         public long? TotalTransactionsAgainstThisAccount { get; set; }
+
+        public bool? ShowInBalanceSheet { get; set; } //True if visible in balance sheet and income statement
     }
 }

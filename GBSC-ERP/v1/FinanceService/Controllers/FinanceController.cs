@@ -62,6 +62,12 @@ namespace FinanceService.Controllers
             return Account_Repo.GetAll(a => a.FinancialYear).OrderByDescending(a => a.FinancialYearId).ThenBy(a => a.AccountCode);
         }
 
+        [HttpGet("GetAccountsByCompany/{companyid}", Name = "GetAccountsByCompany")]
+        public IEnumerable<Account> GetAccountsByCompany([FromRoute]long companyid)
+        {
+            return Account_Repo.GetList(a => a.CompanyId == companyid, b => b.FinancialYear).OrderByDescending(a => a.FinancialYearId).ThenBy(a => a.AccountCode);
+        }
+
         [HttpGet("GetAccount/{id}", Name = "GetAccount")]
         public Account GetAccount(long id) => Account_Repo.GetFirst(a => a.AccountId == id);
 
@@ -89,7 +95,7 @@ namespace FinanceService.Controllers
             {
                 try
                 {
-                    string LastAccountCode = Account_Repo.GetList(a => a.ParentAccountCode == model.ParentAccountCode).OrderByDescending(a => a.AccountId).FirstOrDefault().AccountCode;
+                    string LastAccountCode = Account_Repo.GetList(a => a.CompanyId == model.CompanyId && a.ParentAccountCode == model.ParentAccountCode).OrderByDescending(a => a.AccountId).FirstOrDefault().AccountCode;
                     string number = Regex.Match(LastAccountCode, "[0-9]+$").Value;
                     return LastAccountCode.Substring(0, LastAccountCode.Length - number.Length) + (long.Parse(number) + 1).ToString().PadLeft(number.Length, '0');
                 }
@@ -102,7 +108,7 @@ namespace FinanceService.Controllers
             {
                 try
                 {
-                    string LastAccountCode = Account_Repo.GetList(a => a.AccountCode.Length == 2).OrderByDescending(a => a.AccountId).FirstOrDefault().AccountCode;
+                    string LastAccountCode = Account_Repo.GetList(a => a.CompanyId == model.CompanyId && a.AccountCode.Length == 2).OrderByDescending(a => a.AccountId).FirstOrDefault().AccountCode;
                     string number = Regex.Match(LastAccountCode, "[0-9]+$").Value;
                     return LastAccountCode.Substring(0, LastAccountCode.Length - number.Length) + (long.Parse(number) + 1).ToString().PadLeft(number.Length, '0');
                 }
@@ -189,14 +195,20 @@ namespace FinanceService.Controllers
             return Account_Repo.GetList(a => a.FinancialYearId != null && a.IsProcessed != true && a.FinancialYearId == FinancialYear_Repo.GetFirst(b => b.IsActive == true).FinancialYearId); 
         }
 
-        [HttpGet("ProcessAccountsForLedger/{newfinancialyearid}", Name = "ProcessAccountsForLedger")]
-        public IActionResult ProcessAccountsForLedger(long newfinancialyearid)
+        [HttpGet("GetCurrentlyActiveAccountsByCompany/{companyid}", Name = "GetCurrentlyActiveAccountsByCompany")]
+        public IEnumerable<Account> GetCurrentlyActiveAccountsByCompany([FromRoute]long companyid)
+        {
+            return Account_Repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid && a.FinancialYearId != null && a.IsProcessed != true && a.FinancialYearId == FinancialYear_Repo.GetFirst(b => b.IsActive == true).FinancialYearId);
+        }
+
+        [HttpGet("ProcessAccountsForLedger/{newfinancialyearid}/{companyid}", Name = "ProcessAccountsForLedger")]
+        public IActionResult ProcessAccountsForLedger([FromRoute]long newfinancialyearid, [FromRoute]long companyid)
         {
             try
             {
                 //Get all unprocessed accounts and transaction accounts for year to be processed
-                IEnumerable<Account> UnprocessedAccounts = Account_Repo.GetList(a => a.FinancialYearId != null && a.IsProcessed != true && a.FinancialYearId == FinancialYear_Repo.GetFirst(b => b.IsActive == true).FinancialYearId);
-                IEnumerable<TransactionAccount> OldTransactionAccounts = UAL_Repo.GetList(a => a.FinancialYearId != null && a.FinancialYearId == FinancialYear_Repo.GetFirst(b => b.IsActive == true).FinancialYearId);
+                IEnumerable<Account> UnprocessedAccounts = Account_Repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid && a.FinancialYearId != null && a.IsProcessed != true && a.FinancialYearId == FinancialYear_Repo.GetFirst(b => b.IsActive == true).FinancialYearId);
+                IEnumerable<TransactionAccount> OldTransactionAccounts = UAL_Repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid && a.FinancialYearId != null && a.FinancialYearId == FinancialYear_Repo.GetFirst(b => b.IsActive == true).FinancialYearId);
 
                 //Add new Accounts
                 IList<Account> newAccounts = new List<Account>();
@@ -204,6 +216,7 @@ namespace FinanceService.Controllers
                 {
                     Account NewAccount = new Account()
                     {
+                        CompanyId = companyid,
                         OldAccountId = UnprocessedAccount.AccountId,
                         FinancialYearId = newfinancialyearid,
                         AccountCode = UnprocessedAccount.AccountCode,
@@ -228,6 +241,7 @@ namespace FinanceService.Controllers
                 {
                     TransactionAccount newTransactionAccount = new TransactionAccount()
                     {
+                        CompanyId = companyid,
                         AccountId = account.AccountId,
                         FinancialYearId = newfinancialyearid,
                         AccountCode = account.AccountCode,
@@ -276,6 +290,12 @@ namespace FinanceService.Controllers
             }
         }
 
+        [HttpGet("GetMasterAccountsByCompany/{companyid}", Name = "GetMasterAccountsByCompany")]
+        public IEnumerable<Account> GetMasterAccountsByCompany([FromRoute]long companyid)
+        {
+            return Account_Repo.GetList(a => a.CompanyId == companyid && a.AccountCode.Length == 2 && a.AccountLevel == 1).ToList().OrderBy(a => a.AccountCode);
+        }
+
         #endregion
 
         #region Transaction Account
@@ -284,6 +304,12 @@ namespace FinanceService.Controllers
         public IEnumerable<TransactionAccount> GetTransactionAccounts()
         {
             return UAL_Repo.GetAll().OrderBy(a => a.AccountCode);
+        }
+
+        [HttpGet("GetTransactionAccountsByCompany/{companyid}", Name = "GetTransactionAccountsByCompany")]
+        public IEnumerable<TransactionAccount> GetTransactionAccountsByCompany([FromRoute]long companyid)
+        {
+            return UAL_Repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid).OrderBy(a => a.AccountCode);
         }
 
         [HttpGet("GetTransactionAccount/{id}", Name = "GetTransactionAccount")]
@@ -843,6 +869,16 @@ namespace FinanceService.Controllers
                 PVVMs.Add(PVVM);
             }
             return PVVMs;
+        }
+
+        #endregion
+
+        #region Configure Company Finance Details
+
+        [HttpPost("ConfigureCompanyFinanceDetails", Name = "ConfigureCompanyFinanceDetails")]
+        public IActionResult ConfigureCompanyFinanceDetails([FromBody]CompanyFinanceConfigurationViewModel model)
+        {
+            return Ok(Account_Repo.ConfigureComanyFinanceDetails(model));
         }
 
         #endregion

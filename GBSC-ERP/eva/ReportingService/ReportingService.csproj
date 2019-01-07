@@ -1,0 +1,995 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1178950F-30CB-438D-873A-C26B5B8D617E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ReportingService</RootNamespace>
+    <AssemblyName>ReportingService</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraLayout.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="DevExpress.Web.ASPxThemes.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v18.2.Export, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.Mvc5.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v18.2.Web, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v18.2.Web.WebForms, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.Resources.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Charts.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.CodeParser.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.4\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\logo.png" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\ace.js" />
+    <Content Include="Scripts\additional-methods.js" />
+    <Content Include="Scripts\additional-methods.min.js" />
+    <Content Include="Scripts\cldr.event.js" />
+    <Content Include="Scripts\cldr.js" />
+    <Content Include="Scripts\cldr.supplemental.js" />
+    <Content Include="Scripts\cldr.unresolved.js" />
+    <Content Include="Scripts\ext-language_tools.js" />
+    <Content Include="Scripts\globalize.currency.js" />
+    <Content Include="Scripts\globalize.date.js" />
+    <Content Include="Scripts\globalize.js" />
+    <Content Include="Scripts\globalize.message.js" />
+    <Content Include="Scripts\globalize.number.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-3.3.0.debug.js" />
+    <Content Include="Scripts\knockout-3.3.0.js" />
+    <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\reporting.pubxml" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Decimal.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Designer.cshtml" />
+    <Content Include="Views\Home\Viewer.cshtml" />
+    <Content Include="Scripts\jquery.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\WebDocumentViewerController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ReportStorageWebExtension.cs" />
+    <Compile Include="Reports\etracker\SalesPersonLocation.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\SalesPersonLocation.Designer.cs">
+      <DependentUpon>SalesPersonLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\etracker\SalesPersonLocation1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\SalesPersonLocation1.Designer.cs">
+      <DependentUpon>SalesPersonLocation1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopCensusDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopCensusDetail.Designer.cs">
+      <DependentUpon>ShopCensusDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopCensusSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopCensusSummary.Designer.cs">
+      <DependentUpon>ShopCensusSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopStatusDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopStatusDetail.Designer.cs">
+      <DependentUpon>ShopStatusDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopStatusSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\ShopStatusSummary.Designer.cs">
+      <DependentUpon>ShopStatusSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\etracker\VisitDetailReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\VisitDetailReport.Designer.cs">
+      <DependentUpon>VisitDetailReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\etracker\VisitSummaryReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\etracker\VisitSummaryReport.Designer.cs">
+      <DependentUpon>VisitSummaryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\finance\BalanceSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\finance\BalanceSheet.Designer.cs">
+      <DependentUpon>BalanceSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\finance\IncomeStatement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\finance\IncomeStatement.Designer.cs">
+      <DependentUpon>IncomeStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\finance\TransactionDetailsByDetailAccount.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\finance\TrialBalance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\finance\TrialBalance.Designer.cs">
+      <DependentUpon>TrialBalance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\finance\TrialBalanceSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\AppointmenSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\AppointmenSheet.Designer.cs">
+      <DependentUpon>AppointmenSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\BloodConsultationMovementSummary1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\BloodConsultationMovementSummary1.Designer.cs">
+      <DependentUpon>BloodConsultationMovementSummary1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\BloodTestRefferenceSummaryReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\BloodTestRefferenceSummaryReport.Designer.cs">
+      <DependentUpon>BloodTestRefferenceSummaryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\ConsultantActivtityDetails.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\ConsultantActivtityDetails.Designer.cs">
+      <DependentUpon>ConsultantActivtityDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\DailyActivityReport1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\DailyActivityReport1.Designer.cs">
+      <DependentUpon>DailyActivityReport1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\DailySemenAnalysisSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\DailySemenAnalysisSheet.Designer.cs">
+      <DependentUpon>DailySemenAnalysisSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\FcConsultationMovementSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\FcConsultationMovementSummary.Designer.cs">
+      <DependentUpon>FcConsultationMovementSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\FCPatientReferenceSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\FCPatientReferenceSummary.Designer.cs">
+      <DependentUpon>FCPatientReferenceSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\FcProcedureMovementSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\FcProcedureMovementSummary.Designer.cs">
+      <DependentUpon>FcProcedureMovementSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\MedicineDetailsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\MedicineDetailsReport.Designer.cs">
+      <DependentUpon>MedicineDetailsReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\NewPatientSheetBloodKarachi.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\NewPatientSheetBloodKarachi.Designer.cs">
+      <DependentUpon>NewPatientSheetBloodKarachi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\NewPatientSheetFC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\NewPatientsSummaryReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\NewPatientsSummaryReport.Designer.cs">
+      <DependentUpon>NewPatientsSummaryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\NewPatientSheetSemen.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\NewPatientSheetSemen.Designer.cs">
+      <DependentUpon>NewPatientSheetSemen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\RegisterationInformation.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\RegisterationInformation.Designer.cs">
+      <DependentUpon>RegisterationInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\SemenAnalysis.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\SemenAnalysis.Designer.cs">
+      <DependentUpon>SemenAnalysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\SemenConsultationMovementSummaryReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\SemenConsultationMovementSummaryReport.Designer.cs">
+      <DependentUpon>SemenConsultationMovementSummaryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\SemenPatientsRefferenceSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\SemenPatientsRefferenceSummary.Designer.cs">
+      <DependentUpon>SemenPatientsRefferenceSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\SubsequentEmbryoFreezingList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\SubsequentEmbryoFreezingList.Designer.cs">
+      <DependentUpon>SubsequentEmbryoFreezingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\SubsequentSemenFreezingList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\SubsequentSemenFreezingList.Designer.cs">
+      <DependentUpon>SubsequentSemenFreezingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hims\TotalPatientsRefferenceSummaryReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hims\TotalPatientsRefferenceSummaryReport.Designer.cs">
+      <DependentUpon>TotalPatientsRefferenceSummaryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\assignRosterExcelSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\assignRosterExcelSheet.Designer.cs">
+      <DependentUpon>assignRosterExcelSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\AttendanceSummaryDepartmentWise.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\AttendanceSummaryDepartmentWise.Designer.cs">
+      <DependentUpon>AttendanceSummaryDepartmentWise.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\dailyattendanceandleave.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\dailyattendanceandleave.Designer.cs">
+      <DependentUpon>dailyattendanceandleave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\EmployeeCard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\EmployeeCard.Designer.cs">
+      <DependentUpon>EmployeeCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\EmployeeDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\EmployeeDetail.Designer.cs">
+      <DependentUpon>EmployeeDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\EmployeeIncrement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\EmployeeIncrement.Designer.cs">
+      <DependentUpon>EmployeeIncrement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\EmployeeList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\EmployeeList.Designer.cs">
+      <DependentUpon>EmployeeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\InOutDurationAttendance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\InOutDurationAttendance.Designer.cs">
+      <DependentUpon>InOutDurationAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\LeaveDetailReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\LeaveDetailReport.Designer.cs">
+      <DependentUpon>LeaveDetailReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\LeaveHistory.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\LeaveHistory.Designer.cs">
+      <DependentUpon>LeaveHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\LeaveLedger1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\LeaveLedger1.Designer.cs">
+      <DependentUpon>LeaveLedger1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\ListOfJoiners.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\ListOfJoiners.Designer.cs">
+      <DependentUpon>ListOfJoiners.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\ListOfLeavers.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\ListOfLeavers.Designer.cs">
+      <DependentUpon>ListOfLeavers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\MissingEntries.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\MissingEntries.Designer.cs">
+      <DependentUpon>MissingEntries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\MonthlyLeaveSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\MonthlyLeaveSheet.Designer.cs">
+      <DependentUpon>MonthlyLeaveSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\MonthlyOvertime.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\MonthlyOvertime.Designer.cs">
+      <DependentUpon>MonthlyOvertime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\NoOfEmployees.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\NoOfEmployees.Designer.cs">
+      <DependentUpon>NoOfEmployees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\SalaryPayment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\SalaryPayment.Designer.cs">
+      <DependentUpon>SalaryPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\ScheduleShifts.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\ScheduleShifts.Designer.cs">
+      <DependentUpon>ScheduleShifts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\TaxCalculation.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\TaxCalculation.Designer.cs">
+      <DependentUpon>TaxCalculation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\Test.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Inventory\ListofProductsWithUnits.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Inventory\ListofProductsWithUnits.Designer.cs">
+      <DependentUpon>ListofProductsWithUnits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Inventory\OrderDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Inventory\OrderDetail.Designer.cs">
+      <DependentUpon>OrderDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Inventory\OrderSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Inventory\OrderSummary.Designer.cs">
+      <DependentUpon>OrderSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Inventory\ProductUnitsForSecondarySales.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Inventory\ProductUnitsForSecondarySales.Designer.cs">
+      <DependentUpon>ProductUnitsForSecondarySales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Lab\AnalysisWorkSheet-Outsiders.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Lab\Bio-ChemistryDetails-OnTreatment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Lab\Biochemistry-Outsider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Lab\Biochemistry.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Lab\Biochemistry.Designer.cs">
+      <DependentUpon>Biochemistry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Lab\LabSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Lab\LabSummary.Designer.cs">
+      <DependentUpon>LabSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Lab\PESA-TESE.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Payroll\EmployeeYearlyTax.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Payroll\EmployeeYearlyTax.Designer.cs">
+      <DependentUpon>EmployeeYearlyTax.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Payroll\GrossSalary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Payroll\GrossSalary.Designer.cs">
+      <DependentUpon>GrossSalary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Payroll\LoanSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Payroll\LoanSummary.Designer.cs">
+      <DependentUpon>LoanSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Payroll\TaxChallan.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Payroll\TaxChallan.Designer.cs">
+      <DependentUpon>TaxChallan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\CashSales.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\CashSales.Designer.cs">
+      <DependentUpon>CashSales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\CreditSales.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\CreditSales.Designer.cs">
+      <DependentUpon>CreditSales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\DailyPharmacyStockPosition.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\DailyPharmacyStockPosition.Designer.cs">
+      <DependentUpon>DailyPharmacyStockPosition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\DateWiseStockLedger.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\DateWiseStockLedger.Designer.cs">
+      <DependentUpon>DateWiseStockLedger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\GoodsReceiveNote.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\GoodsReceiveNote.Designer.cs">
+      <DependentUpon>GoodsReceiveNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\GRNTabular.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\GRNTabular.Designer.cs">
+      <DependentUpon>GRNTabular.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\InternalSupplyReportBloodRoom.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\InternalSupplyReportBloodRoom.Designer.cs">
+      <DependentUpon>InternalSupplyReportBloodRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\InternalSupplyReportUltraSound.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\InternalSupplyReportUltraSound.Designer.cs">
+      <DependentUpon>InternalSupplyReportUltraSound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\MonthlyCaseSaleReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\MonthlyCaseSaleReport.Designer.cs">
+      <DependentUpon>MonthlyCaseSaleReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\MovementWiseStockLedger.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\MovementWiseStockLedger.Designer.cs">
+      <DependentUpon>MovementWiseStockLedger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\PatientWiseCashSales.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\PatientWiseCashSales.Designer.cs">
+      <DependentUpon>PatientWiseCashSales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\PatientWiseSales.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\PatientWiseSales.Designer.cs">
+      <DependentUpon>PatientWiseSales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\RefundDetails.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\RefundDetails.Designer.cs">
+      <DependentUpon>RefundDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\SupplierWisePurchase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\SupplierWisePurchase.Designer.cs">
+      <DependentUpon>SupplierWisePurchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\TotalSales.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\TotalSales.Designer.cs">
+      <DependentUpon>TotalSales.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\WebDocumentViewer\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Reports\etracker\SalesPersonLocation.resx">
+      <DependentUpon>SalesPersonLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\etracker\SalesPersonLocation1.resx">
+      <DependentUpon>SalesPersonLocation1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\etracker\ShopCensusDetail.resx">
+      <DependentUpon>ShopCensusDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\etracker\ShopCensusSummary.resx">
+      <DependentUpon>ShopCensusSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\etracker\ShopStatusDetail.resx">
+      <DependentUpon>ShopStatusDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\etracker\ShopStatusSummary.resx">
+      <DependentUpon>ShopStatusSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\etracker\VisitDetailReport.resx">
+      <DependentUpon>VisitDetailReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\etracker\VisitSummaryReport.resx">
+      <DependentUpon>VisitSummaryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\finance\BalanceSheet.resx">
+      <DependentUpon>BalanceSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\finance\IncomeStatement.resx">
+      <DependentUpon>IncomeStatement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\finance\TransactionDetailsByDetailAccount.resx">
+      <DependentUpon>TransactionDetailsByDetailAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\finance\TrialBalance.resx">
+      <DependentUpon>TrialBalance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\finance\TrialBalanceSummary.resx">
+      <DependentUpon>TrialBalanceSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\AppointmenSheet.resx">
+      <DependentUpon>AppointmenSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\BloodConsultationMovementSummary1.resx">
+      <DependentUpon>BloodConsultationMovementSummary1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\BloodTestRefferenceSummaryReport.resx">
+      <DependentUpon>BloodTestRefferenceSummaryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\ConsultantActivtityDetails.resx">
+      <DependentUpon>ConsultantActivtityDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\DailyActivityReport1.resx">
+      <DependentUpon>DailyActivityReport1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\DailySemenAnalysisSheet.resx">
+      <DependentUpon>DailySemenAnalysisSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\FcConsultationMovementSummary.resx">
+      <DependentUpon>FcConsultationMovementSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\FCPatientReferenceSummary.resx">
+      <DependentUpon>FCPatientReferenceSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\FcProcedureMovementSummary.resx">
+      <DependentUpon>FcProcedureMovementSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\MedicineDetailsReport.resx">
+      <DependentUpon>MedicineDetailsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\NewPatientSheetBloodKarachi.resx">
+      <DependentUpon>NewPatientSheetBloodKarachi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\NewPatientSheetFC.resx">
+      <DependentUpon>NewPatientSheetFC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\NewPatientsSummaryReport.resx">
+      <DependentUpon>NewPatientsSummaryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\NewPatientSheetSemen.resx">
+      <DependentUpon>NewPatientSheetSemen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\RegisterationInformation.resx">
+      <DependentUpon>RegisterationInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\SemenAnalysis.resx">
+      <DependentUpon>SemenAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\SemenConsultationMovementSummaryReport.resx">
+      <DependentUpon>SemenConsultationMovementSummaryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\SemenPatientsRefferenceSummary.resx">
+      <DependentUpon>SemenPatientsRefferenceSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\SubsequentEmbryoFreezingList.resx">
+      <DependentUpon>SubsequentEmbryoFreezingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\SubsequentSemenFreezingList.resx">
+      <DependentUpon>SubsequentSemenFreezingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hims\TotalPatientsRefferenceSummaryReport.resx">
+      <DependentUpon>TotalPatientsRefferenceSummaryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\assignRosterExcelSheet.resx">
+      <DependentUpon>assignRosterExcelSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\AttendanceSummaryDepartmentWise.resx">
+      <DependentUpon>AttendanceSummaryDepartmentWise.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\dailyattendanceandleave.resx">
+      <DependentUpon>dailyattendanceandleave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\EmployeeCard.resx">
+      <DependentUpon>EmployeeCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\EmployeeDetail.resx">
+      <DependentUpon>EmployeeDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\EmployeeIncrement.resx">
+      <DependentUpon>EmployeeIncrement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\EmployeeList.resx">
+      <DependentUpon>EmployeeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\InOutDurationAttendance.resx">
+      <DependentUpon>InOutDurationAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\LeaveDetailReport.resx">
+      <DependentUpon>LeaveDetailReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\LeaveHistory.resx">
+      <DependentUpon>LeaveHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\LeaveLedger1.resx">
+      <DependentUpon>LeaveLedger1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\ListOfJoiners.resx">
+      <DependentUpon>ListOfJoiners.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\ListOfLeavers.resx">
+      <DependentUpon>ListOfLeavers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\MissingEntries.resx">
+      <DependentUpon>MissingEntries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\MonthlyLeaveSheet.resx">
+      <DependentUpon>MonthlyLeaveSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\MonthlyOvertime.resx">
+      <DependentUpon>MonthlyOvertime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\NoOfEmployees.resx">
+      <DependentUpon>NoOfEmployees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\SalaryPayment.resx">
+      <DependentUpon>SalaryPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\ScheduleShifts.resx">
+      <DependentUpon>ScheduleShifts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\TaxCalculation.resx">
+      <DependentUpon>TaxCalculation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Inventory\ListofProductsWithUnits.resx">
+      <DependentUpon>ListofProductsWithUnits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Inventory\OrderDetail.resx">
+      <DependentUpon>OrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Inventory\OrderSummary.resx">
+      <DependentUpon>OrderSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Inventory\ProductUnitsForSecondarySales.resx">
+      <DependentUpon>ProductUnitsForSecondarySales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Lab\AnalysisWorkSheet-Outsiders.resx">
+      <DependentUpon>AnalysisWorkSheet-Outsiders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Lab\Bio-ChemistryDetails-OnTreatment.resx">
+      <DependentUpon>Bio-ChemistryDetails-OnTreatment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Lab\Biochemistry-Outsider.resx">
+      <DependentUpon>Biochemistry-Outsider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Lab\Biochemistry.resx">
+      <DependentUpon>Biochemistry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Lab\LabSummary.resx">
+      <DependentUpon>LabSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Lab\PESA-TESE.resx">
+      <DependentUpon>PESA-TESE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Payroll\EmployeeYearlyTax.resx">
+      <DependentUpon>EmployeeYearlyTax.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Payroll\GrossSalary.resx">
+      <DependentUpon>GrossSalary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Payroll\LoanSummary.resx">
+      <DependentUpon>LoanSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Payroll\TaxChallan.resx">
+      <DependentUpon>TaxChallan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\CashSales.resx">
+      <DependentUpon>CashSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\CreditSales.resx">
+      <DependentUpon>CreditSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\DailyPharmacyStockPosition.resx">
+      <DependentUpon>DailyPharmacyStockPosition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\DateWiseStockLedger.resx">
+      <DependentUpon>DateWiseStockLedger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\GoodsReceiveNote.resx">
+      <DependentUpon>GoodsReceiveNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\GRNTabular.resx">
+      <DependentUpon>GRNTabular.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\InternalSupplyReportBloodRoom.resx">
+      <DependentUpon>InternalSupplyReportBloodRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\InternalSupplyReportUltraSound.resx">
+      <DependentUpon>InternalSupplyReportUltraSound.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\MonthlyCaseSaleReport.resx">
+      <DependentUpon>MonthlyCaseSaleReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\MovementWiseStockLedger.resx">
+      <DependentUpon>MovementWiseStockLedger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\PatientWiseCashSales.resx">
+      <DependentUpon>PatientWiseCashSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\PatientWiseSales.resx">
+      <DependentUpon>PatientWiseSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\RefundDetails.resx">
+      <DependentUpon>RefundDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\SupplierWisePurchase.resx">
+      <DependentUpon>SupplierWisePurchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\TotalSales.resx">
+      <DependentUpon>TotalSales.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57581</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:57581/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

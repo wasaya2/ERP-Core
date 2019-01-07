@@ -12,6 +12,7 @@ using System.IO;
 using eTrackerInfrastructure.Models.JsonPostClasses;
 using ErpCore.Entities.ETracker;
 using ETrackerService.ViewModels;
+using ETrackerService.Repos.Interfaces;
 
 namespace eTrackerInfrastructure.Controllers
 {
@@ -19,14 +20,15 @@ namespace eTrackerInfrastructure.Controllers
     public class StoreVisitController : Controller
     {
         private IStoreVisitRepository Repo { get; set; }
+        private INonproductiveVisitReasonRepository reason_repo;
 
         private IStoreRepository StoreRepo { get; set; }
 
-        public StoreVisitController(IStoreVisitRepository repo, IStoreRepository storeRepo)
+        public StoreVisitController(IStoreVisitRepository repo, IStoreRepository storeRepo, INonproductiveVisitReasonRepository reasonrepo)
         {
             Repo = repo;
-
             StoreRepo = storeRepo;
+            reason_repo = reasonrepo;
         }
 
         [HttpPost("AddStoreVisit")]
@@ -61,8 +63,16 @@ namespace eTrackerInfrastructure.Controllers
         public IActionResult AddOrders([FromBody]Orders orders)
         {
             Repo.AddMultipleOrders(orders);
-
-            return new OkObjectResult(new { response = "All Orders Successfully Added" });
+            if (orders.Order.Length > 0)
+            {
+                var order = orders.Order.FirstOrDefault();
+                if (order != null)
+                {
+                    var orderTakings = Repo.GetList(s => s.StoreVisitId == order.StoreVisitId, s => s.OrderTakings);
+                    return new OkObjectResult(new { Response = orderTakings });
+                }
+            }
+            return new OkObjectResult(new { Response = "All Orders Successfully Added" });
         }
 
 
@@ -174,6 +184,13 @@ namespace eTrackerInfrastructure.Controllers
             return Ok();
         }
 
+        [HttpGet("GetLastTwoVisits/{StoreId}")]
+        public IEnumerable<LastTwoVisits> GetLastTwoVisits(long StoreId)
+        {
+            return Repo.GetLastTwoVisits(StoreId);
+        }
+
+
         [HttpPost("UploadStockImage/{OutletStockId}")]
         public async Task<ActionResult> UploadStockImage(IFormFile file, long OutletStockId)
         {
@@ -211,5 +228,55 @@ namespace eTrackerInfrastructure.Controllers
 
             return Json(new { filepath = filePath, OutletStockId = OutletStockId });
         }
+
+        #region Non Productive Visit Reason
+
+        [HttpGet("GetNonproductiveVisitReasons", Name = "GetNonproductiveVisitReasons")]
+        public IEnumerable<NonproductiveVisitReason> GetNonproductiveVisitReasons()
+        {
+            return reason_repo.GetAll().ToList().OrderByDescending(a => a.NonproductiveVisitReasonId);
+        }
+
+        [HttpGet("GetNonproductiveVisitReasonsByCompany/{companyid}", Name = "GetNonproductiveVisitReasonsByCompany")]
+        public IEnumerable<NonproductiveVisitReason> GetNonproductiveVisitReasonsByCompany([FromRoute]long companyid)
+        {
+            return reason_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid).OrderByDescending(a => a.NonproductiveVisitReasonId);
+        }
+
+        [HttpGet("GetNonproductiveVisitReason/{id}", Name = "GetNonproductiveVisitReason")]
+        public NonproductiveVisitReason GetNonproductiveVisitReason([FromRoute]long id)
+        {
+            return reason_repo.GetFirst(a => a.NonproductiveVisitReasonId == id);
+        }
+
+        [HttpPost("AddNonproductiveVisitReason", Name = "AddNonproductiveVisitReason")]
+        [ValidateModelAttribute]
+        public IActionResult AddNonproductiveVisitReason([FromBody]NonproductiveVisitReason model)
+        {
+            reason_repo.Add(model);
+            return new OkObjectResult(new { NonproductiveVisitReasonId = model.NonproductiveVisitReasonId });
+        }
+
+        [HttpPut("UpdateNonproductiveVisitReason", Name = "UpdateNonproductiveVisitReason")]
+        [ValidateModelAttribute]
+        public IActionResult UpdateNonproductiveVisitReason([FromBody]NonproductiveVisitReason model)
+        {
+            reason_repo.Update(model);
+            return new OkObjectResult(new { NonproductiveVisitReasonId = model.NonproductiveVisitReasonId });
+        }
+
+        [HttpDelete("DeleteNonproductiveVisitReason/{id}", Name = "DeleteNonproductiveVisitReason")]
+        public IActionResult DeleteNonproductiveVisitReason([FromRoute]long id)
+        {
+            NonproductiveVisitReason reason = reason_repo.GetFirst(a => a.NonproductiveVisitReasonId == id);
+            if (reason == null)
+            {
+                return BadRequest();
+            }
+            reason_repo.Delete(reason);
+            return Ok();
+        }
+
+        #endregion
     }
 }

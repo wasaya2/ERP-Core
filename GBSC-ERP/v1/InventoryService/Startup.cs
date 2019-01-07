@@ -142,6 +142,7 @@ namespace InventoryService
             services.AddScoped<ISectionRepository, SectionRepository>();
             services.AddScoped<ISubsectionRepository, SubsectionRepository>();
             services.AddScoped<ITerritoryRepository, TerritoryRepository>();
+            services.AddScoped<IGeneralSKURepository, GeneralSKURepository>();
 
             //Sales
             services.AddScoped<ISalesIndentRepository, SalesIndentRepository>();

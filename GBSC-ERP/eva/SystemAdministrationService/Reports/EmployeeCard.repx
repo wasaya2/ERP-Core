@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XtraReportsLayoutSerializer SerializerVersion="18.1.6.0" Ref="0" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="XtraReport" Margins="40, 41, 131, 89" PageWidth="850" PageHeight="1100" Version="18.1">
+  <Bands>
+    <Item1 Ref="1" ControlType="TopMarginBand" Name="topMarginBand1" HeightF="131.180008" Font="Times New Roman, 10pt" BackColor="Transparent">
+      <Controls>
+        <Item1 Ref="2" ControlType="XRPictureBox" Name="pictureBox1" ImageUrl="E:\GBSC-ERP-SERVICES\GBSC-ERP\v1\HimsService\wwwroot\images\ConceptFertilityLogo.png" Sizing="Squeeze" ProcessDuplicatesMode="SuppressAndShrink" ProcessNullValues="Suppress" AnchorHorizontal="Left" KeepTogether="false" SizeF="174.519272,72.7603149" LocationFloat="0, 24.14786" BackColor="Transparent" CanPublish="false">
+          <StylePriority Ref="3" UseBackColor="false" />
+        </Item1>
+      </Controls>
+      <StylePriority Ref="4" UseFont="false" UseBackColor="false" />
+    </Item1>
+    <Item2 Ref="5" ControlType="DetailBand" Name="detailBand1" HeightF="850.5681" TextAlignment="MiddleCenter">
+      <Controls>
+        <Item1 Ref="6" ControlType="XRPanel" Name="panel2" SizeF="310.780273,229.924225" LocationFloat="448.219727, 50.00003" BackColor="Azure" Borders="All">
+          <Controls>
+            <Item1 Ref="7" ControlType="XRLabel" Name="label16" Multiline="true" Text="F-6/1, Block-8, KDA Scheme No.5,&#xD;&#xA;Clifton, Karachi-75600" SizeF="286.931824,29.3560638" LocationFloat="13.84845, 182.9297" Padding="2,2,0,0,100" Borders="None">
+              <StylePriority Ref="8" UseBorders="false" />
+            </Item1>
+            <Item2 Ref="9" ControlType="XRLabel" Name="label15" Multiline="true" Text="GLOBAL BLUE SKY CONSULTING" SizeF="290.7802,24.2687836" LocationFloat="10.000061, 157.829346" Font="Times New Roman, 11pt, style=Bold" Padding="2,2,0,0,100" Borders="None">
+              <StylePriority Ref="10" UseFont="false" UseBorders="false" />
+            </Item2>
+            <Item3 Ref="11" ControlType="XRLabel" Name="label13" Multiline="true" Text="If You Found Please Return to " SizeF="290.7802,19.3824158" LocationFloat="10.000061, 138.44693" Padding="2,2,0,0,100" Borders="All">
+              <StylePriority Ref="12" UseBorders="false" />
+            </Item3>
+            <Item4 Ref="13" ControlType="XRLabel" Name="label26" Multiline="true" AutoWidth="true" Text="F-6/1, Block-8, i-75600" TextAlignment="MiddleCenter" SizeF="196.827332,23" LocationFloat="103.953064, 43.4960556" Font="Calibri, 10pt, style=Bold" ForeColor="Black" Padding="2,2,0,0,100" Borders="None" BorderDashStyle="Double">
+              <StylePriority Ref="14" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+            </Item4>
+            <Item5 Ref="15" ControlType="XRLabel" Name="label24" Multiline="true" AutoWidth="true" Text="02/06/2018" TextAlignment="MiddleCenter" SizeF="196.827332,23" LocationFloat="103.953064, 70.49998" Font="Calibri, 10pt, style=Bold" ForeColor="Black" Padding="2,2,0,0,100" Borders="None" BorderDashStyle="Double">
+              <StylePriority Ref="16" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+            </Item5>
+            <Item6 Ref="17" ControlType="XRLabel" Name="label23" Multiline="true" AutoWidth="true" Text="Phone" TextAlignment="MiddleCenter" SizeF="72.87094,23" LocationFloat="10, 99.8293" Font="Calibri, 10pt, style=Bold" ForeColor="Black" Padding="2,2,0,0,100" Borders="None" BorderDashStyle="Double">
+              <StylePriority Ref="18" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+            </Item6>
+            <Item7 Ref="19" ControlType="XRLabel" Name="label22" Multiline="true" AutoWidth="true" Text="D.O.J" TextAlignment="MiddleCenter" SizeF="72.87094,23" LocationFloat="10.000061, 70.49998" Font="Calibri, 10pt, style=Bold" ForeColor="Black" Padding="2,2,0,0,100" Borders="None" BorderDashStyle="Double">
+              <StylePriority Ref="20" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+            </Item7>
+            <Item8 Ref="21" ControlType="XRLabel" Name="label14" Multiline="true" AutoWidth="true" Text="92 321 3536184" TextAlignment="MiddleCenter" SizeF="196.827332,23" LocationFloat="103.953064, 99.82933" Font="Calibri, 10pt, style=Bold" ForeColor="Black" Padding="2,2,0,0,100" Borders="None" BorderDashStyle="Double">
+              <StylePriority Ref="22" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+            </Item8>
+            <Item9 Ref="23" ControlType="XRLabel" Name="label17" Multiline="true" AutoWidth="true" Text="Address" TextAlignment="MiddleCenter" SizeF="72.87094,23" LocationFloat="10.000061, 43.4960556" Font="Calibri, 10pt, style=Bold" ForeColor="Black" Padding="2,2,0,0,100" Borders="None" BorderDashStyle="Double">
+              <StylePriority Ref="24" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+            </Item9>
+            <Item10 Ref="25" ControlType="XRLabel" Name="label18" Multiline="true" AutoWidth="true" Text="42401-8038919-5" TextAlignment="MiddleCenter" SizeF="290.780334,23.0000038" LocationFloat="10, 9.999996" Font="Calibri, 11pt, style=Bold, Italic" ForeColor="Black" Padding="2,2,0,0,100" Borders="Bottom" BorderDashStyle="Double">
+              <StylePriority Ref="26" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+            </Item10>
+            <Item11 Ref="27" ControlType="XRPanel" Name="panel3" SizeF="301.136383,87.15912" LocationFloat="5.15145874, 132.7651" />
+          </Controls>
+          <StylePriority Ref="28" UseBackColor="false" UseBorders="false" />
+        </Item1>
+        <Item2 Ref="29" ControlType="XRLabel" Name="label11" Multiline="true" Text="REFERENCE RANGES:" SizeF="129.519241,23" LocationFloat="0, 788.499939" Font="Calibri, 9pt, style=Bold" Padding="2,2,0,0,100">
+          <StylePriority Ref="30" UseFont="false" />
+        </Item2>
+        <Item3 Ref="31" ControlType="XRLabel" Name="label25" Multiline="true" Text="(WHO 5th Edition) Reference Ranges are based on semen characteristics from men whose wives are pragnantwithin 12 months of stopping contraception. Values are 5th centiles and 95% confidence limits.Volume: 1.5(1.4-1.7)ml Count: 15(12-16) million/ml, 39(33-46)million/ejaculate. Total Motility: 40(38-42)%, Progressive Motility:32(31-34)%. Morphology: 4(3-4)% Normal forms." SizeF="657.814331,52.0681763" LocationFloat="111.185913, 788.499939" Font="Calibri, 9pt" ForeColor="DarkSlateGray" Padding="2,2,0,0,100">
+          <StylePriority Ref="32" UseFont="false" UseForeColor="false" />
+        </Item3>
+        <Item4 Ref="33" ControlType="XRLine" Name="line2" LineWidth="3" SizeF="769.1667,5" LocationFloat="0, 38.80081" ForeColor="255,199,31,101" BorderWidth="0">
+          <StylePriority Ref="34" UseForeColor="false" UseBorderWidth="false" />
+        </Item4>
+        <Item5 Ref="35" ControlType="XRLine" Name="line1" LineWidth="3" SizeF="769.1667,5" LocationFloat="0, 0" ForeColor="255,199,31,101" BorderWidth="0">
+          <StylePriority Ref="36" UseForeColor="false" UseBorderWidth="false" />
+        </Item5>
+        <Item6 Ref="37" ControlType="XRLabel" Name="label4" RightToLeft="Yes" Multiline="true" Text="Employee Detail" TextAlignment="MiddleCenter" SizeF="769,28.8008118" LocationFloat="0, 10" StyleName="Style1" Font="Calibri, 18pt, style=Bold" ForeColor="Black" BackColor="0,0,0,0" Padding="2,2,0,0,100">
+          <StylePriority Ref="38" UseFont="false" UseForeColor="false" UseBackColor="false" UseTextAlignment="false" />
+        </Item6>
+        <Item7 Ref="39" ControlType="XRPanel" Name="panel1" SizeF="433.3333,229.924255" LocationFloat="1.66666138, 50" BackColor="Azure" Borders="All">
+          <Controls>
+            <Item1 Ref="40" ControlType="XRLabel" Name="label5" Multiline="true" Text="Identity Card" SizeF="197.916626,17.992424" LocationFloat="109.519257, 27.9924469" Font="Calibri, 12pt, style=Bold" Padding="2,2,0,0,96">
+              <StylePriority Ref="41" UseFont="false" />
+            </Item1>
+            <Item2 Ref="42" ControlType="XRLabel" Name="label10" Multiline="true" AutoWidth="true" Text="Designation   :" TextAlignment="MiddleLeft" SizeF="94.48619,23.0000153" LocationFloat="160.98201, 171.91272" Font="Calibri, 11pt, style=Bold" ForeColor="Black" Padding="2,2,0,0,100" Borders="None" BorderDashStyle="Double">
+              <StylePriority Ref="43" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+            </Item2>
+            <Item3 Ref="44" ControlType="XRLabel" Name="label12" Multiline="true" AutoWidth="true" Text="Developer" TextAlignment="MiddleCenter" SizeF="177.865173,23" LocationFloat="255.468155, 171.9127" Font="Calibri, 11pt, style=Bold" ForeColor="Black" Padding="2,2,0,0,100" Borders="None" BorderDashStyle="Double">
+              <StylePriority Ref="45" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+            </Item3>
+            <Item4 Ref="46" ControlType="XRLabel" Name="label8" Multiline="true" AutoWidth="true" Text="Department   :" TextAlignment="MiddleLeft" SizeF="106.79686,23" LocationFloat="160.981949, 134.829376" Font="Calibri, 11pt, style=Bold" ForeColor="Black" Padding="2,2,0,0,100" Borders="None" BorderDashStyle="Double">
+              <StylePriority Ref="47" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+            </Item4>
+            <Item5 Ref="48" ControlType="XRLabel" Name="label9" Multiline="true" AutoWidth="true" Text="Information Technology" TextAlignment="MiddleCenter" SizeF="165.5545,23" LocationFloat="267.7788, 134.829361" Font="Calibri, 11pt, style=Bold" ForeColor="Black" Padding="2,2,0,0,100" Borders="None" BorderDashStyle="Double">
+              <StylePriority Ref="49" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+            </Item5>
+            <Item6 Ref="50" ControlType="XRLabel" Name="label7" Multiline="true" AutoWidth="true" Text="Designation   :" TextAlignment="MiddleLeft" SizeF="94.48619,23" LocationFloat="160.98201, 99.82936" Font="Calibri, 11pt, style=Bold" ForeColor="Black" Padding="2,2,0,0,100" Borders="None" BorderDashStyle="Double">
+              <StylePriority Ref="51" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+            </Item6>
+            <Item7 Ref="52" ControlType="XRLabel" Name="label19" Multiline="true" AutoWidth="true" Text="Ovais Khan" TextAlignment="MiddleCenter" SizeF="262.351318,23.0000076" LocationFloat="160.98201, 70.49998" Font="Calibri, 16pt, style=Bold, Italic" ForeColor="Black" Padding="2,2,0,0,100" Borders="Bottom" BorderDashStyle="Double">
+              <StylePriority Ref="53" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+            </Item7>
+            <Item8 Ref="54" ControlType="XRLabel" Name="label20" Multiline="true" AutoWidth="true" Text="Manager" TextAlignment="MiddleCenter" SizeF="177.865173,23" LocationFloat="255.468155, 99.82936" Font="Calibri, 10pt, style=Bold" ForeColor="Black" Padding="2,2,0,0,100" Borders="None" BorderDashStyle="Double">
+              <StylePriority Ref="55" UseFont="false" UseForeColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+            </Item8>
+            <Item9 Ref="56" ControlType="XRPictureBox" Name="pictureBox2" ImageUrl="C:\Users\Zass\Desktop\13902552_604943846347197_1167807409691125826_n.jpg" SizeF="145.854736,147.412689" LocationFloat="8.333336, 64.87313" />
+          </Controls>
+          <StylePriority Ref="57" UseBackColor="false" UseBorders="false" />
+        </Item7>
+      </Controls>
+      <StylePriority Ref="58" UseTextAlignment="false" />
+    </Item2>
+    <Item3 Ref="59" ControlType="BottomMarginBand" Name="bottomMarginBand1" HeightF="89.2045441">
+      <Controls>
+        <Item1 Ref="60" ControlType="XRLine" Name="line3" SizeF="769.000061,5.06815624" LocationFloat="0, 0" />
+        <Item2 Ref="61" ControlType="XRLabel" Name="label2" Multiline="true" AutoWidth="true" TextTrimming="Word" Text="F-6/1, Block-8, KDA Scheme No.5,&#xD;&#xA;Clifton, Karachi-75600" TextAlignment="MiddleCenter" SizeF="282.499969,35.83334" LocationFloat="225.953766, 30.3712273" Font="Times New Roman, 9pt" Padding="2,2,0,0,100">
+          <StylePriority Ref="62" UseFont="false" UseTextAlignment="false" />
+        </Item2>
+        <Item3 Ref="63" ControlType="XRLabel" Name="label1" Multiline="true" Text="Concept Fertility Centre" TextAlignment="TopCenter" SizeF="282.5,20.3788071" LocationFloat="225.95372, 9.99242" Font="Microsoft Sans Serif, 12pt, style=Underline" Padding="2,2,0,0,100">
+          <StylePriority Ref="64" UseFont="false" UseTextAlignment="false" />
+        </Item3>
+        <Item4 Ref="65" ControlType="XRLabel" Name="label3" Multiline="true" Text="Ph: 92 21 35361846, 35361397, 35810049, Fax: 021-35361397" TextAlignment="TopCenter" SizeF="375.416565,22.9999924" LocationFloat="182.817383, 66.20455" Font="Times New Roman, 9pt" Padding="2,2,0,0,100">
+          <StylePriority Ref="66" UseFont="false" UseTextAlignment="false" />
+        </Item4>
+      </Controls>
+    </Item3>
+  </Bands>
+  <StyleSheet>
+    <Item1 Ref="67" Name="Style1" BorderStyle="Inset" Padding="0,0,0,0,100" BackColor="255,224,224,224" StringFormat="Center;Far;0;None;Character;Default" TextAlignment="BottomCenter" />
+  </StyleSheet>
+</XtraReportsLayoutSerializer>
