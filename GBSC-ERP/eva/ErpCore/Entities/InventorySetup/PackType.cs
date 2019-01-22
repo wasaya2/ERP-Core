@@ -14,7 +14,10 @@ namespace ErpCore.Entities.InventorySetup
 
         [Key]
         public long PackTypeId { get; set; }
+
         public string Name { get; set; }
+
+        public string PackTypeCode { get; set; }
 
         public double? EquivalentBasicUnit { get; set; } // Ex. How many liters in one pouch
 

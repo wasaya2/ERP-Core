@@ -17,7 +17,7 @@ namespace InventoryService.Repos
             return Table.Include(a => a.Inventory).Include(b => b.InventoryItemCategory).Include(c => c.PackageType).
                         Include(d => d.PackCategory).Include(e => e.PackSize).
                         Include(f => f.PackType).Include(g => g.ProductType).
-                        Include(h => h.Unit).Select(x=> x);
+                        Include(h => h.MeasurementUnit).Select(x=> x);
         }
 
         public InventoryItem GetInventoryItemById(long id)
@@ -26,7 +26,7 @@ namespace InventoryService.Repos
                         Include(b => b.InventoryItemCategory).Include(c => c.PackageType).
                         Include(d => d.PackCategory).Include(e => e.PackSize).
                         Include(f => f.PackType).Include(g => g.ProductType).
-                        Include(h => h.Unit).FirstOrDefault();
+                        Include(h => h.MeasurementUnit).FirstOrDefault();
         }
     }
 }

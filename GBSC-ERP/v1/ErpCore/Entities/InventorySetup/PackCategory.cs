@@ -13,6 +13,7 @@ namespace ErpCore.Entities.InventorySetup
 
         [Key]
         public long PackCategoryId { get; set; }
+        public string PackCategoryCode { get; set; }
         public string Name { get; set; }
 
     }

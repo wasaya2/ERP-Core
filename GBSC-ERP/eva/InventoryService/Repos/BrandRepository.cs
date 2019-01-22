@@ -15,7 +15,10 @@ namespace InventoryService.Repos
         public IEnumerable<OrderTakingInventoryViewModel> GetInventoryItems(long CompanyId)
         {
             var items = Table.Include(c => c.InventoryItems)
-                .Include("InventoryItems.Unit")
+                .Include("InventoryItems.MeasurementUnit")
+                .Include("InventoryItems.SalesUnit")
+                .Include("InventoryItems.RateUnit")
+                .Include("InventoryItems.PackageUnit")
                 .Include("InventoryItems.PackType")
                 .Include("InventoryItems.PackageType")
                 .Include("InventoryItems.PackSize")
@@ -28,21 +31,22 @@ namespace InventoryService.Repos
                     {
                         InventoryItemId = i.InventoryItemId,
                         Name = i.Name,
+                        MeasurementUnit = i.MeasurementUnit.Name,
+                        PackageUnit = i.PackageUnit.Name,
+                        RateUnit = i.PackageUnit.Name,
+                        RegularDiscount = i.RegularDiscount,
+                        SalesUnit = i.SalesUnit.Name,
                         ProductType = i.ProductType.Name,
-                        Description = i.Description,
-                        CostPrice = i.CostPrice,
-                        Dose = i.Dose,
                         ItemCode = i.ItemCode,
-                        MinLevel = i.MinLevel,
                         PackageType = i.PackageType.Name,
                         PackSize = i.PackSize.Size,
                         PackType = i.PackType.Name,
-                        PackTypeInPackageType = i.PackTypeInPackageType,
-                        PurchaseDate = i.PurchaseDate,
-                        RetailPrice = i.RetailPrice,
                         TradeOfferAmount = i.TradeOfferAmount,
-                        Unit = i.Unit.Name,
-                        UnitPrice = i.UnitPrice
+                        Unit = i.MeasurementUnit.Name,
+                        UnitPrice = i.UnitPrice,
+                        MuInPu = i.MuInPu,
+                        MuInRu = i.MuInRu,
+                        MuInSu = i.MuInSu
                     }, (key, g) => new GroupedItems { ProductType = key, Items = g.ToList() }
                     )
                 });

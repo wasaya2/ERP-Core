@@ -78,14 +78,6 @@ namespace InventoryService.Controllers
         {
             IList<SalesIndent> indents = new List<SalesIndent>();
 
-            //var a = (from order in models
-            //         group order by order.StoreVisitId into g
-            //         select new
-            //         {
-            //             StoreVisitId = g.Key,
-            //             items = g.ToList()
-            //         });
-
             var b = models.GroupBy(c => c.StoreVisitId);
             ApplicationDbContext db = new ApplicationDbContext();
 
@@ -102,12 +94,15 @@ namespace InventoryService.Controllers
 
                     SalesIndentItem sii = new SalesIndentItem()
                     {
+                        CompanyId = s.CompanyId,
                         Quantity = s.Quantity,
-                        TradeOfferPricePerUnit = a.UnitPrice,
+                        TradeOfferPricePerUnit = (a.TradeOfferAmount ?? 0),
+                        TotalTradeOfferPerItem = (a.TradeOfferAmount ?? 0) * a.MuInSu * s.Quantity,
+                        TotalTradePricePerItem = s.Quantity * a.MuInSu * (a.UnitPrice - (a.TradeOfferAmount ?? 0)),
                         OrderTakingId = s.OrderTakingId,
-                        ItemGrossAmount = s.Quantity * a.RetailPrice,
-                        ItemDiscountAmount = 0,
-                        ItemNetAmount = (s.Quantity * a.RetailPrice) - 0,
+                        ItemGrossAmount = s.Quantity * a.UnitPrice * a.MuInSu,
+                        ItemDiscountAmount = ((s.ExtraDiscount ?? 0) * s.Quantity * a.MuInSu) + ((a.RegularDiscount ?? 0) * s.Quantity * a.MuInSu) + ((a.TradeOfferAmount ?? 0) * a.MuInSu * s.Quantity),
+                        ItemNetAmount = (s.Quantity * a.UnitPrice * a.MuInSu) - ((s.ExtraDiscount ?? 0) * s.Quantity * a.MuInSu) - (s.Quantity * (a.RegularDiscount ?? 0) * a.MuInSu) - ((a.TradeOfferAmount ?? 0) * a.MuInSu * s.Quantity),
                         InventoryItemId = s.InventoryItemId
                     };
 
@@ -129,7 +124,13 @@ namespace InventoryService.Controllers
                         newindent.StoreVisitId = s.StoreVisitId;
                         newindent.DistributorId = distributorid;
                         newindent.IsIssued = true;
+                        newindent.IssueDate = DateTime.Now;
+                        newindent.UserId = s.UserId;
                         newindent.CompanyId = s.CompanyId;
+                        newindent.TotalQuantity = 0;
+                        newindent.TotalTradePrice = 0;
+                        newindent.TotalTradeOfferDiscount = 0;
+                        newindent.TotalTradeOffer = 0;
                     }
 
                     newindent.TotalQuantity += sii.Quantity;
@@ -152,19 +153,41 @@ namespace InventoryService.Controllers
         [HttpGet("GetSalesIndents", Name = "GetSalesIndents")]
         public IEnumerable<SalesIndent> GetSalesIndents()
         {
-            IEnumerable<SalesIndent> so = ind_repo.GetAll();
+            IEnumerable<SalesIndent> so = ind_repo.GetList(a => a.IsInternalOrder == false);
             so = so.OrderByDescending(p => p.SalesIndentId);
             return so;
+        }
+
+        [HttpGet("GetUnprocessedInternalRequisitionRequestsByCompany/{companyid}", Name = "GetUnprocessedInternalRequisitionRequestsByCompany")]
+        public IEnumerable<SalesIndent> GetUnprocessedInternalRequisitionRequestsByCompany([FromRoute]long companyid)
+        {
+            return ind_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid && (a.IsProcessed == false || a.IsProcessed == null) && a.IsInternalOrder == true, b => b.SalesIndentItems).OrderByDescending(a => a.SalesIndentId);
+        }
+
+        [HttpGet("GetCurrentMonthProcessedInternalRequisitionRequestsByCompany/{companyid}", Name = "GetCurrentMonthProcessedInternalRequisitionRequestsByCompany")]
+        public IEnumerable<SalesIndent> GetCurrentMonthProcessedInternalRequisitionRequestsByCompany([FromRoute]long companyid)
+        {
+            return ind_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid && a.Date.Value.Month == DateTime.Now.Month && a.Date.Value.Year == DateTime.Now.Year && a.IsProcessed == true && a.IsInternalOrder == true, b => b.SalesIndentItems).OrderByDescending(a => a.SalesIndentId);
+        }
+
+        [HttpGet("ProcessSalesIndentById/{id}", Name = "ProcessSalesIndentById")]
+        public IActionResult ProcessSalesIndentById([FromRoute]long id)
+        {
+            SalesIndent ind = ind_repo.Find(id);
+            ind.IsProcessed = true;
+            ind.ProcessedDate = DateTime.Now;
+            ind_repo.Update(ind);
+            return Ok("Processed");
         }
 
         [HttpGet("GetUnprocessedSalesIndents", Name = "GetUnprocessedSalesIndents")]
         public IEnumerable<SalesIndent> GetUnprocessedSalesIndents()
         {
-            return ind_repo.GetList(a => a.IsProcessed == false || a.IsProcessed == null, b => b.SalesIndentItems).OrderByDescending(a => a.SalesIndentId);
+            return ind_repo.GetList(a => (a.IsProcessed == false || a.IsProcessed == null) && a.IsInternalOrder == false , b => b.SalesIndentItems).OrderByDescending(a => a.SalesIndentId);
         }
 
         [HttpGet("GetSalesIndent/{id}", Name = "GetSalesIndent")]
-        public SalesIndent GetSalesIndent(long id) => ind_repo.GetFirst(o => o.SalesIndentId == id);
+        public SalesIndent GetSalesIndent(long id) => ind_repo.GetFirst(o => o.SalesIndentId == id, b => b.SalesIndentItems);
 
         [HttpPut("UpdateSalesIndent", Name = "UpdateSalesIndent")]
         [ValidateModelAttribute]
@@ -219,6 +242,7 @@ namespace InventoryService.Controllers
                 return NotFound();
             }
 
+            ind_item_repo.DeleteRange(ind_item_repo.GetList(a => a.SalesIndentId == SalesIndent.SalesIndentId));
             ind_repo.Delete(SalesIndent);
             return Ok();
         }

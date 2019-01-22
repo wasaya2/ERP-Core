@@ -15,7 +15,7 @@ namespace InventoryService.Repos
         {
             return Table.Where(a => a.IssueDate.Value.Month == date.Month && a.IssueDate.Value.Year == date.Year).Include(a => a.SalesOrderItems)
                 .Include("SalesOrderItems.Inventory").Include("SalesOrderItems.InventoryItem").Include("SalesOrderItems.InventoryItem.Brand")
-                .Include("SalesOrderItems.InventoryItem.Unit").Include("SalesOrderItems.InventoryItem.PackType")
+                .Include("SalesOrderItems.InventoryItem.MeasurementUnit").Include("SalesOrderItems.InventoryItem.PackType")
                 .Include("SalesOrderItems.InventoryItem.PackSize").Include("SalesOrderItems.InventoryItem.PackCategory")
                 .Include("SalesOrderItems.InventoryItem.ProductType").Include("SalesOrderItems.InventoryItem.InventoryItemCategory")
                 .Include("SalesOrderItems.InventoryItem.PackageType").Include("SalesOrderItems.InventoryItem.Inventory")
@@ -31,7 +31,7 @@ namespace InventoryService.Repos
 
                 return Table.Where(a => a.SalesOrderCode == code).Include(b => b.SalesOrderItems).Include("SalesOrderItems.InventoryItem")
                     .Include("SalesOrderItems.InventoryItem.PackType").Include("SalesOrderItems.InventoryItem.PackSize")
-                    .Include("SalesOrderItems.InventoryItem.Unit").Include("SalesOrderItems.Inventory").Include(a => a.Customer)
+                    .Include("SalesOrderItems.InventoryItem.MeasurementUnit").Include("SalesOrderItems.Inventory").Include(a => a.Customer)
                     .FirstOrDefault();
             }
             catch (NullReferenceException)

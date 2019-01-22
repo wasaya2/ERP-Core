@@ -16,7 +16,7 @@ namespace ErpCore.Entities
 
         public long? BranchId { get; set; }
 
-        public DateTime? CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; } = DateTime.Now;
 
         public DateTime? EditedAt { get; set; } = DateTime.Now;
 

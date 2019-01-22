@@ -8,6 +8,5 @@ namespace FinanceService.Repos.Interfaces.SetupInterfaces
 {
     public interface IFeaturePermissions
     {
-        UserPermissionsViewModel GetFeaturePermissions(long UserId, long RoleId, long FeatureId);
     }
 }

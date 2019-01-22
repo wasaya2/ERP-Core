@@ -8,6 +8,5 @@ namespace InventoryService.Repos.Interfaces
 {
     public interface IFeaturePermissions
     {
-        UserPermissionsViewModel GetFeaturePermissions(long UserId, long RoleId, long FeatureId);
     }
 }

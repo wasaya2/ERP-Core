@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ErpCore.Entities.Finance
 {
-    public class VoucherDetail
+    public class VoucherDetail : BaseClass
     {
         [Key]
         public long VoucherDetailId { get; set; }

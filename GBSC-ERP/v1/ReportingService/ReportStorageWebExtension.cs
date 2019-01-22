@@ -10,6 +10,7 @@ using ReportingService.Reports.Lab;
 using ReportingService.Reports.Payroll;
 using ReportingService.Reports.etracker;
 using ReportingService.Reports.Inventory;
+using ReportingService.Reports.UltraSound;
 
 namespace ReportingService
 {
@@ -30,6 +31,8 @@ namespace ReportingService
             Reports.Add("InOutDuration", new InOutDurationAttendance());
             Reports.Add("MissingEntries", new MissingEntries());
             Reports.Add("dailyattendanceandleave", new dailyattendanceandleave());
+            Reports.Add("DepartmentWiseAttendance", new DepartmentWiseAttendance());
+            Reports.Add("DailyAttendance", new DailyAttendance());
             Reports.Add("SalaryPayment", new SalaryPayment());
             Reports.Add("MonthlyLeave", new MonthlyLeaveSheet()); 
             Reports.Add("OverTime", new MonthlyOvertime()); 
@@ -63,11 +66,17 @@ namespace ReportingService
             Reports.Add("MedicineDetails", new MEDICINE_DETAILS());
             Reports.Add("ConsultantActivtityDetails", new ConsultantActivtityDetails());
             //////////HIMS////////////
+            ///////////uLTRA SOUND//////////////
+            Reports.Add("ultraSoundPelvisReport", new ultraSoundPelvisReport());
+            Reports.Add("fwbInitialReport", new fwbInitialReport());
+            Reports.Add("ultraSoundMasterReport", new ultraSoundMasterReport());
+
+            ///////////ULTRA SOUND//////////////
             ///
 
-            #region Lab Reports
+      #region Lab Reports
 
-            Reports.Add("SemenAnalysisOutsider", new AnalysisWorkSheet_Outsiders());
+      Reports.Add("SemenAnalysisOutsider", new AnalysisWorkSheet_Outsiders());
             Reports.Add("BiochemistryDetailsOntreatment", new Bio_ChemistryDetails_OnTreatment());
             Reports.Add("BiochemistryOutsider", new Biochemistry_Outsider());
             Reports.Add("BiochemistryOntreatment", new Biochemistry());

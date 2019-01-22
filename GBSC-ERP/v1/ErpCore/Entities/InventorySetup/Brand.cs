@@ -14,7 +14,11 @@ namespace ErpCore.Entities.InventorySetup
 
         [Key]
         public long BrandId { get; set; }
+
+        public string BrandCode { get; set; }
+
         public string Name { get; set; }
+
         public bool? ShowInNsv { get; set; }
 
         public IEnumerable<InventoryItem> InventoryItems { get; set; }

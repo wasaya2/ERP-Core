@@ -48,7 +48,6 @@
             this.vendorLogo = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.vendorLogo2 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.DetailReport = new DevExpress.XtraReports.UI.DetailReportBand();
             this.Detail1 = new DevExpress.XtraReports.UI.DetailBand();
@@ -74,6 +73,7 @@
             this.xrTableCell58 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell59 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell60 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.xrTable4 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell62 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -152,8 +152,8 @@
             this.noorderreason = new DevExpress.XtraReports.Parameters.Parameter();
             this.category = new DevExpress.XtraReports.Parameters.Parameter();
             this.classification = new DevExpress.XtraReports.Parameters.Parameter();
-            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
@@ -171,9 +171,9 @@
             // 
             this.vendorLogo.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopLeft;
             this.vendorLogo.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("vendorLogo.ImageSource"));
-            this.vendorLogo.LocationFloat = new DevExpress.Utils.PointFloat(0F, 25.18909F);
+            this.vendorLogo.LocationFloat = new DevExpress.Utils.PointFloat(10F, 10F);
             this.vendorLogo.Name = "vendorLogo";
-            this.vendorLogo.SizeF = new System.Drawing.SizeF(193.6699F, 50.64423F);
+            this.vendorLogo.SizeF = new System.Drawing.SizeF(123.5466F, 77.31089F);
             this.vendorLogo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
             this.vendorLogo.StylePriority.UseBorderColor = false;
             this.vendorLogo.StylePriority.UseBorders = false;
@@ -195,20 +195,9 @@
             // BottomMargin
             // 
             this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.vendorLogo2});
+            this.xrLabel2});
+            this.BottomMargin.HeightF = 47.09941F;
             this.BottomMargin.Name = "BottomMargin";
-            // 
-            // vendorLogo2
-            // 
-            this.vendorLogo2.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopLeft;
-            this.vendorLogo2.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("vendorLogo2.ImageSource"));
-            this.vendorLogo2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 16.32767F);
-            this.vendorLogo2.Name = "vendorLogo2";
-            this.vendorLogo2.SizeF = new System.Drawing.SizeF(118.3333F, 31.0789F);
-            this.vendorLogo2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
-            this.vendorLogo2.StylePriority.UseBorderColor = false;
-            this.vendorLogo2.StylePriority.UseBorders = false;
-            this.vendorLogo2.StylePriority.UsePadding = false;
             // 
             // Detail
             // 
@@ -567,6 +556,68 @@
             this.xrTableCell60.StylePriority.UseTextAlignment = false;
             this.xrTableCell60.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell60.Weight = 0.53492459988626984D;
+            // 
+            // sqlDataSource1
+            // 
+            this.sqlDataSource1.ConnectionName = "ERPDB_Connection";
+            this.sqlDataSource1.Name = "sqlDataSource1";
+            storedProcQuery1.Name = "sp_etracker_ShopStatusDetail_Rpt";
+            queryParameter1.Name = "@startdate";
+            queryParameter1.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter1.Value = new DevExpress.DataAccess.Expression("?startdate", typeof(string));
+            queryParameter2.Name = "@enddate";
+            queryParameter2.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter2.Value = new DevExpress.DataAccess.Expression("?enddate", typeof(string));
+            queryParameter3.Name = "@subsectionid";
+            queryParameter3.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter3.Value = new DevExpress.DataAccess.Expression("?subsectionid", typeof(long));
+            queryParameter4.Name = "@sectionid";
+            queryParameter4.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter4.Value = new DevExpress.DataAccess.Expression("?sectionid", typeof(long));
+            queryParameter5.Name = "@territoryid";
+            queryParameter5.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter5.Value = new DevExpress.DataAccess.Expression("?territoryid", typeof(long));
+            queryParameter6.Name = "@areaid";
+            queryParameter6.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter6.Value = new DevExpress.DataAccess.Expression("?areaid", typeof(long));
+            queryParameter7.Name = "@cityid";
+            queryParameter7.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter7.Value = new DevExpress.DataAccess.Expression("?cityid", typeof(long));
+            queryParameter8.Name = "@regionid";
+            queryParameter8.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter8.Value = new DevExpress.DataAccess.Expression("?regionid", typeof(long));
+            queryParameter9.Name = "@distributorid";
+            queryParameter9.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter9.Value = new DevExpress.DataAccess.Expression("?distributorid", typeof(long));
+            queryParameter10.Name = "@userid";
+            queryParameter10.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter10.Value = new DevExpress.DataAccess.Expression("?userid", typeof(long));
+            queryParameter11.Name = "@shopcategory";
+            queryParameter11.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter11.Value = new DevExpress.DataAccess.Expression("?category", typeof(string));
+            queryParameter12.Name = "@classification";
+            queryParameter12.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter12.Value = new DevExpress.DataAccess.Expression("?classification", typeof(string));
+            queryParameter13.Name = "@noorderreason";
+            queryParameter13.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter13.Value = new DevExpress.DataAccess.Expression("?noorderreason", typeof(string));
+            storedProcQuery1.Parameters.Add(queryParameter1);
+            storedProcQuery1.Parameters.Add(queryParameter2);
+            storedProcQuery1.Parameters.Add(queryParameter3);
+            storedProcQuery1.Parameters.Add(queryParameter4);
+            storedProcQuery1.Parameters.Add(queryParameter5);
+            storedProcQuery1.Parameters.Add(queryParameter6);
+            storedProcQuery1.Parameters.Add(queryParameter7);
+            storedProcQuery1.Parameters.Add(queryParameter8);
+            storedProcQuery1.Parameters.Add(queryParameter9);
+            storedProcQuery1.Parameters.Add(queryParameter10);
+            storedProcQuery1.Parameters.Add(queryParameter11);
+            storedProcQuery1.Parameters.Add(queryParameter12);
+            storedProcQuery1.Parameters.Add(queryParameter13);
+            storedProcQuery1.StoredProcName = "sp_etracker_ShopStatusDetail_Rpt";
+            this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
+            storedProcQuery1});
+            this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // xrTable4
             // 
@@ -1573,74 +1624,25 @@
             this.classification.Name = "classification";
             this.classification.Visible = false;
             // 
-            // sqlDataSource1
-            // 
-            this.sqlDataSource1.ConnectionName = "ERPDB_Connection";
-            this.sqlDataSource1.Name = "sqlDataSource1";
-            storedProcQuery1.Name = "sp_etracker_ShopStatusDetail_Rpt";
-            queryParameter1.Name = "@startdate";
-            queryParameter1.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter1.Value = new DevExpress.DataAccess.Expression("?startdate", typeof(string));
-            queryParameter2.Name = "@enddate";
-            queryParameter2.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter2.Value = new DevExpress.DataAccess.Expression("?enddate", typeof(string));
-            queryParameter3.Name = "@subsectionid";
-            queryParameter3.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter3.Value = new DevExpress.DataAccess.Expression("?subsectionid", typeof(long));
-            queryParameter4.Name = "@sectionid";
-            queryParameter4.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter4.Value = new DevExpress.DataAccess.Expression("?sectionid", typeof(long));
-            queryParameter5.Name = "@territoryid";
-            queryParameter5.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter5.Value = new DevExpress.DataAccess.Expression("?territoryid", typeof(long));
-            queryParameter6.Name = "@areaid";
-            queryParameter6.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter6.Value = new DevExpress.DataAccess.Expression("?areaid", typeof(long));
-            queryParameter7.Name = "@cityid";
-            queryParameter7.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter7.Value = new DevExpress.DataAccess.Expression("?cityid", typeof(long));
-            queryParameter8.Name = "@regionid";
-            queryParameter8.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter8.Value = new DevExpress.DataAccess.Expression("?regionid", typeof(long));
-            queryParameter9.Name = "@distributorid";
-            queryParameter9.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter9.Value = new DevExpress.DataAccess.Expression("?distributorid", typeof(long));
-            queryParameter10.Name = "@userid";
-            queryParameter10.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter10.Value = new DevExpress.DataAccess.Expression("?userid", typeof(long));
-            queryParameter11.Name = "@shopcategory";
-            queryParameter11.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter11.Value = new DevExpress.DataAccess.Expression("?category", typeof(string));
-            queryParameter12.Name = "@classification";
-            queryParameter12.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter12.Value = new DevExpress.DataAccess.Expression("?classification", typeof(string));
-            queryParameter13.Name = "@noorderreason";
-            queryParameter13.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter13.Value = new DevExpress.DataAccess.Expression("?noorderreason", typeof(string));
-            storedProcQuery1.Parameters.Add(queryParameter1);
-            storedProcQuery1.Parameters.Add(queryParameter2);
-            storedProcQuery1.Parameters.Add(queryParameter3);
-            storedProcQuery1.Parameters.Add(queryParameter4);
-            storedProcQuery1.Parameters.Add(queryParameter5);
-            storedProcQuery1.Parameters.Add(queryParameter6);
-            storedProcQuery1.Parameters.Add(queryParameter7);
-            storedProcQuery1.Parameters.Add(queryParameter8);
-            storedProcQuery1.Parameters.Add(queryParameter9);
-            storedProcQuery1.Parameters.Add(queryParameter10);
-            storedProcQuery1.Parameters.Add(queryParameter11);
-            storedProcQuery1.Parameters.Add(queryParameter12);
-            storedProcQuery1.Parameters.Add(queryParameter13);
-            storedProcQuery1.StoredProcName = "sp_etracker_ShopStatusDetail_Rpt";
-            this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            storedProcQuery1});
-            this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
-            // 
             // ReportFooter
             // 
             this.ReportFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable5,
             this.xrTable4});
             this.ReportFooter.Name = "ReportFooter";
+            // 
+            // xrLabel2
+            // 
+            this.xrLabel2.AutoWidth = true;
+            this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "LocalDateTimeNow()")});
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(1100.459F, 10F);
+            this.xrLabel2.Multiline = true;
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(257.5406F, 23F);
+            this.xrLabel2.Text = "xrLabel2";
+            this.xrLabel2.TextFormatString = "{0:dddd, d MMMM, yyyy h:mm tt}";
             // 
             // ShopStatusDetail
             // 
@@ -1657,7 +1659,7 @@
             this.DataSource = this.sqlDataSource1;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
             this.Landscape = true;
-            this.Margins = new System.Drawing.Printing.Margins(21, 21, 100, 100);
+            this.Margins = new System.Drawing.Printing.Margins(21, 21, 100, 47);
             this.PageHeight = 850;
             this.PageWidth = 1400;
             this.PaperKind = System.Drawing.Printing.PaperKind.Legal;
@@ -1689,9 +1691,7 @@
         private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
         private DevExpress.XtraReports.UI.DetailBand Detail;
-        private DevExpress.XtraReports.UI.XRPictureBox vendorLogo;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
-        private DevExpress.XtraReports.UI.XRPictureBox vendorLogo2;
         private DevExpress.XtraReports.UI.DetailReportBand DetailReport;
         private DevExpress.XtraReports.UI.DetailBand Detail1;
         private DevExpress.XtraReports.UI.XRTable xrTable1;
@@ -1796,5 +1796,7 @@
         private DevExpress.XtraReports.Parameters.Parameter category;
         private DevExpress.XtraReports.Parameters.Parameter classification;
         private DevExpress.XtraReports.UI.ReportFooterBand ReportFooter;
+        private DevExpress.XtraReports.UI.XRPictureBox vendorLogo;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
     }
 }

@@ -14,7 +14,7 @@ namespace ErpCore.Entities.InventorySetup
         [Key]
         public long PackageTypeId { get; set; }
         public string Name { get; set; } //Carton or tray or box
-        public string Description { get; set; }
-
+        public string Class { get; set; }
+        public string PackageTypeCode { get; set; }
     }
 }

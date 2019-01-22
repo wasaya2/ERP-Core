@@ -144,6 +144,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\evalogo.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\logo.png" />
@@ -173,7 +174,7 @@
     <Content Include="Scripts\knockout-3.3.0.debug.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
     <None Include="packages.config" />
-    <None Include="Properties\PublishProfiles\reporting.pubxml" />
+    <None Include="Properties\PublishProfiles\gbsc-erp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -265,17 +266,32 @@
     <Compile Include="Reports\etracker\VisitSummaryReport.Designer.cs">
       <DependentUpon>VisitSummaryReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\finance\AuditTrail.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\finance\BalanceSheet.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\finance\BalanceSheet.Designer.cs">
       <DependentUpon>BalanceSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\finance\Bank Transaction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\finance\CompanyCOA.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\finance\IncomeStatement.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\finance\IncomeStatement.Designer.cs">
       <DependentUpon>IncomeStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\finance\Journal General.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\finance\Subsidiary Ledgers.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\finance\TransactionDetailsByDetailAccount.cs">
       <SubType>Component</SubType>
@@ -424,11 +440,23 @@
     <Compile Include="Reports\hrms\AttendanceSummaryDepartmentWise.Designer.cs">
       <DependentUpon>AttendanceSummaryDepartmentWise.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\hrms\DailyAttendance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\DailyAttendance.Designer.cs">
+      <DependentUpon>DailyAttendance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\hrms\dailyattendanceandleave.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\hrms\dailyattendanceandleave.Designer.cs">
       <DependentUpon>dailyattendanceandleave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\hrms\DepartmentWiseAttendance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\hrms\DepartmentWiseAttendance.Designer.cs">
+      <DependentUpon>DepartmentWiseAttendance.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\hrms\EmployeeCard.cs">
       <SubType>Component</SubType>
@@ -697,6 +725,12 @@
     <Compile Include="Reports\Pharmacy\TotalSales.Designer.cs">
       <DependentUpon>TotalSales.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\UltraSound\ultraSoundPelvisReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\UltraSound\ultraSoundPelvisReport.Designer.cs">
+      <DependentUpon>ultraSoundPelvisReport.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -729,11 +763,26 @@
     <EmbeddedResource Include="Reports\etracker\VisitSummaryReport.resx">
       <DependentUpon>VisitSummaryReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\finance\AuditTrail.resx">
+      <DependentUpon>AuditTrail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\finance\BalanceSheet.resx">
       <DependentUpon>BalanceSheet.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\finance\Bank Transaction.resx">
+      <DependentUpon>Bank Transaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\finance\CompanyCOA.resx">
+      <DependentUpon>CompanyCOA.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\finance\IncomeStatement.resx">
       <DependentUpon>IncomeStatement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\finance\Journal General.resx">
+      <DependentUpon>Journal General.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\finance\Subsidiary Ledgers.resx">
+      <DependentUpon>Subsidiary Ledgers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\finance\TransactionDetailsByDetailAccount.resx">
       <DependentUpon>TransactionDetailsByDetailAccount.cs</DependentUpon>
@@ -813,8 +862,14 @@
     <EmbeddedResource Include="Reports\hrms\AttendanceSummaryDepartmentWise.resx">
       <DependentUpon>AttendanceSummaryDepartmentWise.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\DailyAttendance.resx">
+      <DependentUpon>DailyAttendance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\hrms\dailyattendanceandleave.resx">
       <DependentUpon>dailyattendanceandleave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\hrms\DepartmentWiseAttendance.resx">
+      <DependentUpon>DepartmentWiseAttendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\hrms\EmployeeCard.resx">
       <DependentUpon>EmployeeCard.cs</DependentUpon>
@@ -956,6 +1011,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Pharmacy\TotalSales.resx">
       <DependentUpon>TotalSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\UltraSound\ultraSoundPelvisReport.resx">
+      <DependentUpon>ultraSoundPelvisReport.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

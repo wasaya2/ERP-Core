@@ -7,6 +7,7 @@ namespace FinanceService.ViewModels
 {
     public class EndYearProcessRequestViewModel
     {
+        public long? CompanyId { get; set; }
         public long? FinancialYearProcessId { get; set; }
         public long? NewFinancialYearCoaId { get; set; }
     }

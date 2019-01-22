@@ -30,7 +30,7 @@ namespace ErpCore.Entities
         //For Finance
 
         public string NTN { get; set; }
-        public long? AssestsAccountId { get; set; }
+        public long? AssetsAccountId { get; set; }
         public long? ExpenseAccountId { get; set; }
         public long? RevenueAccountId { get; set; }
         public long? LiabilitiesAccountId { get; set; }

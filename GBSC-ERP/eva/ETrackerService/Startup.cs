@@ -130,6 +130,7 @@ namespace ETrackerService
             services.AddScoped<IDistributorRepository, DistributorRepository>();
             services.AddScoped<IReportRepository, ReportRepository>();
             services.AddScoped<IPJPRepository, PJPRepository>();
+            services.AddScoped<INonproductiveVisitReasonRepository, NonproductiveVisitReasonRepository>();
 
             services.AddAutoMapper();
             services.AddMvc()

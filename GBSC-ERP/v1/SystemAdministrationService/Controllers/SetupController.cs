@@ -95,12 +95,22 @@ namespace SystemAdministrationService.Controllers
             return role_repo.GetAll();
         }
 
-        [HttpGet("GetRolesByCompanyId/{CompanyId}")]
-        public IEnumerable<Role> GetRolesByCompanyId(long CompanyId)
+        [HttpGet("GetDropdownRolesByCompany/{CompanyId}")]
+        public IEnumerable<Role> GetDropdownRolesByCompany(long CompanyId)
         {
-            IEnumerable<Role> ro = role_repo.GetList(r=>r.CompanyId == CompanyId);
-            ro = ro.OrderByDescending(a => a.RoleId);
-            return ro;
+            return role_repo.GetList(c=>c.CompanyId == CompanyId);
+        }
+
+        [HttpGet("GetRolesByCompany/{CompanyId}")]
+        public IEnumerable<RolesWithModulefeaturePermissionsViewModel> GetRolesByCompanyId(long CompanyId)
+        {
+            return role_repo.GetRolesByCompany(CompanyId);
+        }
+
+        [HttpGet("GetModulesByRole/{RoleId}")]
+        public IEnumerable<ModuleViewModel> GetModulesByRole(long RoleId)
+        {
+            return role_repo.GetModulesByRole(RoleId);
         }
 
         [HttpGet("GetFeatures", Name = "GetFeatures")]
@@ -122,7 +132,7 @@ namespace SystemAdministrationService.Controllers
         {
             List<Feature> Features = new List<Feature>();
 
-            foreach(long moduleid in moduleids)
+            foreach (long moduleid in moduleids)
             {
                 Features.AddRange(fea_repo.GetList(a => a.ModuleId != null && a.ModuleId == moduleid));
             }
@@ -210,14 +220,6 @@ namespace SystemAdministrationService.Controllers
             return new OkObjectResult(new { DepartmentID = model.DepartmentId });
         }
 
-        [HttpPut("UpdateRole", Name = "UpdateRole")]
-        [ValidateModelAttribute]
-        public IActionResult UpdateRole([FromBody]Role model)
-        {
-            role_repo.Update(model);
-            return new OkObjectResult(new { RoleId = model.RoleId });
-        }
-
         [HttpPut("UpdateFeature", Name = "UpdateFeature")]
         [ValidateModelAttribute]
         public IActionResult UpdateFeature([FromBody]Feature model)
@@ -268,9 +270,26 @@ namespace SystemAdministrationService.Controllers
 
         [HttpPost("AddRole", Name = "AddRole")]
         [ValidateModelAttribute]
-        public IActionResult AddRole([FromBody]Role model)
+        public IActionResult AddRole([FromBody]SaveRoleviewModel model)
         {
-            role_repo.Add(model);
+            var role = new Role
+            {
+                CompanyId = model.CompanyId,
+                Name = model.roleName
+            };
+
+            role_repo.Add(role);
+            model.RoleId = role.RoleId;
+
+            var roleId = role_repo.AddRole(model);
+            return new OkObjectResult(new { RoleId = roleId });
+        }
+
+        [HttpPut("UpdateRole", Name = "UpdateRole")]
+        [ValidateModelAttribute]
+        public IActionResult UpdateRole([FromBody]SaveRoleviewModel model)
+        {
+            role_repo.UpdateRole(model);
             return new OkObjectResult(new { RoleId = model.RoleId });
         }
 

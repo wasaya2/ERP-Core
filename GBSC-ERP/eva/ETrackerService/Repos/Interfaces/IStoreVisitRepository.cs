@@ -36,7 +36,7 @@ namespace eTrackerInfrastructure.Repos.Interfaces
 
         string GetNoOrderReason(long StoreVisitId);
 
-        IEnumerable<OrderTakingViewModel> GetVisitOrders(long StoreVisitId);
+        IEnumerable<GroupedItems> GetVisitOrders(long StoreVisitId);
     
         IEnumerable<OrderTakingViewModel> GetVisitInventories(long StoreVisitId);
 
@@ -49,6 +49,8 @@ namespace eTrackerInfrastructure.Repos.Interfaces
         IEnumerable<CompetatorStock> CompetativeStocks(long storeVisitId);
 
         IEnumerable<Merchandising> GetMerchendiseList(long storeVisitId);
+
+        IEnumerable<LastTwoVisits> GetLastTwoVisits(long StoreId);
 
         StoreVisit GetStoreVisitWithStore(long storevisitId);
 

@@ -25,6 +25,10 @@ namespace ErpCore.Entities.HR.Payroll.LoanSetup
         public DateTime? LastPaymentDate { get; set; }
         public bool? IsPaid { get; set; }
 
+        public bool? IsLoanStop { get; set; }
+        public DateTime? LoanStopFrom { get; set; }
+        public DateTime? LoanStopTill { get; set; }
+
         public long? LoanTypeId { get; set; }
         public LoanType LoanType { get; set; }
 

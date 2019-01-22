@@ -193,7 +193,7 @@ namespace eTrackerInfrastructure.Controllers
         {
             try
             {
-                var _users = _repo.GetList(c => c.CompanyId == CompanyId, c => c.Section, c => c.Section.Territory)
+                var _users = _repo.GetList(c => c.CompanyId == CompanyId && (c.UserType == "Android" || c.UserType == "Both"), c => c.Section, c => c.Section.Territory)
                   .Select(u => new
                   {
                       UserId = u.UserId,

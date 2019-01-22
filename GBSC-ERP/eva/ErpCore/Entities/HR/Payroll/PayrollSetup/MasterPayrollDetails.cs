@@ -21,5 +21,8 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
 
         public long? PayrollTypeId { get; set; }
         public PayrollType PayrollType { get; set; }
+
+        public long? MasterPayrollId { get; set; }
+        public MasterPayroll MasterPayroll { get; set; }
     }
 }

@@ -8,6 +8,5 @@ namespace HimsService.Repos.Interfaces
 {
     public interface IFeaturePermissionsRepository
     {
-        UserPermissionsViewModel GetFeaturePermissions(long UserId, long RoleId, long FeatureId);
     }
 }

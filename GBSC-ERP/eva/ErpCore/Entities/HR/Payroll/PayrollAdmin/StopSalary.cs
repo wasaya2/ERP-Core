@@ -11,6 +11,7 @@ namespace ErpCore.Entities.HR.Payroll.PayrollAdmin
         public StopSalary()
         {
             MonthlyUserSalaries = new HashSet<MonthlyUserSalary>();
+            UserStopSalaries = new HashSet<UserStopSalary>();
         }
 
         [Key]
@@ -25,5 +26,6 @@ namespace ErpCore.Entities.HR.Payroll.PayrollAdmin
         public PayrollType PayrollType { get; set; }
 
         public IEnumerable<MonthlyUserSalary> MonthlyUserSalaries { get; set; }
+        public IEnumerable<UserStopSalary> UserStopSalaries { get; set; }
     }
 }

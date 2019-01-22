@@ -308,6 +308,7 @@ namespace InventoryService.Controllers
         [ValidateModelAttribute]
         public IActionResult AddPurchaseInvoice([FromBody]PurchaseInvoice model)
         {
+            model.CreatedAt = DateTime.Now;
             model.InvoiceNumber = GenIN();
             invoice_repo.Add(model);
             return new OkObjectResult(new { PurchaseInvoiceID = model.PurchaseInvoiceId });
@@ -588,6 +589,12 @@ namespace InventoryService.Controllers
         public IEnumerable<GRN> GetGRNsByMonth([FromRoute]DateTime date)
         {
             return grn_repo.GetGRNsByMonth(date);
+        }
+
+        [HttpGet("GetPurchaseInvoicesByMonth/{date}", Name = "GetPurchaseInvoicesByMonth")]
+        public IEnumerable<PurchaseInvoice> GetPurchaseInvoicesByMonth([FromRoute]DateTime date)
+        {
+            return invoice_repo.GetList(a => a.CreatedAt.Value.Month == date.Month && a.CreatedAt.Value.Year == date.Year, b => b.GRN).OrderByDescending(a => a.PurchaseInvoiceId);
         }
 
         #endregion

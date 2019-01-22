@@ -31,13 +31,11 @@ namespace ETrackerService.ViewModels
 
         public string Description { get; set; }
 
+        public double? Quantity { get; set; }
+
         public double? UnitPrice { get; set; }
 
         public double? PackTypeInPackageType { get; set; } //How many pouches in one carton //How many tablets in one box 
-
-        public string Dose { get; set; }
-
-        public double? MinLevel { get; set; }
 
         public double? CostPrice { get; set; }
 

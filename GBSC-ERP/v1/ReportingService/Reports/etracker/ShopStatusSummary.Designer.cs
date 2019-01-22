@@ -75,7 +75,6 @@
             this.vendorLogo = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.vendorLogo2 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -189,6 +188,7 @@
             this.xrTableCell78 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell79 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell80 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.subsectionid = new DevExpress.XtraReports.Parameters.Parameter();
             this.sectionid = new DevExpress.XtraReports.Parameters.Parameter();
             this.territoryid = new DevExpress.XtraReports.Parameters.Parameter();
@@ -201,8 +201,8 @@
             this.userid = new DevExpress.XtraReports.Parameters.Parameter();
             this.startdate = new DevExpress.XtraReports.Parameters.Parameter();
             this.enddate = new DevExpress.XtraReports.Parameters.Parameter();
-            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.GroupHeader2 = new DevExpress.XtraReports.UI.GroupHeaderBand();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -215,16 +215,16 @@
             this.TopMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.vendorLogo,
             this.xrLabel1});
-            this.TopMargin.HeightF = 82F;
+            this.TopMargin.HeightF = 97.31089F;
             this.TopMargin.Name = "TopMargin";
             // 
             // vendorLogo
             // 
             this.vendorLogo.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopLeft;
             this.vendorLogo.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("vendorLogo.ImageSource"));
-            this.vendorLogo.LocationFloat = new DevExpress.Utils.PointFloat(0F, 10.00001F);
+            this.vendorLogo.LocationFloat = new DevExpress.Utils.PointFloat(10F, 10F);
             this.vendorLogo.Name = "vendorLogo";
-            this.vendorLogo.SizeF = new System.Drawing.SizeF(193.6699F, 50.64423F);
+            this.vendorLogo.SizeF = new System.Drawing.SizeF(123.5466F, 77.31089F);
             this.vendorLogo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
             this.vendorLogo.StylePriority.UseBorderColor = false;
             this.vendorLogo.StylePriority.UseBorders = false;
@@ -233,7 +233,7 @@
             // xrLabel1
             // 
             this.xrLabel1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(557.0002F, 10.00001F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(559.0002F, 24.16668F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel1.SizeF = new System.Drawing.SizeF(796.9998F, 50.64424F);
@@ -246,21 +246,9 @@
             // BottomMargin
             // 
             this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.vendorLogo2});
-            this.BottomMargin.HeightF = 106.3277F;
+            this.xrLabel2});
+            this.BottomMargin.HeightF = 48.04901F;
             this.BottomMargin.Name = "BottomMargin";
-            // 
-            // vendorLogo2
-            // 
-            this.vendorLogo2.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopLeft;
-            this.vendorLogo2.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("vendorLogo2.ImageSource"));
-            this.vendorLogo2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 16.32767F);
-            this.vendorLogo2.Name = "vendorLogo2";
-            this.vendorLogo2.SizeF = new System.Drawing.SizeF(118.3333F, 31.0789F);
-            this.vendorLogo2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
-            this.vendorLogo2.StylePriority.UseBorderColor = false;
-            this.vendorLogo2.StylePriority.UseBorders = false;
-            this.vendorLogo2.StylePriority.UsePadding = false;
             // 
             // Detail
             // 
@@ -1827,98 +1815,6 @@
             this.xrTableCell80.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell80.Weight = 0.53492459988626984D;
             // 
-            // subsectionid
-            // 
-            this.subsectionid.AllowNull = true;
-            this.subsectionid.Description = "Subsection Id";
-            this.subsectionid.Name = "subsectionid";
-            this.subsectionid.Type = typeof(int);
-            this.subsectionid.Visible = false;
-            // 
-            // sectionid
-            // 
-            this.sectionid.AllowNull = true;
-            this.sectionid.Description = "Section Id";
-            this.sectionid.Name = "sectionid";
-            this.sectionid.Type = typeof(int);
-            this.sectionid.Visible = false;
-            // 
-            // territoryid
-            // 
-            this.territoryid.AllowNull = true;
-            this.territoryid.Description = "Territory Id";
-            this.territoryid.Name = "territoryid";
-            this.territoryid.Type = typeof(int);
-            this.territoryid.Visible = false;
-            // 
-            // areaid
-            // 
-            this.areaid.AllowNull = true;
-            this.areaid.Description = "Area Ia";
-            this.areaid.Name = "areaid";
-            this.areaid.Type = typeof(int);
-            this.areaid.Visible = false;
-            // 
-            // cityid
-            // 
-            this.cityid.AllowNull = true;
-            this.cityid.Description = "City Id";
-            this.cityid.Name = "cityid";
-            this.cityid.Type = typeof(int);
-            this.cityid.Visible = false;
-            // 
-            // regionid
-            // 
-            this.regionid.AllowNull = true;
-            this.regionid.Description = "Region Id";
-            this.regionid.Name = "regionid";
-            this.regionid.Type = typeof(int);
-            this.regionid.Visible = false;
-            // 
-            // distributorid
-            // 
-            this.distributorid.AllowNull = true;
-            this.distributorid.Description = "Distributor Id";
-            this.distributorid.Name = "distributorid";
-            this.distributorid.Type = typeof(int);
-            this.distributorid.Visible = false;
-            // 
-            // category
-            // 
-            this.category.AllowNull = true;
-            this.category.Description = "Category";
-            this.category.Name = "category";
-            this.category.Visible = false;
-            // 
-            // classification
-            // 
-            this.classification.AllowNull = true;
-            this.classification.Description = "Classification";
-            this.classification.Name = "classification";
-            this.classification.Visible = false;
-            // 
-            // userid
-            // 
-            this.userid.AllowNull = true;
-            this.userid.Description = "User Id";
-            this.userid.Name = "userid";
-            this.userid.Type = typeof(int);
-            this.userid.Visible = false;
-            // 
-            // startdate
-            // 
-            this.startdate.AllowNull = true;
-            this.startdate.Description = "Start Date";
-            this.startdate.Name = "startdate";
-            this.startdate.Type = typeof(System.DateTime);
-            // 
-            // enddate
-            // 
-            this.enddate.AllowNull = true;
-            this.enddate.Description = "End Date";
-            this.enddate.Name = "enddate";
-            this.enddate.Type = typeof(System.DateTime);
-            // 
             // sqlDataSource1
             // 
             this.sqlDataSource1.ConnectionName = "ERPDB_Connection";
@@ -2039,12 +1935,117 @@
             masterDetailInfo1});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
+            // subsectionid
+            // 
+            this.subsectionid.AllowNull = true;
+            this.subsectionid.Description = "Subsection Id";
+            this.subsectionid.Name = "subsectionid";
+            this.subsectionid.Type = typeof(int);
+            this.subsectionid.Visible = false;
+            // 
+            // sectionid
+            // 
+            this.sectionid.AllowNull = true;
+            this.sectionid.Description = "Section Id";
+            this.sectionid.Name = "sectionid";
+            this.sectionid.Type = typeof(int);
+            this.sectionid.Visible = false;
+            // 
+            // territoryid
+            // 
+            this.territoryid.AllowNull = true;
+            this.territoryid.Description = "Territory Id";
+            this.territoryid.Name = "territoryid";
+            this.territoryid.Type = typeof(int);
+            this.territoryid.Visible = false;
+            // 
+            // areaid
+            // 
+            this.areaid.AllowNull = true;
+            this.areaid.Description = "Area Ia";
+            this.areaid.Name = "areaid";
+            this.areaid.Type = typeof(int);
+            this.areaid.Visible = false;
+            // 
+            // cityid
+            // 
+            this.cityid.AllowNull = true;
+            this.cityid.Description = "City Id";
+            this.cityid.Name = "cityid";
+            this.cityid.Type = typeof(int);
+            this.cityid.Visible = false;
+            // 
+            // regionid
+            // 
+            this.regionid.AllowNull = true;
+            this.regionid.Description = "Region Id";
+            this.regionid.Name = "regionid";
+            this.regionid.Type = typeof(int);
+            this.regionid.Visible = false;
+            // 
+            // distributorid
+            // 
+            this.distributorid.AllowNull = true;
+            this.distributorid.Description = "Distributor Id";
+            this.distributorid.Name = "distributorid";
+            this.distributorid.Type = typeof(int);
+            this.distributorid.Visible = false;
+            // 
+            // category
+            // 
+            this.category.AllowNull = true;
+            this.category.Description = "Category";
+            this.category.Name = "category";
+            this.category.Visible = false;
+            // 
+            // classification
+            // 
+            this.classification.AllowNull = true;
+            this.classification.Description = "Classification";
+            this.classification.Name = "classification";
+            this.classification.Visible = false;
+            // 
+            // userid
+            // 
+            this.userid.AllowNull = true;
+            this.userid.Description = "User Id";
+            this.userid.Name = "userid";
+            this.userid.Type = typeof(int);
+            this.userid.Visible = false;
+            // 
+            // startdate
+            // 
+            this.startdate.AllowNull = true;
+            this.startdate.Description = "Start Date";
+            this.startdate.Name = "startdate";
+            this.startdate.Type = typeof(System.DateTime);
+            // 
+            // enddate
+            // 
+            this.enddate.AllowNull = true;
+            this.enddate.Description = "End Date";
+            this.enddate.Name = "enddate";
+            this.enddate.Type = typeof(System.DateTime);
+            // 
             // GroupHeader2
             // 
             this.GroupHeader2.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable1});
             this.GroupHeader2.HeightF = 40.5F;
             this.GroupHeader2.Name = "GroupHeader2";
+            // 
+            // xrLabel2
+            // 
+            this.xrLabel2.AutoWidth = true;
+            this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "LocalDateTimeNow()")});
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(1098.459F, 10F);
+            this.xrLabel2.Multiline = true;
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(257.5406F, 23F);
+            this.xrLabel2.Text = "xrLabel2";
+            this.xrLabel2.TextFormatString = "{0:dddd, d MMMM, yyyy h:mm tt}";
             // 
             // ShopStatusSummary
             // 
@@ -2060,7 +2061,7 @@
             this.DataSource = this.sqlDataSource1;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
             this.Landscape = true;
-            this.Margins = new System.Drawing.Printing.Margins(22, 22, 82, 106);
+            this.Margins = new System.Drawing.Printing.Margins(22, 22, 97, 48);
             this.PageHeight = 850;
             this.PageWidth = 1400;
             this.PaperKind = System.Drawing.Printing.PaperKind.Legal;
@@ -2206,7 +2207,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell78;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell79;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell80;
-        private DevExpress.XtraReports.UI.XRPictureBox vendorLogo2;
         private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
         private DevExpress.XtraReports.Parameters.Parameter subsectionid;
         private DevExpress.XtraReports.Parameters.Parameter sectionid;
@@ -2221,5 +2221,6 @@
         private DevExpress.XtraReports.Parameters.Parameter startdate;
         private DevExpress.XtraReports.Parameters.Parameter enddate;
         private DevExpress.XtraReports.UI.GroupHeaderBand GroupHeader2;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
     }
 }

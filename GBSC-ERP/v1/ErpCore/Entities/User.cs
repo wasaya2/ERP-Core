@@ -33,6 +33,7 @@ namespace ErpCore.Entities
             PaySlips = new HashSet<PaySlip>();
             CompensationTransactions = new HashSet<CompensationTransaction>();
             UserStopSalaries = new HashSet<UserStopSalary>();
+            MasterPayrolls = new HashSet<MasterPayroll>();
 
             //Tax
             TaxableIncomeAdjustments = new HashSet<TaxableIncomeAdjustment>();
@@ -215,9 +216,7 @@ namespace ErpCore.Entities
         public IEnumerable<UserStopSalary> UserStopSalaries { get; set; }
         public IEnumerable<PaySlip> PaySlips { get; set; }
         public IEnumerable<CompensationTransaction> CompensationTransactions { get; set; }
-
-        public long? MasterPayrollId { get; set; }
-        public MasterPayroll MasterPayroll { get; set; }
+        public IEnumerable<MasterPayroll> MasterPayrolls { get; set; }
 
         public IEnumerable<UserAssignRoster> UserAssignRosters { get; set; }
 

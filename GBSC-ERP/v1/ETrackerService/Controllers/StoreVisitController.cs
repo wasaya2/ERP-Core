@@ -143,10 +143,10 @@ namespace eTrackerInfrastructure.Controllers
         public IEnumerable<OutletStock> GetOutletStockList(long storeVisitId) => Repo.GetOutletStocks(storeVisitId);
 
         [HttpGet("GetOrders/{storeVisitId}")]
-        public IEnumerable<OrderTakingViewModel> GetOrders(long storeVisitId) => Repo.GetVisitOrders(storeVisitId);
+        public IEnumerable<GroupedItems> GetOrders(long storeVisitId) => Repo.GetVisitOrders(storeVisitId);
 
         [HttpGet("GetInventories/{storeVisitId}")]
-        public IEnumerable<OrderTakingViewModel> GetInventories(long storeVisitId) => Repo.GetVisitInventories(storeVisitId);
+        public IEnumerable<InventoryTakingViewModel> GetInventories(long storeVisitId) => Repo.GetVisitInventories(storeVisitId);
 
         [HttpGet("CompetativeStocks/{storeVisitId}")]
         public IEnumerable<CompetatorStock> CompetativeStockList(long storeVisitId) => Repo.CompetativeStocks(storeVisitId);

@@ -13,6 +13,9 @@ namespace ErpCore.Entities.InventorySetup
 
         [Key]
         public long PackSizeId { get; set; }
+
+        public string PackSizeCode { get; set; }
+
         public double? Size { get; set; }
 
     }

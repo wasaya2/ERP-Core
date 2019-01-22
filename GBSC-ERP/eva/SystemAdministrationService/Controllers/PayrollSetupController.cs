@@ -788,7 +788,7 @@ namespace SystemAdministrationService.Controllers
         }
 
         [HttpGet("GetMasterPayroll/{id}", Name = "GetMasterPayroll")]
-        public MasterPayroll GetMasterPayroll(long id) => MasterPayroll_repo.GetFirst(a => a.MasterPayrollId == id);
+        public MasterPayroll GetMasterPayroll(long id) => MasterPayroll_repo.GetFirst(a => a.MasterPayrollId == id, b=> b.MasterPayrollDetails);
 
         [HttpPost("AddMasterPayroll", Name = "AddMasterPayroll")]
         [ValidateModelAttribute]
@@ -802,8 +802,16 @@ namespace SystemAdministrationService.Controllers
         [ValidateModelAttribute]
         public IActionResult UpdateMasterPayroll([FromBody]MasterPayroll model)
         {
-            MasterPayroll_repo.Update(model);
+            try
+            {
+                MasterPayrollDetail_repo.DeleteRange(MasterPayrollDetail_repo.GetAll().Where(a => a.MasterPayrollId == model.MasterPayrollId));
+                MasterPayroll_repo.Update(model);
             return new OkObjectResult(new { MasterPayrollID = model.MasterPayrollId });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         [HttpDelete("DeleteMasterPayroll/{id}")]
@@ -1137,7 +1145,7 @@ namespace SystemAdministrationService.Controllers
         }
 
         [HttpGet("GetSalaryStructure/{id}", Name = "GetSalaryStructure")]
-        public SalaryStructure GetSalaryStructure(long id) => SalaryStructure_repo.GetFirst(a => a.SalaryStructureId == id);
+        public SalaryStructure GetSalaryStructure(long id) => SalaryStructure_repo.GetFirst(a => a.SalaryStructureId == id, b=> b.SalaryStructureDetails);
 
         [HttpPost("AddSalaryStructure", Name = "AddSalaryStructure")]
         [ValidateModelAttribute]
@@ -1151,8 +1159,16 @@ namespace SystemAdministrationService.Controllers
         [ValidateModelAttribute]
         public IActionResult UpdateSalaryStructure([FromBody]SalaryStructure model)
         {
-            SalaryStructure_repo.Update(model);
-            return new OkObjectResult(new { SalaryStructureID = model.SalaryStructureId });
+            try
+            {
+                SalaryStructureDetail_repo.DeleteRange(SalaryStructureDetail_repo.GetAll().Where(a => a.SalaryStructureId == model.SalaryStructureId));
+                SalaryStructure_repo.Update(model);
+                return new OkObjectResult(new { SalaryStructureID = model.SalaryStructureId });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         [HttpDelete("DeleteSalaryStructure/{id}")]
@@ -1462,11 +1478,11 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetIncomeTaxRules", Name = "GetIncomeTaxRules")]
         public IEnumerable<IncomeTaxRule> GetIncomeTaxRules()
         {
-            return IncomeTaxRule_repo.GetAll().OrderByDescending(a=>a.IncomeTaxRuleId);
+            return IncomeTaxRule_repo.GetAll(a=> a.TaxSchedules, b=> b.TaxReliefs).OrderByDescending(a=>a.IncomeTaxRuleId);
         }
 
         [HttpGet("GetIncomeTaxRule/{id}", Name = "GetIncomeTaxRule")]
-        public IncomeTaxRule GetIncomeTaxRule(long id) => IncomeTaxRule_repo.GetFirst(a => a.IncomeTaxRuleId == id);
+        public IncomeTaxRule GetIncomeTaxRule(long id) => IncomeTaxRule_repo.GetFirst(a => a.IncomeTaxRuleId == id, b=> b.TaxSchedules, c=> c.TaxReliefs);
 
         [HttpPost("AddIncomeTaxRule", Name = "AddIncomeTaxRule")]
         [ValidateModelAttribute]
@@ -1480,8 +1496,17 @@ namespace SystemAdministrationService.Controllers
         [ValidateModelAttribute]
         public IActionResult UpdateIncomeTaxRule([FromBody]IncomeTaxRule model)
         {
-            IncomeTaxRule_repo.Update(model);
-            return new OkObjectResult(new { IncomeTaxRuleID = model.IncomeTaxRuleId });
+            try
+            {
+                TaxSchedule_repo.DeleteRange(TaxSchedule_repo.GetAll().Where(a => a.IncomeTaxRuleId == model.IncomeTaxRuleId));
+                TaxRelief_repo.DeleteRange(TaxRelief_repo.GetAll().Where(a => a.IncomeTaxRuleId == model.IncomeTaxRuleId));
+                IncomeTaxRule_repo.Update(model);
+                return new OkObjectResult(new { IncomeTaxRuleID = model.IncomeTaxRuleId });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         [HttpDelete("DeleteIncomeTaxRule/{id}")]

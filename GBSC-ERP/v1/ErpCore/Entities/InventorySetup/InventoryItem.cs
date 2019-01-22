@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ErpCore.Entities.InventorySetup
 {
@@ -18,10 +19,13 @@ namespace ErpCore.Entities.InventorySetup
             PurchaseOrderItems = new HashSet<PurchaseOrderItem>();
             PurchaseReturnItems = new HashSet<PurchaseReturnItem>();
             GrnItems = new HashSet<GrnItem>();
+            ChildrenProducts = new HashSet<InventoryItem>();
         }
 
         [Key]
         public long InventoryItemId { get; set; }
+
+        public long? ParentProductId { get; set; }
 
         public string Name { get; set; }
 
@@ -37,6 +41,10 @@ namespace ErpCore.Entities.InventorySetup
 
         public double? MinLevel { get; set; }
 
+        public bool? IsCp { get; set; }
+
+        public bool? IsActive { get; set; }
+
         public double? CostPrice { get; set; }
 
         public double? RetailPrice { get; set; }
@@ -45,14 +53,38 @@ namespace ErpCore.Entities.InventorySetup
 
         public double? TradeOfferAmount { get; set; }
 
+        public double? RegularDiscount { get; set; }
+
+        public int MuInRu { get; set; }
+
+        public int MuInPu { get; set; }
+
+        public int MuInSu { get; set; }
+
         public long? BrandId { get; set; }
 
         public Brand Brand { get; set; }
 
-        public long? UnitId { get; set; }
+        public long? MeasurementUnitId { get; set; }
 
-        public Units Unit { get; set; }
-        
+        public long? RateUnitId { get; set; }
+
+        public long? SalesUnitId { get; set; }
+
+        public long? PackageUnitId { get; set; }
+
+        [ForeignKey("MeasurementUnitId")]
+        public Units MeasurementUnit { get; set; }
+
+        [ForeignKey("RateUnitId")]
+        public Units RateUnit { get; set; }
+
+        [ForeignKey("SalesUnitId")]
+        public Units SalesUnit { get; set; }
+
+        [ForeignKey("PackageUnitId")]
+        public Units PackageUnit { get; set; }
+
         public long? PackTypeId { get; set; }
 
         public PackType PackType { get; set; }
@@ -80,6 +112,10 @@ namespace ErpCore.Entities.InventorySetup
         public long? InventoryId { get; set; }
 
         public Inventory Inventory { get; set; }
+
+        public InventoryItem ParentProduct { get; set; }
+
+        public IEnumerable<InventoryItem> ChildrenProducts { get; set; }
 
         //Sales
         public IEnumerable<SalesIndentItem> SalesIndentItems { get; set; }

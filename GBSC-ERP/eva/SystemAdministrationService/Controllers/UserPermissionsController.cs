@@ -6,6 +6,7 @@ using ErpCore.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SystemAdministrationService.Repos.Interfaces;
+using SystemAdministrationService.ViewModels;
 
 namespace SystemAdministrationService.Controllers
 {
@@ -20,11 +21,10 @@ namespace SystemAdministrationService.Controllers
             permissionRepo = _permissionRepo;
         }
 
-        [HttpGet("FeaturePermissions/{userid}/{RoleId}/{featureid}")]
-        public IEnumerable<Permission> FeaturePermissions(long userid, long RoleId, long featureid)
+        [HttpGet("FeaturePermissions/{userid}/{feature}/{module}")]
+        public IList<string> FeaturePermissions(long userid, string feature, string module)
         {
-            IEnumerable<Permission> per = permissionRepo.GetFeaturePermissions(userid, RoleId, featureid).Permissions.ToList();
-            return per;
+            return permissionRepo.GetFeaturePermissions(userid, feature, module);
         }
 
 

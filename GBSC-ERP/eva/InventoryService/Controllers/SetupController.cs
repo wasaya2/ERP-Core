@@ -50,6 +50,7 @@ namespace InventoryService.Controllers
         private IReturnReasonRepository Reason_repo;
         private IInventoryRepository Inv_repo;
         private IInventoryCurrencyRepository Currency_repo;
+        private IGeneralSKURepository gen_repo;
 
 
         public SetupController(
@@ -83,7 +84,8 @@ namespace InventoryService.Controllers
             ISubsectionRepository _subsectionRepo,
             IReturnReasonRepository repo27,
             IInventoryRepository repo28,
-            IInventoryCurrencyRepository repo29
+            IInventoryCurrencyRepository repo29,
+            IGeneralSKURepository repo30
             )
 
         {
@@ -118,6 +120,7 @@ namespace InventoryService.Controllers
             Reason_repo = repo27;
             Inv_repo = repo28;
             Currency_repo = repo29;
+            gen_repo = repo30;
         }
 
         //[HttpGet("GetInventorySetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetInventorySetupPermissions")]
@@ -155,7 +158,7 @@ namespace InventoryService.Controllers
                                                                          e => e.PackSize,
                                                                          f => f.PackType,
                                                                          g => g.ProductType,
-                                                                         h => h.Unit);
+                                                                         h => h.MeasurementUnit);
 
         [HttpGet("GetInventoryItemByCode/{code}", Name = "GetInventoryItemByCode")]
         public InventoryItem GetInventoryItemByCode([FromRoute]string code) => _repo.GetFirst(i => i.ItemCode == code,
@@ -166,7 +169,7 @@ namespace InventoryService.Controllers
                                                                                                 e => e.PackSize,
                                                                                                 f => f.PackType,
                                                                                                 g => g.ProductType,
-                                                                                                h => h.Unit);
+                                                                                                h => h.MeasurementUnit);
 
         [HttpPut("UpdateInventoryItem", Name = "UpdateInventoryItem")]
         [ValidateModelAttribute]
@@ -176,27 +179,10 @@ namespace InventoryService.Controllers
             return new OkObjectResult(new { ItemID = model.InventoryItemId });
         }
 
-        private string GenIC()
-        {
-            try
-            {
-                string lastItem = _repo.GetLast().ItemCode;
-                string number = Regex.Match(lastItem, "[0-9]+$").Value;
-
-                return lastItem.Substring(0, lastItem.Length - number.Length) +
-                       (long.Parse(number) + 1).ToString().PadLeft(number.Length, '0');
-            }
-            catch (NullReferenceException)
-            {
-                return "IC000001";
-            }
-        }
-
         [HttpPost("AddInventoryItem", Name = "AddInventoryItem")]
         [ValidateModelAttribute]
         public IActionResult AddInventoryItem([FromBody]InventoryItem model)
         {
-            model.ItemCode = GenIC();
             _repo.Add(model);
             return new OkObjectResult(new { ItemID = model.InventoryItemId });
         }
@@ -781,32 +767,10 @@ namespace InventoryService.Controllers
             return new OkObjectResult(new { CustomerID = model.CustomerId });
         }
 
-        private static string GenCRN()
-        {
-            var context = new ApplicationDbContext();
-            var lastCustomer = context.Customers.LastOrDefault();
-            try
-            {
-                string value = lastCustomer.CRN;
-                string number = Regex.Match(value, "[0-9]+$").Value;
-
-                return value.Substring(0, value.Length - number.Length) +
-                       (long.Parse(number) + 1).ToString().PadLeft(number.Length, '0');
-            }
-            catch (NullReferenceException)
-            {
-                return "CRN00001";
-            }
-        }
-
         [HttpPost("AddCustomer", Name = "AddCustomer")]
         [ValidateModelAttribute]
         public IActionResult AddCustomer([FromBody]Customer model)
         {
-            if (model.CRN == null)
-            {
-                model.CRN = GenCRN();
-            }
             model.RegDate = DateTime.Now;
             Customer_repo.Add(model);
             return new OkObjectResult(new { CustomerID = model.CustomerId });
@@ -1017,29 +981,11 @@ namespace InventoryService.Controllers
             return new OkObjectResult(new { DistributorID = model.DistributorId });
         }
 
-        private static string GenDRN()
-        {
-            var context = new ApplicationDbContext();
-            var last = context.Distributors.LastOrDefault();
-            try
-            {
-                string value = last.DRN;
-                string number = Regex.Match(value, "[0-9]+$").Value;
-
-                return value.Substring(0, value.Length - number.Length) +
-                       (long.Parse(number) + 1).ToString().PadLeft(number.Length, '0');
-            }
-            catch (NullReferenceException)
-            {
-                return "DRN00001";
-            }
-        }
 
         [HttpPost("AddDistributor", Name = "AddDistributor")]
         [ValidateModelAttribute]
         public IActionResult AddDistributor([FromBody]Distributor model)
         {
-            model.DRN = GenDRN();
             Distributor_repo.Add(model);
             return new OkObjectResult(new { DistributorID = model.DistributorId });
         }
@@ -1591,29 +1537,10 @@ namespace InventoryService.Controllers
             return new OkObjectResult(new { SupplierID = model.SupplierId });
         }
 
-        private static string GenSC()
-        {
-            var context = new ApplicationDbContext();
-            Supplier lastSupplier = context.Suppliers.LastOrDefault();
-            try
-            {
-                string value = lastSupplier.Code;
-                string number = Regex.Match(value, "[0-9]+$").Value;
-
-                return value.Substring(0, value.Length - number.Length) +
-                       (long.Parse(number) + 1).ToString().PadLeft(number.Length, '0');
-            }
-            catch (NullReferenceException)
-            {
-                return "SC00001";
-            }
-        }
-
         [HttpPost("AddSupplier", Name = "AddSupplier")]
         [ValidateModelAttribute]
         public IActionResult AddSupplier([FromBody]Supplier model)
         {
-            model.Code = GenSC();
             Supplier_repo.Add(model);
             return new OkObjectResult(new { SupplierID = model.SupplierId });
         }
@@ -1684,6 +1611,23 @@ namespace InventoryService.Controllers
             IEnumerable<Inventory> iv = Inv_repo.GetAll(a => a.InventoryItem).OrderByDescending(a => a.InventoryId);
             iv = iv.OrderByDescending(a => a.InventoryId);
             return iv;
+        }
+
+        [HttpGet("GetInventoriesByCompany/{companyid}", Name = "GetInventoriesByCompany")]
+        public IEnumerable<Inventory> GetInventoriesByCompany([FromRoute]long companyid)
+        {
+            return Inv_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid).OrderByDescending(a => a.InventoryId).OrderByDescending(a => a.InventoryId);
+        }
+
+        [HttpPost("UpdateInventoryList", Name = "UpdateInventoryList")]
+        public IEnumerable<Inventory> UpdateInventoryList([FromBody]IList<long> ids)
+        {
+            IList<Inventory> inventories = new List<Inventory>();
+            foreach(long id in ids)
+            {
+                inventories.Add(Inv_repo.Find(id));
+            }
+            return inventories.OrderByDescending(a => a.InventoryId);
         }
 
         [HttpGet("GetInventory/{id}", Name = "GetInventory")]
@@ -1780,6 +1724,56 @@ namespace InventoryService.Controllers
             Currency_repo.Delete(inventoryCurrency);
             return Ok();
         }
+        #endregion
+
+        #region General SKU
+
+        [HttpGet("GetGeneralSKUs", Name = "GetGeneralSKUs")]
+        public IEnumerable<GeneralSKU> GetGeneralSKUs()
+        {
+            return gen_repo.GetAll().ToList().OrderByDescending(a => a.GeneralSKUId);
+        }
+
+        [HttpGet("GetGeneralSKUsByCompany/{companyid}", Name = "GetGeneralSKUsByCompany")]
+        public IEnumerable<GeneralSKU> GetGeneralSKUsByCompany([FromRoute]long companyid)
+        {
+            return gen_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid).OrderByDescending(a => a.GeneralSKUId);
+        }
+
+        [HttpGet("GetGeneralSKU/{id}", Name = "GetGeneralSKU")]
+        public GeneralSKU GetGeneralSKU([FromRoute]long id)
+        {
+            return gen_repo.GetFirst(a => a.GeneralSKUId == id);
+        }
+
+        [HttpPost("AddGeneralSKU", Name = "AddGeneralSKU")]
+        [ValidateModelAttribute]
+        public IActionResult AddGeneralSKU([FromBody]GeneralSKU model)
+        {
+            gen_repo.Add(model);
+            return new OkObjectResult(new { GeneralSKUId = model.GeneralSKUId });
+        }
+
+        [HttpPut("UpdateGeneralSKU", Name = "UpdateGeneralSKU")]
+        [ValidateModelAttribute]
+        public IActionResult UpdateGeneralSKU([FromBody]GeneralSKU model)
+        {
+            gen_repo.Update(model);
+            return new OkObjectResult(new { GeneralSKUId = model.GeneralSKUId });
+        }
+
+        [HttpDelete("DeleteGeneralSKU/{id}", Name = "DeleteGeneralSKU")]
+        public IActionResult DeleteGeneralSKU([FromRoute]long id)
+        {
+            GeneralSKU gsku = gen_repo.GetFirst(a => a.GeneralSKUId == id);
+            if (gsku == null)
+            {
+                return BadRequest();
+            }
+            gen_repo.Delete(gsku);
+            return Ok();
+        }
+
         #endregion
     }
 }

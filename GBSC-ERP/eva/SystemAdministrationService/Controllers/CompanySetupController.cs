@@ -20,25 +20,30 @@ namespace SystemAdministrationService.Controllers
         private IModuleRepository module_repo;
         private ICompanyRepository comp_repo;
         private IUserRepository user_repo;
+        private IFeatureRepository fea_repo;
 
-        public CompanySetupController(IModuleRepository _module_repo, ICompanyRepository _comp_repo, IUserRepository _user_repo)
+        public CompanySetupController(IModuleRepository _module_repo, ICompanyRepository _comp_repo, IUserRepository _user_repo, IFeatureRepository fearepo)
         {
             module_repo = _module_repo;
             comp_repo = _comp_repo;
             user_repo = _user_repo;
+            fea_repo = fearepo;
         }
 
         [HttpGet("GetCompanyInfo/{CompanyId}")]
         public CompanyInfoViewModel GetCompanyInfo(long CompanyId)
         {
             var company = comp_repo.Find(CompanyId);
-            var modules = module_repo.GetList(m => m.CompanyId == CompanyId).Select(c => c.Name).ToList();
+            var modules = module_repo.GetList(m => m.CompanyId == CompanyId);
+            var modulenames = modules.Select(a => a.Name).ToList();
+            var moduleids = modules.Select(a => a.ModuleId).ToList();
 
             return new CompanyInfoViewModel
             {
                 Name = company.Name,
                 NumberOfEmployees = company.NumberOfEmployees ?? 0,
-                Modules = modules
+                Modules = modulenames,
+                ModuleIds = moduleids
             };
         }
 
@@ -86,13 +91,12 @@ namespace SystemAdministrationService.Controllers
             {
                 foreach (var feature in features)
                 {
-
                     var feat = new Feature
                     {
+                        CompanyId = module.CompanyId,
                         ModuleId = module.ModuleId,
                         Name = feature
                     };
-
                     featureList.Add(feat);
                 }
 
@@ -128,5 +132,81 @@ namespace SystemAdministrationService.Controllers
 
             return null;
         }
+
+        [HttpPost("GetAllModuleFeatures", Name = "GetAllModuleFeatures")]
+        public IEnumerable<Feature> GetAllModuleFeatures([FromBody]IList<long> moduleids)
+        {
+            var AllFeatures = ReadJson();
+
+            List<string> features = new List<string>();
+            IList<Feature> featureList = new List<Feature>();
+
+            foreach (long moduleid in moduleids)
+            {
+                Module module = module_repo.Find(moduleid);
+
+                if (module.Name == "Human Resource Management")
+                {
+                    features.AddRange(AllFeatures.HRMS);
+                }
+                if (module.Name == "Hospital Management System")
+                {
+                    features.AddRange(AllFeatures.HIMS);
+                }
+                if (module.Name == "Payroll Management System")
+                {
+                    features.AddRange(AllFeatures.Payroll);
+                }
+                if (module.Name == "Lab Information System")
+                {
+                    features.AddRange(AllFeatures.Lab);
+                }
+                if (module.Name == "Inventory")
+                {
+                    features.AddRange(AllFeatures.Inventory);
+                }
+                if (module.Name == "eTracker")
+                {
+                    features.AddRange(AllFeatures.ETracker);
+                }
+                if (module.Name == "Security Admin")
+                {
+                    features.AddRange(AllFeatures.Security);
+                }
+
+                if (features != null)
+                {
+                    foreach (var feature in features)
+                    {
+
+                        var feat = new Feature
+                        {
+                            CompanyId = module.CompanyId,
+                            ModuleId = module.ModuleId,
+                            Name = feature
+                        };
+
+                        featureList.Add(feat);
+                    }
+                }
+            }
+            return featureList;
+        }
+
+        [HttpPost("AddCompanyFeatures", Name = "AddCompanyFeatures")]
+        public IActionResult AddCompanyFeature([FromBody]IEnumerable<Feature> features)
+        {
+            try
+            {
+                fea_repo.AddRange(features);
+                return Ok("Company Features Updated");
+            }
+            catch (Exception)
+            {
+                return BadRequest("Unable to update company features");
+            }
+        }
+
+
     }
 }

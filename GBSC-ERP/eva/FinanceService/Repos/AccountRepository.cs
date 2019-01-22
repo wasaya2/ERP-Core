@@ -18,7 +18,7 @@ namespace FinanceService.Repos
             {
                 Company comp = Db.Companies.Find(model.CompanyId);
                 comp.NTN = model.NTN;
-                comp.AssestsAccountId = model.AssestsAccountId;
+                comp.AssetsAccountId = model.AssestsAccountId;
                 comp.ExpenseAccountId = model.ExpenseAccountId;
                 comp.RevenueAccountId = model.RevenueAccountId;
                 comp.LiabilitiesAccountId = model.LiabilitiesAccountId;

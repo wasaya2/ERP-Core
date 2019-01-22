@@ -55,6 +55,12 @@ namespace FinanceService.Controllers
             return fin_repo.GetAll().OrderByDescending(a => a.FinancialYearId);
         }
 
+        [HttpGet("GetFinancialYearsByCompany/{companyid}", Name = "GetFinancialYearsByCompany")]
+        public IEnumerable<FinancialYear> GetFinancialYearsByCompany([FromRoute]long companyid)
+        {
+            return fin_repo.GetList(a => a.CompanyId !=null && a.CompanyId == companyid).OrderByDescending(a => a.FinancialYearId);
+        }
+
         [HttpGet("GetFinancialYear/{id}", Name = "GetFinancialYear")]
         public FinancialYear GetFinancialYear(long id) => fin_repo.GetFirst(a => a.FinancialYearId == id);
 
@@ -66,7 +72,7 @@ namespace FinanceService.Controllers
             {
                 try
                 {
-                    if (model.FinancialYearId == fin_repo.GetFirst(a => a.IsActive == true).FinancialYearId)
+                    if (model.FinancialYearId == fin_repo.GetFirst(a => a.CompanyId != null && a.CompanyId == model.CompanyId && a.IsActive == true).FinancialYearId)
                         model.IsActive = true;
                     else
                         model.IsActive = false;
@@ -89,7 +95,7 @@ namespace FinanceService.Controllers
             {
                 try
                 {
-                    if (fin_repo.GetFirst(a => a.IsActive == true) == null)
+                    if (fin_repo.GetFirst(a => a.CompanyId != null && a.CompanyId == model.CompanyId && a.IsActive == true) == null)
                         model.IsActive = true;
                     else
                         model.IsActive = false;
@@ -127,6 +133,12 @@ namespace FinanceService.Controllers
             IEnumerable<VoucherType> ap = vou_repo.GetAll();
             ap = ap.OrderByDescending(a => a.VoucherTypeId);
             return ap;
+        }
+
+        [HttpGet("GetVoucherTypesByCompany/{companyid}", Name = "GetVoucherTypesByCompany")]
+        public IEnumerable<VoucherType> GetVoucherTypesByCompany([FromRoute]long companyid)
+        {
+            return vou_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid).ToList().OrderByDescending(a => a.VoucherTypeId);
         }
 
         [HttpGet("GetVoucherType/{id}", Name = "GetVoucherType")]

@@ -27,7 +27,5 @@ namespace SystemAdministrationService.Repos.Interfaces
         bool UpdateReligion(long UserId, long ReligionId);
         bool UpdateDepartment(long UserId, long DepartmentId);
         bool UpdateRole(long UserId, long RoleId);
-
-        UserPermissionsViewModel GetFeaturePermissions(long UserId, long RoleId, long FeatureId);
     }
 }

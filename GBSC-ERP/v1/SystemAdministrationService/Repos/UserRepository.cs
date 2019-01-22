@@ -14,19 +14,6 @@ namespace SystemAdministrationService.Repos
     public class UserRepository : RepoBase<User>, IUserRepository
     {
 
-        public UserPermissionsViewModel GetFeaturePermissions(long UserId, long RoleId, long FeatureId)
-        {
-            var _permissions = Db.Permissions.Where(p => p.FeatureId == FeatureId && p.RoleId == RoleId && p.UserId == UserId);
-
-            return new UserPermissionsViewModel
-            {
-                Permissions = _permissions.ToList(),
-                UserId = UserId,
-                RoleId = RoleId,
-                FeatureId = FeatureId
-            };
-        }
-
         public List<UserFeaturesViewModel> GetUserFeatures(long userid)
         {
             User usr = Table.Find(userid);

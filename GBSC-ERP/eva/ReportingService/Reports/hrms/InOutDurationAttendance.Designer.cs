@@ -38,14 +38,13 @@
             DevExpress.DataAccess.Sql.QueryParameter queryParameter5 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter6 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter7 = new DevExpress.DataAccess.Sql.QueryParameter();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter8 = new DevExpress.DataAccess.Sql.QueryParameter();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.line2 = new DevExpress.XtraReports.UI.XRLine();
             this.vendorLogo = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.label16 = new DevExpress.XtraReports.UI.XRLabel();
-            this.label17 = new DevExpress.XtraReports.UI.XRLabel();
             this.label18 = new DevExpress.XtraReports.UI.XRLabel();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.vendorLogo2 = new DevExpress.XtraReports.UI.XRPictureBox();
@@ -68,6 +67,7 @@
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.table1 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -81,7 +81,7 @@
             this.startDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.endDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.nullParam = new DevExpress.XtraReports.Parameters.Parameter();
-            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
+            this.departmentId = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.vendorTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
@@ -101,8 +101,6 @@
             this.xrLabel1,
             this.line2,
             this.vendorLogo,
-            this.label16,
-            this.label17,
             this.label18});
             this.TopMargin.HeightF = 195F;
             this.TopMargin.Name = "TopMargin";
@@ -160,35 +158,6 @@
             this.vendorLogo.StylePriority.UseBorderColor = false;
             this.vendorLogo.StylePriority.UseBorders = false;
             this.vendorLogo.StylePriority.UsePadding = false;
-            // 
-            // label16
-            // 
-            this.label16.Font = new System.Drawing.Font("Calibri", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label16.LocationFloat = new DevExpress.Utils.PointFloat(608.5949F, 80.15925F);
-            this.label16.Multiline = true;
-            this.label16.Name = "label16";
-            this.label16.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 3, 0, 100F);
-            this.label16.SizeF = new System.Drawing.SizeF(83.28027F, 18.055F);
-            this.label16.StylePriority.UseFont = false;
-            this.label16.StylePriority.UsePadding = false;
-            this.label16.StylePriority.UseTextAlignment = false;
-            this.label16.Text = "Date";
-            this.label16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // label17
-            // 
-            this.label17.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[sp_InOutDetail].[AttendanceDate]")});
-            this.label17.Font = new System.Drawing.Font("Calibri", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label17.LocationFloat = new DevExpress.Utils.PointFloat(691.8752F, 80.15925F);
-            this.label17.Multiline = true;
-            this.label17.Name = "label17";
-            this.label17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label17.SizeF = new System.Drawing.SizeF(100.2081F, 20.48499F);
-            this.label17.StylePriority.UseFont = false;
-            this.label17.StylePriority.UseTextAlignment = false;
-            this.label17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.label17.TextFormatString = "{0:dd/MM/yyyy}";
             // 
             // label18
             // 
@@ -455,6 +424,48 @@
             this.xrTableCell8.TextFormatString = "{0:h:mm:ss tt}";
             this.xrTableCell8.Weight = 1.0332087308161135D;
             // 
+            // sqlDataSource1
+            // 
+            this.sqlDataSource1.ConnectionName = "ERPDB_Connection";
+            this.sqlDataSource1.Name = "sqlDataSource1";
+            storedProcQuery1.Name = "sp_InOutDetail";
+            queryParameter1.Name = "@startDate";
+            queryParameter1.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter1.Value = new DevExpress.DataAccess.Expression("?startDate", typeof(string));
+            queryParameter2.Name = "@endDate";
+            queryParameter2.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter2.Value = new DevExpress.DataAccess.Expression("?endDate", typeof(string));
+            queryParameter3.Name = "@departmentId";
+            queryParameter3.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter3.Value = new DevExpress.DataAccess.Expression("?departmentId", typeof(long));
+            queryParameter4.Name = "@userId";
+            queryParameter4.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter4.Value = new DevExpress.DataAccess.Expression("?userId", typeof(long));
+            queryParameter5.Name = "@companyid";
+            queryParameter5.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter5.Value = new DevExpress.DataAccess.Expression("?nullParam", typeof(long));
+            queryParameter6.Name = "@countryid";
+            queryParameter6.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter6.Value = new DevExpress.DataAccess.Expression("?nullParam", typeof(long));
+            queryParameter7.Name = "@branchid";
+            queryParameter7.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter7.Value = new DevExpress.DataAccess.Expression("?nullParam", typeof(long));
+            queryParameter8.Name = "@cityid";
+            queryParameter8.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter8.Value = new DevExpress.DataAccess.Expression("?nullParam", typeof(long));
+            storedProcQuery1.Parameters.Add(queryParameter1);
+            storedProcQuery1.Parameters.Add(queryParameter2);
+            storedProcQuery1.Parameters.Add(queryParameter3);
+            storedProcQuery1.Parameters.Add(queryParameter4);
+            storedProcQuery1.Parameters.Add(queryParameter5);
+            storedProcQuery1.Parameters.Add(queryParameter6);
+            storedProcQuery1.Parameters.Add(queryParameter7);
+            storedProcQuery1.Parameters.Add(queryParameter8);
+            storedProcQuery1.StoredProcName = "sp_InOutDetail";
+            this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
+            storedProcQuery1});
+            this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
+            // 
             // table1
             // 
             this.table1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
@@ -553,7 +564,7 @@
             this.xrTableCell9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrTableCell9.StylePriority.UsePadding = false;
             this.xrTableCell9.StylePriority.UseTextAlignment = false;
-            this.xrTableCell9.Text = "Out time";
+            this.xrTableCell9.Text = "Out Time";
             this.xrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell9.Weight = 1.0332087308161135D;
             // 
@@ -566,10 +577,12 @@
             // 
             // userId
             // 
+            this.userId.AllowNull = true;
             this.userId.Description = "userId";
             this.userId.Name = "userId";
             this.userId.Type = typeof(int);
             this.userId.ValueInfo = "0";
+            this.userId.Visible = false;
             // 
             // startDate
             // 
@@ -592,43 +605,14 @@
             this.nullParam.Type = typeof(int);
             this.nullParam.Visible = false;
             // 
-            // sqlDataSource1
+            // departmentId
             // 
-            this.sqlDataSource1.ConnectionName = "ERPDB_Connection";
-            this.sqlDataSource1.Name = "sqlDataSource1";
-            storedProcQuery1.Name = "sp_InOutDetail";
-            queryParameter1.Name = "@userId";
-            queryParameter1.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter1.Value = new DevExpress.DataAccess.Expression("?userId", typeof(int));
-            queryParameter2.Name = "@startDate";
-            queryParameter2.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter2.Value = new DevExpress.DataAccess.Expression("?startDate", typeof(string));
-            queryParameter3.Name = "@endDate";
-            queryParameter3.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter3.Value = new DevExpress.DataAccess.Expression("?endDate", typeof(string));
-            queryParameter4.Name = "@companyid";
-            queryParameter4.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter4.Value = new DevExpress.DataAccess.Expression("?nullParam", typeof(long));
-            queryParameter5.Name = "@countryid";
-            queryParameter5.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter5.Value = new DevExpress.DataAccess.Expression("?nullParam", typeof(long));
-            queryParameter6.Name = "@branchid";
-            queryParameter6.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter6.Value = new DevExpress.DataAccess.Expression("?nullParam", typeof(long));
-            queryParameter7.Name = "@cityid";
-            queryParameter7.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter7.Value = new DevExpress.DataAccess.Expression("?nullParam", typeof(long));
-            storedProcQuery1.Parameters.Add(queryParameter1);
-            storedProcQuery1.Parameters.Add(queryParameter2);
-            storedProcQuery1.Parameters.Add(queryParameter3);
-            storedProcQuery1.Parameters.Add(queryParameter4);
-            storedProcQuery1.Parameters.Add(queryParameter5);
-            storedProcQuery1.Parameters.Add(queryParameter6);
-            storedProcQuery1.Parameters.Add(queryParameter7);
-            storedProcQuery1.StoredProcName = "sp_InOutDetail";
-            this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            storedProcQuery1});
-            this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
+            this.departmentId.AllowNull = true;
+            this.departmentId.Description = "departmentId";
+            this.departmentId.Name = "departmentId";
+            this.departmentId.Type = typeof(int);
+            this.departmentId.ValueInfo = "0";
+            this.departmentId.Visible = false;
             // 
             // InOutDurationAttendance
             // 
@@ -646,7 +630,8 @@
             this.userId,
             this.startDate,
             this.endDate,
-            this.nullParam});
+            this.nullParam,
+            this.departmentId});
             this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.vendorTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
@@ -671,8 +656,6 @@
         private DevExpress.XtraReports.UI.XRTableCell vendorEmptyCell;
         private DevExpress.XtraReports.UI.XRTableCell vendorWebsite;
         private DevExpress.XtraReports.UI.XRPictureBox vendorLogo;
-        private DevExpress.XtraReports.UI.XRLabel label16;
-        private DevExpress.XtraReports.UI.XRLabel label17;
         private DevExpress.XtraReports.UI.XRLabel label18;
     private DevExpress.XtraReports.UI.DetailReportBand DetailReport;
     private DevExpress.XtraReports.UI.DetailBand Detail1;
@@ -701,5 +684,6 @@
     private DevExpress.XtraReports.Parameters.Parameter endDate;
     private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
     private DevExpress.XtraReports.Parameters.Parameter nullParam;
+    private DevExpress.XtraReports.Parameters.Parameter departmentId;
   }
 }

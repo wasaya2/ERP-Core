@@ -13,7 +13,11 @@ namespace ErpCore.Entities.InventorySetup
         
         [Key]
         public long UnitId { get; set; }
+
+        public string UnitCode { get; set; }
+
         public string Description { get; set; }
+
         public string Name { get; set; } //Kg or Liter or pcs
 
     }

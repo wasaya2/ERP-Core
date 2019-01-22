@@ -18,6 +18,7 @@ using ErpCore.Entities.HR.Attendance.AttendanceSetup;
 using ErpCore.Entities.HR.Payroll;
 using ErpCore.Entities.InventorySetup;
 using ErpCore.Entities.ETracker;
+using ErpCore.Entities.HR.Payroll.PayrollAdmin;
 
 namespace ErpCore.Entities
 {
@@ -31,6 +32,8 @@ namespace ErpCore.Entities
             //Payroll
             PaySlips = new HashSet<PaySlip>();
             CompensationTransactions = new HashSet<CompensationTransaction>();
+            UserStopSalaries = new HashSet<UserStopSalary>();
+            MasterPayrolls = new HashSet<MasterPayroll>();
 
             //Tax
             TaxableIncomeAdjustments = new HashSet<TaxableIncomeAdjustment>();
@@ -99,6 +102,7 @@ namespace ErpCore.Entities
         public string Gender { get; set; }
         public string CNIC { get; set; }
         public string Email { get; set; }
+        public string UserType { get; set; }
         public string PhotoFilePath { get; set; }
 
         public string POB { get; set; }
@@ -209,11 +213,10 @@ namespace ErpCore.Entities
         public long? UserSalaryId { get; set; }
         public UserSalary UserSalary { get; set; }
 
+        public IEnumerable<UserStopSalary> UserStopSalaries { get; set; }
         public IEnumerable<PaySlip> PaySlips { get; set; }
         public IEnumerable<CompensationTransaction> CompensationTransactions { get; set; }
-
-        public long? MasterPayrollId { get; set; }
-        public MasterPayroll MasterPayroll { get; set; }
+        public IEnumerable<MasterPayroll> MasterPayrolls { get; set; }
 
         public IEnumerable<UserAssignRoster> UserAssignRosters { get; set; }
 

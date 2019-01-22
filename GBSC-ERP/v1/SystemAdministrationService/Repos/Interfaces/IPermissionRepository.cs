@@ -10,6 +10,6 @@ namespace SystemAdministrationService.Repos.Interfaces
 {
     public interface IPermissionRepository : IRepo<Permission>
     {
-        UserPermissionsViewModel GetFeaturePermissions(long UserId, long RoleId, long FeatureId);
+        IList<string> GetFeaturePermissions(long UserId, string feature, string module);
     }
 }

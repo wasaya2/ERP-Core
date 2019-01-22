@@ -16,7 +16,7 @@ namespace InventoryService.Repos
             return Table.Where(a => a.GrnDate.Value.Month == date.Month && a.GrnDate.Value.Year == date.Year)
                 .Include(b => b.PurchaseOrder).Include(a => a.GrnItems)
                 .Include("GrnItems.InventoryItem").Include("GrnItems.InventoryItem.Brand")
-                .Include("GrnItems.InventoryItem.Unit").Include("GrnItems.InventoryItem.PackType")
+                .Include("GrnItems.InventoryItem.MeasurementUnit").Include("GrnItems.InventoryItem.PackType")
                 .Include("GrnItems.InventoryItem.PackSize").Include("GrnItems.InventoryItem.PackCategory")
                 .Include("GrnItems.InventoryItem.ProductType").Include("GrnItems.InventoryItem.InventoryItemCategory")
                 .Include("GrnItems.InventoryItem.PackageType").Include("GrnItems.InventoryItem.Inventory")

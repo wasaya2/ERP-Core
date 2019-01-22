@@ -8,12 +8,7 @@ namespace SystemAdministrationService.ViewModels
 {
     public class UserPermissionsViewModel
     {
+        public long? FeatureId { get; set; }
         public List<Permission> Permissions { get; set; }
-
-        public long RoleId { get; set; }
-
-        public long UserId { get; set; }
-
-        public long FeatureId { get; set; }
     }
 }

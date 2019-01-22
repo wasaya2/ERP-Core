@@ -91,7 +91,7 @@ namespace FinanceService.Controllers
 
         public string GenerateAccountCode(AccountViewModel model)
         {
-            if (model.ParentAccountCode != null)
+            if (model.ParentAccountCode != null && model.ParentAccountCode != "" && model.ParentAccountCode != " ")
             {
                 try
                 {
@@ -143,6 +143,7 @@ namespace FinanceService.Controllers
 
             Account newAccount = new Account()
             {
+                CompanyId = model.CompanyId,
                 OldAccountId = null,
                 FinancialYearId = model.FinancialYearId,
                 AccountCode = GenerateAccountCode(model),
@@ -164,6 +165,7 @@ namespace FinanceService.Controllers
             {
                 TransactionAccount newUAL = new TransactionAccount()
                 {
+                    CompanyId = newAccount.CompanyId,
                     AccountId = newAccount.AccountId,
                     FinancialYearId = newAccount.FinancialYearId,
                     AccountCode = newAccount.AccountCode,
@@ -195,20 +197,21 @@ namespace FinanceService.Controllers
             return Account_Repo.GetList(a => a.FinancialYearId != null && a.IsProcessed != true && a.FinancialYearId == FinancialYear_Repo.GetFirst(b => b.IsActive == true).FinancialYearId); 
         }
 
+
         [HttpGet("GetCurrentlyActiveAccountsByCompany/{companyid}", Name = "GetCurrentlyActiveAccountsByCompany")]
         public IEnumerable<Account> GetCurrentlyActiveAccountsByCompany([FromRoute]long companyid)
         {
             return Account_Repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid && a.FinancialYearId != null && a.IsProcessed != true && a.FinancialYearId == FinancialYear_Repo.GetFirst(b => b.IsActive == true).FinancialYearId);
         }
 
-        [HttpGet("ProcessAccountsForLedger/{newfinancialyearid}/{companyid}", Name = "ProcessAccountsForLedger")]
-        public IActionResult ProcessAccountsForLedger([FromRoute]long newfinancialyearid, [FromRoute]long companyid)
+        [HttpPost("ProcessAccountsForLedger", Name = "ProcessAccountsForLedger")]
+        public IActionResult ProcessAccountsForLedger([FromBody]EndYearProcessRequestViewModel model)
         {
             try
             {
                 //Get all unprocessed accounts and transaction accounts for year to be processed
-                IEnumerable<Account> UnprocessedAccounts = Account_Repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid && a.FinancialYearId != null && a.IsProcessed != true && a.FinancialYearId == FinancialYear_Repo.GetFirst(b => b.IsActive == true).FinancialYearId);
-                IEnumerable<TransactionAccount> OldTransactionAccounts = UAL_Repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid && a.FinancialYearId != null && a.FinancialYearId == FinancialYear_Repo.GetFirst(b => b.IsActive == true).FinancialYearId);
+                IEnumerable<Account> UnprocessedAccounts = Account_Repo.GetList(a => a.CompanyId != null && a.CompanyId == model.CompanyId && a.FinancialYearId != null && a.IsProcessed != true && a.FinancialYearId == FinancialYear_Repo.GetFirst(b => b.IsActive == true).FinancialYearId);
+                IEnumerable<TransactionAccount> OldTransactionAccounts = UAL_Repo.GetList(a => a.CompanyId != null && a.CompanyId == model.CompanyId && a.FinancialYearId != null && a.FinancialYearId == FinancialYear_Repo.GetFirst(b => b.IsActive == true).FinancialYearId);
 
                 //Add new Accounts
                 IList<Account> newAccounts = new List<Account>();
@@ -216,9 +219,9 @@ namespace FinanceService.Controllers
                 {
                     Account NewAccount = new Account()
                     {
-                        CompanyId = companyid,
+                        CompanyId = model.CompanyId,
                         OldAccountId = UnprocessedAccount.AccountId,
-                        FinancialYearId = newfinancialyearid,
+                        FinancialYearId = model.NewFinancialYearCoaId,
                         AccountCode = UnprocessedAccount.AccountCode,
                         ParentAccountCode = UnprocessedAccount.ParentAccountCode,
                         IsGeneralOrDetail = UnprocessedAccount.IsGeneralOrDetail,
@@ -237,13 +240,13 @@ namespace FinanceService.Controllers
 
                 //Add new Transaction Accounts
                 IList<TransactionAccount> newTransactionAccounts = new List<TransactionAccount>();
-                foreach (Account account in newAccounts.Where(a => a.IsGeneralOrDetail == false))
+                foreach (Account account in newAccounts.Where(a => a.IsGeneralOrDetail == false).ToList())
                 {
                     TransactionAccount newTransactionAccount = new TransactionAccount()
                     {
-                        CompanyId = companyid,
+                        CompanyId = model.CompanyId,
                         AccountId = account.AccountId,
-                        FinancialYearId = newfinancialyearid,
+                        FinancialYearId = model.NewFinancialYearCoaId,
                         AccountCode = account.AccountCode,
                         ParentAccountCode = account.ParentAccountCode,
                         AccountLevel = account.AccountLevel,
@@ -277,7 +280,7 @@ namespace FinanceService.Controllers
                 //Update the financial year and set the new year as active
                 FinancialYear OldYear = FinancialYear_Repo.GetFirst(b => b.IsActive == true);
                 OldYear.IsActive = false;
-                FinancialYear NewYear = FinancialYear_Repo.GetFirst(c => c.FinancialYearId == newfinancialyearid);
+                FinancialYear NewYear = FinancialYear_Repo.GetFirst(c => c.FinancialYearId == model.NewFinancialYearCoaId);
                 NewYear.IsActive = true;
                 IList<FinancialYear> UpdateYears = new List<FinancialYear>() { OldYear, NewYear };
                 FinancialYear_Repo.UpdateRange(UpdateYears);
@@ -357,6 +360,12 @@ namespace FinanceService.Controllers
             return ap;
         }
 
+        [HttpGet("GetVouchersByCompany/{companyid}", Name = "GetVouchersByCompany")]
+        public IEnumerable<Voucher> GetVouchersByCompany([FromRoute]long companyid)
+        {
+            return Vou_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid).OrderByDescending(a => a.VoucherId);
+        }
+
         [HttpGet("GetVoucher/{id}", Name = "GetVoucher")]
         public Voucher GetVoucher([FromRoute]long id) => Vou_repo.GetFirst(a => a.VoucherId == id, b => b.VoucherDetails);
 
@@ -384,6 +393,7 @@ namespace FinanceService.Controllers
             {
                 PostedVoucher PV = new PostedVoucher()
                 {
+                    CompanyId = model.CompanyId,
                     VoucherId = model.VoucherId,
                     VoucherCode = model.VoucherCode,
                     Date = model.Date,
@@ -422,6 +432,7 @@ namespace FinanceService.Controllers
             {
                 UnpostedVoucher UV = new UnpostedVoucher()
                 {
+                    CompanyId = model.CompanyId,
                     VoucherId = model.VoucherId,
                     VoucherCode = model.VoucherCode,
                     Date = model.Date,
@@ -451,6 +462,7 @@ namespace FinanceService.Controllers
             {
                 return BadRequest("Can't delete posted vouchers");
             }
+            VouDetail_repo.DeleteRange(VouDetail_repo.GetList(a => a.VoucherId == fin.VoucherId));
             Vou_repo.Delete(fin);
             return Ok();
         }
@@ -465,6 +477,12 @@ namespace FinanceService.Controllers
             IEnumerable<VoucherDetail> ap = VouDetail_repo.GetAll();
             ap = ap.OrderByDescending(a => a.VoucherDetailId);
             return ap;
+        }
+
+        [HttpGet("GetVoucherDetailsByCompany/{companyid}", Name = "GetVoucherDetailsByCompany")]
+        public IEnumerable<VoucherDetail> GetVoucherDetailsByCompany([FromRoute]long companyid)
+        {
+            return VouDetail_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid).OrderByDescending(a => a.VoucherDetailId);
         }
 
         [HttpGet("GetVoucherDetail/{id}", Name = "GetVoucherDetail")]
@@ -530,6 +548,29 @@ namespace FinanceService.Controllers
         {
             IList<UnpostedVoucherViewModel> ViewModels = new List<UnpostedVoucherViewModel>();
             foreach (UnpostedVoucher UV in UnpostedVou_repo.GetAll())
+            {
+                UnpostedVoucherViewModel UVVM = new UnpostedVoucherViewModel()
+                {
+                    UnpostedVoucherId = UV.UnpostedVoucherId,
+                    VoucherId = UV.VoucherId,
+                    Date = UV.Date,
+                    Description = UV.Description,
+                    TotalCreditAmount = UV.TotalCreditAmount,
+                    TotalDebitAmount = UV.TotalDebitAmount,
+                    FinancialYear = FinancialYear_Repo.GetFirst(a => a.FinancialYearId == UV.FinancialYearId),
+                    VoucherType = VoucherType_Repo.GetFirst(a => a.VoucherTypeId == UV.VoucherTypeId),
+                    VoucherDetails = VouDetail_repo.GetList(a => a.VoucherId == UV.VoucherId, b => b.Account)
+                };
+                ViewModels.Add(UVVM);
+            }
+            return ViewModels;
+        }
+
+        [HttpGet("GetUnpostedVouchersByCompany/{companyid}", Name = "GetUnpostedVouchersByCompany")]
+        public IEnumerable<UnpostedVoucherViewModel> GetUnpostedVouchersByCompany([FromRoute]long companyid)
+        {
+            IList<UnpostedVoucherViewModel> ViewModels = new List<UnpostedVoucherViewModel>();
+            foreach (UnpostedVoucher UV in UnpostedVou_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid))
             {
                 UnpostedVoucherViewModel UVVM = new UnpostedVoucherViewModel()
                 {
@@ -687,6 +728,7 @@ namespace FinanceService.Controllers
             {
                 PostedVoucher PV = new PostedVoucher()
                 {
+                    CompanyId = model.CompanyId,
                     VoucherId = model.VoucherId,
                     VoucherCode = model.VoucherCode,
                     Date = model.Date,
@@ -737,6 +779,7 @@ namespace FinanceService.Controllers
             
             PostedVoucher PV = new PostedVoucher()
             {
+                CompanyId = model.CompanyId,
                 VoucherId = model.VoucherId,
                 VoucherCode = model.VoucherCode,
                 Date = model.Date,
@@ -802,11 +845,57 @@ namespace FinanceService.Controllers
             return PVVMs;
         }
 
+        [HttpGet("GetPostedVouchersByCompany/{companyid}", Name = "GetPostedVouchersByCompany")]
+        public IEnumerable<PostedVoucherViewModel> GetPostedVouchersByCompany([FromRoute]long companyid)
+        {
+            IList<PostedVoucherViewModel> PVVMs = new List<PostedVoucherViewModel>();
+            foreach (PostedVoucher PV in PostedVou_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid))
+            {
+                PostedVoucherViewModel PVVM = new PostedVoucherViewModel()
+                {
+                    PostedVoucherId = PV.PostedVoucherId,
+                    VoucherId = PV.VoucherId,
+                    Date = PV.Date,
+                    Description = PV.Description,
+                    TotalCreditAmount = PV.TotalCreditAmount,
+                    TotalDebitAmount = PV.TotalDebitAmount,
+                    FinancialYear = FinancialYear_Repo.GetFirst(a => a.FinancialYearId == PV.FinancialYearId),
+                    VoucherType = VoucherType_Repo.GetFirst(a => a.VoucherTypeId == PV.VoucherTypeId),
+                    VoucherDetails = VouDetail_repo.GetList(a => a.VoucherId == PV.VoucherId, b => b.Account)
+                };
+                PVVMs.Add(PVVM);
+            }
+            return PVVMs;
+        }
+
         [HttpGet("GetPostedVouchersByFinancialYear/{id}", Name = "GetPostedVouchersByFinancialYear")]
         public IEnumerable<PostedVoucherViewModel> GetPostedVouchersByFinancialYear([FromRoute]long id)
         {
             IList<PostedVoucherViewModel> PVVMs = new List<PostedVoucherViewModel>();
             foreach (PostedVoucher PV in PostedVou_repo.GetList(a => a.FinancialYearId == id))
+            {
+                PostedVoucherViewModel PVVM = new PostedVoucherViewModel()
+                {
+                    PostedVoucherId = PV.PostedVoucherId,
+                    VoucherId = PV.VoucherId,
+                    Date = PV.Date,
+                    Description = PV.Description,
+                    TotalCreditAmount = PV.TotalCreditAmount,
+                    TotalDebitAmount = PV.TotalDebitAmount,
+                    FinancialYear = FinancialYear_Repo.GetFirst(a => a.FinancialYearId == PV.FinancialYearId),
+                    VoucherType = VoucherType_Repo.GetFirst(a => a.VoucherTypeId == PV.VoucherTypeId),
+                    VoucherDetails = VouDetail_repo.GetList(a => a.VoucherId == PV.VoucherId, b => b.Account)
+                };
+                PVVMs.Add(PVVM);
+            }
+            return PVVMs;
+        }
+
+        [HttpGet("GetPostedVouchersByFinancialYearAndCompany/{id}/{companyid}", Name = "GetPostedVouchersByFinancialYearAndCompany")]
+        public IEnumerable<PostedVoucherViewModel> GetPostedVouchersByFinancialYearAndCompany([FromRoute]long id, [FromRoute]long companyid)
+        {
+            IList<PostedVoucherViewModel> PVVMs = new List<PostedVoucherViewModel>();
+            foreach (PostedVoucher PV in PostedVou_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid && a.FinancialYearId != null && a.FinancialYearId == id))
             {
                 PostedVoucherViewModel PVVM = new PostedVoucherViewModel()
                 {
@@ -848,11 +937,57 @@ namespace FinanceService.Controllers
             return PVVMs;
         }
 
+        [HttpGet("GetPostedVouchersByDateRangeAndCompany/{companyid}", Name = "GetPostedVouchersByDateRangeAndCompany")]
+        public IEnumerable<PostedVoucherViewModel> GetPostedVouchersByDateRangeAndCompany(DateTime fromdate, DateTime todate, [FromRoute]long companyid)
+        {
+            IList<PostedVoucherViewModel> PVVMs = new List<PostedVoucherViewModel>();
+            foreach (PostedVoucher PV in PostedVou_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid && a.Date.Value.Day >= fromdate.Day && a.Date.Value.Month >= fromdate.Month && a.Date.Value.Year >= fromdate.Year && a.Date.Value.Day >= todate.Day && a.Date.Value.Month >= todate.Month && a.Date.Value.Year >= todate.Year))
+            {
+                PostedVoucherViewModel PVVM = new PostedVoucherViewModel()
+                {
+                    PostedVoucherId = PV.PostedVoucherId,
+                    VoucherId = PV.VoucherId,
+                    Date = PV.Date,
+                    Description = PV.Description,
+                    TotalCreditAmount = PV.TotalCreditAmount,
+                    TotalDebitAmount = PV.TotalDebitAmount,
+                    FinancialYear = FinancialYear_Repo.GetFirst(a => a.FinancialYearId == PV.FinancialYearId),
+                    VoucherType = VoucherType_Repo.GetFirst(a => a.VoucherTypeId == PV.VoucherTypeId),
+                    VoucherDetails = VouDetail_repo.GetList(a => a.VoucherId == PV.VoucherId, b => b.Account)
+                };
+                PVVMs.Add(PVVM);
+            }
+            return PVVMs;
+        }
+
         [HttpGet("GetPostedVouchersByDate", Name = "GetPostedVouchersByDate")]
         public IEnumerable<PostedVoucherViewModel> GetPostedVouchersByDate(DateTime date)
         {
             IList<PostedVoucherViewModel> PVVMs = new List<PostedVoucherViewModel>();
             foreach (PostedVoucher PV in PostedVou_repo.GetList(a => a.Date.Value.Year == date.Year && a.Date.Value.Month == date.Month && a.Date.Value.Day == date.Day))
+            {
+                PostedVoucherViewModel PVVM = new PostedVoucherViewModel()
+                {
+                    PostedVoucherId = PV.PostedVoucherId,
+                    VoucherId = PV.VoucherId,
+                    Date = PV.Date,
+                    Description = PV.Description,
+                    TotalCreditAmount = PV.TotalCreditAmount,
+                    TotalDebitAmount = PV.TotalDebitAmount,
+                    FinancialYear = FinancialYear_Repo.GetFirst(a => a.FinancialYearId == PV.FinancialYearId),
+                    VoucherType = VoucherType_Repo.GetFirst(a => a.VoucherTypeId == PV.VoucherTypeId),
+                    VoucherDetails = VouDetail_repo.GetList(a => a.VoucherId == PV.VoucherId, b => b.Account)
+                };
+                PVVMs.Add(PVVM);
+            }
+            return PVVMs;
+        }
+
+        [HttpGet("GetPostedVouchersByDateAndCompany/{companyid}", Name = "GetPostedVouchersByDateAndCompany")]
+        public IEnumerable<PostedVoucherViewModel> GetPostedVouchersByDateAndCompany(DateTime date, [FromRoute]long companyid)
+        {
+            IList<PostedVoucherViewModel> PVVMs = new List<PostedVoucherViewModel>();
+            foreach (PostedVoucher PV in PostedVou_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid && a.Date.Value.Year == date.Year && a.Date.Value.Month == date.Month && a.Date.Value.Day == date.Day))
             {
                 PostedVoucherViewModel PVVM = new PostedVoucherViewModel()
                 {

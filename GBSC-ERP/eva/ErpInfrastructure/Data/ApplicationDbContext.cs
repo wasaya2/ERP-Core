@@ -108,6 +108,10 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<Biopsy>().ToTable("Hims_Biopsy");
             modelBuilder.Entity<FreezePrepration>().ToTable("Hims_FreezePrepration");
 
+            //UltraSound
+            modelBuilder.Entity<UltraSoundPelvis>().ToTable("Hims_UltraSoundPelvis");
+            modelBuilder.Entity<FwbInitial>().ToTable("Hims_FWBInitial");
+
             //Hims Setup
             modelBuilder.Entity<Consultant>().ToTable("Hims_Consultant");
             modelBuilder.Entity<Package>().ToTable("Hims_Package");
@@ -127,6 +131,7 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<TestType>().ToTable("Hims_TestType");
             modelBuilder.Entity<TestCategory>().ToTable("Hims_TestCategory");
             modelBuilder.Entity<Procedure>().ToTable("Hims_Procedure");
+            modelBuilder.Entity<Sonologist>().ToTable("Hims_Sonologist");
 
             //ETracker
             modelBuilder.Entity<CompetatorStock>().ToTable("ETracker_CompetatorStocks");
@@ -137,6 +142,7 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<StoreVisit>().ToTable("ETracker_StoreVisit");
             modelBuilder.Entity<VisitDay>().ToTable("ETracker_VisitDay");
             modelBuilder.Entity<PJP>().ToTable("ETracker_PJP");
+            modelBuilder.Entity<NonproductiveVisitReason>().ToTable("ETracker_NonproductiveVisitReason");
 
             //Inventory
             modelBuilder.Entity<Inventory>().ToTable("Inv_Inventory");
@@ -172,6 +178,7 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<Store>().ToTable("Inv_Store");
             modelBuilder.Entity<ReturnReason>().ToTable("Inv_Setup_ReturnReason");
             modelBuilder.Entity<InventoryCurrency>().ToTable("Inv_Setup_InventoryCurrency");
+            modelBuilder.Entity<GeneralSKU>().ToTable("Inv_Setup_GeneralSKU");
 
             //Purchase
             modelBuilder.Entity<PurchaseIndent>().ToTable("Inv_PurchaseIndent");
@@ -738,6 +745,49 @@ namespace ErpInfrastructure.Data
                 .WithMany()
                 .HasForeignKey(b => b.TestCategoryId);
 
+
+           modelBuilder.Entity<UltraSoundPelvis>()
+                .HasOne(a => a.Patient)
+                .WithMany()
+                .HasForeignKey(b => b.PatientId);
+
+           modelBuilder.Entity<UltraSoundPelvis>()
+                .HasOne(a => a.Consultant)
+                .WithMany()
+                .HasForeignKey(b => b.ConsultantId);
+
+           modelBuilder.Entity<UltraSoundPelvis>()
+                .HasOne(a => a.TreatmentType)
+                .WithMany()
+                .HasForeignKey(b => b.TreatmentTypeId);
+
+           modelBuilder.Entity<UltraSoundPelvis>()
+                .HasOne(a => a.Sonologist)
+                .WithMany()
+                .HasForeignKey(b => b.SonologistId);
+
+
+            modelBuilder.Entity<FwbInitial>()
+              .HasOne(a => a.Patient)
+              .WithMany()
+              .HasForeignKey(b => b.PatientId);
+
+            modelBuilder.Entity<FwbInitial>()
+              .HasOne(a => a.Consultant)
+              .WithMany()
+              .HasForeignKey(a => a.ConsultantId);
+
+            modelBuilder.Entity<FwbInitial>()
+              .HasOne(a => a.TreatmentType)
+              .WithMany()
+              .HasForeignKey(a => a.TreatmentTypeId);
+
+      modelBuilder.Entity<FwbInitial>()
+          .HasOne(a => a.Sonologist)
+          .WithMany()
+          .HasForeignKey(x => x.SonologistId);
+  
+
             //Inventory
             //Setup
             modelBuilder.Entity<InventoryItem>()
@@ -1032,6 +1082,11 @@ namespace ErpInfrastructure.Data
                 .HasOne(a => a.Brand)
                 .WithMany(b => b.InventoryItems)
                 .HasForeignKey(c => c.BrandId);
+
+            modelBuilder.Entity<InventoryItem>()
+                        .HasOne(x => x.ParentProduct)
+                        .WithMany(x => x.ChildrenProducts)
+                        .HasForeignKey(x => x.ParentProductId);
 
             //Sales Indent
             modelBuilder.Entity<SalesIndent>()
@@ -1845,6 +1900,20 @@ namespace ErpInfrastructure.Data
                 .WithMany(c => c.StopSalaries)
                 .HasForeignKey(b => b.PayrollTypeId);
 
+            modelBuilder.Entity<UserStopSalary>()
+        .HasKey(a => new { a.UserId, a.StopSalaryId });
+
+            modelBuilder.Entity<UserStopSalary>()
+                .HasOne(a => a.User)
+                .WithMany(b => b.UserStopSalaries)
+                .HasForeignKey(c => c.UserId);
+
+            modelBuilder.Entity<UserStopSalary>()
+                .HasOne(a => a.StopSalary)
+                .WithMany(b => b.UserStopSalaries)
+                .HasForeignKey(c => c.StopSalaryId);
+
+
             modelBuilder.Entity<Allowance>()
                 .HasOne(a => a.AllowanceDeduction)
                 .WithMany(b => b.Allowances)
@@ -1905,6 +1974,11 @@ namespace ErpInfrastructure.Data
                 .WithMany()
                 .HasForeignKey(b => b.CurrencyId);
 
+                modelBuilder.Entity<MasterPayroll>()
+                    .HasOne(a => a.User)
+                    .WithMany(b => b.MasterPayrolls)
+                    .HasForeignKey(c => c.UserId);
+
             modelBuilder.Entity<MasterPayrollDetails>()
                 .HasOne(a => a.Allowance)
                 .WithMany()
@@ -1919,6 +1993,11 @@ namespace ErpInfrastructure.Data
                 .HasOne(a => a.PayrollType)
                 .WithMany(c => c.MasterPayrollDetails)
                 .HasForeignKey(b => b.PayrollTypeId);
+
+            modelBuilder.Entity<MasterPayrollDetails>()
+                .HasOne(a => a.MasterPayroll)
+                .WithMany(c => c.MasterPayrollDetails)
+                .HasForeignKey(b => b.MasterPayrollId);
 
             modelBuilder.Entity<User>()
                 .HasOne(a => a.Payroll)
@@ -2196,11 +2275,6 @@ namespace ErpInfrastructure.Data
                 .WithOne(b => b.User)
                 .HasForeignKey<User>(c => c.UserSalaryId);
 
-            modelBuilder.Entity<User>()
-                .HasOne(a => a.MasterPayroll)
-                .WithMany(b => b.Users)
-                .HasForeignKey(c => c.MasterPayrollId);
-
             modelBuilder.Entity<UserAssignRoster>()
                 .HasKey(a => new { a.UserId, a.AssignRosterId });
 
@@ -2281,6 +2355,11 @@ namespace ErpInfrastructure.Data
         public DbSet<TestCategory> TestCategories { get; set; }
         public DbSet<Package> Packages { get; set; }
         public DbSet<Procedure> Procedures { get; set; }
+        public DbSet<Sonologist>  Sonologists { get; set; }
+
+        // UltraSound
+        public DbSet<UltraSoundPelvis>   UltraSoundPelvis { get; set; }
+        public DbSet<FwbInitial> FwbInitials{ get; set; }
 
         //Visit
         public DbSet<PatientVital> PatientVitals { get; set; }
@@ -2362,6 +2441,7 @@ namespace ErpInfrastructure.Data
         public DbSet<Subsection> Subsections { get; set; }
         public DbSet<Store> Stores { get; set; }
         public DbSet<InventoryCurrency> InventoryCurrencies { get; set; }
+        public DbSet<GeneralSKU> GeneralSKUs { get; set; }
 
         //Tracker
         public DbSet<CompetatorStock> CompetatorStocks { get; set; }
@@ -2372,6 +2452,7 @@ namespace ErpInfrastructure.Data
         public DbSet<StoreVisit> StoreVisits { get; set; }
         public DbSet<VisitDay> VisitDays { get; set; }
         public DbSet<PJP> PJPs { get; set; }
+        public DbSet<NonproductiveVisitReason> NonproductiveVisitReasons { get; set; }
 
         //Sale
         public DbSet<SalesIndent> SalesIndents { get; set; }

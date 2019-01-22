@@ -146,11 +146,11 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetStopSalaries", Name = "GetStopSalaries")]
         public IEnumerable<StopSalary> GetStopSalaries()
         {
-            return StopSalary_repo.GetAll().OrderByDescending(a=>a.StopSalaryId);
+            return StopSalary_repo.GetAll(a=> a.UserStopSalaries).OrderByDescending(a=>a.StopSalaryId);
         }
 
         [HttpGet("GetStopSalary/{id}", Name = "GetStopSalary")]
-        public StopSalary GetStopSalary(long id) => StopSalary_repo.GetFirst(a => a.StopSalaryId == id);
+        public StopSalary GetStopSalary(long id) => StopSalary_repo.GetFirst(a => a.StopSalaryId == id, b=> b.UserStopSalaries);
 
         [HttpPost("AddStopSalary", Name = "AddStopSalary")]
         [ValidateModelAttribute]

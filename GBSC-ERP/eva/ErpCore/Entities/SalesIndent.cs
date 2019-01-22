@@ -46,6 +46,8 @@ namespace ErpCore.Entities
         public DateTime? ProcessedDate { get; set; }
         public bool? IsProcessed { get; set; }
 
+        public bool? IsInternalOrder { get; set; } //True for indents created for inter department/branch orders
+
         //Shop setup?
 
         public long? UserId { get; set; }

@@ -14,5 +14,6 @@ namespace InventoryService.ViewModels
         public long? CompanyId { get; set; }
         public long? StoreId { get; set; }
         public long? UserId { get; set; }
+        public double? ExtraDiscount { get; set; }
     }
 }

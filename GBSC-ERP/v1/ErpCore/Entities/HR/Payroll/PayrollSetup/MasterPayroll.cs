@@ -9,8 +9,7 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
     public class MasterPayroll : BaseClass
     {
         public MasterPayroll()
-        {
-            Users = new HashSet<User>();
+        { 
             MasterPayrollDetails = new HashSet<MasterPayrollDetails>();
             Payrolls = new HashSet<Payroll>();
         }
@@ -27,7 +26,9 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
         public long? BankId { get; set; }
         public Bank Bank { get; set; }
 
-        public IEnumerable<User> Users { get; set; }
+        public long? UserId { get; set; }
+        public User User { get; set; }
+
         public IEnumerable<MasterPayrollDetails> MasterPayrollDetails { get; set; }
         public IEnumerable<Payroll> Payrolls { get; set; }
     }

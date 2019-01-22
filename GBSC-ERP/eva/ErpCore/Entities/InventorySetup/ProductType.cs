@@ -13,8 +13,11 @@ namespace ErpCore.Entities.InventorySetup
 
         [Key]
         public long ProductTypeId { get; set; }
+
+        public string ProductTypeCode { get; set; }
+
         public string Name { get;set;}
-        public string Class { get; set; }
+        
 
     }
 }

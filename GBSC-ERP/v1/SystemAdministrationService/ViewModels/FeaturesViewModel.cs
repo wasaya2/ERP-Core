@@ -14,6 +14,7 @@ namespace SystemAdministrationService.ViewModels
         public string[] Lab { get; set; }
         public string[] Security { get; set; }
         public string[] ETracker { get; set; }
+        public string[] ETrackerMobile { get; set; }
         public string[] Inventory { get; set; }
     }
 

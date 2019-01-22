@@ -138,8 +138,13 @@ namespace HimsService
             //Setup
             services.AddScoped<ITestTypeRepository, TestTypeRepository>();
             services.AddScoped<ITestCategoryRepository, TestCategoryRepository>();
-             services.AddScoped<IProcedureRepository, ProcedureRepository>();
+            services.AddScoped<IProcedureRepository, ProcedureRepository>();
+            services.AddScoped<ISonologistRepository, SonologistRepository>();
 
+            //UltraSound
+
+            services.AddScoped<IUltraSoundPelvisRepository, UltraSoundPelvisRepositiry>();
+            services.AddScoped<IFwbInitialRepository, FwbInitialRepository>();
             //Laboratory
             services.AddScoped<IEmbryologistRepository, EmbryologistRepository>();
             services.AddScoped<IEmbryologyCodeRepository, EmbryologistCodeRepository>();
@@ -162,6 +167,7 @@ namespace HimsService
             services.AddScoped<IPatientInsemenationRepository, PatientInsemenationRepository>();
             services.AddScoped<ISemenAnalysisRepository, SemenAnalysisRepository>();
             services.AddScoped<IBioChemistryTestOutsiderRepository, BioChemistryTestOutsiderRepository>();
+            
 
             services.AddMvc().AddJsonOptions(options =>
                         options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);

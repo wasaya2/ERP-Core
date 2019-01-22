@@ -13,6 +13,9 @@ namespace ErpCore.Entities.InventorySetup
 
         [Key]
         public long InventoryItemCategoryId { get; set; }
+
+        public string InventoryItemCategoryCode { get; set; }
+
         public string Name { get; set; }
 
     }

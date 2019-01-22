@@ -31,21 +31,7 @@ namespace InventoryService.ViewModels
 
         public string ItemCode { get; set; }
 
-        public string Description { get; set; }
-
         public double? UnitPrice { get; set; }
-
-        public double? PackTypeInPackageType { get; set; } //How many pouches in one carton //How many tablets in one box 
-
-        public string Dose { get; set; }
-
-        public double? MinLevel { get; set; }
-
-        public double? CostPrice { get; set; }
-
-        public double? RetailPrice { get; set; }
-
-        public DateTime? PurchaseDate { get; set; }
 
         public double? TradeOfferAmount { get; set; }
 
@@ -56,5 +42,21 @@ namespace InventoryService.ViewModels
         public double? PackSize { get; set; }
 
         public string PackageType { get; set; }
+
+        public string MeasurementUnit { get; set; }
+
+        public string SalesUnit { get; set; }
+
+        public string RateUnit { get; set; }
+
+        public int MuInRu { get; set; }
+
+        public int MuInPu { get; set; }
+
+        public int MuInSu { get; set; }
+
+        public string PackageUnit { get; set; }
+
+        public double? RegularDiscount { get; set; }
     }
 }

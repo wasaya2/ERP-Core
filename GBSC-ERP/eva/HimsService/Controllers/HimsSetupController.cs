@@ -26,6 +26,7 @@ namespace HimsService.Controllers
         private ITestCategoryRepository testCategory_repo;
         private IPatientPackageRepository Patientpackage_repo;
         private IProcedureRepository Procedure_repo;
+        private ISonologistRepository Sonologist_repo;
 
     public HimsSetupController(IPackageRepository packagerepo,
             ITestRepository testrepo,
@@ -37,7 +38,8 @@ namespace HimsService.Controllers
             ITestTypeRepository tsttyperepo,
             ITestCategoryRepository tstcatrepo,
             IPatientPackageRepository Patientpackagerepo,
-            IProcedureRepository Procedurerepo 
+            IProcedureRepository Procedurerepo ,
+            ISonologistRepository Sonologistrepo
        )
         {
             con_repo = consultantRepository;
@@ -51,6 +53,7 @@ namespace HimsService.Controllers
             testCategory_repo = tstcatrepo;
             Patientpackage_repo = Patientpackagerepo;
             Procedure_repo = Procedurerepo;
+            Sonologist_repo = Sonologistrepo;
          }
 
         //[HttpGet("GetHimsSetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetHimsSetupPermissions")]
@@ -516,9 +519,9 @@ namespace HimsService.Controllers
 
     #endregion
 
+      
 
-
-    #region Procedure
+        #region Procedure
 
     [HttpGet("GetProcedures", Name = "GetProcedures")]
     public IEnumerable<Procedure> GetProcedures()
@@ -562,5 +565,50 @@ namespace HimsService.Controllers
     }
 
     #endregion
+
+
+        #region Sonologist
+
+        [HttpGet("GetSonologists", Name = "GetSonologists")]
+        public IEnumerable<Sonologist> GetSonologists()
+        {
+          IEnumerable<Sonologist> ap = Sonologist_repo.GetAll();
+          ap = ap.OrderByDescending(a => a.SonologistId);
+          return ap;
+        }
+
+        [HttpGet("GetSonologist/{id}", Name = "GetSonologist")]
+        public Sonologist GetSonologist(long id) => Sonologist_repo.GetFirst(a => a.SonologistId == id);
+
+        [HttpPut("UpdateSonologist", Name = "UpdateSonologist")]
+        [ValidateModelAttribute]
+        public IActionResult UpdateSonologist([FromBody]Sonologist model)
+        {
+          Sonologist_repo.Update(model);
+          return new OkObjectResult(new { SonologistID = model.SonologistId });
+        }
+
+        [HttpPost("AddSonologist", Name = "AddSonologist")]
+        [ValidateModelAttribute]
+        public IActionResult AddSonologist([FromBody]Sonologist model)
+        {
+          Sonologist_repo.Add(model);
+          return new OkObjectResult(new { SonologistID = model.SonologistId });
+        }
+
+        [HttpDelete("DeleteSonologist/{id}")]
+        public IActionResult DeleteSonologist(long id)
+        {
+          Sonologist sonologist = Sonologist_repo.Find(id);
+          if (sonologist == null)
+          {
+            return NotFound();
+          }
+
+          Sonologist_repo.Delete(sonologist);
+          return Ok();
+        }
+
+        #endregion
   }
 }

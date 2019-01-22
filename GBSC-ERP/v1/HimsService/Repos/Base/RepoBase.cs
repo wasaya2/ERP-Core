@@ -209,19 +209,6 @@ namespace HimsService.Repos.Base
             return persist ? SaveChanges() : 0;
         }
 
-        public UserPermissionsViewModel GetFeaturePermissions(long UserId, long RoleId, long FeatureId)
-        {
-            var _permissions = Db.Permissions.Where(p => p.FeatureId == FeatureId && p.RoleId == RoleId && p.UserId == UserId);
-
-            return new UserPermissionsViewModel
-            {
-                Permissions = _permissions.ToList(),
-                UserId = UserId,
-                RoleId = RoleId,
-                FeatureId = FeatureId
-            };
-        }
-
         //public int Delete(int id, byte[] timeStamp, bool persist = true)
         //{
         //    throw new NotImplementedException();

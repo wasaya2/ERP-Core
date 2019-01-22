@@ -74,9 +74,9 @@
             DevExpress.DataAccess.Sql.MasterDetailInfo masterDetailInfo1 = new DevExpress.DataAccess.Sql.MasterDetailInfo();
             DevExpress.DataAccess.Sql.RelationColumnInfo relationColumnInfo1 = new DevExpress.DataAccess.Sql.RelationColumnInfo();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
+            this.vendorLogo = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.vendorLogo = new DevExpress.XtraReports.UI.XRPictureBox();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.line2 = new DevExpress.XtraReports.UI.XRLine();
@@ -149,6 +149,7 @@
             this.ClosedShopsSubtotal = new DevExpress.XtraReports.UI.CalculatedField();
             this.ActivePercntAvg = new DevExpress.XtraReports.UI.CalculatedField();
             this.xrControlStyle1 = new DevExpress.XtraReports.UI.XRControlStyle();
+            this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
@@ -159,17 +160,29 @@
             // TopMargin
             // 
             this.TopMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.vendorLogo,
             this.xrLabel3,
-            this.xrLabel2,
-            this.vendorLogo});
-            this.TopMargin.HeightF = 67.31091F;
+            this.xrLabel2});
+            this.TopMargin.HeightF = 82.31089F;
             this.TopMargin.Name = "TopMargin";
+            // 
+            // vendorLogo
+            // 
+            this.vendorLogo.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopLeft;
+            this.vendorLogo.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("vendorLogo.ImageSource"));
+            this.vendorLogo.LocationFloat = new DevExpress.Utils.PointFloat(10F, 0F);
+            this.vendorLogo.Name = "vendorLogo";
+            this.vendorLogo.SizeF = new System.Drawing.SizeF(123.5466F, 77.31089F);
+            this.vendorLogo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
+            this.vendorLogo.StylePriority.UseBorderColor = false;
+            this.vendorLogo.StylePriority.UseBorders = false;
+            this.vendorLogo.StylePriority.UsePadding = false;
             // 
             // xrLabel3
             // 
             this.xrLabel3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?enddate")});
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(366F, 34.31091F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(688F, 49.31089F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -181,7 +194,7 @@
             // 
             this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?startdate")});
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(219.3333F, 34.31091F);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(541.3333F, 49.31089F);
             this.xrLabel2.Multiline = true;
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -189,20 +202,11 @@
             this.xrLabel2.Text = "xrLabel2";
             this.xrLabel2.TextFormatString = "{0:yyyy-MM-dd}";
             // 
-            // vendorLogo
-            // 
-            this.vendorLogo.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopLeft;
-            this.vendorLogo.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("vendorLogo.ImageSource"));
-            this.vendorLogo.LocationFloat = new DevExpress.Utils.PointFloat(10F, 16.66668F);
-            this.vendorLogo.Name = "vendorLogo";
-            this.vendorLogo.SizeF = new System.Drawing.SizeF(193.6699F, 50.64423F);
-            this.vendorLogo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
-            this.vendorLogo.StylePriority.UseBorderColor = false;
-            this.vendorLogo.StylePriority.UseBorders = false;
-            this.vendorLogo.StylePriority.UsePadding = false;
-            // 
             // BottomMargin
             // 
+            this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel4});
+            this.BottomMargin.HeightF = 44.75322F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // Detail
@@ -1050,6 +1054,19 @@
             // 
             this.xrControlStyle1.Name = "xrControlStyle1";
             // 
+            // xrLabel4
+            // 
+            this.xrLabel4.AutoWidth = true;
+            this.xrLabel4.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "LocalDateTimeNow()")});
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(539.4593F, 10F);
+            this.xrLabel4.Multiline = true;
+            this.xrLabel4.Name = "xrLabel4";
+            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(257.5406F, 23F);
+            this.xrLabel4.Text = "xrLabel2";
+            this.xrLabel4.TextFormatString = "{0:dddd, d MMMM, yyyy h:mm tt}";
+            // 
             // ShopCensusSummary
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1069,7 +1086,7 @@
             this.DataMember = "Inv_Setup_Section";
             this.DataSource = this.sqlDataSource1;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(24, 28, 67, 100);
+            this.Margins = new System.Drawing.Printing.Margins(24, 28, 82, 45);
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.startdate,
             this.enddate,
@@ -1101,7 +1118,6 @@
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
         private DevExpress.XtraReports.UI.DetailBand Detail;
         private DevExpress.XtraReports.UI.XRLine line2;
-        private DevExpress.XtraReports.UI.XRPictureBox vendorLogo;
         private DevExpress.XtraReports.UI.DetailReportBand DetailReport;
         private DevExpress.XtraReports.UI.DetailBand Detail1;
         private DevExpress.XtraReports.UI.XRTable xrTable1;
@@ -1173,5 +1189,7 @@
     private DevExpress.XtraReports.UI.FormattingRule formattingRule1;
     private DevExpress.XtraReports.UI.FormattingRule formattingRule2;
     private DevExpress.XtraReports.UI.XRControlStyle xrControlStyle1;
-  }
+        private DevExpress.XtraReports.UI.XRPictureBox vendorLogo;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel4;
+    }
 }

@@ -108,6 +108,11 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<Biopsy>().ToTable("Hims_Biopsy");
             modelBuilder.Entity<FreezePrepration>().ToTable("Hims_FreezePrepration");
 
+            //UltraSound
+            modelBuilder.Entity<UltraSoundPelvis>().ToTable("Hims_UltraSoundPelvis");
+            modelBuilder.Entity<FwbInitial>().ToTable("Hims_FWBInitial");
+            modelBuilder.Entity<UltraSoundMaster>().ToTable("Hims_UltraSoundMaster");
+
             //Hims Setup
             modelBuilder.Entity<Consultant>().ToTable("Hims_Consultant");
             modelBuilder.Entity<Package>().ToTable("Hims_Package");
@@ -127,6 +132,7 @@ namespace ErpInfrastructure.Data
             modelBuilder.Entity<TestType>().ToTable("Hims_TestType");
             modelBuilder.Entity<TestCategory>().ToTable("Hims_TestCategory");
             modelBuilder.Entity<Procedure>().ToTable("Hims_Procedure");
+            modelBuilder.Entity<Sonologist>().ToTable("Hims_Sonologist");
 
             //ETracker
             modelBuilder.Entity<CompetatorStock>().ToTable("ETracker_CompetatorStocks");
@@ -740,9 +746,66 @@ namespace ErpInfrastructure.Data
                 .WithMany()
                 .HasForeignKey(b => b.TestCategoryId);
 
-            //Inventory
-            //Setup
-            modelBuilder.Entity<InventoryItem>()
+
+           modelBuilder.Entity<UltraSoundPelvis>()
+                .HasOne(a => a.Patient)
+                .WithMany()
+                .HasForeignKey(b => b.PatientId);
+
+           modelBuilder.Entity<UltraSoundPelvis>()
+                .HasOne(a => a.Consultant)
+                .WithMany()
+                .HasForeignKey(b => b.ConsultantId);
+
+           modelBuilder.Entity<UltraSoundPelvis>()
+                .HasOne(a => a.TreatmentType)
+                .WithMany()
+                .HasForeignKey(b => b.TreatmentTypeId);
+
+           modelBuilder.Entity<UltraSoundPelvis>()
+                .HasOne(a => a.Sonologist)
+                .WithMany()
+                .HasForeignKey(b => b.SonologistId);
+
+
+            modelBuilder.Entity<FwbInitial>()
+              .HasOne(a => a.Patient)
+              .WithMany()
+              .HasForeignKey(b => b.PatientId);
+
+            modelBuilder.Entity<FwbInitial>()
+              .HasOne(a => a.Consultant)
+              .WithMany()
+              .HasForeignKey(a => a.ConsultantId);
+
+            modelBuilder.Entity<FwbInitial>()
+              .HasOne(a => a.TreatmentType)
+              .WithMany()
+              .HasForeignKey(a => a.TreatmentTypeId);
+
+            modelBuilder.Entity<FwbInitial>()
+                .HasOne(a => a.Sonologist)
+                .WithMany()
+                .HasForeignKey(x => x.SonologistId);
+
+          modelBuilder.Entity<UltraSoundMaster>()
+                .HasOne(a => a.Patient)
+                .WithMany()
+                .HasForeignKey(x => x.PatientId);
+
+            modelBuilder.Entity<UltraSoundMaster>()
+             .HasOne(a => a.Consultant)
+             .WithMany()
+             .HasForeignKey(x => x.ConsultantId);
+
+              modelBuilder.Entity<UltraSoundMaster>()
+                  .HasOne(a => a.Sonologist)
+                  .WithMany()
+                  .HasForeignKey(x => x.SonologistId);
+
+      //Inventory
+      //Setup
+      modelBuilder.Entity<InventoryItem>()
                 .HasOne(a => a.Inventory)
                 .WithOne(b => b.InventoryItem)
                 .HasForeignKey<Inventory>(c => c.InventoryItemId);
@@ -1034,6 +1097,11 @@ namespace ErpInfrastructure.Data
                 .HasOne(a => a.Brand)
                 .WithMany(b => b.InventoryItems)
                 .HasForeignKey(c => c.BrandId);
+
+            modelBuilder.Entity<InventoryItem>()
+                        .HasOne(x => x.ParentProduct)
+                        .WithMany(x => x.ChildrenProducts)
+                        .HasForeignKey(x => x.ParentProductId);
 
             //Sales Indent
             modelBuilder.Entity<SalesIndent>()
@@ -1921,6 +1989,11 @@ namespace ErpInfrastructure.Data
                 .WithMany()
                 .HasForeignKey(b => b.CurrencyId);
 
+                modelBuilder.Entity<MasterPayroll>()
+                    .HasOne(a => a.User)
+                    .WithMany(b => b.MasterPayrolls)
+                    .HasForeignKey(c => c.UserId);
+
             modelBuilder.Entity<MasterPayrollDetails>()
                 .HasOne(a => a.Allowance)
                 .WithMany()
@@ -1935,6 +2008,11 @@ namespace ErpInfrastructure.Data
                 .HasOne(a => a.PayrollType)
                 .WithMany(c => c.MasterPayrollDetails)
                 .HasForeignKey(b => b.PayrollTypeId);
+
+            modelBuilder.Entity<MasterPayrollDetails>()
+                .HasOne(a => a.MasterPayroll)
+                .WithMany(c => c.MasterPayrollDetails)
+                .HasForeignKey(b => b.MasterPayrollId);
 
             modelBuilder.Entity<User>()
                 .HasOne(a => a.Payroll)
@@ -2212,11 +2290,6 @@ namespace ErpInfrastructure.Data
                 .WithOne(b => b.User)
                 .HasForeignKey<User>(c => c.UserSalaryId);
 
-            modelBuilder.Entity<User>()
-                .HasOne(a => a.MasterPayroll)
-                .WithMany(b => b.Users)
-                .HasForeignKey(c => c.MasterPayrollId);
-
             modelBuilder.Entity<UserAssignRoster>()
                 .HasKey(a => new { a.UserId, a.AssignRosterId });
 
@@ -2297,6 +2370,12 @@ namespace ErpInfrastructure.Data
         public DbSet<TestCategory> TestCategories { get; set; }
         public DbSet<Package> Packages { get; set; }
         public DbSet<Procedure> Procedures { get; set; }
+        public DbSet<Sonologist>  Sonologists { get; set; }
+
+        // UltraSound
+        public DbSet<UltraSoundPelvis>   UltraSoundPelvis { get; set; }
+        public DbSet<FwbInitial> FwbInitials{ get; set; }
+        public DbSet<UltraSoundMaster> UltraSoundMasters { get; set; }
 
         //Visit
         public DbSet<PatientVital> PatientVitals { get; set; }

@@ -9,8 +9,9 @@ namespace FinanceService.ViewModels
 {
     public class UnpostedVoucherViewModel
     {
-        public long UnpostedVoucherId { get; set; }
+        public long? UnpostedVoucherId { get; set; }
 
+        public long? CompanyId { get; set; }
         public long VoucherId { get; set; }
         public string VoucherCode { get; set; }
         public DateTime? Date { get; set; }
