@@ -145,6 +145,12 @@ namespace HimsService
 
             services.AddScoped<IUltraSoundPelvisRepository, UltraSoundPelvisRepositiry>();
             services.AddScoped<IFwbInitialRepository, FwbInitialRepository>();
+            services.AddScoped<IUltraSoundMasterRepository, UltraSoundMasterRepository >();
+
+            //
+            services.AddScoped<IOtPatientCaseRepository , OtPatientCaseRepository>();
+
+
             //Laboratory
             services.AddScoped<IEmbryologistRepository, EmbryologistRepository>();
             services.AddScoped<IEmbryologyCodeRepository, EmbryologistCodeRepository>();

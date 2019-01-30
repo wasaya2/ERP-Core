@@ -11,6 +11,7 @@ using ReportingService.Reports.Payroll;
 using ReportingService.Reports.etracker;
 using ReportingService.Reports.Inventory;
 using ReportingService.Reports.UltraSound;
+using ReportingService.Reports.OT;
 
 namespace ReportingService
 {
@@ -72,18 +73,28 @@ namespace ReportingService
             Reports.Add("ultraSoundMasterReport", new ultraSoundMasterReport());
 
             ///////////ULTRA SOUND//////////////
+
+            //ot
+
+            Reports.Add("OtPatientCaseRegistration", new OtPatientCaseRegistration());
+            Reports.Add("LaproscopySpReport", new LaproscopySpReport());
+            Reports.Add("LaproscopyFsReport1", new LaproscopyFsReport1());
+            Reports.Add("HystroscopyReport", new HystroscopyReport());
+
+
+
             ///
 
-      #region Lab Reports
+            #region Lab Reports
 
       Reports.Add("SemenAnalysisOutsider", new AnalysisWorkSheet_Outsiders());
-            Reports.Add("BiochemistryDetailsOntreatment", new Bio_ChemistryDetails_OnTreatment());
-            Reports.Add("BiochemistryOutsider", new Biochemistry_Outsider());
-            Reports.Add("BiochemistryOntreatment", new Biochemistry());
-            Reports.Add("LabSummary", new LabSummary());
-            Reports.Add("Biopsy", new PESA_TESE());
+                        Reports.Add("BiochemistryDetailsOntreatment", new Bio_ChemistryDetails_OnTreatment());
+                        Reports.Add("BiochemistryOutsider", new Biochemistry_Outsider());
+                        Reports.Add("BiochemistryOntreatment", new Biochemistry());
+                        Reports.Add("LabSummary", new LabSummary());
+                        Reports.Add("Biopsy", new PESA_TESE());
 
-            #endregion
+                        #endregion
 
             #region etracker reports
             Reports.Add("ShopCensusSummary", new ShopCensusSummary());

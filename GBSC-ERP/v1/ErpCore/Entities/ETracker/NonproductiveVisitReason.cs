@@ -10,6 +10,7 @@ namespace ErpCore.Entities.ETracker
         [Key]
         public long NonproductiveVisitReasonId { get; set; }
         public string Reason { get; set; }
+        public string ShopStatusSummary { get; set; }
         public long? Priority { get; set; }
     }
 }

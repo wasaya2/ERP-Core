@@ -124,7 +124,7 @@ namespace SystemAdministrationService.Controllers
             return new OkObjectResult(new { UserID = usr.UserId });
         }
 
-        [HttpDelete]
+        [HttpDelete("DeleteUser/{id}")]
         public IActionResult DeleteUser(long id)
         {
             User user = _repo.Find(id);

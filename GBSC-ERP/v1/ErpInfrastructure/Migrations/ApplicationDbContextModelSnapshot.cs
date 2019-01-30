@@ -1018,6 +1018,8 @@ namespace ErpInfrastructure.Migrations
 
                     b.Property<string>("Reason");
 
+                    b.Property<string>("ShopStatusSummary");
+
                     b.HasKey("NonproductiveVisitReasonId");
 
                     b.ToTable("ETracker_NonproductiveVisitReason");
@@ -2241,6 +2243,8 @@ namespace ErpInfrastructure.Migrations
                     b.Property<double?>("TotalPaymentAmount");
 
                     b.Property<double?>("TotalReceivedQuantity");
+
+                    b.Property<string>("VendorBillNumber");
 
                     b.HasKey("GRNId");
 
@@ -4924,6 +4928,8 @@ namespace ErpInfrastructure.Migrations
 
                     b.Property<long?>("TotalWorkingDaysInMonth");
 
+                    b.Property<long?>("UserId");
+
                     b.Property<long?>("UserSalaryId");
 
                     b.HasKey("MonthlyUserSalaryId");
@@ -4933,6 +4939,8 @@ namespace ErpInfrastructure.Migrations
                     b.HasIndex("PfPaymentId");
 
                     b.HasIndex("StopSalaryId");
+
+                    b.HasIndex("UserId");
 
                     b.HasIndex("UserSalaryId");
 
@@ -4995,8 +5003,6 @@ namespace ErpInfrastructure.Migrations
                     b.Property<long>("AllowanceId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<long?>("AllowanceDeductionId");
-
                     b.Property<long?>("BranchId");
 
                     b.Property<long?>("CityId");
@@ -5020,8 +5026,6 @@ namespace ErpInfrastructure.Migrations
                     b.Property<string>("Name");
 
                     b.HasKey("AllowanceId");
-
-                    b.HasIndex("AllowanceDeductionId");
 
                     b.ToTable("Hr_Payroll_Allowance");
                 });
@@ -5091,9 +5095,9 @@ namespace ErpInfrastructure.Migrations
                     b.Property<long>("AllowanceDeductionId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<long?>("AllowanceArrearArrearAllowanceId");
-
                     b.Property<long?>("AllowanceCalculationTypeId");
+
+                    b.Property<long?>("ArrearAllowanceId");
 
                     b.Property<long?>("BranchId");
 
@@ -5123,6 +5127,8 @@ namespace ErpInfrastructure.Migrations
 
                     b.Property<bool?>("IsBaseAllowance");
 
+                    b.Property<bool?>("IsDefaultAllowance");
+
                     b.Property<bool?>("IsGrossSalary");
 
                     b.Property<bool?>("IsOneTimeAllowance");
@@ -5145,9 +5151,9 @@ namespace ErpInfrastructure.Migrations
 
                     b.HasKey("AllowanceDeductionId");
 
-                    b.HasIndex("AllowanceArrearArrearAllowanceId");
-
                     b.HasIndex("AllowanceCalculationTypeId");
+
+                    b.HasIndex("ArrearAllowanceId");
 
                     b.ToTable("Hr_Payroll_AllowanceDeduction");
                 });
@@ -5157,7 +5163,7 @@ namespace ErpInfrastructure.Migrations
                     b.Property<long>("AllowanceRateId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<long?>("AllowanceId");
+                    b.Property<long?>("AllowanceDeductionId");
 
                     b.Property<long?>("AllowanceRateValue");
 
@@ -5181,7 +5187,7 @@ namespace ErpInfrastructure.Migrations
 
                     b.HasKey("AllowanceRateId");
 
-                    b.HasIndex("AllowanceId");
+                    b.HasIndex("AllowanceDeductionId");
 
                     b.ToTable("Hr_Payroll_AllowanceRate");
                 });
@@ -5641,7 +5647,9 @@ namespace ErpInfrastructure.Migrations
                     b.Property<long>("MasterPayrollDetailsId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<long?>("AllowanceId");
+                    b.Property<long?>("AllowanceDeductionId");
+
+                    b.Property<long?>("BenefitId");
 
                     b.Property<long?>("BranchId");
 
@@ -5659,9 +5667,7 @@ namespace ErpInfrastructure.Migrations
 
                     b.Property<long?>("EditedBy");
 
-                    b.Property<DateTime?>("EffectiveDate");
-
-                    b.Property<DateTime?>("EndDate");
+                    b.Property<string>("Formula");
 
                     b.Property<long?>("FrequencyId");
 
@@ -5669,17 +5675,23 @@ namespace ErpInfrastructure.Migrations
 
                     b.Property<long?>("PayrollTypeId");
 
-                    b.Property<double>("Value");
+                    b.Property<long?>("SalaryCalculationTypeId");
+
+                    b.Property<double?>("Value");
 
                     b.HasKey("MasterPayrollDetailsId");
 
-                    b.HasIndex("AllowanceId");
+                    b.HasIndex("AllowanceDeductionId");
+
+                    b.HasIndex("BenefitId");
 
                     b.HasIndex("FrequencyId");
 
                     b.HasIndex("MasterPayrollId");
 
                     b.HasIndex("PayrollTypeId");
+
+                    b.HasIndex("SalaryCalculationTypeId");
 
                     b.ToTable("Hr_Payroll_MasterPayrollDetails");
                 });
@@ -6004,9 +6016,7 @@ namespace ErpInfrastructure.Migrations
                     b.Property<long>("SalaryStructureDetailId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<long?>("AllowanceId");
-
-                    b.Property<double?>("BaseSalary");
+                    b.Property<long?>("AllowanceDeductionId");
 
                     b.Property<long?>("BenefitId");
 
@@ -6038,7 +6048,7 @@ namespace ErpInfrastructure.Migrations
 
                     b.HasKey("SalaryStructureDetailId");
 
-                    b.HasIndex("AllowanceId");
+                    b.HasIndex("AllowanceDeductionId");
 
                     b.HasIndex("BenefitId");
 
@@ -7298,6 +7308,70 @@ namespace ErpInfrastructure.Migrations
                     b.ToTable("Hr_WorkExperience");
                 });
 
+            modelBuilder.Entity("ErpCore.Entities.Hystroscopy", b =>
+                {
+                    b.Property<long>("HystroscopyId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Anesthetic");
+
+                    b.Property<long?>("BranchId");
+
+                    b.Property<long?>("CityId");
+
+                    b.Property<string>("Comments");
+
+                    b.Property<long?>("CompanyId");
+
+                    b.Property<long?>("ConsultantId");
+
+                    b.Property<long?>("CountryId");
+
+                    b.Property<DateTime?>("CreatedAt");
+
+                    b.Property<bool?>("Deleted");
+
+                    b.Property<DateTime?>("EditedAt");
+
+                    b.Property<long?>("EditedBy");
+
+                    b.Property<string>("Findings");
+
+                    b.Property<DateTime>("HystroscopyDate");
+
+                    b.Property<string>("Indications");
+
+                    b.Property<DateTime>("LmpDate");
+
+                    b.Property<string>("OperationsNote1");
+
+                    b.Property<string>("OperationsNote2");
+
+                    b.Property<string>("OperationsNote3");
+
+                    b.Property<string>("OperationsNote4");
+
+                    b.Property<string>("OperationsNote5");
+
+                    b.Property<string>("OperationsNote6");
+
+                    b.Property<long?>("OtProcedureId");
+
+                    b.Property<long?>("PatientId");
+
+                    b.Property<string>("Type");
+
+                    b.HasKey("HystroscopyId");
+
+                    b.HasIndex("ConsultantId");
+
+                    b.HasIndex("OtProcedureId");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("Hims_Hystroscopy");
+                });
+
             modelBuilder.Entity("ErpCore.Entities.InseminationPrep", b =>
                 {
                     b.Property<long>("InseminationPrepId")
@@ -7393,9 +7467,7 @@ namespace ErpInfrastructure.Migrations
 
                     b.HasKey("InventoryId");
 
-                    b.HasIndex("InventoryItemId")
-                        .IsUnique()
-                        .HasFilter("[InventoryItemId] IS NOT NULL");
+                    b.HasIndex("InventoryItemId");
 
                     b.ToTable("Inv_Inventory");
                 });
@@ -7928,8 +8000,6 @@ namespace ErpInfrastructure.Migrations
                     b.Property<DateTime?>("EditedAt");
 
                     b.Property<long?>("EditedBy");
-
-                    b.Property<long?>("InventoryId");
 
                     b.Property<long?>("InventoryItemCategoryId");
 
@@ -8654,6 +8724,150 @@ namespace ErpInfrastructure.Migrations
                     b.ToTable("Inv_Setup_Units");
                 });
 
+            modelBuilder.Entity("ErpCore.Entities.LaproscopyFS", b =>
+                {
+                    b.Property<long>("LaproscopyFSId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Anesthetic");
+
+                    b.Property<long?>("BranchId");
+
+                    b.Property<long?>("CityId");
+
+                    b.Property<string>("Comments");
+
+                    b.Property<long?>("CompanyId");
+
+                    b.Property<long?>("CountryId");
+
+                    b.Property<DateTime?>("CreatedAt");
+
+                    b.Property<bool?>("Deleted");
+
+                    b.Property<string>("Diagnosis");
+
+                    b.Property<DateTime?>("EditedAt");
+
+                    b.Property<long?>("EditedBy");
+
+                    b.Property<string>("Heading1");
+
+                    b.Property<string>("Heading2");
+
+                    b.Property<string>("Heading3");
+
+                    b.Property<string>("Indications");
+
+                    b.Property<DateTime>("LMPDate");
+
+                    b.Property<DateTime>("LaproscopyFsDate");
+
+                    b.Property<string>("OperationsNote1");
+
+                    b.Property<string>("OperationsNote2");
+
+                    b.Property<string>("OperationsNote3");
+
+                    b.Property<string>("OperationsNote4");
+
+                    b.Property<long?>("OtProcedureId");
+
+                    b.Property<long?>("PatientId");
+
+                    b.Property<long?>("Surgeon2Id");
+
+                    b.Property<long?>("SurgeonId");
+
+                    b.Property<string>("Type");
+
+                    b.HasKey("LaproscopyFSId");
+
+                    b.HasIndex("OtProcedureId");
+
+                    b.HasIndex("PatientId");
+
+                    b.HasIndex("Surgeon2Id");
+
+                    b.HasIndex("SurgeonId");
+
+                    b.ToTable("Hims_LaproscopyFS");
+                });
+
+            modelBuilder.Entity("ErpCore.Entities.LaproscopySp", b =>
+                {
+                    b.Property<long>("LaproscopySpId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<long?>("BranchId");
+
+                    b.Property<string>("Cervix");
+
+                    b.Property<long?>("CityId");
+
+                    b.Property<string>("Comments");
+
+                    b.Property<long?>("CompanyId");
+
+                    b.Property<long?>("CountryId");
+
+                    b.Property<DateTime?>("CreatedAt");
+
+                    b.Property<bool?>("Deleted");
+
+                    b.Property<string>("Diagnosis");
+
+                    b.Property<DateTime?>("EditedAt");
+
+                    b.Property<long?>("EditedBy");
+
+                    b.Property<string>("Heading");
+
+                    b.Property<string>("Indications");
+
+                    b.Property<string>("LDyeSpill");
+
+                    b.Property<string>("LFallopianTube");
+
+                    b.Property<DateTime>("LaproscopySpDate");
+
+                    b.Property<string>("LeftOvary");
+
+                    b.Property<long?>("OtProcedureId");
+
+                    b.Property<string>("OtherFindings");
+
+                    b.Property<long?>("PatientId");
+
+                    b.Property<string>("PouchofDouglas");
+
+                    b.Property<string>("RDyeSpill");
+
+                    b.Property<string>("RFallopianTube");
+
+                    b.Property<string>("RighOvary");
+
+                    b.Property<long?>("SurgeonId");
+
+                    b.Property<string>("UterovesicalPouch");
+
+                    b.Property<string>("Uterus");
+
+                    b.Property<string>("Vagina");
+
+                    b.Property<string>("Vulva");
+
+                    b.HasKey("LaproscopySpId");
+
+                    b.HasIndex("OtProcedureId");
+
+                    b.HasIndex("PatientId");
+
+                    b.HasIndex("SurgeonId");
+
+                    b.ToTable("Hims_LaproscopySp");
+                });
+
             modelBuilder.Entity("ErpCore.Entities.Module", b =>
                 {
                     b.Property<long>("ModuleId")
@@ -8680,6 +8894,190 @@ namespace ErpInfrastructure.Migrations
                     b.HasKey("ModuleId");
 
                     b.ToTable("Sys_Module");
+                });
+
+            modelBuilder.Entity("ErpCore.Entities.OtPatientCase", b =>
+                {
+                    b.Property<long>("OtPatientCaseId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Anestetic");
+
+                    b.Property<string>("AnesthesiaType");
+
+                    b.Property<long?>("BranchId");
+
+                    b.Property<long?>("CityId");
+
+                    b.Property<long?>("CompanyId");
+
+                    b.Property<long?>("CountryId");
+
+                    b.Property<DateTime?>("CreatedAt");
+
+                    b.Property<string>("DateNature");
+
+                    b.Property<bool?>("Deleted");
+
+                    b.Property<long?>("DoneById");
+
+                    b.Property<DateTime?>("EditedAt");
+
+                    b.Property<long?>("EditedBy");
+
+                    b.Property<string>("Nurse");
+
+                    b.Property<string>("OtAssistant");
+
+                    b.Property<DateTime>("OtPatientCaseDate");
+
+                    b.Property<long?>("OtProcedureId");
+
+                    b.Property<string>("Other");
+
+                    b.Property<long?>("PatientId");
+
+                    b.Property<string>("Remarks");
+
+                    b.Property<string>("ScrubAssistant");
+
+                    b.Property<long?>("SurgeonId");
+
+                    b.Property<DateTime>("TimeEnd");
+
+                    b.Property<DateTime>("TimeStart");
+
+                    b.HasKey("OtPatientCaseId");
+
+                    b.HasIndex("DoneById");
+
+                    b.HasIndex("OtProcedureId");
+
+                    b.HasIndex("PatientId");
+
+                    b.HasIndex("SurgeonId");
+
+                    b.ToTable("Hims_OtPatientCase");
+                });
+
+            modelBuilder.Entity("ErpCore.Entities.OtSetup.MedicineRequest", b =>
+                {
+                    b.Property<long>("MedicineRequestId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Abbr");
+
+                    b.Property<long?>("BranchId");
+
+                    b.Property<long?>("CityId");
+
+                    b.Property<long?>("CompanyId");
+
+                    b.Property<long?>("CountryId");
+
+                    b.Property<DateTime?>("CreatedAt");
+
+                    b.Property<bool?>("Deleted");
+
+                    b.Property<DateTime?>("EditedAt");
+
+                    b.Property<long?>("EditedBy");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("MedicineRequestId");
+
+                    b.ToTable("Hims_MedicineRequest");
+                });
+
+            modelBuilder.Entity("ErpCore.Entities.OtSetup.OtEquipment", b =>
+                {
+                    b.Property<long>("OtEquipmentId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Abbr");
+
+                    b.Property<long?>("BranchId");
+
+                    b.Property<long?>("CityId");
+
+                    b.Property<long?>("CompanyId");
+
+                    b.Property<long?>("CountryId");
+
+                    b.Property<DateTime?>("CreatedAt");
+
+                    b.Property<bool?>("Deleted");
+
+                    b.Property<DateTime?>("EditedAt");
+
+                    b.Property<long?>("EditedBy");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("OtEquipmentId");
+
+                    b.ToTable("Hims_OtEquipment");
+                });
+
+            modelBuilder.Entity("ErpCore.Entities.OtSetup.OtProcedure", b =>
+                {
+                    b.Property<long>("OtProcedureId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Abbr");
+
+                    b.Property<long?>("BranchId");
+
+                    b.Property<long?>("CityId");
+
+                    b.Property<long?>("CompanyId");
+
+                    b.Property<long?>("CountryId");
+
+                    b.Property<DateTime?>("CreatedAt");
+
+                    b.Property<bool?>("Deleted");
+
+                    b.Property<DateTime?>("EditedAt");
+
+                    b.Property<long?>("EditedBy");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("OtProcedureId");
+
+                    b.ToTable("Hims_OtProcedure");
+                });
+
+            modelBuilder.Entity("ErpCore.Entities.OtSetup.OtTerminology", b =>
+                {
+                    b.Property<long>("OtTerminologyId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<long?>("BranchId");
+
+                    b.Property<long?>("CityId");
+
+                    b.Property<string>("Code");
+
+                    b.Property<long?>("CompanyId");
+
+                    b.Property<long?>("CountryId");
+
+                    b.Property<DateTime?>("CreatedAt");
+
+                    b.Property<bool?>("Deleted");
+
+                    b.Property<DateTime?>("EditedAt");
+
+                    b.Property<long?>("EditedBy");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("OtTerminologyId");
+
+                    b.ToTable("Hims_OtTerminology");
                 });
 
             modelBuilder.Entity("ErpCore.Entities.Partner", b =>
@@ -9993,6 +10391,8 @@ namespace ErpInfrastructure.Migrations
 
                     b.Property<long?>("BranchId");
 
+                    b.Property<string>("BranchName");
+
                     b.Property<long?>("CityId");
 
                     b.Property<long?>("CompanyId");
@@ -10016,6 +10416,8 @@ namespace ErpInfrastructure.Migrations
                     b.Property<long?>("DeliveryChallanId");
 
                     b.Property<long?>("DeliveryOrderId");
+
+                    b.Property<string>("DepartmentName");
 
                     b.Property<long?>("DistributorId");
 
@@ -10183,6 +10585,8 @@ namespace ErpInfrastructure.Migrations
 
                     b.Property<long?>("BranchId");
 
+                    b.Property<string>("BranchName");
+
                     b.Property<long?>("CityId");
 
                     b.Property<long?>("CompanyId");
@@ -10203,6 +10607,8 @@ namespace ErpInfrastructure.Migrations
 
                     b.Property<long?>("DeliveryOrderId");
 
+                    b.Property<string>("DepartmentName");
+
                     b.Property<double?>("DiscountAmount");
 
                     b.Property<double?>("DiscountedAmount");
@@ -10218,6 +10624,8 @@ namespace ErpInfrastructure.Migrations
                     b.Property<double?>("ExtraDiscountPercentage");
 
                     b.Property<bool?>("IsApproved");
+
+                    b.Property<bool?>("IsInternalOrder");
 
                     b.Property<bool?>("IsIssued");
 
@@ -12150,6 +12558,10 @@ namespace ErpInfrastructure.Migrations
                         .WithMany("MonthlyUserSalaries")
                         .HasForeignKey("StopSalaryId");
 
+                    b.HasOne("ErpCore.Entities.User", "User")
+                        .WithMany("MonthlyUserSalaries")
+                        .HasForeignKey("UserId");
+
                     b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.UserSalary", "UserSalary")
                         .WithMany("MonthlyUserSalaries")
                         .HasForeignKey("UserSalaryId");
@@ -12175,29 +12587,22 @@ namespace ErpInfrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("ErpCore.Entities.HR.Payroll.PayrollSetup.Allowance", b =>
-                {
-                    b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.AllowanceDeduction", "AllowanceDeduction")
-                        .WithMany("Allowances")
-                        .HasForeignKey("AllowanceDeductionId");
-                });
-
             modelBuilder.Entity("ErpCore.Entities.HR.Payroll.PayrollSetup.AllowanceDeduction", b =>
                 {
-                    b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.AllowanceArrear")
-                        .WithMany("AllowanceDeductions")
-                        .HasForeignKey("AllowanceArrearArrearAllowanceId");
-
                     b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.AllowanceCalculationType", "AllowanceCalculationType")
                         .WithMany("AllowanceDeductions")
                         .HasForeignKey("AllowanceCalculationTypeId");
+
+                    b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.AllowanceArrear", "AllowanceArrear")
+                        .WithMany("AllowanceDeductions")
+                        .HasForeignKey("ArrearAllowanceId");
                 });
 
             modelBuilder.Entity("ErpCore.Entities.HR.Payroll.PayrollSetup.AllowanceRate", b =>
                 {
-                    b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.Allowance", "Allowance")
+                    b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.AllowanceDeduction", "AllowanceDeduction")
                         .WithMany("AllowanceRates")
-                        .HasForeignKey("AllowanceId");
+                        .HasForeignKey("AllowanceDeductionId");
                 });
 
             modelBuilder.Entity("ErpCore.Entities.HR.Payroll.PayrollSetup.CompensationTransaction", b =>
@@ -12254,11 +12659,15 @@ namespace ErpInfrastructure.Migrations
 
             modelBuilder.Entity("ErpCore.Entities.HR.Payroll.PayrollSetup.MasterPayrollDetails", b =>
                 {
-                    b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.Allowance", "Allowance")
-                        .WithMany()
-                        .HasForeignKey("AllowanceId");
+                    b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.AllowanceDeduction", "AllowanceDeduction")
+                        .WithMany("MasterPayrollDetails")
+                        .HasForeignKey("AllowanceDeductionId");
 
-                    b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.Frequency", "Frequency")
+                    b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.Benefit", "Benefit")
+                        .WithMany("MasterPayrollDetails")
+                        .HasForeignKey("BenefitId");
+
+                    b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.Frequency")
                         .WithMany("MasterPayrollDetails")
                         .HasForeignKey("FrequencyId");
 
@@ -12266,9 +12675,13 @@ namespace ErpInfrastructure.Migrations
                         .WithMany("MasterPayrollDetails")
                         .HasForeignKey("MasterPayrollId");
 
-                    b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.PayrollType", "PayrollType")
+                    b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.PayrollType")
                         .WithMany("MasterPayrollDetails")
                         .HasForeignKey("PayrollTypeId");
+
+                    b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.SalaryCalculationType", "SalaryCalculationType")
+                        .WithMany()
+                        .HasForeignKey("SalaryCalculationTypeId");
                 });
 
             modelBuilder.Entity("ErpCore.Entities.HR.Payroll.PayrollSetup.Payroll", b =>
@@ -12319,9 +12732,9 @@ namespace ErpInfrastructure.Migrations
 
             modelBuilder.Entity("ErpCore.Entities.HR.Payroll.PayrollSetup.SalaryStructureDetail", b =>
                 {
-                    b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.Allowance", "Allowance")
+                    b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.AllowanceDeduction", "AllowanceDeduction")
                         .WithMany("SalaryStructureDetails")
-                        .HasForeignKey("AllowanceId");
+                        .HasForeignKey("AllowanceDeductionId");
 
                     b.HasOne("ErpCore.Entities.HR.Payroll.PayrollSetup.Benefit", "Benefit")
                         .WithMany("SalaryStructureDetails")
@@ -12545,6 +12958,21 @@ namespace ErpInfrastructure.Migrations
                         .HasForeignKey("UserId");
                 });
 
+            modelBuilder.Entity("ErpCore.Entities.Hystroscopy", b =>
+                {
+                    b.HasOne("ErpCore.Entities.HimsSetup.Consultant", "Consultant")
+                        .WithMany()
+                        .HasForeignKey("ConsultantId");
+
+                    b.HasOne("ErpCore.Entities.OtSetup.OtProcedure", "OtProcedure")
+                        .WithMany()
+                        .HasForeignKey("OtProcedureId");
+
+                    b.HasOne("ErpCore.Entities.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId");
+                });
+
             modelBuilder.Entity("ErpCore.Entities.InseminationPrep", b =>
                 {
                     b.HasOne("ErpCore.Entities.PatientClinicalRecord", "PatientClinicalRecord")
@@ -12555,8 +12983,8 @@ namespace ErpInfrastructure.Migrations
             modelBuilder.Entity("ErpCore.Entities.Inventory", b =>
                 {
                     b.HasOne("ErpCore.Entities.InventorySetup.InventoryItem", "InventoryItem")
-                        .WithOne("Inventory")
-                        .HasForeignKey("ErpCore.Entities.Inventory", "InventoryItemId");
+                        .WithMany("Inventories")
+                        .HasForeignKey("InventoryItemId");
                 });
 
             modelBuilder.Entity("ErpCore.Entities.InventorySetup.Area", b =>
@@ -12714,6 +13142,59 @@ namespace ErpInfrastructure.Migrations
                     b.HasOne("ErpCore.Entities.User", "User")
                         .WithMany("Territories")
                         .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("ErpCore.Entities.LaproscopyFS", b =>
+                {
+                    b.HasOne("ErpCore.Entities.OtSetup.OtProcedure", "OtProcedure")
+                        .WithMany()
+                        .HasForeignKey("OtProcedureId");
+
+                    b.HasOne("ErpCore.Entities.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId");
+
+                    b.HasOne("ErpCore.Entities.HimsSetup.Consultant", "Surgeon2")
+                        .WithMany()
+                        .HasForeignKey("Surgeon2Id");
+
+                    b.HasOne("ErpCore.Entities.HimsSetup.Consultant", "Surgeon")
+                        .WithMany()
+                        .HasForeignKey("SurgeonId");
+                });
+
+            modelBuilder.Entity("ErpCore.Entities.LaproscopySp", b =>
+                {
+                    b.HasOne("ErpCore.Entities.OtSetup.OtProcedure", "OtProcedure")
+                        .WithMany()
+                        .HasForeignKey("OtProcedureId");
+
+                    b.HasOne("ErpCore.Entities.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId");
+
+                    b.HasOne("ErpCore.Entities.HimsSetup.Consultant", "Surgeon")
+                        .WithMany()
+                        .HasForeignKey("SurgeonId");
+                });
+
+            modelBuilder.Entity("ErpCore.Entities.OtPatientCase", b =>
+                {
+                    b.HasOne("ErpCore.Entities.HimsSetup.Consultant", "DoneBy")
+                        .WithMany()
+                        .HasForeignKey("DoneById");
+
+                    b.HasOne("ErpCore.Entities.OtSetup.OtProcedure", "OtProcedure")
+                        .WithMany()
+                        .HasForeignKey("OtProcedureId");
+
+                    b.HasOne("ErpCore.Entities.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId");
+
+                    b.HasOne("ErpCore.Entities.HimsSetup.Consultant", "Surgeon")
+                        .WithMany()
+                        .HasForeignKey("SurgeonId");
                 });
 
             modelBuilder.Entity("ErpCore.Entities.Partner", b =>

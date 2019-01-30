@@ -37,9 +37,143 @@ namespace ErpInfrastructure.Data
         }
 
 
+        private void OnBeforeSaving()
+        {
+            foreach (var entry in ChangeTracker.Entries())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.CurrentValues["Deleted"] = false;
+                        break;
+
+                    case EntityState.Deleted:
+                        entry.State = EntityState.Modified;
+                        entry.CurrentValues["Deleted"] = true;
+                        break;
+                }
+            }
+        }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            //Soft Delete Configure
+            modelBuilder.Entity<Subsection>().Property<bool?>("Deleted");
+            modelBuilder.Entity<Subsection>()
+            .HasQueryFilter(Subsection => EF.Property<bool?>(Subsection, "Deleted") == false);
+
+            modelBuilder.Entity<Section>().Property<bool?>("Deleted");
+            modelBuilder.Entity<Section>()
+            .HasQueryFilter(Section => EF.Property<bool?>(Section, "Deleted") == false);
+
+            modelBuilder.Entity<Distributor>().Property<bool?>("Deleted");
+            modelBuilder.Entity<Distributor>()
+            .HasQueryFilter(distributer => EF.Property<bool?>(distributer, "Deleted") == false);
+
+            modelBuilder.Entity<Country>().Property<bool?>("Deleted");
+            modelBuilder.Entity<Country>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<City>().Property<bool?>("Deleted");
+            modelBuilder.Entity<City>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<Branch>().Property<bool?>("Deleted");
+            modelBuilder.Entity<Branch>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<Department>().Property<bool?>("Deleted");
+            modelBuilder.Entity<Department>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<Area>().Property<bool?>("Deleted");
+            modelBuilder.Entity<Area>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<Territory>().Property<bool?>("Deleted");
+            modelBuilder.Entity<Territory>()
+            .HasQueryFilter(Territory => EF.Property<bool?>(Territory, "Deleted") == false);
+
+            modelBuilder.Entity<Region>().Property<bool?>("Deleted");
+            modelBuilder.Entity<Region>()
+            .HasQueryFilter(Region => EF.Property<bool?>(Region, "Deleted") == false);
+
+            modelBuilder.Entity<StoreVisit>().Property<bool?>("Deleted");
+            modelBuilder.Entity<StoreVisit>()
+            .HasQueryFilter(StoreVisit => EF.Property<bool?>(StoreVisit, "Deleted") == false);
+
+            modelBuilder.Entity<Store>().Property<bool?>("Deleted");
+            modelBuilder.Entity<Store>()
+            .HasQueryFilter(Store => EF.Property<bool?>(Store, "Deleted") == false);
+
+            modelBuilder.Entity<OutletStock>().Property<bool?>("Deleted");
+            modelBuilder.Entity<OutletStock>()
+            .HasQueryFilter(OutletStock => EF.Property<bool?>(OutletStock, "Deleted") == false);
+
+            modelBuilder.Entity<OrderTaking>().Property<bool?>("Deleted");
+            modelBuilder.Entity<OrderTaking>()
+            .HasQueryFilter(OrderTaking => EF.Property<bool?>(OrderTaking, "Deleted") == false);
+
+            modelBuilder.Entity<InventoryTaking>().Property<bool?>("Deleted");
+            modelBuilder.Entity<InventoryTaking>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<Merchandising>().Property<bool?>("Deleted");
+            modelBuilder.Entity<Merchandising>()
+            .HasQueryFilter(merchandising => EF.Property<bool?>(merchandising, "Deleted") == false);
+
+            modelBuilder.Entity<ProductType>().Property<bool?>("Deleted");
+            modelBuilder.Entity<ProductType>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<Brand>().Property<bool?>("Deleted");
+            modelBuilder.Entity<Brand>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<InventoryItemCategory>().Property<bool?>("Deleted");
+            modelBuilder.Entity<InventoryItemCategory>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<Units>().Property<bool?>("Deleted");
+            modelBuilder.Entity<Units>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<PackCategory>().Property<bool?>("Deleted");
+            modelBuilder.Entity<PackCategory>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<PackType>().Property<bool?>("Deleted");
+            modelBuilder.Entity<PackType>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<PackSize>().Property<bool?>("Deleted");
+            modelBuilder.Entity<PackSize>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<ProductType>().Property<bool?>("Deleted");
+            modelBuilder.Entity<ProductType>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<InventoryItem>().Property<bool?>("Deleted");
+            modelBuilder.Entity<InventoryItem>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<GeneralSKU>().Property<bool?>("Deleted");
+            modelBuilder.Entity<GeneralSKU>()
+            .HasQueryFilter(Area => EF.Property<bool?>(Area, "Deleted") == false);
+
+            modelBuilder.Entity<User>().Property<bool?>("Deleted");
+            modelBuilder.Entity<User>()
+            .HasQueryFilter(user => EF.Property<bool?>(user, "Deleted") == false);
+
+            modelBuilder.Entity<Role>().Property<bool?>("Deleted");
+            modelBuilder.Entity<Role>()
+            .HasQueryFilter(Subsection => EF.Property<bool?>(Subsection, "Deleted") == false);
+
+
             //Finance Setup
             modelBuilder.Entity<MasterAccount>().ToTable("Finance_Setup_MasterAccount");
             modelBuilder.Entity<DetailAccount>().ToTable("Finance_Setup_DetailAccount");
@@ -111,6 +245,12 @@ namespace ErpInfrastructure.Data
             //UltraSound
             modelBuilder.Entity<UltraSoundPelvis>().ToTable("Hims_UltraSoundPelvis");
             modelBuilder.Entity<FwbInitial>().ToTable("Hims_FWBInitial");
+            modelBuilder.Entity<UltraSoundMaster>().ToTable("Hims_UltraSoundMaster");
+
+            //OT
+
+            modelBuilder.Entity<OtPatientCase>().ToTable("Hims_OtPatientCase");
+
 
             //Hims Setup
             modelBuilder.Entity<Consultant>().ToTable("Hims_Consultant");
@@ -520,7 +660,7 @@ namespace ErpInfrastructure.Data
                       .WithOne(b => b.PatientVital)
                       .HasForeignKey<Visit>(c => c.PatientVitalId);
 
-      //Laboratory
+            //Laboratory
 
 
 
@@ -576,41 +716,41 @@ namespace ErpInfrastructure.Data
                 .HasForeignKey(b => b.TestUnitId);
 
 
-      //Patient
-  
-        modelBuilder.Entity<DailySemenAnalysisProcedure>()
-               .HasKey(ds => new { ds.ProcedureId, ds.DailySemenAnalysisId });
+            //Patient
 
-        modelBuilder.Entity<DailySemenAnalysisProcedure>()
-             .HasOne(pc => pc.Procedure)
-             .WithMany(p => p.DailySemenAnalysisProcedures)
-             .HasForeignKey(pc => pc.ProcedureId);
+            modelBuilder.Entity<DailySemenAnalysisProcedure>()
+                   .HasKey(ds => new { ds.ProcedureId, ds.DailySemenAnalysisId });
 
-        modelBuilder.Entity<DailySemenAnalysisProcedure>()
-        .HasOne(pc => pc.DailySemenAnalysis)
-        .WithMany(p => p.DailySemenAnalysisProcedures)
-        .HasForeignKey(pc => pc.DailySemenAnalysisId);
- 
-         modelBuilder.Entity<DailySemenAnalysis>()
-            .HasOne(a => a.Patient)
-            .WithMany()
-            .HasForeignKey(c => c.PatientId);
+            modelBuilder.Entity<DailySemenAnalysisProcedure>()
+                 .HasOne(pc => pc.Procedure)
+                 .WithMany(p => p.DailySemenAnalysisProcedures)
+                 .HasForeignKey(pc => pc.ProcedureId);
 
-        modelBuilder.Entity<DailySemenAnalysis>()
-          .HasOne(a => a.Consultant)
-          .WithMany()
-          .HasForeignKey(c => c.ConsultantId);
+            modelBuilder.Entity<DailySemenAnalysisProcedure>()
+            .HasOne(pc => pc.DailySemenAnalysis)
+            .WithMany(p => p.DailySemenAnalysisProcedures)
+            .HasForeignKey(pc => pc.DailySemenAnalysisId);
+
+            modelBuilder.Entity<DailySemenAnalysis>()
+               .HasOne(a => a.Patient)
+               .WithMany()
+               .HasForeignKey(c => c.PatientId);
+
+            modelBuilder.Entity<DailySemenAnalysis>()
+              .HasOne(a => a.Consultant)
+              .WithMany()
+              .HasForeignKey(c => c.ConsultantId);
 
 
-         modelBuilder.Entity<DailyProcedure>()
-              .HasOne(a => a.AssignedConsultant)
-              .WithMany(b => b.AssignedDailyProcedures)
-              .HasForeignKey(c => c.AssignedConsultantId);
+            modelBuilder.Entity<DailyProcedure>()
+                 .HasOne(a => a.AssignedConsultant)
+                 .WithMany(b => b.AssignedDailyProcedures)
+                 .HasForeignKey(c => c.AssignedConsultantId);
 
-        modelBuilder.Entity<DailyProcedure>()
-                .HasOne(a => a.PerformedByConsultant)
-                .WithMany(b => b.PerformedDailyProcedures)
-                .HasForeignKey(c => c.PerformedByConsultantId);
+            modelBuilder.Entity<DailyProcedure>()
+                    .HasOne(a => a.PerformedByConsultant)
+                    .WithMany(b => b.PerformedDailyProcedures)
+                    .HasForeignKey(c => c.PerformedByConsultantId);
 
             modelBuilder.Entity<DailyProcedure>()
                 .HasOne(a => a.Patient)
@@ -746,25 +886,25 @@ namespace ErpInfrastructure.Data
                 .HasForeignKey(b => b.TestCategoryId);
 
 
-           modelBuilder.Entity<UltraSoundPelvis>()
-                .HasOne(a => a.Patient)
-                .WithMany()
-                .HasForeignKey(b => b.PatientId);
+            modelBuilder.Entity<UltraSoundPelvis>()
+                 .HasOne(a => a.Patient)
+                 .WithMany()
+                 .HasForeignKey(b => b.PatientId);
 
-           modelBuilder.Entity<UltraSoundPelvis>()
-                .HasOne(a => a.Consultant)
-                .WithMany()
-                .HasForeignKey(b => b.ConsultantId);
+            modelBuilder.Entity<UltraSoundPelvis>()
+                 .HasOne(a => a.Consultant)
+                 .WithMany()
+                 .HasForeignKey(b => b.ConsultantId);
 
-           modelBuilder.Entity<UltraSoundPelvis>()
-                .HasOne(a => a.TreatmentType)
-                .WithMany()
-                .HasForeignKey(b => b.TreatmentTypeId);
+            modelBuilder.Entity<UltraSoundPelvis>()
+                 .HasOne(a => a.TreatmentType)
+                 .WithMany()
+                 .HasForeignKey(b => b.TreatmentTypeId);
 
-           modelBuilder.Entity<UltraSoundPelvis>()
-                .HasOne(a => a.Sonologist)
-                .WithMany()
-                .HasForeignKey(b => b.SonologistId);
+            modelBuilder.Entity<UltraSoundPelvis>()
+                 .HasOne(a => a.Sonologist)
+                 .WithMany()
+                 .HasForeignKey(b => b.SonologistId);
 
 
             modelBuilder.Entity<FwbInitial>()
@@ -782,18 +922,59 @@ namespace ErpInfrastructure.Data
               .WithMany()
               .HasForeignKey(a => a.TreatmentTypeId);
 
-      modelBuilder.Entity<FwbInitial>()
-          .HasOne(a => a.Sonologist)
-          .WithMany()
-          .HasForeignKey(x => x.SonologistId);
-  
+            modelBuilder.Entity<FwbInitial>()
+                .HasOne(a => a.Sonologist)
+                .WithMany()
+                .HasForeignKey(x => x.SonologistId);
+
+            modelBuilder.Entity<UltraSoundMaster>()
+                  .HasOne(a => a.Patient)
+                  .WithMany()
+                  .HasForeignKey(x => x.PatientId);
+
+            modelBuilder.Entity<UltraSoundMaster>()
+             .HasOne(a => a.Consultant)
+             .WithMany()
+             .HasForeignKey(x => x.ConsultantId);
+
+            modelBuilder.Entity<UltraSoundMaster>()
+                .HasOne(a => a.Sonologist)
+                .WithMany()
+                .HasForeignKey(x => x.SonologistId);
+
+            //OT
+            modelBuilder.Entity<OtPatientCase>()
+              .HasOne(a => a.Patient)
+              .WithMany()
+              .HasForeignKey(x => x.PatientId);
+
+            modelBuilder.Entity<OtPatientCase>()
+               .HasOne(a => a.Procedure)
+               .WithMany()
+               .HasForeignKey(x => x.ProcedureId);
+
+            modelBuilder.Entity<OtPatientCase>()
+              .HasOne(a => a.Surgeon)
+              .WithMany()
+              .HasForeignKey(x => x.SurgeonId);
+
+            modelBuilder.Entity<OtPatientCase>()
+              .HasOne(a => a.DoneBy)
+              .WithMany()
+              .HasForeignKey(x => x.DoneById);
+
+            modelBuilder.Entity<OtPatientCase>()
+               .HasOne(a => a.DoneBy)
+               .WithMany()
+               .HasForeignKey(x => x.DoneById);
+
 
             //Inventory
             //Setup
             modelBuilder.Entity<InventoryItem>()
-                .HasOne(a => a.Inventory)
-                .WithOne(b => b.InventoryItem)
-                .HasForeignKey<Inventory>(c => c.InventoryItemId);
+                      .HasOne(a => a.Inventory)
+                      .WithOne(b => b.InventoryItem)
+                      .HasForeignKey<Inventory>(c => c.InventoryItemId);
 
 
             //Customer
@@ -1913,12 +2094,6 @@ namespace ErpInfrastructure.Data
                 .WithMany(b => b.UserStopSalaries)
                 .HasForeignKey(c => c.StopSalaryId);
 
-
-            modelBuilder.Entity<Allowance>()
-                .HasOne(a => a.AllowanceDeduction)
-                .WithMany(b => b.Allowances)
-                .HasForeignKey(c => c.AllowanceDeductionId);
-
             modelBuilder.Entity<AllowanceDeduction>()
                 .HasOne(a => a.AllowanceCalculationType)
                 .WithMany(b => b.AllowanceDeductions)
@@ -1974,10 +2149,10 @@ namespace ErpInfrastructure.Data
                 .WithMany()
                 .HasForeignKey(b => b.CurrencyId);
 
-                modelBuilder.Entity<MasterPayroll>()
-                    .HasOne(a => a.User)
-                    .WithMany(b => b.MasterPayrolls)
-                    .HasForeignKey(c => c.UserId);
+            modelBuilder.Entity<MasterPayroll>()
+                .HasOne(a => a.User)
+                .WithMany(b => b.MasterPayrolls)
+                .HasForeignKey(c => c.UserId);
 
             modelBuilder.Entity<MasterPayrollDetails>()
                 .HasOne(a => a.Allowance)
@@ -2095,14 +2270,14 @@ namespace ErpInfrastructure.Data
                 .HasForeignKey(c => c.BenefitId);
 
             modelBuilder.Entity<SalaryStructureDetail>()
-                .HasOne(a => a.Allowance)
+                .HasOne(a => a.AllowanceDeduction)
                 .WithMany(b => b.SalaryStructureDetails)
-                .HasForeignKey(c => c.AllowanceId);
+                .HasForeignKey(c => c.AllowanceDeductionId);
 
             modelBuilder.Entity<SalaryStructureDetail>()
-                .HasOne(a => a.SalaryStructure)
-                .WithMany(b => b.SalaryStructureDetails)
-                .HasForeignKey(c => c.SalaryStructureId);
+          .HasOne(a => a.SalaryStructure)
+          .WithMany(b => b.SalaryStructureDetails)
+          .HasForeignKey(c => c.SalaryStructureId);
 
             modelBuilder.Entity<UserSalary>()
                 .HasOne(a => a.IncomeTaxRule)
@@ -2355,11 +2530,16 @@ namespace ErpInfrastructure.Data
         public DbSet<TestCategory> TestCategories { get; set; }
         public DbSet<Package> Packages { get; set; }
         public DbSet<Procedure> Procedures { get; set; }
-        public DbSet<Sonologist>  Sonologists { get; set; }
+        public DbSet<Sonologist> Sonologists { get; set; }
 
         // UltraSound
-        public DbSet<UltraSoundPelvis>   UltraSoundPelvis { get; set; }
-        public DbSet<FwbInitial> FwbInitials{ get; set; }
+        public DbSet<UltraSoundPelvis> UltraSoundPelvis { get; set; }
+        public DbSet<FwbInitial> FwbInitials { get; set; }
+        public DbSet<UltraSoundMaster> UltraSoundMasters { get; set; }
+
+        //OT
+        public DbSet<OtPatientCase> OtPatientCases { get; set; }
+
 
         //Visit
         public DbSet<PatientVital> PatientVitals { get; set; }

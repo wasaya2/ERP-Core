@@ -10,8 +10,8 @@ namespace ErpCore.Entities
         [Key]
         public long PurchaseInvoiceId { get; set; }
         public string InvoiceNumber { get; set; }
-        //public string VendorBillNumber { get; set; }
-        //public DateTime? InvoiceDate { get; set; }
+        public string VendorBillNumber { get; set; }
+        public DateTime? InvoiceDate { get; set; }
         //public string Status { get; set; }
         //public DateTime? BillDate { get; set; }
         //public string Remarks { get; set; }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ErpCore.Entities.InventorySetup
 {
-    public class InventoryCurrency
+    public class InventoryCurrency : BaseClass
     {
         [Key]
         public long InventoryCurrencyId { get; set; }

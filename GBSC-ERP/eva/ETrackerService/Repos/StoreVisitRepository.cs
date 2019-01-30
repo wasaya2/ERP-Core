@@ -224,41 +224,17 @@ namespace eTrackerInfrastructure.Repos
             return visitHistory.Reverse();
         }
 
-        public IEnumerable<OrderTakingViewModel> GetVisitInventories(long StoreVisitId)
+        public IEnumerable<InventoryTakingViewModel> GetVisitInventories(long StoreVisitId)
         {
 
             var items = (from storevisit in Db.StoreVisits
                          join inventorytaking in Db.InventoryTakings on storevisit.StoreVisitId equals inventorytaking.StoreVisitId
-                         join item in Db.InventoryItems on inventorytaking.InventoryItemId equals item.InventoryItemId
-                         join brand in Db.Brands on item.BrandId equals brand.BrandId
-                         join unit in Db.Units on item.MeasurementUnitId equals unit.UnitId
-                         join packtype in Db.PackTypes on item.PackageTypeId equals packtype.PackTypeId
-                         join packsize in Db.PackSizes on item.PackSizeId equals packsize.PackSizeId
-                         join producttype in Db.ProductTypes on item.ProductTypeId equals producttype.ProductTypeId
-                         where storevisit.StoreVisitId == StoreVisitId
-                         group item by item.Brand.Name into g
-                         select new OrderTakingViewModel
-                         {
-                             BrandName = g.Key,
-                             Items = g.GroupBy(f => f.ProductType.Name, i => new Item
-                             {
-                                 InventoryItemId = i.InventoryItemId,
-                                 Name = i.Name,
-                                 ProductType = i.ProductType.Name,
-                                 Description = i.Description,
-                                 CostPrice = i.CostPrice,
-                                 ItemCode = i.ItemCode,
-                                 PackageType = i.PackageType.Name,
-                                 PackSize = i.PackSize.Size,
-                                 PackType = i.PackType.Name,
-                                 PackTypeInPackageType = i.PackTypeInPackageType,
-                                 PurchaseDate = i.PurchaseDate,
-                                 RetailPrice = i.RetailPrice,
-                                 TradeOfferAmount = i.TradeOfferAmount,
-                                 Unit = i.MeasurementUnit.Name,
-                                 UnitPrice = i.UnitPrice
-                             }, (key, s) => new GroupedItems { ProductType = key, Items = s.ToList() })
-                         });
+                         where storevisit.StoreVisitId == StoreVisitId  
+                         group inventorytaking by inventorytaking.BrandName into g
+                         select new InventoryTakingViewModel {
+                             Brand = g.Key,
+                             Items = g.Select(s=> new InventoryTakingItem {  Quantity = s.Quantity, SkuItem = s.SKUItem.ItemName})
+                         }).ToList();
 
             return items;
         }

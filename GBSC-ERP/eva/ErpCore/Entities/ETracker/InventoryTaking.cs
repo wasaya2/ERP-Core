@@ -21,8 +21,10 @@ namespace ErpCore.Entities.ETracker
 
         public Store Store { get; set; }
 
-        public long? InventoryItemId { get; set; }
+        public string BrandName { get; set; }
 
-        public InventoryItem inventoryItem { get; set; }
+        public long? GeneralSKUId { get; set; }
+
+        public GeneralSKU SKUItem { get; set; }
     }
 }

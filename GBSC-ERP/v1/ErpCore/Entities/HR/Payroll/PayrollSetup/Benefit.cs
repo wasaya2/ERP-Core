@@ -11,6 +11,7 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
         public Benefit()
         {
             TaxBenefits = new HashSet<TaxBenefit>();
+            MasterPayrollDetails = new HashSet<MasterPayrollDetails>();
             SalaryStructureDetails = new HashSet<SalaryStructureDetail>();
         }
 
@@ -20,6 +21,7 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
         public string Description { get; set; }
 
         public IEnumerable<TaxBenefit> TaxBenefits { get; set; }
+        public IEnumerable<MasterPayrollDetails> MasterPayrollDetails { get; set; }
         public IEnumerable<SalaryStructureDetail> SalaryStructureDetails { get; set; }
     }
 }

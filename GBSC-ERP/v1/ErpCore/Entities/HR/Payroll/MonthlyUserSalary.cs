@@ -39,6 +39,9 @@ namespace ErpCore.Entities.HR.Payroll
         public long? PfPaymentId { get; set; }
         public PfPayment PfPayment { get; set; }
 
+        public long? UserId { get; set; }
+        public User User { get; set; }
+
         public IEnumerable<UserRosterAttendance> UserRosterAttendances { get; set; } //DailyAttendance record
 
         public long? PayslipId { get; set; }

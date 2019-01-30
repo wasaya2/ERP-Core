@@ -9,18 +9,17 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
     {
         [Key]
         public long MasterPayrollDetailsId { get; set; }
-        public double Value { get; set; }
-        public DateTime? EffectiveDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public double? Value { get; set; } //if calculation is %age then show this
+        public string Formula { get; set; } //if calculation is formula, then save in this
 
-        public long? AllowanceId { get; set; }
-        public Allowance Allowance { get; set; }
+        public long? SalaryCalculationTypeId { get; set; }
+        public SalaryCalculationType SalaryCalculationType { get; set; }
 
-        public long? FrequencyId { get; set; }
-        public Frequency Frequency { get; set; }
+        public long? BenefitId { get; set; }
+        public Benefit Benefit { get; set; }
 
-        public long? PayrollTypeId { get; set; }
-        public PayrollType PayrollType { get; set; }
+        public long? AllowanceDeductionId { get; set; }
+        public AllowanceDeduction AllowanceDeduction { get; set; }
 
         public long? MasterPayrollId { get; set; }
         public MasterPayroll MasterPayroll { get; set; }

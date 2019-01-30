@@ -151,7 +151,7 @@ namespace InventoryService.Controllers
 
         [HttpGet("GetInventoryItem/{id}", Name = "GetInventoryItem")]
         public InventoryItem GetInventoryItem(long id) => _repo.GetFirst(i => i.InventoryItemId == id,
-                                                                         a => a.Inventory,
+                                                                         a => a.Inventories,
                                                                          b => b.InventoryItemCategory,
                                                                          c => c.PackageType,
                                                                          d => d.PackCategory,
@@ -162,7 +162,7 @@ namespace InventoryService.Controllers
 
         [HttpGet("GetInventoryItemByCode/{code}", Name = "GetInventoryItemByCode")]
         public InventoryItem GetInventoryItemByCode([FromRoute]string code) => _repo.GetFirst(i => i.ItemCode == code,
-                                                                                                a => a.Inventory,
+                                                                                                a => a.Inventories,
                                                                                                 b => b.InventoryItemCategory,
                                                                                                 c => c.PackageType,
                                                                                                 d => d.PackCategory,
@@ -1614,7 +1614,7 @@ namespace InventoryService.Controllers
         [HttpGet("GetInventories", Name = "GetInventories")]
         public IEnumerable<Inventory> GetInventories()
         {
-            IEnumerable<Inventory> iv = Inv_repo.GetAll(a => a.InventoryItem).OrderByDescending(a => a.InventoryId);
+            IEnumerable<Inventory> iv = Inv_repo.GetAll().OrderByDescending(a => a.InventoryId);
             iv = iv.OrderByDescending(a => a.InventoryId);
             return iv;
         }

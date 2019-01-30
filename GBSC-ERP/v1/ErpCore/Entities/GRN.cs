@@ -17,6 +17,7 @@ namespace ErpCore.Entities
         public string GrnNumber { get; set; }
         public DateTime? GrnDate { get; set; }
         public string Remarks { get; set; }
+        public string VendorBillNumber { get; set; }
 
         public double? TotalExpectedAmount { get; set; }
         public double? TotalPaymentAmount { get; set; }

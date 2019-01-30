@@ -146,7 +146,7 @@ namespace eTrackerInfrastructure.Controllers
         public IEnumerable<GroupedItems> GetOrders(long storeVisitId) => Repo.GetVisitOrders(storeVisitId);
 
         [HttpGet("GetInventories/{storeVisitId}")]
-        public IEnumerable<OrderTakingViewModel> GetInventories(long storeVisitId) => Repo.GetVisitInventories(storeVisitId);
+        public IEnumerable<InventoryTakingViewModel> GetInventories(long storeVisitId) => Repo.GetVisitInventories(storeVisitId);
 
         [HttpGet("CompetativeStocks/{storeVisitId}")]
         public IEnumerable<CompetatorStock> CompetativeStockList(long storeVisitId) => Repo.CompetativeStocks(storeVisitId);

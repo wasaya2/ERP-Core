@@ -10,5 +10,6 @@ namespace InventoryService.Repos.Interfaces
     public interface IGrnRepository : IRepo<GRN>
     {
         IEnumerable<GRN> GetGRNsByMonth(DateTime date);
+        GRN GetGRNDetailsByCode(string code);
     }
 }

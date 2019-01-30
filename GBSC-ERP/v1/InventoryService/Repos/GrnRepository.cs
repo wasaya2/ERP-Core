@@ -11,6 +11,21 @@ namespace InventoryService.Repos
 {
     public class GrnRepository : RepoBase<GRN>, IGrnRepository
     {
+        public GRN GetGRNDetailsByCode(string code)
+        {
+            try
+            {
+                if (Table.Where(a => a.GrnNumber == code).Include(a => a.PurchaseInvoice).FirstOrDefault().PurchaseInvoice != null)
+                    return null;
+
+                return Table.Where(a => a.GrnNumber == code).Include(b => b.GrnItems).Include(c => c.PurchaseOrder).FirstOrDefault();
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
+        }
+
         public IEnumerable<GRN> GetGRNsByMonth(DateTime date)
         {
             return Table.Where(a => a.GrnDate.Value.Month == date.Month && a.GrnDate.Value.Year == date.Year)

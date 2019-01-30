@@ -234,13 +234,13 @@ namespace eTrackerInfrastructure.Controllers
         [HttpGet("GetNonproductiveVisitReasons", Name = "GetNonproductiveVisitReasons")]
         public IEnumerable<NonproductiveVisitReason> GetNonproductiveVisitReasons()
         {
-            return reason_repo.GetAll().ToList().OrderByDescending(a => a.NonproductiveVisitReasonId);
+            return reason_repo.GetAll().OrderByDescending(a => a.Priority).ThenBy(a => a.NonproductiveVisitReasonId);
         }
 
         [HttpGet("GetNonproductiveVisitReasonsByCompany/{companyid}", Name = "GetNonproductiveVisitReasonsByCompany")]
         public IEnumerable<NonproductiveVisitReason> GetNonproductiveVisitReasonsByCompany([FromRoute]long companyid)
         {
-            return reason_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid).OrderByDescending(a => a.NonproductiveVisitReasonId);
+            return reason_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid).OrderByDescending(a => a.Priority).ThenBy(a => a.NonproductiveVisitReasonId);
         }
 
         [HttpGet("GetNonproductiveVisitReason/{id}", Name = "GetNonproductiveVisitReason")]

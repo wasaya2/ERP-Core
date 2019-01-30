@@ -9,7 +9,6 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
     {
         public Allowance()
         {
-            SalaryStructureDetails = new HashSet<SalaryStructureDetail>();
             AllowanceRates = new HashSet<AllowanceRate>();
         }
 
@@ -19,11 +18,7 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
         public string Description { get; set; }
 
         public bool? IsDefaultAllowance { get; set; } //From payroll admin
-
-        public long? AllowanceDeductionId { get; set; }
-        public AllowanceDeduction AllowanceDeduction { get; set; }
-
-        public IEnumerable<SalaryStructureDetail> SalaryStructureDetails { get; set; }
+         
         public IEnumerable<AllowanceRate> AllowanceRates { get; set; }
     }
 }

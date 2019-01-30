@@ -281,6 +281,12 @@
     <Compile Include="Reports\finance\CompanyCOA.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\finance\GeneralBalanceSheetFromToDate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\finance\GeneralIncomeStatementFromToDate.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\finance\IncomeStatement.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -725,6 +731,18 @@
     <Compile Include="Reports\Pharmacy\TotalSales.Designer.cs">
       <DependentUpon>TotalSales.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\UltraSound\fwbInitialReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\UltraSound\fwbInitialReport.Designer.cs">
+      <DependentUpon>fwbInitialReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\UltraSound\ultraSoundMasterReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\UltraSound\ultraSoundMasterReport.Designer.cs">
+      <DependentUpon>ultraSoundMasterReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\UltraSound\ultraSoundPelvisReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -774,6 +792,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\finance\CompanyCOA.resx">
       <DependentUpon>CompanyCOA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\finance\GeneralBalanceSheetFromToDate.resx">
+      <DependentUpon>GeneralBalanceSheetFromToDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\finance\GeneralIncomeStatementFromToDate.resx">
+      <DependentUpon>GeneralIncomeStatementFromToDate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\finance\IncomeStatement.resx">
       <DependentUpon>IncomeStatement.cs</DependentUpon>
@@ -1011,6 +1035,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Pharmacy\TotalSales.resx">
       <DependentUpon>TotalSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\UltraSound\fwbInitialReport.resx">
+      <DependentUpon>fwbInitialReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\UltraSound\ultraSoundMasterReport.resx">
+      <DependentUpon>ultraSoundMasterReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\UltraSound\ultraSoundPelvisReport.resx">
       <DependentUpon>ultraSoundPelvisReport.cs</DependentUpon>

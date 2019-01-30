@@ -68,6 +68,9 @@ namespace ReportingService
             //////////HIMS////////////
             ///////////uLTRA SOUND//////////////
             Reports.Add("ultraSoundPelvisReport", new ultraSoundPelvisReport());
+            Reports.Add("fwbInitialReport", new fwbInitialReport());
+            Reports.Add("ultraSoundMasterReport", new ultraSoundMasterReport());
+
             ///////////ULTRA SOUND//////////////
             ///
 

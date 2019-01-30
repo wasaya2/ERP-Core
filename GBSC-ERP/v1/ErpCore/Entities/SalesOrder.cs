@@ -34,6 +34,12 @@ namespace ErpCore.Entities
         public DateTime? DeliveryDate { get; set; }
         //public string CustomerName { get; set; }
 
+        //For Internal Requisition
+        public string DepartmentName { get; set; }
+        public string BranchName { get; set; }
+        public bool? IsInternalOrder { get; set; } //True for indents created for inter department/branch orders
+        /*******************************************/
+
         public double? TotalQuantity { get; set; }
         public double? ExtendedAmount { get; set; }
         public double? DiscountedAmount { get; set; }

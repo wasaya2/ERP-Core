@@ -1104,6 +1104,12 @@ namespace SystemAdministrationService.Controllers
             return SalaryCalculationType_repo.GetAll().OrderByDescending(a=>a.SalaryCalculationTypeId);
         }
 
+        [HttpGet("GetSalaryCalculationTypesByCompany/{companyid}", Name = "GetSalaryCalculationTypesByCompany")]
+        public IEnumerable<SalaryCalculationType> GetSalaryCalculationTypesByCompany([FromRoute]long companyid)
+        {
+            return SalaryCalculationType_repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid).OrderByDescending(a => a.SalaryCalculationTypeId);
+        }
+
         [HttpGet("GetSalaryCalculationType/{id}", Name = "GetSalaryCalculationType")]
         public SalaryCalculationType GetSalaryCalculationType(long id) => SalaryCalculationType_repo.GetFirst(a => a.SalaryCalculationTypeId == id);
 

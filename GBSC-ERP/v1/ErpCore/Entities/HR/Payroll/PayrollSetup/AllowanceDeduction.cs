@@ -9,7 +9,9 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
     {
         public AllowanceDeduction()
         {
-            Allowances = new HashSet<Allowance>();
+            MasterPayrollDetails = new HashSet<MasterPayrollDetails>();
+            SalaryStructureDetails = new HashSet<SalaryStructureDetail>();
+            ////AllowanceRates = new HashSet<AllowanceRate>();
         }
 
         [Key]
@@ -31,6 +33,7 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
         public bool? IsProrated { get; set; }
         public bool? IsBaseAllowance { get; set; }
         public bool? IsOneTimeAllowance { get; set; }
+        public bool? IsDefaultAllowance { get; set; }
 
         public string GlCodeAllowance { get; set; }
         public string GlCodeDeduction { get; set; }
@@ -41,6 +44,11 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
         public long? AllowanceCalculationTypeId { get; set; }
         public AllowanceCalculationType AllowanceCalculationType { get; set; }
 
-        public IEnumerable<Allowance> Allowances { get; set; }
+        public long? ArrearAllowanceId { get; set; }
+        public AllowanceArrear AllowanceArrear { get; set; }
+
+        public IEnumerable<MasterPayrollDetails> MasterPayrollDetails { get; set; }
+        public IEnumerable<SalaryStructureDetail> SalaryStructureDetails { get; set; }
+        public IEnumerable<AllowanceRate> AllowanceRates { get; set; }
     }
 }

@@ -124,6 +124,21 @@
     "Shop Census Detail",
     "Shop Census Summary"
   ],
+  "eTrackerMobile": [
+    "Shop Registration",
+    "Market",
+    "PJP",
+    "Visited",
+    "Others",
+    "Shop Profile",
+    "Order Taking",
+    "Gift Order",
+    "Inventory Taking",
+    "Market Survey",
+    "Merchandising",
+    "Shop Query",
+    "Shop History"
+  ],
   "Inventory": [
     "Inventory Setup",
     "Sales Indent",

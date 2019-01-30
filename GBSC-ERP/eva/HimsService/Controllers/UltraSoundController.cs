@@ -17,12 +17,13 @@ namespace HimsService.Controllers
 
       private IUltraSoundPelvisRepository _repo;
       private IFwbInitialRepository FwbInitial_repo;
+      private IUltraSoundMasterRepository UltraSoundMaster_repo;
 
-      public UltraSoundController(IUltraSoundPelvisRepository repo , IFwbInitialRepository FwbInitialrepo)
+      public UltraSoundController(IUltraSoundPelvisRepository repo , IFwbInitialRepository FwbInitialrepo , IUltraSoundMasterRepository UltraSoundMasterrepo)
       {
         _repo = repo;
         FwbInitial_repo = FwbInitialrepo;
-
+        UltraSoundMaster_repo = UltraSoundMasterrepo;
       }
 
 
@@ -116,6 +117,50 @@ namespace HimsService.Controllers
 
     #endregion
 
+
+    #region UltraSoundMaster
+
+    [HttpGet("GetUltraSoundMasters", Name = "GetUltraSoundMasters")]
+    public IEnumerable<UltraSoundMaster> GetUltraSoundMasters()
+    {
+      IEnumerable<UltraSoundMaster> ap = UltraSoundMaster_repo.GetAll();
+      ap = ap.OrderByDescending(a => a.UltraSoundMasterId);
+      return ap;
+    }
+
+    [HttpGet("GetUltraSoundMaster/{id}", Name = "GetUltraSoundMaster")]
+    public UltraSoundMaster GetUltraSoundMaster(long id) => UltraSoundMaster_repo.GetFirst(a => a.UltraSoundMasterId == id);
+
+    [HttpPut("UpdateUltraSoundMaster", Name = "UpdateUltraSoundMaster")]
+    [ValidateModelAttribute]
+    public IActionResult UpdateUltraSoundMaster([FromBody]UltraSoundMaster model)
+    {
+      UltraSoundMaster_repo.Update(model);
+      return new OkObjectResult(new { UltraSoundMasterID = model.UltraSoundMasterId });
+    }
+
+    [HttpPost("AddUltraSoundMaster", Name = "AddUltraSoundMaster")]
+    [ValidateModelAttribute]
+    public IActionResult AddUltraSoundMaster([FromBody]UltraSoundMaster model)
+    {
+      UltraSoundMaster_repo.Add(model);
+      return new OkObjectResult(new { UltraSoundMasterID = model.UltraSoundMasterId });
+    }
+
+    [HttpDelete("DeleteUltraSoundMaster/{id}")]
+    public IActionResult DeleteUltraSoundMaster(long id)
+    {
+      UltraSoundMaster ultraSoundMasters = UltraSoundMaster_repo.Find(id);
+      if (ultraSoundMasters == null)
+      {
+        return NotFound();
+      }
+
+      UltraSoundMaster_repo.Delete(ultraSoundMasters);
+      return Ok();
+    }
+
+    #endregion
 
 
 

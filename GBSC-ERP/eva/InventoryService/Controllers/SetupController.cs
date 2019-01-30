@@ -1526,6 +1526,12 @@ namespace InventoryService.Controllers
             return sup;
         }
 
+        [HttpGet("GetSuppliersByCompany/{companyid}", Name = "GetSuppliersByCompany")]
+        public IEnumerable<Supplier> GetSuppliersByCompany([FromRoute]long companyid)
+        {
+            return Supplier_repo.GetList(a => a.CompanyId == companyid).OrderByDescending(a => a.SupplierId);
+        }
+
         [HttpGet("GetSupplier/{id}", Name = "GetSupplier")]
         public Supplier GetSupplier(long id) => Supplier_repo.GetFirst(s => s.SupplierId == id);
 
@@ -1692,6 +1698,12 @@ namespace InventoryService.Controllers
             //IEnumerable<Inventory> iv = Inv_repo.GetAll(a => a.InventoryItem);
             //iv = iv.OrderByDescending(a => a.InventoryId);
             //return iv;
+        }
+
+        [HttpGet("GetInventoryCurrenciesByCompany/{companyid}", Name = "GetInventoryCurrenciesByCompany")]
+        public IEnumerable<InventoryCurrency> GetInventoryCurrenciesByCompany([FromRoute]long companyid)
+        {
+            return Currency_repo.GetList(a => a.CompanyId == companyid).OrderByDescending(a => a.InventoryCurrencyId);
         }
 
         [HttpGet("GetInventoryCurrency/{id}", Name = "GetInventoryCurrency")]

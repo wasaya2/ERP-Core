@@ -79,6 +79,10 @@ namespace SystemAdministrationService.Controllers
             {
                 features = AllFeatures.ETracker;
             }
+            if (module.Name == "eTrackerMobile")
+            {
+                features = AllFeatures.ETrackerMobile;
+            }
             if (module.Name == "Security Admin")
             {
                 features = AllFeatures.Security;
@@ -168,6 +172,10 @@ namespace SystemAdministrationService.Controllers
                 if (module.Name == "eTracker")
                 {
                     features.AddRange(AllFeatures.ETracker);
+                }
+                if (module.Name == "eTrackerMobile")
+                {
+                    features.AddRange(AllFeatures.ETrackerMobile);
                 }
                 if (module.Name == "Security Admin")
                 {

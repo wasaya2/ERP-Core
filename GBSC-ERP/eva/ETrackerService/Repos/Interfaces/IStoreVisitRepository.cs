@@ -38,7 +38,7 @@ namespace eTrackerInfrastructure.Repos.Interfaces
 
         IEnumerable<GroupedItems> GetVisitOrders(long StoreVisitId);
     
-        IEnumerable<OrderTakingViewModel> GetVisitInventories(long StoreVisitId);
+        IEnumerable<InventoryTakingViewModel> GetVisitInventories(long StoreVisitId);
 
         IEnumerable<StoreVisit> GetVisitsByStoreId(long id);
 

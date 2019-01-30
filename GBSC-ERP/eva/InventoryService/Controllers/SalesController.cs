@@ -209,8 +209,6 @@ namespace InventoryService.Controllers
         {
             try
             {
-                //var context = new ApplicationDbContext();
-                //SalesIndent lastOrder = context.SalesIndents.LastOrDefault();
                 SalesIndent lastOrder = ind_repo.GetLast();
                 string value = lastOrder.SalesIndentNumber;
                 string number = Regex.Match(value, "[0-9]+$").Value;
@@ -323,8 +321,6 @@ namespace InventoryService.Controllers
         {
             try
             {
-                //var context = new ApplicationDbContext();
-                //SalesOrder lastOrder = context.SalesOrders.LastOrDefault();
                 SalesOrder lastOrder = order_repo.GetLast();
                 string value = lastOrder.SalesOrderCode;
                 string number = Regex.Match(value, "[0-9]+$").Value;

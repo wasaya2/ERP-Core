@@ -308,6 +308,7 @@ namespace InventoryService.Controllers
         [ValidateModelAttribute]
         public IActionResult AddPurchaseInvoice([FromBody]PurchaseInvoice model)
         {
+            model.CreatedAt = DateTime.Now;
             model.InvoiceNumber = GenIN();
             invoice_repo.Add(model);
             return new OkObjectResult(new { PurchaseInvoiceID = model.PurchaseInvoiceId });
@@ -558,7 +559,7 @@ namespace InventoryService.Controllers
         [HttpGet("GetGrnDetailsByCode/{code}", Name = "GetGrnDetailsByCode")]
         public GRN GetGrnDetailsByCode([FromRoute]string code)
         {
-            return grn_repo.GetFirst(a => a.GrnNumber == code, b => b.PurchaseInvoice);
+            return grn_repo.GetFirst(a => a.GrnNumber == code, b => b.PurchaseOrder, c => c.GrnItems);
         }
 
         [HttpGet("GetPurchaseReturnDetailsByCode/{code}", Name = "GetPurchaseReturnDetailsByCode")]
@@ -588,6 +589,12 @@ namespace InventoryService.Controllers
         public IEnumerable<GRN> GetGRNsByMonth([FromRoute]DateTime date)
         {
             return grn_repo.GetGRNsByMonth(date);
+        }
+
+        [HttpGet("GetPurchaseInvoicesByMonth/{date}", Name = "GetPurchaseInvoicesByMonth")]
+        public IEnumerable<PurchaseInvoice> GetPurchaseInvoicesByMonth([FromRoute]DateTime date)
+        {
+            return invoice_repo.GetList(a => a.CreatedAt.Value.Month == date.Month && a.CreatedAt.Value.Year == date.Year, b => b.GRN).OrderByDescending(a => a.PurchaseInvoiceId);
         }
 
         #endregion

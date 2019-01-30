@@ -55,6 +55,18 @@ namespace HimsService.Controllers
             return pat;
         }
 
+        [HttpGet("GetPatientsWithPartners")]
+        public IEnumerable<Patient> GetPatientsWithPartners()
+        {
+            return _repo.GetAll(p => p.Partner);
+        }
+
+        [HttpGet("GetPatientsWithPartnersByCompany/{companyid}")]
+        public IEnumerable<Patient> GetPatientsWithPartnersByCompany([FromRoute]long companyid)
+        {
+            return _repo.GetList(a => a.CompanyId != null && a.CompanyId == companyid, p => p.Partner);
+        }
+
         [HttpGet("GetPatientCB")]
         public IEnumerable<PatientsCB> GetPatientCB() => _repo.GetPatientCB();
 
