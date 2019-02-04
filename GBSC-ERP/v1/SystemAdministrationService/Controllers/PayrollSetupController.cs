@@ -1151,7 +1151,12 @@ namespace SystemAdministrationService.Controllers
         }
 
         [HttpGet("GetSalaryStructure/{id}", Name = "GetSalaryStructure")]
-        public SalaryStructure GetSalaryStructure(long id) => SalaryStructure_repo.GetFirst(a => a.SalaryStructureId == id, b=> b.SalaryStructureDetails);
+        public SalaryStructure GetSalaryStructure(long id)
+        {
+            return SalaryStructure_repo.GetFirst(a => a.SalaryStructureId == id);
+            //var bb = SalaryStructureDetail_repo.GetAll().Where(a => a.Deleted != true && a.SalaryStructureId == aa.SalaryStructureId).OrderByDescending(a => a.SalaryStructureDetailId);
+            //return aa;
+        }
 
         [HttpPost("AddSalaryStructure", Name = "AddSalaryStructure")]
         [ValidateModelAttribute]

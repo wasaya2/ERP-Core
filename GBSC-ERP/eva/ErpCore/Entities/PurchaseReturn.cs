@@ -20,6 +20,7 @@ namespace ErpCore.Entities
         public DateTime? ReturnDate { get; set; }
         public string Remarks { get; set; }
         public double? TotalReturnAmount { get; set; }
+        public double? TotalReturnQuantity { get; set; }
 
         public long? ReturnReasonId { get; set; }
         public ReturnReason ReturnReason { get; set; }

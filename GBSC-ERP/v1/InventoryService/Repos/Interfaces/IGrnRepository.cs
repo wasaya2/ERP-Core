@@ -1,5 +1,6 @@
 ﻿using ErpCore.Entities;
 using InventoryService.Repos.Base;
+using InventoryService.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace InventoryService.Repos.Interfaces
     {
         IEnumerable<GRN> GetGRNsByMonth(DateTime date);
         GRN GetGRNDetailsByCode(string code);
+        GetGrnWithSupplierForPharmacyPurchaseReturn GetGRNDetailsWithSupplierByCode(string code);
+        GetGrnWithSupplierForPharmacyPurchaseReturn GetGRNDetailsWithSupplierByCodeAndCompany(string code, long companyid);
     }
 }

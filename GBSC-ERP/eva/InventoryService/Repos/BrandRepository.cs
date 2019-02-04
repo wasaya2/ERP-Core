@@ -23,11 +23,12 @@ namespace InventoryService.Repos
                 .Include("InventoryItems.PackageType")
                 .Include("InventoryItems.PackSize")
                 .Include("InventoryItems.ProductType")
-                .Where(b => b.CompanyId == CompanyId)
+                .Include("InventoryItems.InventoryItemCategory")
+                .Where(b => b.CompanyId == CompanyId && b.IsGeneralBrand == true)
                 .Select(c => new OrderTakingInventoryViewModel
                 {
                     BrandName = c.Name,
-                    Items = c.InventoryItems.GroupBy(f => f.ProductType.Name, i => new Item
+                    Items = c.InventoryItems.GroupBy(f => f.InventoryItemCategory.Name, i => new Item
                     {
                         InventoryItemId = i.InventoryItemId,
                         Name = i.Name,
@@ -36,7 +37,7 @@ namespace InventoryService.Repos
                         RateUnit = i.PackageUnit.Name,
                         RegularDiscount = i.RegularDiscount,
                         SalesUnit = i.SalesUnit.Name,
-                        ProductType = i.ProductType.Name,
+                        ProductType = i.InventoryItemCategory.Name,
                         ItemCode = i.ItemCode,
                         PackageType = i.PackageType.Name,
                         PackSize = i.PackSize.Size,

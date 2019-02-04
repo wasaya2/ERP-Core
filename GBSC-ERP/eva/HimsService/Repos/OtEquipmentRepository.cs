@@ -1,0 +1,15 @@
+
+using ErpCore.Entities.OtSetup;
+using HimsService.Repos.Base;
+using HimsService.Repos.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace HimsService.Repos
+{
+    public class OtEquipmentRepository : RepoBase<OtEquipment> , IOtEquipmentRepository
+  {
+    }
+}

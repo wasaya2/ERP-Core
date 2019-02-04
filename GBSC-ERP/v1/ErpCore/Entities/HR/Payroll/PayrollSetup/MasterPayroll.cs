@@ -20,6 +20,7 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
         public string FilePath { get; set; }
         public string BankTransferCode { get; set; } //Autogenerate
 
+        public double? Salary { get; set; }
         public long? CurrencyId { get; set; }
         public Currency Currency { get; set; }
 

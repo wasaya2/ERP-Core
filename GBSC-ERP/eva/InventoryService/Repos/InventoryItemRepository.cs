@@ -14,7 +14,7 @@ namespace InventoryService.Repos
         public IEnumerable<InventoryItem> GetAllInventoryItems()
         {
 
-            return Table.Include(a => a.Inventory).Include(b => b.InventoryItemCategory).Include(c => c.PackageType).
+            return Table.Include(a => a.Inventories).Include(b => b.InventoryItemCategory).Include(c => c.PackageType).
                         Include(d => d.PackCategory).Include(e => e.PackSize).
                         Include(f => f.PackType).Include(g => g.ProductType).
                         Include(h => h.MeasurementUnit).Select(x=> x);
@@ -22,7 +22,7 @@ namespace InventoryService.Repos
 
         public InventoryItem GetInventoryItemById(long id)
         {
-            return Table.Where(i => i.InventoryItemId == id).Include(a => a.Inventory).
+            return Table.Where(i => i.InventoryItemId == id).Include(a => a.Inventories).
                         Include(b => b.InventoryItemCategory).Include(c => c.PackageType).
                         Include(d => d.PackCategory).Include(e => e.PackSize).
                         Include(f => f.PackType).Include(g => g.ProductType).

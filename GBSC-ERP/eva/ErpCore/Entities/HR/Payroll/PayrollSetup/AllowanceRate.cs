@@ -12,7 +12,7 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
         public long? AllowanceRateValue { get; set; }
         public DateTime? EffectiveDate { get; set; }
 
-        public long? AllowanceId { get; set; }
-        public Allowance Allowance { get; set; }
+        public long? AllowanceDeductionId { get; set; }
+        public AllowanceDeduction AllowanceDeduction { get; set; }
     }
 }

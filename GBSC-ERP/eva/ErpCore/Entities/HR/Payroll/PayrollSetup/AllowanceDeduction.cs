@@ -9,7 +9,9 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
     {
         public AllowanceDeduction()
         {
+            MasterPayrollDetails = new HashSet<MasterPayrollDetails>();
             SalaryStructureDetails = new HashSet<SalaryStructureDetail>();
+            ////AllowanceRates = new HashSet<AllowanceRate>();
         }
 
         [Key]
@@ -17,7 +19,6 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
         public string Title { get; set; }
         public string Type { get; set; } //Allowance or Deduction
         public double? FixedValue { get; set; }
-        public double? Amount { get; set; }
 
         public string ValueExpressionPayment { get; set; }
         public string ValueExpressionPaymentFrom { get; set; } //Master Payroll or Monthly Payroll
@@ -43,6 +44,11 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
         public long? AllowanceCalculationTypeId { get; set; }
         public AllowanceCalculationType AllowanceCalculationType { get; set; }
 
+        public long? ArrearAllowanceId { get; set; }
+        public AllowanceArrear AllowanceArrear { get; set; }
+
+        public IEnumerable<MasterPayrollDetails> MasterPayrollDetails { get; set; }
         public IEnumerable<SalaryStructureDetail> SalaryStructureDetails { get; set; }
+        public IEnumerable<AllowanceRate> AllowanceRates { get; set; }
     }
 }

@@ -617,6 +617,30 @@
     <Compile Include="Reports\Lab\PESA-TESE.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\OT\HystroscopyReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\OT\HystroscopyReport.Designer.cs">
+      <DependentUpon>HystroscopyReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\OT\LaproscopyFsReport1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\OT\LaproscopyFsReport1.Designer.cs">
+      <DependentUpon>LaproscopyFsReport1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\OT\LaproscopySpReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\OT\LaproscopySpReport.Designer.cs">
+      <DependentUpon>LaproscopySpReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\OT\OtPatientCaseRegistration.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\OT\OtPatientCaseRegistration.Designer.cs">
+      <DependentUpon>OtPatientCaseRegistration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Payroll\EmployeeYearlyTax.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -683,12 +707,6 @@
     <Compile Include="Reports\Pharmacy\InternalSupplyReportBloodRoom.Designer.cs">
       <DependentUpon>InternalSupplyReportBloodRoom.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Pharmacy\InternalSupplyReportUltraSound.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Pharmacy\InternalSupplyReportUltraSound.Designer.cs">
-      <DependentUpon>InternalSupplyReportUltraSound.cs</DependentUpon>
-    </Compile>
     <Compile Include="Reports\Pharmacy\MonthlyCaseSaleReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -712,6 +730,12 @@
     </Compile>
     <Compile Include="Reports\Pharmacy\PatientWiseSales.Designer.cs">
       <DependentUpon>PatientWiseSales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\Pharmacy Purchase Return.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Pharmacy\Refund Challan.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Pharmacy\RefundDetails.cs">
       <SubType>Component</SubType>
@@ -979,6 +1003,18 @@
     <EmbeddedResource Include="Reports\Lab\PESA-TESE.resx">
       <DependentUpon>PESA-TESE.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\OT\HystroscopyReport.resx">
+      <DependentUpon>HystroscopyReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\OT\LaproscopyFsReport1.resx">
+      <DependentUpon>LaproscopyFsReport1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\OT\LaproscopySpReport.resx">
+      <DependentUpon>LaproscopySpReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\OT\OtPatientCaseRegistration.resx">
+      <DependentUpon>OtPatientCaseRegistration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Payroll\EmployeeYearlyTax.resx">
       <DependentUpon>EmployeeYearlyTax.cs</DependentUpon>
     </EmbeddedResource>
@@ -1012,9 +1048,6 @@
     <EmbeddedResource Include="Reports\Pharmacy\InternalSupplyReportBloodRoom.resx">
       <DependentUpon>InternalSupplyReportBloodRoom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Pharmacy\InternalSupplyReportUltraSound.resx">
-      <DependentUpon>InternalSupplyReportUltraSound.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Pharmacy\MonthlyCaseSaleReport.resx">
       <DependentUpon>MonthlyCaseSaleReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -1026,6 +1059,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Pharmacy\PatientWiseSales.resx">
       <DependentUpon>PatientWiseSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\Pharmacy Purchase Return.resx">
+      <DependentUpon>Pharmacy Purchase Return.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pharmacy\Refund Challan.resx">
+      <DependentUpon>Refund Challan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Pharmacy\RefundDetails.resx">
       <DependentUpon>RefundDetails.cs</DependentUpon>

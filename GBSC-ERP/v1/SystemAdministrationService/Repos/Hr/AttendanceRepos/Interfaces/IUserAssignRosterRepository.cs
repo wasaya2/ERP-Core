@@ -9,5 +9,6 @@ namespace SystemAdministrationService.Repos.Hr.AttendanceRepos.Interfaces
 {
     public interface IUserAssignRosterRepository : IRepo<UserAssignRoster>
     {
+        IEnumerable<UserAssignRoster> GetAssignedRostersByUser(long userid, DateTime fromdate, DateTime todate);
     }
 }

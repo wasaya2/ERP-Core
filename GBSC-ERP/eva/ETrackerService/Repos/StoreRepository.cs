@@ -5,9 +5,11 @@ using eTrackerCore.Entities.ViewModels;
 using eTrackerInfrastructure.Models.JsonPostClasses;
 using eTrackerInfrastructure.Repos.Base;
 using eTrackerInfrastructure.Repos.Interfaces;
+using ETrackerService.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -222,6 +224,12 @@ namespace eTrackerInfrastructure.Repos
             {
                 return null;
             }
+        }
+
+        public async Task<IEnumerable<ShopCensusDetail>> GetShopCensusDetailByCompany(long companyid)
+        {
+            SqlParameter company = new SqlParameter("@companyid", companyid);
+            return await Db.ShopCensusDetails.FromSql("sp_etracker_ShopCensusDetail @p0", company).ToArrayAsync();
         }
     }
 }

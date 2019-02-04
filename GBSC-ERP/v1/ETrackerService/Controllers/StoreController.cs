@@ -14,6 +14,7 @@ using eTrackerCore.Entities.ViewModels;
 using ErpCore.Entities.InventorySetup;
 using ETrackerService.ViewModels;
 using ErpCore.Entities;
+using ErpCore.Entities.ETracker;
 
 namespace eTrackerInfrastructure.Controllers
 {
@@ -129,6 +130,12 @@ namespace eTrackerInfrastructure.Controllers
             Repo.Delete(store);
 
             return Ok();
+        }
+
+        [HttpGet("GetShopCensusDetailByCompany/{companyid}", Name = "GetShopCensusDetailByCompany")]
+        public IEnumerable<ShopCensusDetailViewModel> GetShopCensusDetailByCompany([FromRoute]long companyid)
+        {
+            return Repo.GetShopCensusDetailByCompany(companyid);
         }
 
         //public IActionResult GetVisitHistory(int customerId)

@@ -1,13 +1,16 @@
 ﻿using ErpCore.Entities;
 using ErpCore.Entities.ETracker;
 using ErpCore.Entities.InventorySetup;
+using ErpInfrastructure.Data;
 using eTrackerCore.Entities.ViewModels;
 using eTrackerInfrastructure.Models.JsonPostClasses;
 using eTrackerInfrastructure.Repos.Base;
 using eTrackerInfrastructure.Repos.Interfaces;
+using ETrackerService.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -222,6 +225,55 @@ namespace eTrackerInfrastructure.Repos
             {
                 return null;
             }
+        }
+
+        public IEnumerable<ShopCensusDetailViewModel> GetShopCensusDetailByCompany(long companyid)
+        {
+            IList<ShopCensusDetailViewModel> details = new List<ShopCensusDetailViewModel>();
+            string query = "EXECUTE dbo.sp_etracker_ShopCensusDetail " + companyid;
+
+            using (Db)
+            {
+                using (var command = Db.Database.GetDbConnection().CreateCommand())
+                {
+                    command.CommandText = query;
+                    Db.Database.OpenConnection();
+                    using (var result = command.ExecuteReader())
+                    {
+                        if(result.HasRows)
+                        {
+                            while(result.Read())
+                            {
+                                details.Add(new ShopCensusDetailViewModel
+                                {
+                                    SerialNumber = result.GetValueOrDefault<long>(0),
+                                    StoreName = result.GetValueOrDefault<string>(1),
+                                    ShopkeeperName = result.GetValueOrDefault<string>(2),
+                                    ContactNumber = result.GetValueOrDefault<string>(3),
+                                    Address = result.GetValueOrDefault<string>(4),
+                                    CNIC = result.GetValueOrDefault<string>(5),
+                                    Distributor = result.GetValueOrDefault<string>(6),
+                                    City = result.GetValueOrDefault<string>(7),
+                                    Area = result.GetValueOrDefault<string>(8),
+                                    Region = result.GetValueOrDefault<string>(9),
+                                    Territory = result.GetValueOrDefault<string>(10),
+                                    Section = result.GetValueOrDefault<string>(11),
+                                    Subsection = result.GetValueOrDefault<string>(12),
+                                    DSF = result.GetValueOrDefault<string>(13),
+                                    Category = result.GetValueOrDefault<string>(14),
+                                    Classification = result.GetValueOrDefault<string>(15),
+                                    Day = result.GetValueOrDefault<string>(16),
+                                    CreateDate = result.GetValueOrDefault<DateTime>(17),
+                                    CreateUser = result.GetValueOrDefault<string>(18),
+                                    ImageLink = result.GetValueOrDefault<string>(19),
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+
+            return details;
         }
     }
 }

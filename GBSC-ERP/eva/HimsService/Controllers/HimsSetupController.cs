@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ErpCore.Entities;
 using ErpCore.Entities.HimsSetup;
+using ErpCore.Entities.OtSetup;
 using ErpCore.Filters;
 using HimsService.Repos.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -28,6 +29,14 @@ namespace HimsService.Controllers
         private IProcedureRepository Procedure_repo;
         private ISonologistRepository Sonologist_repo;
 
+        //Ot
+        private IMedicineRequestRepository  MedicineRequest_repo;
+        private IOtTerminologyRepository    OtTerminology_repo;
+        private IOtProcedureRepository      OtProcedure_repo;
+        private IOtEquipmentRepository      OtEquipment_repo;
+
+
+
     public HimsSetupController(IPackageRepository packagerepo,
             ITestRepository testrepo,
             IConsultantRepository consultantRepository,
@@ -39,7 +48,11 @@ namespace HimsService.Controllers
             ITestCategoryRepository tstcatrepo,
             IPatientPackageRepository Patientpackagerepo,
             IProcedureRepository Procedurerepo ,
-            ISonologistRepository Sonologistrepo
+            ISonologistRepository Sonologistrepo,
+            IMedicineRequestRepository MedicineRequestrepo,
+            IOtTerminologyRepository OtTerminologyrepo,
+            IOtProcedureRepository OtProcedurerepo,
+            IOtEquipmentRepository OtEquipmentrepo
        )
         {
             con_repo = consultantRepository;
@@ -54,7 +67,12 @@ namespace HimsService.Controllers
             Patientpackage_repo = Patientpackagerepo;
             Procedure_repo = Procedurerepo;
             Sonologist_repo = Sonologistrepo;
-         }
+      //OT
+            MedicineRequest_repo = MedicineRequestrepo;
+            OtTerminology_repo = OtTerminologyrepo;
+            OtProcedure_repo = OtProcedurerepo;
+            OtEquipment_repo = OtEquipmentrepo;
+    }
 
         //[HttpGet("GetHimsSetupPermissions/{userid}/{RoleId}/{featureid}", Name = "GetHimsSetupPermissions")]
         //public IEnumerable<Permission> GetHimsSetupPermissions(long userid, long RoleId, long featureid)
@@ -609,6 +627,184 @@ namespace HimsService.Controllers
           return Ok();
         }
 
-        #endregion
+    #endregion
+
+        #region MedicineRequest
+
+    [HttpGet("GetMedicineRequests", Name = "GetMedicineRequests")]
+    public IEnumerable<MedicineRequest> GetMedicineRequests()
+    {
+      IEnumerable<MedicineRequest> ap = MedicineRequest_repo.GetAll();
+      ap = ap.OrderByDescending(a => a.MedicineRequestId);
+      return ap;
+    }
+
+    [HttpGet("GetMedicineRequest/{id}", Name = "GetMedicineRequest")]
+    public MedicineRequest GetMedicineRequest(long id) => MedicineRequest_repo.GetFirst(a => a.MedicineRequestId == id);
+
+    [HttpPut("UpdateMedicineRequest", Name = "UpdateMedicineRequest")]
+    [ValidateModelAttribute]
+    public IActionResult UpdateMedicineRequest([FromBody]MedicineRequest model)
+    {
+      MedicineRequest_repo.Update(model);
+      return new OkObjectResult(new { MedicineRequestID = model.MedicineRequestId });
+    }
+
+    [HttpPost("AddMedicineRequest", Name = "AddMedicineRequest")]
+    [ValidateModelAttribute]
+    public IActionResult AddMedicineRequest([FromBody]MedicineRequest model)
+    {
+      MedicineRequest_repo.Add(model);
+      return new OkObjectResult(new { MedicineRequestID = model.MedicineRequestId });
+    }
+
+    [HttpDelete("DeleteMedicineRequest/{id}")]
+    public IActionResult DeleteMedicineRequest(long id)
+    {
+      MedicineRequest medicineRequest = MedicineRequest_repo.Find(id);
+      if (medicineRequest == null)
+      {
+        return NotFound();
+      }
+
+      MedicineRequest_repo.Delete(medicineRequest);
+      return Ok();
+    }
+
+    #endregion
+
+        #region OtTerminology
+
+    [HttpGet("GetOtTerminologys", Name = "GetOtTerminologys")]
+    public IEnumerable<OtTerminology> GetOtTerminologys()
+    {
+      IEnumerable<OtTerminology> ap = OtTerminology_repo.GetAll();
+      ap = ap.OrderByDescending(a => a.OtTerminologyId);
+      return ap;
+    }
+
+    [HttpGet("GetOtTerminology/{id}", Name = "GetOtTerminology")]
+    public OtTerminology GetOtTerminology(long id) => OtTerminology_repo.GetFirst(a => a.OtTerminologyId == id);
+
+    [HttpPut("UpdateOtTerminology", Name = "UpdateOtTerminology")]
+    [ValidateModelAttribute]
+    public IActionResult UpdateOtTerminology([FromBody]OtTerminology model)
+    {
+      OtTerminology_repo.Update(model);
+      return new OkObjectResult(new { OtTerminologyID = model.OtTerminologyId });
+    }
+
+    [HttpPost("AddOtTerminology", Name = "AddOtTerminology")]
+    [ValidateModelAttribute]
+    public IActionResult AddOtTerminology([FromBody]OtTerminology model)
+    {
+      OtTerminology_repo.Add(model);
+      return new OkObjectResult(new { OtTerminologyID = model.OtTerminologyId });
+    }
+
+    [HttpDelete("DeleteOtTerminology/{id}")]
+    public IActionResult DeleteOtTerminology(long id)
+    {
+      OtTerminology OtTerminology = OtTerminology_repo.Find(id);
+      if (OtTerminology == null)
+      {
+        return NotFound();
+      }
+
+      OtTerminology_repo.Delete(OtTerminology);
+      return Ok();
+    }
+
+    #endregion
+
+        #region OtProcedure
+
+    [HttpGet("GetOtProcedures", Name = "GetOtProcedures")]
+    public IEnumerable<OtProcedure> GetOtProcedures()
+    {
+      IEnumerable<OtProcedure> ap = OtProcedure_repo.GetAll();
+      ap = ap.OrderByDescending(a => a.OtProcedureId);
+      return ap;
+    }
+
+    [HttpGet("GetOtProcedure/{id}", Name = "GetOtProcedure")]
+    public OtProcedure GetOtProcedure(long id) => OtProcedure_repo.GetFirst(a => a.OtProcedureId == id);
+
+    [HttpPut("UpdateOtProcedure", Name = "UpdateOtProcedure")]
+    [ValidateModelAttribute]
+    public IActionResult UpdateOtProcedure([FromBody]OtProcedure model)
+    {
+      OtProcedure_repo.Update(model);
+      return new OkObjectResult(new { OtProcedureID = model.OtProcedureId });
+    }
+
+    [HttpPost("AddOtProcedure", Name = "AddOtProcedure")]
+    [ValidateModelAttribute]
+    public IActionResult AddOtProcedure([FromBody]OtProcedure model)
+    {
+      OtProcedure_repo.Add(model);
+      return new OkObjectResult(new { OtProcedureID = model.OtProcedureId });
+    }
+
+    [HttpDelete("DeleteOtProcedure/{id}")]
+    public IActionResult DeleteOtProcedure(long id)
+    {
+      OtProcedure OtProcedure = OtProcedure_repo.Find(id);
+      if (OtProcedure == null)
+      {
+        return NotFound();
+      }
+
+      OtProcedure_repo.Delete(OtProcedure);
+      return Ok();
+    }
+
+    #endregion
+
+        #region OtEquipment
+
+    [HttpGet("GetOtEquipments", Name = "GetOtEquipments")]
+    public IEnumerable<OtEquipment> GetOtEquipments()
+    {
+      IEnumerable<OtEquipment> ap = OtEquipment_repo.GetAll();
+      ap = ap.OrderByDescending(a => a.OtEquipmentId);
+      return ap;
+    }
+
+    [HttpGet("GetOtEquipment/{id}", Name = "GetOtEquipment")]
+    public OtEquipment GetOtEquipment(long id) => OtEquipment_repo.GetFirst(a => a.OtEquipmentId == id);
+
+    [HttpPut("UpdateOtEquipment", Name = "UpdateOtEquipment")]
+    [ValidateModelAttribute]
+    public IActionResult UpdateOtEquipment([FromBody]OtEquipment model)
+    {
+      OtEquipment_repo.Update(model);
+      return new OkObjectResult(new { OtEquipmentID = model.OtEquipmentId });
+    }
+
+    [HttpPost("AddOtEquipment", Name = "AddOtEquipment")]
+    [ValidateModelAttribute]
+    public IActionResult AddOtEquipment([FromBody]OtEquipment model)
+    {
+      OtEquipment_repo.Add(model);
+      return new OkObjectResult(new { OtEquipmentID = model.OtEquipmentId });
+    }
+
+    [HttpDelete("DeleteOtEquipment/{id}")]
+    public IActionResult DeleteOtEquipment(long id)
+    {
+      OtEquipment OtEquipment = OtEquipment_repo.Find(id);
+      if (OtEquipment == null)
+      {
+        return NotFound();
+      }
+
+      OtEquipment_repo.Delete(OtEquipment);
+      return Ok();
+    }
+
+    #endregion
+
+
   }
 }

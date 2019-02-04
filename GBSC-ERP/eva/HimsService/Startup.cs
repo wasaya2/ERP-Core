@@ -147,9 +147,17 @@ namespace HimsService
             services.AddScoped<IFwbInitialRepository, FwbInitialRepository>();
             services.AddScoped<IUltraSoundMasterRepository, UltraSoundMasterRepository >();
 
-            //
+            // OT
             services.AddScoped<IOtPatientCaseRepository , OtPatientCaseRepository>();
+            services.AddScoped<ILaproscopyFsRepository, LaproscopyFsRepository>();
+            services.AddScoped<ILaproscopySpRepository, LaproscopySpRepository>();
+            services.AddScoped<IHystroscopyRepository, HystroscopyRepository>();
 
+
+            services.AddScoped<IMedicineRequestRepository, MedicineRequestRepository>();
+            services.AddScoped<IOtTerminologyRepository, OtTerminologyRepository>();
+            services.AddScoped<IOtProcedureRepository, OtProcedureRepository>();
+            services.AddScoped<IOtEquipmentRepository, OtEquipmentRepository>();
 
             //Laboratory
             services.AddScoped<IEmbryologistRepository, EmbryologistRepository>();

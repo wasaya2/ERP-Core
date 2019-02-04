@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ErpCore.Entities.InventorySetup;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -18,6 +19,7 @@ namespace ErpCore.Entities
         public DateTime? GrnDate { get; set; }
         public string Remarks { get; set; }
         public string VendorBillNumber { get; set; }
+        public double? ExchangeRate { get; set; }
 
         public double? TotalExpectedAmount { get; set; }
         public double? TotalPaymentAmount { get; set; }
@@ -35,6 +37,9 @@ namespace ErpCore.Entities
 
         public long? PurchaseReturnId { get; set; }
         public PurchaseReturn PurchaseReturn { get; set; }
+
+        public long? InventoryCurrencyId { get; set; }
+        public InventoryCurrency InventoryCurrency { get; set; }
 
         public IEnumerable<GrnItem> GrnItems { get; set; }
     }

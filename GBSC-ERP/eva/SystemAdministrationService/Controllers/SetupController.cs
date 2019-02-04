@@ -72,7 +72,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetBranchesByCompanyId/{compid}", Name = "GetBranchesByCompanyId")]
         public IEnumerable<Branch> GetBranchesByCompanyId([FromRoute]long compid)
         {
-            return bra_repo.GetList(c => c.CompanyId == compid).OrderByDescending(a => a.BranchId);
+            return bra_repo.GetList(c => c.CompanyId != null && c.CompanyId == compid).OrderByDescending(a => a.BranchId);
         }
 
         [HttpGet("GetDepartments", Name = "GetDepartments")]
@@ -86,7 +86,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetDepartmentsByCompanyId/{compid}", Name = "GetDepartmentsByCompanyId")]
         public IEnumerable<Department> GetDepartmentsByCompanyId([FromRoute]long compid)
         {
-            return dep_repo.GetList(a => a.CompanyId == compid).OrderByDescending(a => a.DepartmentId);
+            return dep_repo.GetList(a => a.CompanyId != null && a.CompanyId == compid).OrderByDescending(a => a.DepartmentId);
         }
 
         [HttpGet("GetRoles", Name = "GetRoles")]
@@ -98,7 +98,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetDropdownRolesByCompany/{CompanyId}")]
         public IEnumerable<Role> GetDropdownRolesByCompany(long CompanyId)
         {
-            return role_repo.GetList(c=>c.CompanyId == CompanyId);
+            return role_repo.GetList(c => c.CompanyId != null && c.CompanyId == CompanyId);
         }
 
         [HttpGet("GetRolesByCompany/{CompanyId}")]
@@ -124,7 +124,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetFeaturesByCompany/{CompanyId}")]
         public IEnumerable<Feature> GetFeaturesByCompany(long CompanyId)
         {
-            return fea_repo.GetList(f => f.CompanyId == CompanyId, f => f.Module);
+            return fea_repo.GetList(f => f.CompanyId != null && f.CompanyId == CompanyId, f => f.Module);
         }
 
         [HttpPost("GetFeaturesByModules", Name = "GetFeaturesByModules")]
@@ -164,7 +164,7 @@ namespace SystemAdministrationService.Controllers
         public IEnumerable<Module> GetModules(long CompanyId)
         {
             if (CompanyId > 0)
-                return _module_repo.GetList(r => r.CompanyId == CompanyId, a => a.Features, b => b.RoleModules);
+                return _module_repo.GetList(r => r.CompanyId != null && r.CompanyId == CompanyId, a => a.Features, b => b.RoleModules);
             else
                 return _module_repo.GetAll(a => a.Features, b => b.RoleModules);
         }
@@ -172,7 +172,7 @@ namespace SystemAdministrationService.Controllers
         [HttpGet("GetModulesByCompany/{companyId}", Name = "GetModulesByCompany")]
         public IEnumerable<Module> GetModulesByCompany([FromRoute]long CompanyId)
         {
-            return _module_repo.GetList(r => r.CompanyId == CompanyId);
+            return _module_repo.GetList(r => r.CompanyId != null && r.CompanyId == CompanyId);
         }
 
         [HttpGet("GetCompany/{id}", Name = "GetCompany")]

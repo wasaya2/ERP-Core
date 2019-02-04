@@ -7,6 +7,7 @@ using ErpCore.Entities;
 using ErpCore.Filters;
 using ErpInfrastructure.Data;
 using InventoryService.Repos.Interfaces;
+using InventoryService.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -559,7 +560,20 @@ namespace InventoryService.Controllers
         [HttpGet("GetGrnDetailsByCode/{code}", Name = "GetGrnDetailsByCode")]
         public GRN GetGrnDetailsByCode([FromRoute]string code)
         {
-            return grn_repo.GetFirst(a => a.GrnNumber == code, b => b.PurchaseOrder, c => c.GrnItems);
+            return grn_repo.GetGRNDetailsByCode(code);
+            //return grn_repo.GetFirst(a => a.GrnNumber == code, b => b.PurchaseOrder, c => c.GrnItems);
+        }
+
+        [HttpGet("GetGrnDetailsWithSupplierByCode/{code}", Name = "GetGrnDetailsWithSupplierByCode")]
+        public GetGrnWithSupplierForPharmacyPurchaseReturn GetGrnDetailsWithSupplierByCode([FromRoute]string code)
+        {
+            return grn_repo.GetGRNDetailsWithSupplierByCode(code);
+        }
+
+        [HttpGet("GetGrnDetailsWithSupplierByCodeAndCompany/{code}/{companyid}", Name = "GetGrnDetailsWithSupplierByCodeAndCompany")]
+        public GetGrnWithSupplierForPharmacyPurchaseReturn GetGrnDetailsWithSupplierByCodeAndCompany([FromRoute]string code, [FromRoute]long companyid)
+        {
+            return grn_repo.GetGRNDetailsWithSupplierByCodeAndCompany(code, companyid);
         }
 
         [HttpGet("GetPurchaseReturnDetailsByCode/{code}", Name = "GetPurchaseReturnDetailsByCode")]
@@ -592,9 +606,15 @@ namespace InventoryService.Controllers
         }
 
         [HttpGet("GetPurchaseInvoicesByMonth/{date}", Name = "GetPurchaseInvoicesByMonth")]
-        public IEnumerable<PurchaseInvoice> GetPurchaseInvoicesByMonth([FromRoute]DateTime date)
+        public IEnumerable<PurchaseInvoicePharmacyViewModel> GetPurchaseInvoicesByMonth([FromRoute]DateTime date)
         {
-            return invoice_repo.GetList(a => a.CreatedAt.Value.Month == date.Month && a.CreatedAt.Value.Year == date.Year, b => b.GRN).OrderByDescending(a => a.PurchaseInvoiceId);
+            return invoice_repo.GetPurchaseInvoicesByMonth(date);
+        }
+
+        [HttpGet("GetPurchaseInvoicesByMonthAndCompany/{date}/{companyid}", Name = "GetPurchaseInvoicesByMonthAndCompany")]
+        public IEnumerable<PurchaseInvoicePharmacyViewModel> GetPurchaseInvoicesByMonthAndCompany([FromRoute]DateTime date, [FromRoute]long companyid)
+        {
+            return invoice_repo.GetPurchaseInvoicesByMonthAndCompany(date, companyid);
         }
 
         #endregion

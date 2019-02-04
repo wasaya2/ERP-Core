@@ -19,6 +19,8 @@ namespace ErpCore.Entities.InventorySetup
 
         public string Name { get; set; }
 
+        public bool? IsGeneralBrand { get; set; }
+
         public bool? ShowInNsv { get; set; }
 
         public IEnumerable<InventoryItem> InventoryItems { get; set; }

@@ -10,6 +10,7 @@ namespace InventoryService.Repos.Interfaces
 {
     public interface IBrandRepository : IRepo<Brand>
     {
-        IEnumerable<OrderTakingInventoryViewModel> GetInventoryItems(long CompanyId);
+        IEnumerable<OrderTakingInventoryViewModel> GetGeneralInventoryItems(long CompanyId);
+        IEnumerable<OrderTakingInventoryViewModel> GetNonGeneralInventoryItems(long CompanyId);
    }
 }

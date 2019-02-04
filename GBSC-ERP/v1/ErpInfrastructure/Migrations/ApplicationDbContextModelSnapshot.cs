@@ -5629,6 +5629,8 @@ namespace ErpInfrastructure.Migrations
 
                     b.Property<string>("FilePath");
 
+                    b.Property<double?>("Salary");
+
                     b.Property<long?>("UserId");
 
                     b.HasKey("MasterPayrollId");
@@ -7528,6 +7530,8 @@ namespace ErpInfrastructure.Migrations
                     b.Property<DateTime?>("EditedAt");
 
                     b.Property<long?>("EditedBy");
+
+                    b.Property<bool?>("IsGeneralBrand");
 
                     b.Property<string>("Name");
 
@@ -10270,6 +10274,8 @@ namespace ErpInfrastructure.Migrations
                     b.Property<long?>("ReturnReasonId");
 
                     b.Property<double?>("TotalReturnAmount");
+
+                    b.Property<double?>("TotalReturnQuantity");
 
                     b.HasKey("PurchaseReturnId");
 

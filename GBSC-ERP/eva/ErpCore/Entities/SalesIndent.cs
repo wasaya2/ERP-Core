@@ -31,6 +31,12 @@ namespace ErpCore.Entities
         /*******************************************/
 
 
+        //For Internal Requisition
+        public string DepartmentName { get; set; }
+        public string BranchName { get; set; }
+        public bool? IsInternalOrder { get; set; } //True for indents created for inter department/branch orders
+        /*******************************************/
+
         //For integration with eTracker OrderTaking
         public long? StoreId { get; set; }
         public long? StoreVisitId { get; set; }
@@ -45,8 +51,6 @@ namespace ErpCore.Entities
         public bool? IsApproved { get; set; }
         public DateTime? ProcessedDate { get; set; }
         public bool? IsProcessed { get; set; }
-
-        public bool? IsInternalOrder { get; set; } //True for indents created for inter department/branch orders
 
         //Shop setup?
 

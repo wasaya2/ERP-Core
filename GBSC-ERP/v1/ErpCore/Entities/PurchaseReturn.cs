@@ -19,10 +19,15 @@ namespace ErpCore.Entities
         public string ReturnNumber { get; set; }
         public DateTime? ReturnDate { get; set; }
         public string Remarks { get; set; }
+        public double? ExchangeRate { get; set; }
         public double? TotalReturnAmount { get; set; }
+        public double? TotalReturnQuantity { get; set; }
 
         public long? ReturnReasonId { get; set; }
         public ReturnReason ReturnReason { get; set; }
+
+        public long? InventoryCurrencyId { get; set; }
+        public InventoryCurrency InventoryCurrency { get; set; }
 
         public long? GRNId { get; set; }
         public GRN GRN { get; set; }

@@ -31,7 +31,7 @@ namespace ErpCore.Entities
         public DateTime? BillDate { get; set; }
         public string Origin { get; set; } //Imported or local
         //public string Currency { get; set; }
-        //public double? ExchangeRate { get; set; }
+        public double? ExchangeRate { get; set; }
         public string Remarks { get; set; }
         public bool? Status { get; set; }
 

@@ -23,7 +23,7 @@ namespace SystemAdministrationService.Controllers
         private IFlagValueRepository FlagValue_repo;
         private IFlagTypeRepository FlagType_repo;
         private IRosterRepository Roster_repo;
-        private IShiftRepository Shift_repo; 
+        private IShiftRepository Shift_repo;
         private IOverTimeFlagRepository OverTimeFlag_repo;
         private IOverTimeTypeRepository OverTimeType_repo;
         private IEmployeeWorkingDayOtRepository EmployeeWorkingDayOt_repo;
@@ -35,7 +35,7 @@ namespace SystemAdministrationService.Controllers
 
         public AttendanceSetupController(
 
-      IAssignRosterRepository repo1, 
+      IAssignRosterRepository repo1,
       IAttendanceFlagRepository repo3,
       IAttendanceRequestApproverRepository repo4,
       IAttendanceRequestTypeRepository repo5,
@@ -44,7 +44,7 @@ namespace SystemAdministrationService.Controllers
       IFlagTypeRepository repo8,
       IFlagValueRepository repo9,
       IRosterRepository repo10,
-      IShiftRepository repo11, 
+      IShiftRepository repo11,
       IOverTimeFlagRepository repo12,
       IOverTimeTypeRepository repo13,
       IEmployeeWorkingDayOtRepository repo14,
@@ -77,14 +77,21 @@ namespace SystemAdministrationService.Controllers
             ShiftAttendanceFlag_repo = repo18;
             UserAssignRoster_repo = repo19;
 
-    }
+        }
 
 
         #region Assign Roster
         [HttpGet("GetAssignRosters", Name = "GetAssignRosters")]
         public IEnumerable<AssignRoster> GetAssignRosters()
         {
-            return AssignRoster_repo.GetAll(r => r.UserAssignRosters , x => x.Daysoffs).OrderByDescending(a => a.AssignRosterId );
+            return AssignRoster_repo.GetAll(r => r.UserAssignRosters, x => x.Daysoffs).OrderByDescending(a => a.AssignRosterId);
+        }
+        
+        [HttpGet("GetAssignedRostersByUser/{userid}", Name = "GetAssignedRostersByUser")]
+        public IEnumerable<UserAssignRoster> GetAssignedRostersByUser([FromRoute]long userid, DateTime fromdate, DateTime todate)
+        {
+            //return UserAssignRoster_repo.GetList(a => a.UserId == userid, b => b.AssignRoster).OrderByDescending(a => a.AssignRosterId);
+            return UserAssignRoster_repo.GetAssignedRostersByUser(userid, fromdate, todate);
         }
 
         [HttpGet("GetAssignRoster/{id}", Name = "GetAssignRoster")]

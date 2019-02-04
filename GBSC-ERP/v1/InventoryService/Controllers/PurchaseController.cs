@@ -564,6 +564,18 @@ namespace InventoryService.Controllers
             //return grn_repo.GetFirst(a => a.GrnNumber == code, b => b.PurchaseOrder, c => c.GrnItems);
         }
 
+        [HttpGet("GetGrnDetailsWithSupplierByCode/{code}", Name = "GetGrnDetailsWithSupplierByCode")]
+        public GetGrnWithSupplierForPharmacyPurchaseReturn GetGrnDetailsWithSupplierByCode([FromRoute]string code)
+        {
+            return grn_repo.GetGRNDetailsWithSupplierByCode(code);
+        }
+
+        [HttpGet("GetGrnDetailsWithSupplierByCodeAndCompany/{code}/{companyid}", Name = "GetGrnDetailsWithSupplierByCodeAndCompany")]
+        public GetGrnWithSupplierForPharmacyPurchaseReturn GetGrnDetailsWithSupplierByCodeAndCompany([FromRoute]string code, [FromRoute]long companyid)
+        {
+            return grn_repo.GetGRNDetailsWithSupplierByCodeAndCompany(code, companyid);
+        }
+
         [HttpGet("GetPurchaseReturnDetailsByCode/{code}", Name = "GetPurchaseReturnDetailsByCode")]
         public PurchaseReturn GetPurchaseReturnDetailsByCode([FromRoute]string code)
         {

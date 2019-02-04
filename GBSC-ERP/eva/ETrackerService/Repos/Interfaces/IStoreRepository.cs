@@ -5,6 +5,7 @@ using eTrackerCore.Entities;
 using eTrackerCore.Entities.ViewModels;
 using eTrackerInfrastructure.Models.JsonPostClasses;
 using eTrackerInfrastructure.Repos.Base;
+using ETrackerService.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,5 +44,7 @@ namespace eTrackerInfrastructure.Repos.Interfaces
         IEnumerable<Store> GetStoresByUserId(long userid);
 
         IEnumerable<Store> GetStoreByUserId(long UserId);
+
+        Task<IEnumerable<ShopCensusDetail>> GetShopCensusDetailByCompany(long companyid);
     }
 }

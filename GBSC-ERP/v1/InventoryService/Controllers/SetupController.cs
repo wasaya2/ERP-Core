@@ -141,10 +141,18 @@ namespace InventoryService.Controllers
         }
 
 
-        [HttpGet("GetBrandsWithInventoryItems/{CompanyId}")]
-        public IActionResult GetBrandsWithInventoryItems(long CompanyId)
+        [HttpGet("GetNonGeneralBrandsWithInventoryItems/{CompanyId}")]
+        public IActionResult GetNonGeneralBrandsWithInventoryItems(long CompanyId)
         {
-            var brands = Brand_repo.GetInventoryItems(CompanyId);
+            var brands = Brand_repo.GetNonGeneralInventoryItems(CompanyId);
+
+            return Json(brands);
+        }
+
+        [HttpGet("GetGeneralBrandsWithInventoryItems/{CompanyId}")]
+        public IActionResult GetGeneralBrandsWithInventoryItems(long CompanyId)
+        {
+            var brands = Brand_repo.GetGeneralInventoryItems(CompanyId);
 
             return Json(brands);
         }

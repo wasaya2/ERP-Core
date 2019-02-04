@@ -7,10 +7,6 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
 {
     public class Allowance : BaseClass
     {
-        public Allowance()
-        {
-            AllowanceRates = new HashSet<AllowanceRate>();
-        }
 
         [Key]
         public long AllowanceId { get; set; }
@@ -19,6 +15,6 @@ namespace ErpCore.Entities.HR.Payroll.PayrollSetup
 
         public bool? IsDefaultAllowance { get; set; } //From payroll admin
          
-        public IEnumerable<AllowanceRate> AllowanceRates { get; set; }
+
     }
 }
